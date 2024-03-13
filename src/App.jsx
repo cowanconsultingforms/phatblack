@@ -11,10 +11,14 @@ import PBdigital from './routes/PB-digital';
 import PBmusic from './routes/PB-music';
 import PBfashion from './routes/PB-fashion';
 import DefendersOfHipHop from './routes/Defenders-of-hip-hop';
+import About from './routes/About'
+import Subscribe from './routes/Subscribe';
+import Header from './components/NavHeader/Header';
 
 function App() {
   return (
     <BrowserRouter>
+    <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Eevents />} />
@@ -27,6 +31,8 @@ function App() {
           <Route path="/pbfashion" element={<PBfashion />} />
           <Route path="/pbmusic" element={<PBmusic />} />
           <Route path="/defendersofhiphop" element={<DefendersOfHipHop />} />
+          <Route path="/about" element={<About/>}/>
+          <Route path="/subscribe" element={<Subscribe/>} />
         </Routes>
     </BrowserRouter>
   )
