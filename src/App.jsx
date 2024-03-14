@@ -16,14 +16,14 @@ import Subscribe from './routes/Subscribe';
 import Header from './components/NavHeader/Header';
 import ContactUs from './routes/ContactUs';
 import PBcommunuties from './routes/PB-communities';
-import Signup from './routes/Signup';
+import SignUp from './routes/SignUp';
 import Login from './routes/Login';
 
 function App() {
   return (
     <>
-    <BrowserRouter>
-    <Header/>
+      <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Eevents />} />
@@ -37,13 +37,13 @@ function App() {
           <Route path="/pbmusic" element={<PBmusic />} />
           <Route path="/pbcommunities" element={<PBcommunuties />} />
           <Route path="/defendersofhiphop" element={<DefendersOfHipHop />} />
-          <Route path="/about" element={<About/>}/>
-          <Route path="/subscribe" element={<Subscribe/>} />
-          <Route path="/contactus" element={<ContactUs/>} />
-          <Route path="/Login" element={<Login/>} />
-          <Route path="/Signup" element={<Signup/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/subscribe" element={<Subscribe />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </>
   )
 }
