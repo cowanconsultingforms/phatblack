@@ -5,7 +5,9 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  background-color: black;
+  color: white;
 }
 
 /** For Navigation Bar 
@@ -16,12 +18,46 @@ header {
   color: #212529;
 }
 
+
 .nav-area {
   display: flex;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px 20px;
+  color: white;
+  font-weight: 400;
+  font-size: medium;
+  letter-spacing: 2px;
+}
+
+.Container {
+  position: absolute;
+  top: 30px;
+  right: 90px;
+}
+
+.Login,
+.Sign-up {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.Login button,
+.Sign-up button {
+    padding: 8px 16px;
+    font-size: 20px;
+    border: none;
+    background-color: #ffa646;
+    color: #000000;
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif
+}
+
+.Login button:hover,
+.Sign-up button:hover {
+    background-color: #ef8b1fa1;
+    color: #ffffff;
 }
 
 .logo {
@@ -29,6 +65,15 @@ header {
   font-size: 25px;
   color: inherit;
   margin-right: 20px;
+  color: #ffa646;
+  font-weight: 700;
+  font-size: 3.5rem;
+  letter-spacing: 0px;
+}
+
+.logo:hover{
+  color: white;
+  text-decoration: underline;
 }
 
 /* menu on desktop */
@@ -41,7 +86,7 @@ header {
 
 .desktop-nav .menu-items {
   position: relative;
-  font-size: 14px;
+  font-size: medium;
 }
 
 .desktop-nav .menu-items a {
@@ -74,7 +119,7 @@ header {
 
 .desktop-nav .menu-items a:hover,
 .desktop-nav .menu-items button:hover {
-  background-color: #f2f2f2;
+  text-decoration: underline;
 }
 
 .desktop-nav .arrow::after {
@@ -119,6 +164,11 @@ header {
 
 /* menu on mobile */
 @media screen and (max-width: 960px) {
+  .logo{
+    margin-top: 8px;
+    font-size: 3rem;
+  }
+
   .nav-area {
     justify-content: space-between;
   }
@@ -138,6 +188,7 @@ header {
     background-color: transparent;
     cursor: pointer;
     position: relative;
+    font-family: "Bebas Neue", sans-serif;
   }
   .mobile-nav .menus {
     list-style: none;
@@ -149,7 +200,7 @@ header {
     z-index: 9999;
     min-width: 12rem;
     padding: 0.5rem 0;
-    background-color: #fff;
+    background-color: rgb(23, 23, 23);
     border-radius: 0.5rem;
   }
 
@@ -179,7 +230,7 @@ header {
 
   .mobile-nav .menu-items a:hover,
   .mobile-nav .menu-items button:hover {
-    background-color: #f2f2f2;
+    text-decoration: underline;
   }
 
   .mobile-nav .arrow::after {

@@ -16,6 +16,14 @@ const Header = () => {
         {/* for small screens */}
         <MobileNav />
       </div>
+      <div className='Container'>
+            <div className='Login'>
+              <Link to='/Login'><button type='button'>Login</button></Link>
+            </div>
+            <div className='Sign-up'>
+              <Link to='/Signup'><button type='button'>Sign up</button></Link>
+            </div>
+        </div>
     </header>
   );
 };
