@@ -18,7 +18,6 @@ import ContactUs from './routes/ContactUs';
 import PBcommunuties from './routes/PB-communities';
 import Signup from './routes/Signup';
 import Login from './routes/Login';
-import LoginandSignup from './components/Login/Login/Signup';
 
 function App() {
   return (
