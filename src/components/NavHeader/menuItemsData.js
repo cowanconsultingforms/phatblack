@@ -8,34 +8,28 @@ export const menuItemsData = [
       url: "/zine"
     },
     {
-      title: "Entertainment",
-      url: "#",
-      submenu: [
-        {
-          title: "E-TV",
-          url: "/tv"
-        },
-        {
-          title: "E-Radio",
-          url: "/radio"
-        },
-        {
-          title: "E-Gaming",
-          url: "/gaming"
-        },
-        {
-          title: "Defenders of Hip Hop",
-          url: "/defendersofhiphop"
-        },
-        {
-          title: "PB-Digital",
-          url: "/pbdigital"
-        },
-        {
-          title: "PB-Music",
-          url: "/pbmusic"
-        }
-      ]
+        title: "E-TV",
+        url: "/tv",
+    },
+    {
+      title: "E-Radio",
+      url: "/radio"
+    },  
+    {
+      title: "E-Gaming",
+      url: "/gaming"
+    },
+    {
+      title: "Defenders of Hip Hop",
+      url: "/defendersofhiphop"
+    },
+    {
+      title: "PB-Digital",
+      url: "/pbdigital"
+    },
+    {
+      title: "PB-Music",
+      url: "/pbmusic"
     },
     {
       title: "Fashion",
@@ -44,6 +38,10 @@ export const menuItemsData = [
     {
       title: "Events",
       url: "/events"
+    },
+    {
+      title: "PB-Communities",
+      url: "/pbcommunities"
     },
     {
       title: "Subscribe",
@@ -56,6 +54,10 @@ export const menuItemsData = [
     {
       title: "About",
       url: "/about"
-    }
+    },
+    {
+      title:"Contact Us",
+      url:"/contactus"
+    },
   ];
   

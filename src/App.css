@@ -5,7 +5,9 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  background-color: black;
+  color: white;
 }
 
 /** For Navigation Bar 
@@ -22,6 +24,9 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px 20px;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
 .logo {
@@ -29,6 +34,9 @@ header {
   font-size: 25px;
   color: inherit;
   margin-right: 20px;
+  color: #ffa646;
+  font-weight: 700;
+  font-size: 3rem;
 }
 
 /* menu on desktop */
@@ -74,7 +82,7 @@ header {
 
 .desktop-nav .menu-items a:hover,
 .desktop-nav .menu-items button:hover {
-  background-color: #f2f2f2;
+  text-decoration: underline;
 }
 
 .desktop-nav .arrow::after {
@@ -119,6 +127,10 @@ header {
 
 /* menu on mobile */
 @media screen and (max-width: 960px) {
+  .logo{
+    font-size: 2.5rem;
+  }
+
   .nav-area {
     justify-content: space-between;
   }
@@ -138,6 +150,7 @@ header {
     background-color: transparent;
     cursor: pointer;
     position: relative;
+    font-family: "Bebas Neue", sans-serif;
   }
   .mobile-nav .menus {
     list-style: none;
@@ -149,7 +162,7 @@ header {
     z-index: 9999;
     min-width: 12rem;
     padding: 0.5rem 0;
-    background-color: #fff;
+    background-color: rgb(23, 23, 23);
     border-radius: 0.5rem;
   }
 
@@ -179,7 +192,7 @@ header {
 
   .mobile-nav .menu-items a:hover,
   .mobile-nav .menu-items button:hover {
-    background-color: #f2f2f2;
+    text-decoration: underline;
   }
 
   .mobile-nav .arrow::after {
