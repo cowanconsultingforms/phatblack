@@ -1,9 +1,5 @@
 export const menuItemsData = [
     {
-      title: "Home",
-      url: "/"
-    },
-    {
       title: "News",
       url: "/zine"
     },
