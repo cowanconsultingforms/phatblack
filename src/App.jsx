@@ -16,7 +16,7 @@ import Subscribe from './routes/Subscribe';
 import Header from './components/NavHeader/Header';
 import ContactUs from './routes/ContactUs';
 import PBcommunuties from './routes/PB-communities';
-import SignUp from './routes/SignUp';
+import SignUp from './routes/Signup';
 import Login from './routes/Login';
 
 function App() {
