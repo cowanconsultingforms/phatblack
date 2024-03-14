@@ -18,6 +18,7 @@ header {
   color: #212529;
 }
 
+
 .nav-area {
   display: flex;
   align-items: center;
@@ -28,6 +29,35 @@ header {
   font-weight: 400;
   font-size: medium;
   letter-spacing: 2px;
+}
+
+.Container {
+  position: absolute;
+  top: 30px;
+  right: 90px;
+}
+
+.Login,
+.Sign-up {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.Login button,
+.Sign-up button {
+    padding: 8px 16px;
+    font-size: 20px;
+    border: none;
+    background-color: #ffa646;
+    color: #000000;
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif
+}
+
+.Login button:hover,
+.Sign-up button:hover {
+    background-color: #ef8b1fa1;
+    color: #ffffff;
 }
 
 .logo {
