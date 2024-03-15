@@ -1,6 +1,6 @@
 export const menuItemsData = [
     {
-      title: "News",
+      title: "E-Zine",
       url: "/zine"
     },
     {

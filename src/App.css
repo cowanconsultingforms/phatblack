@@ -39,7 +39,7 @@ header {
 
 .Login,
 .Sign-up {
-    display: inline-block;
+    display: inline-flex;
     margin-left: 10px;
 }
 
@@ -161,6 +161,48 @@ header {
 .mobile-nav {
   display: none;
 }
+
+/*Navbar arrow buttons*/
+.arr {
+  position: relative;
+  background-color: transparent;
+  border:none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+.arr:disabled {
+  opacity: 0;
+}
+
+.arr:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.arr::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  border: solid white;
+  border-width: 0 0.2rem 0.2rem 0;
+}
+
+.left::before{
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.right::before{
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
+
 
 /* menu on mobile */
 @media screen and (max-width: 960px) {
