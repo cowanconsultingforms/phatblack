@@ -3,6 +3,7 @@ body{
 }
 
 .imageDiv{
+    z-index: -100;
     position: relative;
 }
 
@@ -26,8 +27,9 @@ body{
     position: absolute;
     margin-top: 16%;
     margin-left: 10%;
+    font-family: Bebas Neue;
     font-size: clamp(1rem, 4vw, 6rem);
-    font-weight: 200;
+    font-weight: 100;
 }
 
 .homeButton{
@@ -35,10 +37,11 @@ body{
     margin-top: 22%;
     margin-left: 40%;
     width: max(20%, 125px);
-    height: max(1vh, 50px);
+    height: max(5vh, 40px);
     color: white;
-    font-weight: 600;
-    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    font-family: Bebas Neue;
+    font-weight:lighter;
+    font-size: clamp(1rem, 2vw, 1.75rem);
     background: transparent;
     border: 2px solid white;
     padding: 5px;
