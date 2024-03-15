@@ -15,22 +15,25 @@ function ContactUs() {
     }
     return (
         <div>
-            <h1>Contact Us</h1>
+            <h1 className="Contact-Us-Header">Contact Us</h1>
                 <div className="Forms-Container">
                 <form>
                     <input
+                        className="Contact-Us-Input"
                         type="name"
                         value={name}
                         onChange={(e)=>setName(e.target.value)}
                         placeholder="Name"
                     />
                     <input
+                        className="Contact-Us-Input"
                         type="email"
                         value={email}
                         onChange={(e)=>setEmail(e.target.value)}
                         placeholder="Email"
                     />
                     <input
+                        className="Contact-Us-Input"
                         type="phoneNumber"
                         value={phoneNumber}
                         onChange={(e)=>setPhoneNumber(e.target.value)}
@@ -38,12 +41,13 @@ function ContactUs() {
                     />
 
                     <textarea
+                        className="Contact-Us-Input Contact-Us-Textarea" 
                         type="message"
                         value={message}
                         onChange={(e) =>setMessage(e.target.value)}
                         placeholder="Enter A Message..."
                     ></textarea>
-                    <button onClick={handleSubmit}>Send Message</button>
+                    <button className="Contact-Us-Button"onClick={handleSubmit}>Send Message</button>
                 </form>
                 </div>
         </div>
