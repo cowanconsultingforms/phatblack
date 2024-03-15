@@ -10,6 +10,11 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    /*
+        *handleSubmit button
+        *e represents user input, in this case, the email and password
+        *createUserWithEmailAndPassword is a firebase function that takes in the auth and the email and password
+    */
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password == confirmPassword) {
@@ -27,6 +32,7 @@ function SignUp() {
             alert("Passwords do not match");
         }
     }
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '125px', flexDirection: 'column' }}>
             <h1> Sign Up </h1>
