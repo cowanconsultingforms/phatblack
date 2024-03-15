@@ -5,7 +5,7 @@ import { useState } from "react";
 const Navbar = () => {
   // Initial depth level for menu items
   const depthLevel = 0;
-  const [currentMenuItems, setCurrentMenuItems] = useState(menuItemsData.slice(0,5));
+  const [currentMenuItems, setCurrentMenuItems] = useState(menuItemsData.slice(0,7));
   const [startIndex, setStartIndex] = useState(0);
   const [isNextDisable, setNextDisable] = useState(false);
   const [isPrevDisable, setPrevDisable] = useState(true);  //Initially disable
