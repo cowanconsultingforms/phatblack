@@ -44,11 +44,11 @@ const Navbar = () => {
       
       <ul className="menus">
         {/* Map through menu items and render MenuItems component */}
-        <button class="arr left" onClick={handlePrevClick} disabled={isPrevDisable}></button>
+        <button className="arr left" onClick={handlePrevClick} disabled={isPrevDisable}></button>
         {currentMenuItems.map((menu, index) => (
           <MenuItems items={menu} key={index} depthLevel={depthLevel} />
         ))}
-        <button class= "arr right" onClick={handleNextClick} disabled={isNextDisable}></button>
+        <button className= "arr right" onClick={handleNextClick} disabled={isNextDisable}></button>
       </ul>
     </nav>
   );
