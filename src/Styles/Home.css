@@ -1,0 +1,61 @@
+body{
+    overflow-x: hidden;
+}
+
+.imageDiv{
+    position: relative;
+}
+
+.backgroundImage{
+    position: absolute;
+    width: 99vw;
+}
+
+.orangeHeader{
+    position: absolute;
+    width: 40%;
+    margin-top: 10%;
+    margin-left: 30%;
+    color: orange;
+    font-family: Snell Roundhand, cursive;
+    font-weight: 100;
+    font-size: clamp(1rem, 4vw, 5rem);
+}
+
+.whiteHeader{
+    position: absolute;
+    margin-top: 16%;
+    margin-left: 10%;
+    font-size: clamp(1rem, 4vw, 6rem);
+    font-weight: 200;
+}
+
+.homeButton{
+    position: absolute;
+    margin-top: 22%;
+    margin-left: 40%;
+    width: max(20%, 125px);
+    height: max(1vh, 50px);
+    color: white;
+    font-weight: 600;
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    background: transparent;
+    border: 2px solid white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.homeButton:hover{
+    background-color: rgb(231, 151, 4);
+    transition: 0.3s;
+}
+
+.homeButton:not(:hover){
+    background-color: transparent;
+    transition: 0.3s;
+}
+ 
+
+
+
+
