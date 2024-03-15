@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth } from '../firebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -8,6 +8,11 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    /*
+        *handleSubmit button
+        *e represents user input, in this case, the email and password
+        *signInWithEmailAndPassword is a firebase function that takes in the auth and the email and password
+    */
     const handleSubmit = async (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password).then((user) => {
@@ -21,6 +26,24 @@ function Login() {
             alert(error);
         })
     }
+
+    /*
+        *handlePasswordReset button
+        *sendPasswordResetEmail is a firebase function that takes in the auth and the email
+    */
+    const handlePasswordReset = async () => {
+        if (email) {
+            try {
+                await sendPasswordResetEmail(auth, email);
+                alert('Please check your email to reset your password.');
+            } catch (error) {
+                console.error('Password reset error', error);
+                alert(error.message);
+            }
+        } else {
+            alert('Please enter your email address first.');
+        }
+    };
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '125px', flexDirection: 'column' }}>
@@ -47,6 +70,8 @@ function Login() {
 
                 <button type="submit" onClick={handleSubmit}> Sign In </button>
             </form>
+
+            <p>Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
             <p> Don't have an account? <a href="/signup">Sign Up!</a></p>
         </div>
     );
