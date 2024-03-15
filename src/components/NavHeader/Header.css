@@ -10,6 +10,7 @@ header {
     margin: 0 auto;
     padding: 10px 20px;
     color: white;
+    background-color: #000000;
     font-weight: 400;
     font-size: medium;
     letter-spacing: 2px;
@@ -20,8 +21,10 @@ header {
   }
   
   .Container {
+      position: relative;
       display: flex;
       flex-direction: row;
+      right: 60px;
   }
   
   .login, .sign-up {
