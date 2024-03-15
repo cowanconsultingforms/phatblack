@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Login.css"
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -46,33 +47,35 @@ function Login() {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '125px', flexDirection: 'column' }}>
-            <h1> Sign In </h1>
-            <form>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                />
+        <div className="ImageContainer">
+            <div className="LoginContainer">
+                <h1> Log In </h1>
+                <form>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                    />
 
-                <br />
+                    <br />
 
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
+                 <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                    />
 
-                <br />
-                <hr />
+                    <br />
 
-                <button type="submit" onClick={handleSubmit}> Sign In </button>
-            </form>
 
-            <p>Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
-            <p> Don't have an account? <a href="/signup">Sign Up!</a></p>
+                    <button type="submit" onClick={handleSubmit}> Sign In </button>
+                </form>
+
+                <p className="ForgetPass">Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
+                <p className="NoAccount"> Don't have an account? <a href="/signup">Sign Up!</a></p>
+            </div>
         </div>
     );
 }
