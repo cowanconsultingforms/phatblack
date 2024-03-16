@@ -36,7 +36,7 @@ function SignUp() {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-            await setDoc(usernameRef, { uid: userCredential.user.uid, email: email }); // It's a good idea to also save the email alongside the uid for reference
+            await setDoc(usernameRef, { uid: userCredential.user.uid, email: email });
             console.log(userCredential);
             navigate('/');
             alert("Signed up successfully! Please Sign In to continue");

@@ -21,30 +21,34 @@ function Login() {
 
         if (!email.includes('@')) {
             const usernameDocRef = doc(db, 'usernames', email);
-            try {
-                const usernameDoc = await getDoc(usernameDocRef);
-                if (usernameDoc.exists()) {
-                    userEmail = usernameDoc.data().email;
-                } else {
-                    alert("Username does not exist. Please try again.");
-                    return;
-                }
-            } catch (error) {
-                console.error("Error retrieving email from username: ", error);
-                alert(error.message);
+            const usernameDoc = await getDoc(usernameDocRef);
+            if (usernameDoc.exists()) {
+                userEmail = usernameDoc.data().email;
+            } else {
+                alert("Username does not exist or could not be found. Please try again.");
                 return;
             }
         }
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, userEmail, password);
-            const accessToken = userCredential.user.accessToken;
-            sessionStorage.setItem("accessToken", accessToken);
+            sessionStorage.setItem("accessToken", userCredential.user.accessToken);
             navigate('/');
-            alert("Signed In successfully!");
         } catch (error) {
+            let errorMessage;
+            switch (error.code) {
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                    errorMessage = "Incorrect username, email, or password. Please try again.";
+                    break;
+                case 'auth/network-request-failed':
+                    errorMessage = "Network error. Please check your connection and try again.";
+                    break;
+                default:
+                    errorMessage = "An error occurred during sign in. Please try again.";
+            }
             console.error("ERROR SIGNIN: ", error);
-            alert(error.message);
+            alert(errorMessage);
         }
     };
     /*

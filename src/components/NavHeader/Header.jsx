@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebaseConfig";
 import Sidebar from "./Sidebar";
 import "./Header.css";
 
@@ -11,13 +12,16 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsAuthenticated(!!sessionStorage.getItem("accessToken"));
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsAuthenticated(!!user);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("accessToken");
+  const handleLogout = async () => {
+    await auth.signOut();
     navigate('/');
-    window.location.reload();
   };
 
   return (
@@ -41,7 +45,7 @@ const Header = () => {
           </div>
         ) : (
           <div className='Container'>
-            <button className='logout' type='button' onClick={handleLogout}>Logout</button>
+            <button className="logout" type='button' onClick={handleLogout}>Logout</button>
           </div>
         )}
       </div>
