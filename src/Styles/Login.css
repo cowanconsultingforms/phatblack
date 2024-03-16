@@ -1,0 +1,73 @@
+.ImageContainer {
+    position: relative;
+    top: 0px; /* Adjust this value to overlap with the shadow of the nav bar */
+    right: 0px;
+    padding: 1px;
+    height: 84vh;
+    background-image: url('src/assets/redpants-radio.jpg');; /* Specify the path to your image */
+    background-size: cover; /* Cover the entire container with the image */
+    background-position: center; /* Center the image within the container */
+    z-index: -100;
+}
+
+.LoginContainer {
+    width: 300px;
+    margin: auto;
+    margin-top: 100px; /* Adjust as needed for vertical positioning */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.LoginContainer h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 30px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #3d3b3b;
+    border-radius: 5px;
+    outline: none;
+}
+
+button[type="submit"] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa646;
+    color: #000000;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #d35400;
+}
+
+.ForgetPass,
+.NoAccount {
+    color: #000000;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.ForgetPass a,
+.NoAccount a {
+    color: #f60;
+    text-decoration: none;
+}
+
+.ForgetPass a:hover,
+.NoAccount a:hover {
+    text-decoration: underline;
+}
