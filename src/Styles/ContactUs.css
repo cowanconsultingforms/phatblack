@@ -18,7 +18,11 @@
     padding-bottom: 1.5rem;
 }
 
-.Contact-Us-Input {
+.Contact-Us-Input[type="name"],
+.Contact-Us-Input[type="email"],
+.Contact-Us-Input[type="phoneNumber"],
+.Contact-Us-Input[type="message"]
+ {
     font-size: 30px;
     font-family: "Bebas Neue";
     width: 100%;
