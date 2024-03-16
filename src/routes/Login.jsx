@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../Styles/Login.css";
-import { auth } from '../firebaseConfig';
+import { auth, db } from '../firebaseConfig';
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -16,18 +17,36 @@ function Login() {
     */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password).then((user) => {
-            console.log(user);
-            sessionStorage.setItem("accessToken", user.user.auth.lastNotifiedUid);
-            navigate('/');
-            location.reload();
-            alert("Signed In successfully!");
-        }).catch((error) => {
-            console.log("ERROR SIGNIN: ", error);
-            alert(error);
-        })
-    }
+        let userEmail = email;
 
+        if (!email.includes('@')) {
+            const usernameDocRef = doc(db, 'usernames', email);
+            try {
+                const usernameDoc = await getDoc(usernameDocRef);
+                if (usernameDoc.exists()) {
+                    userEmail = usernameDoc.data().email;
+                } else {
+                    alert("Username does not exist. Please try again.");
+                    return;
+                }
+            } catch (error) {
+                console.error("Error retrieving email from username: ", error);
+                alert(error.message);
+                return;
+            }
+        }
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, userEmail, password);
+            const accessToken = userCredential.user.accessToken;
+            sessionStorage.setItem("accessToken", accessToken);
+            navigate('/');
+            alert("Signed In successfully!");
+        } catch (error) {
+            console.error("ERROR SIGNIN: ", error);
+            alert(error.message);
+        }
+    };
     /*
         *handlePasswordReset button
         *sendPasswordResetEmail is a firebase function that takes in the auth and the email
@@ -52,15 +71,16 @@ function Login() {
                 <h1> Log In </h1>
                 <form>
                     <input
-                        type="email"
+                        type="text"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email"
+                        placeholder="Email or Username"
                     />
+
 
                     <br />
 
-                 <input
+                    <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
