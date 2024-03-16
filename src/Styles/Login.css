@@ -5,6 +5,7 @@
     background-image: url('src/assets/redpants-radio.jpg');; /* Specify the path to your image */
     background-size: cover; /* Cover the entire container with the image */
     background-position: center; /* Center the image within the container */
+    z-index: -100;
 }
 
 .LoginContainer {
