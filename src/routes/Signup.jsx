@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Styles/Signup.css";
 import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -34,39 +35,41 @@ function SignUp() {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '125px', flexDirection: 'column' }}>
-            <h1> Sign Up </h1>
-            <form>
+        <div className="SigninImageContainer">
+            <div className="SigninContainer">
+                <h1> Sign Up </h1>
+                <form>
 
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                />
-                <br />
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                    />
+                    <br />
 
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
-                <br />
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
+                        />
 
-                <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirm Password"
-                />
+                    <br />
 
-                <br />
-                <hr />
+                    <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder="Confirm Password"
+                    />
 
-                <button type="submit" onClick={handleSubmit}> Sign Up </button>
-            </form>
-            <p>Already have an account? <a href="/login"> Sign In </a></p>
+                    <br />
+
+                    <button type="submit" onClick={handleSubmit}> Sign Up </button>
+                </form>
+                <p className="AlreadyAccount"> Already have an account? <a href="/login"> Sign In </a></p>
+            </div>
         </div>
     );
 }
