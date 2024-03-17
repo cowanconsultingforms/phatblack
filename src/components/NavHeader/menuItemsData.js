@@ -1,61 +1,64 @@
 export const menuItemsData = [
     {
-      title: "Home",
-      url: "/"
-    },
-    {
-      title: "News",
+      title: "E-Zine",
       url: "/zine"
     },
     {
-      title: "Entertainment",
-      url: "#",
-      submenu: [
-        {
-          title: "E-TV",
-          url: "/tv"
-        },
-        {
-          title: "E-Radio",
-          url: "/radio"
-        },
-        {
-          title: "E-Gaming",
-          url: "/gaming"
-        },
-        {
-          title: "Defenders of Hip Hop",
-          url: "/defendersofhiphop"
-        },
-        {
-          title: "PB-Digital",
-          url: "/pbdigital"
-        },
-        {
-          title: "PB-Music",
-          url: "/pbmusic"
-        }
-      ]
+        title: "E-TV",
+        url: "/tv",
     },
     {
-      title: "Fashion",
+      title: "E-Radio",
+      url: "/radio"
+    },  
+    {
+      title: "E-Gaming",
+      url: "/gaming"
+    },
+    {
+      title: "Defenders of Hip Hop",
+      url: "/defendersofhiphop"
+    },
+    {
+      title: "PB-Digital",
+      url: "/pbdigital"
+    },
+    {
+      title: "PB-Music",
+      url: "/pbmusic"
+    },
+    {
+      title: "PB-Fashion",
       url: "/pbfashion"
     },
     {
-      title: "Events",
+      title: "PB-Events",
       url: "/events"
+    },
+    {
+      title: "PB-Communities",
+      url: "/pbcommunities"
+    },
+    {
+      title:"PB-Social",
+      url:"/pbsocial"
     },
     {
       title: "Subscribe",
       url: "/subscribe"
     },
     {
-      title: "Shop",
+      title: "Mall",
       url: "/mall"
     },
     {
       title: "About",
       url: "/about"
-    }
+    },
+    {
+      title:"Contact Us",
+      url:"/contactus"
+    },
+    
   ];
   
