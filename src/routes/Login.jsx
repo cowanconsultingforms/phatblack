@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import "../Styles/Login.css";
-import { auth, db } from '../firebaseConfig';
+import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -17,40 +15,18 @@ function Login() {
     */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let userEmail = email;
-
-        if (!email.includes('@')) {
-            const usernameDocRef = doc(db, 'usernames', email);
-            const usernameDoc = await getDoc(usernameDocRef);
-            if (usernameDoc.exists()) {
-                userEmail = usernameDoc.data().email;
-            } else {
-                alert("Username does not exist or could not be found. Please try again.");
-                return;
-            }
-        }
-
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, userEmail, password);
-            sessionStorage.setItem("accessToken", userCredential.user.accessToken);
+        signInWithEmailAndPassword(auth, email, password).then((user) => {
+            console.log(user);
+            sessionStorage.setItem("accessToken", user.user.auth.lastNotifiedUid);
             navigate('/');
-        } catch (error) {
-            let errorMessage;
-            switch (error.code) {
-                case 'auth/user-not-found':
-                case 'auth/wrong-password':
-                    errorMessage = "Incorrect username, email, or password. Please try again.";
-                    break;
-                case 'auth/network-request-failed':
-                    errorMessage = "Network error. Please check your connection and try again.";
-                    break;
-                default:
-                    errorMessage = "An error occurred during sign in. Please try again.";
-            }
-            console.error("ERROR SIGNIN: ", error);
-            alert(errorMessage);
-        }
-    };
+            location.reload();
+            alert("Signed In successfully!");
+        }).catch((error) => {
+            console.log("ERROR SIGNIN: ", error);
+            alert(error);
+        })
+    }
+
     /*
         *handlePasswordReset button
         *sendPasswordResetEmail is a firebase function that takes in the auth and the email
@@ -70,36 +46,33 @@ function Login() {
     };
 
     return (
-        <div className="ImageContainer">
-            <div className="LoginContainer">
-                <h1> Log In </h1>
-                <form>
-                    <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email or Username"
-                    />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '125px', flexDirection: 'column' }}>
+            <h1> Sign In </h1>
+            <form>
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                />
 
+                <br />
 
-                    <br />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                />
 
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                    />
+                <br />
+                <hr />
 
-                    <br />
+                <button type="submit" onClick={handleSubmit}> Sign In </button>
+            </form>
 
-
-                    <button type="submit" onClick={handleSubmit}> Sign In </button>
-                </form>
-
-                <p className="ForgetPass">Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
-                <p className="NoAccount"> Don't have an account? <a href="/signup">Sign Up!</a></p>
-            </div>
+            <p>Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
+            <p> Don't have an account? <a href="/signup">Sign Up!</a></p>
         </div>
     );
 }

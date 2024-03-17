@@ -3,25 +3,21 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebaseConfig";
 import Sidebar from "./Sidebar";
-import "./Header.css";
+import "./Header.css"; 
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsAuthenticated(!!user);
-    });
-
-    return () => unsubscribe();
+    setIsAuthenticated(!!sessionStorage.getItem("accessToken"));
   }, []);
 
-  const handleLogout = async () => {
-    await auth.signOut();
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken");
     navigate('/');
+    window.location.reload();
   };
 
   return (
@@ -40,12 +36,12 @@ const Header = () => {
         */}
         {!isAuthenticated ? (
           <div className='Container'>
-            <Link to='/login'><button className='login' type='button'>Login</button></Link>
-            <Link to='/signup'><button className='sign-up' type='button'>Sign up</button></Link>
+              <Link to='/login'><button className='login' type='button'>Login</button></Link>
+              <Link to='/signup'><button className='sign-up' type='button'>Sign up</button></Link>
           </div>
         ) : (
           <div className='Container'>
-            <button className="logout" type='button' onClick={handleLogout}>Logout</button>
+            <button type='button' onClick={handleLogout}>Logout</button>
           </div>
         )}
       </div>
