@@ -5,7 +5,7 @@ import { useState } from "react";
 const Navbar = () => {
   // Initial depth level for menu items
   const depthLevel = 0;
-  const [currentMenuItems, setCurrentMenuItems] = useState(menuItemsData.slice(0,7));
+  const [currentMenuItems, setCurrentMenuItems] = useState(menuItemsData.slice(0,5));
   const [startIndex, setStartIndex] = useState(0);
   const [isNextDisable, setNextDisable] = useState(false);
   const [isPrevDisable, setPrevDisable] = useState(true);  //Initially disable
@@ -44,11 +44,11 @@ const Navbar = () => {
       
       <ul className="menus">
         {/* Map through menu items and render MenuItems component */}
-        <button className="arr left" onClick={handlePrevClick} disabled={isPrevDisable}></button>
+        <button class="arr left" onClick={handlePrevClick} disabled={isPrevDisable}></button>
         {currentMenuItems.map((menu, index) => (
           <MenuItems items={menu} key={index} depthLevel={depthLevel} />
         ))}
-        <button className= "arr right" onClick={handleNextClick} disabled={isNextDisable}></button>
+        <button class= "arr right" onClick={handleNextClick} disabled={isNextDisable}></button>
       </ul>
     </nav>
   );
