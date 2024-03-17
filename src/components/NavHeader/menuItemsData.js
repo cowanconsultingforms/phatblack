@@ -28,11 +28,11 @@ export const menuItemsData = [
       url: "/pbmusic"
     },
     {
-      title: "Fashion",
+      title: "PB-Fashion",
       url: "/pbfashion"
     },
     {
-      title: "Events",
+      title: "PB-Events",
       url: "/events"
     },
     {
@@ -40,11 +40,15 @@ export const menuItemsData = [
       url: "/pbcommunities"
     },
     {
+      title:"PB-Social",
+      url:"/pbsocial"
+    },
+    {
       title: "Subscribe",
       url: "/subscribe"
     },
     {
-      title: "Shop",
+      title: "Mall",
       url: "/mall"
     },
     {
@@ -55,5 +59,6 @@ export const menuItemsData = [
       title:"Contact Us",
       url:"/contactus"
     },
+    
   ];
   
