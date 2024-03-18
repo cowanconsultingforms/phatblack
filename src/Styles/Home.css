@@ -12,6 +12,7 @@ body{
     z-index: -1;
     margin-top: -20px;
     transform: scale(1.2);
+    opacity: .6;
 }
 
 .image-wrapper{
@@ -83,7 +84,7 @@ body{
     z-index: 2;
     background-color: black;
     position: relative;
-    margin-top: 60%;
+    margin-top: 75%;
 }
 
 .video-cards{
@@ -125,6 +126,7 @@ body{
     font-family: "Allison", cursive;
     font-weight: 100;
     font-size: 1.75rem;
+    padding-top: 50px;
 }
 
 .about-us-title{
