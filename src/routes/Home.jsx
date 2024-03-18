@@ -29,7 +29,7 @@ function Home() {
             <div className="image-wrapper">
                 <div className="imageDiv">
                     <img className="backgroundImage" src="src/assets/SpeakerImage.png" alt="manHoldingSpeaker" />
-                    <h1>Home</h1>
+                    <h1 className="title">Home</h1>
                     <h2 className="orangeHeader">Join The Network With</h2>
                     <h3 className="whiteHeader">LIVE AND ON DEMAND URBAN MUSIC & ENTERTAINMENT 24/7/365</h3>
                     <button className="homeButton" onClick={getMoreHandler}>{buttonText}</button>
