@@ -11,13 +11,10 @@ header {
     padding: 10px 20px;
     color: white;
     background-color: #000000;
+    padding-bottom: 20px;
     font-weight: 400;
     font-size: medium;
     letter-spacing: 2px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
   }
   
   .Container {
@@ -44,10 +41,11 @@ header {
   }
   
   .logo {
+    position: absolute;
     text-decoration: none;
     font-size: 25px;
     color: inherit;
-    margin-left: 20px;
+    margin-left: 50px;
     margin-right: 20px;
     color: #ffa646;
     font-weight: 700;
@@ -66,6 +64,7 @@ header {
     align-items: center;
     flex-wrap: wrap;
     list-style: none;
+    margin-left: 200px;
   }
   
   .desktop-nav .menu-items {

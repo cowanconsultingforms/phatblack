@@ -1,10 +1,25 @@
 .SigninImageContainer {
     position: relative;
+<<<<<<< HEAD
     width: 100vw; /* Take up the full width of the viewport */
     height: 85vh; /* Take up the full height of the viewport */
     background-image: url('src/assets/redpants-radio.jpg');; /* Specify the path to your image */
     background-size: cover; /* Cover the entire container with the image */
     background-position: center; /* Center the image within the container */
+=======
+    top: 0px;
+    /* Adjust this value to overlap with the shadow of the nav bar */
+    right: 0px;
+    padding: 5px;
+    height: 84vh;
+    background-image: url('src/assets/redpants-radio.jpg');
+    /* Specify the path to your image */
+    background-size: cover;
+    /* Cover the entire container with the image */
+    background-position: center;
+    /* Center the image within the container */
+    z-index: 1;
+>>>>>>> Development
 }
 
 .SigninContainer {
@@ -12,11 +27,13 @@
     top: 120px;
     width: 300px;
     margin: auto;
-    margin-top: 100px; /* Adjust as needed for vertical positioning */
+    margin-top: 100px;
+    /* Adjust as needed for vertical positioning */
     padding: 20px;
     border-radius: 10px;
     background-color: #ffffff;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Apply a shadow effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    /* Apply a shadow effect */
     text-align: center;
 }
 
