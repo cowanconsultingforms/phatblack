@@ -19,13 +19,18 @@ function ContactUs() {
     const [placeHolders, setPlaceHolders] = useState(InitialPlaceHolders);
     const [showPopUp, setShowPopUp] = useState(false);
 
+    //import service id, template id, service key for emailjs
+    const serviceID = import.meta.env.VITE_APP_SERVICE_ID;
+    const templateID = import.meta.env.VITE_APP_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
+    
     //Using emailjs, allows users to send a message to email
     const sendEmail = (e) => {
         e.preventDefault();
         
         emailjs
-        .sendForm("service_z7utyrj", "template_8vdauxm", form.current, {
-            publicKey: "QSqDdGfp-k-Bzq3Sp",
+        .sendForm(serviceID, templateID, form.current, {
+            publicKey: publicKey,
         })
         .then(
             () => {
