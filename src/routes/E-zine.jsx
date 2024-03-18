@@ -23,6 +23,7 @@ const handleClick = (url) => { // this function is used to open a new tab when t
 function News_pictures() { 
   
   return (
+    <div className='news-container'>
     <div className="news-pictures">
       <a onClick={() => handleClick('https://phatblack.com')}>
         <img src="https://www.w3schools.com/w3images/tech_mic.jpg" alt="microphone" />
@@ -56,6 +57,7 @@ function News_pictures() {
       </a>
 
     </div>
+    </div>
   )
    
 }
@@ -64,7 +66,9 @@ function News_pictures() {
 function Bottom_content() {
   return(
     <div>
+    <div className='header2-container'>
       <h2 className = "header2">E-Zine</h2>
+    </div>
       <div className ="Bottom-image-container"></div>
     <div className="image-container">
       <a onClick={() => handleClick('https://phatblack.com')}>
