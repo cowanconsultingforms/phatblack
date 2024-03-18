@@ -3,7 +3,7 @@ body{
 }
 
 .imageDiv{
-    z-index: -100;
+    z-index: 1;
     position: relative;
 }
 
@@ -24,7 +24,7 @@ body{
     position: absolute;
     margin-top: 10%;
     color: orange;
-    font-family: Snell Roundhand, cursive;
+    font-family: "Allison", cursive;
     font-weight: 100;
     font-size: clamp(1rem, 4vw, 5rem);
 }
@@ -77,9 +77,14 @@ body{
     margin: 10px;
 }
 
-.video-cards{
-    position: absolute;
+.pb-body{
+    position: relative;
     margin-top: 60%;
+}
+
+.video-cards{
+    margin-top: 5%;
+    position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-left: 20px;
@@ -96,10 +101,40 @@ body{
     margin: 10px;
 }
 
+.about-us{
+    /* margin-top: -100px;
+    position: relative;
+    display: block; */
+    position: relative;
+    text-align: center;
+}
+
+.about-us-orange-header{
+    text-align: center;
+    margin-top: 10%;
+    color: orange;
+    font-family: "Allison", cursive;
+    font-weight: 100;
+    font-size: 1.75rem;
+}
+
+.about-us-title{
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+.about-us-text{
+    margin-top: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+    font-family: 'Times New Roman', Times, serif;
+    word-spacing: 2px;
+    font-size: 1rem;
+}
+
 @media screen and (max-width: 940px){
     .video-cards{
         position: absolute;
-        margin-top: 60%;
         display: grid;
         grid-template-columns: 1fr;
         margin-right: 20px;
