@@ -1,55 +1,108 @@
 import React from "react";
 import { useState } from "react";
+import { useRef } from "react";
 import "../Styles/ContactUs.css"
+import emailjs from '@emailjs/browser';
 
 function ContactUs() {
     const[name, setName] = useState("");
     const[email,setEmail] = useState("");
     const[phoneNumber, setPhoneNumber] = useState("");
     const[message, setMessage] = useState("");
+    const form = useRef();
+    const InitialPlaceHolders = {
+        name: 'Name',
+        email : 'Email',
+        phone: 'Phone Number',
+        message: 'Enter a message...'
+    };
+    const [placeHolders, setPlaceHolders] = useState(InitialPlaceHolders);
+    const [showPopUp, setShowPopUp] = useState(false);
 
-    //A placeholder function for now, printing inputs into console log
-    const handleSubmit = () => {
-        e.preventDefault()
-        console.log({name, email, phoneNumber, message});
-    }
+    //Using emailjs, allows users to send a message to email
+    const sendEmail = (e) => {
+        e.preventDefault();
+        
+        emailjs
+        .sendForm("service_z7utyrj", "template_8vdauxm", form.current, {
+            publicKey: "QSqDdGfp-k-Bzq3Sp",
+        })
+        .then(
+            () => {
+                console.log("Success!");
+                resetForm();
+                setShowPopUp(true);
+            },
+            (error) => {
+                console.log("Failed!", error.text)
+            },
+        );
+    };
+
+    //Resets form to original placeholder value 
+    const resetForm = () => {
+        form.current.reset();
+        setName("");
+        setEmail("");
+        setPhoneNumber("");
+        setMessage("");
+        setPlaceHolders(InitialPlaceHolders);
+      };
+
+      const closePopUp = () => {
+        setShowPopUp(false);
+      }
+
     return (
         <div>
             <h1 className="Contact-Us-Header">Contact Us</h1>
                 <div className="Forms-Container">
-                <form>
-                    <input
-                        className="Contact-Us-Input"
-                        type="name"
-                        value={name}
-                        onChange={(e)=>setName(e.target.value)}
-                        placeholder="Name"
-                    />
-                    <input
-                        className="Contact-Us-Input"
-                        type="email"
-                        value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
-                        placeholder="Email"
-                    />
-                    <input
-                        className="Contact-Us-Input"
-                        type="phoneNumber"
-                        value={phoneNumber}
-                        onChange={(e)=>setPhoneNumber(e.target.value)}
-                        placeholder="Phone Number"
-                    />
+                    <form ref={form} onSubmit={sendEmail}>
+                        <input
+                            className="Contact-Us-Input"
+                            type="name"
+                            value={name}
+                            name= "name"
+                            onChange={(e)=>setName(e.target.value)}
+                            placeholder={placeHolders.name}
+                        />
+                        <input
+                            className="Contact-Us-Input"
+                            type="email"
+                            value={email}
+                            name="email"
+                            onChange={(e)=>setEmail(e.target.value)}
+                            placeholder={placeHolders.email}
+                        />
+                        <input
+                            className="Contact-Us-Input"
+                            type="phoneNumber"
+                            value={phoneNumber}
+                            name= "phoneNumber"
+                            onChange={(e)=>setPhoneNumber(e.target.value)}
+                            placeholder={placeHolders.phone}
+                        />
 
-                    <textarea
-                        className="Contact-Us-Input Contact-Us-Textarea" 
-                        type="message"
-                        value={message}
-                        onChange={(e) =>setMessage(e.target.value)}
-                        placeholder="Enter A Message..."
-                    ></textarea>
-                    <button className="Contact-Us-Button"onClick={handleSubmit}>Send Message</button>
-                </form>
+                        <textarea
+                            className="Contact-Us-Input Contact-Us-Textarea" 
+                            type="message"
+                            value={message}
+                            name= "message"
+                            onChange={(e) =>setMessage(e.target.value)}
+                            placeholder={placeHolders.message}
+                        ></textarea>
+                        <button className="Contact-Us-Button" type="submit">Send Message</button>
+                    </form>
                 </div>
+                {showPopUp && (
+                    <div className= "popup-container">
+                        <div className="popup-content">
+                            <h2>Message Sent Successfully!</h2>
+                            <p>Allow 24 hours for a response</p>
+                            <button className="close-popup" onClick={closePopUp}>Close</button>
+                        </div>
+                    </div>
+                )}
         </div>
     );
 };
