@@ -9,7 +9,12 @@ body{
 
 .backgroundImage{
     position: absolute;
-    width: 99vw;
+    width: 100vw;
+}
+
+.image-wrapper{
+    position: relative;
+    display: block;
 }
 
 .orangeHeader{
@@ -59,7 +64,48 @@ body{
     transition: 0.3s;
 }
  
+.video{
+    width: 50%;
+    margin: 10px 0px 10px;
+}
 
+.video-card{
+    text-align: center;
+    padding: 20px;
+    background-color: #111111;
+    border-radius: 5px;
+    margin: 10px;
+}
 
+.video-cards{
+    position: absolute;
+    margin-top: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
+.video-title{
+    display: block;
+    color: white;
+    font-size: 2rem;
+}
 
+.separator{
+    margin: 10px;
+}
+
+@media screen and (max-width: 940px){
+    .video-cards{
+        position: absolute;
+        margin-top: 60%;
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-right: 20px;
+    }
+
+    .video{
+        width: 30%;
+    }
+}
