@@ -37,10 +37,11 @@ header {
   }
   
   .logo {
+    position: absolute;
     text-decoration: none;
     font-size: 25px;
     color: inherit;
-    margin-left: 20px;
+    margin-left: 50px;
     margin-right: 20px;
     color: #ffa646;
     font-weight: 700;
@@ -59,6 +60,7 @@ header {
     align-items: center;
     flex-wrap: wrap;
     list-style: none;
+    margin-left: 200px;
   }
   
   .desktop-nav .menu-items {
