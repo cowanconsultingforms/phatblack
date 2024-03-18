@@ -10,7 +10,7 @@
 }
 
 .nav-menu {
-    z-index: 2;
+    z-index: 3;
     background-color: #060b26;
     width: 300px;
     height: 100vh;
@@ -25,6 +25,8 @@
 .nav-menu.active {
     left: 0;
     transition: 350ms;
+    padding-top: 30px;
+    margin-left: -12px;
 }
 
 .nav-text {
@@ -47,6 +49,7 @@
 
 .nav-menu-items {
     width: 100%;
+    overflow: scroll;
 }
 
 .navbar-toggle {
@@ -61,4 +64,8 @@
 span {
     margin-left: 16px;
     font-size: 30px;
+}
+
+.Sidebar{
+    padding-top: 14px;
 }
