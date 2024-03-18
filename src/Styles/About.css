@@ -1,0 +1,38 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px; /* Adjust the height of your navbar */
+  height: 100%; /* Subtract the height of your navbar from the viewport height */
+}
+
+.page-content {
+  text-align: center;
+}
+
+.head1 {
+  font-family: 'Allison';
+  font-size: 60px;
+  color: orange;
+}
+
+.head2 {
+  font-size: 80px;
+}
+
+.about-image-separator {
+  position: relative;
+  height: 50px;
+  width: 70px;
+}
+  
+.paragraph-container {
+  max-width: 1000px; 
+  margin: 10px;
+  font-family: 'Bebas Neue';
+  font-size: 20px; 
+}
+  
+.paragraph-container {
+  text-align: center; 
+}
+
