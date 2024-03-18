@@ -94,7 +94,7 @@ function SignUp() {
                     <button type="submit" onClick={handleSubmit}> Sign Up </button>
                 </form>
 
-                <p className="AlreadyAccount"> Already have an account? <a href="/login"> Sign In </a></p>
+                <p className="AlreadyAccount"> Already have an account? <Link to='/login'>Login</Link></p>
             </div>
         </div>
     );
