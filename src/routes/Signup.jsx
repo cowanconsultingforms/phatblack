@@ -3,6 +3,7 @@ import "../Styles/Signup.css";
 import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function SignUp() {
     let navigate = useNavigate();
@@ -68,7 +69,8 @@ function SignUp() {
 
                     <button type="submit" onClick={handleSubmit}> Sign Up </button>
                 </form>
-                <p className="AlreadyAccount"> Already have an account? <a href="/login"> Sign In </a></p>
+                <p className="AlreadyAccount"> Already have an account?<Link to='/login'>Login</Link></p>
+                
             </div>
         </div>
     );
