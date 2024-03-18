@@ -31,7 +31,7 @@
     color: #333;
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"] {
     width: calc(100% - 30px);
     padding: 10px;
