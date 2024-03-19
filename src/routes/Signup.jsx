@@ -46,7 +46,7 @@ function SignUp() {
                 await setDoc(emailRef, { username: username, uid: userCredential.user.uid});
                 console.log(userCredential);
                 navigate('/');
-                alert("Signed up successfully! Please Sign In to continue");
+                alert("Signed up successfully!");
             } catch (error) {
                 if (error.code === 'auth/email-already-in-use') {
                     alert("The email address is already in use by another account.");
@@ -108,7 +108,7 @@ function SignUp() {
                 await setDoc(emailRef, { username: tempUsername, uid: userCredential.user.uid});
                 console.log(userCredential);
                 navigate('/');
-                alert(`Signed up successfully! Your temporary username is ${tempUsername}. Please Sign In to continue`);
+                alert(`Signed up successfully! Your temporary username is ${tempUsername}.`);
             } catch (error) {
                 if (error.code === 'auth/email-already-in-use') {
                     alert("The email address is already in use by another account.");

@@ -45,7 +45,7 @@ const Header = () => {
           </div>
         ) : (
           <div className='Container'>
-            <button className="logout" type='button' onClick={handleLogout}>Logout</button>
+            <button className="login" type='button' onClick={handleLogout}>Log out</button>
           </div>
         )}
       </div>
