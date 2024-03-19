@@ -11,12 +11,14 @@ const Search = () => {
     // Updated to be form submission handler
     const handleSearch = (e) => {
         e.preventDefault(); // Prevent default form submission
-        if (!searchTerm.trim()) {
-            // Optionally handle empty search term case
+        const trimmedSearchTerm = searchTerm.trim();
+        if (!trimmedSearchTerm) {
             return;
         }
+
+        const queryTerm = trimmedSearchTerm.toLowerCase();
         // Use `navigate` to push the user to the /search route with the searchTerm as a query param
-        navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
+        navigate(`/search?q=${encodeURIComponent(queryTerm)}`);
     };
 
     return (
