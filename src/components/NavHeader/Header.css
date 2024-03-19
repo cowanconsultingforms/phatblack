@@ -203,7 +203,7 @@ header {
 
   
   /* menu on mobile */
-  @media screen and (max-width: 740px) {
+  @media screen and (max-width: 940px) {
   
     .desktop-nav {
       display: none;
