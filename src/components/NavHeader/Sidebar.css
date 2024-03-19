@@ -11,7 +11,7 @@
 
 .nav-menu {
     z-index: 3;
-    background-color: #060b26;
+    background-color: black;
     width: 300px;
     height: 100vh;
     display: flex;
