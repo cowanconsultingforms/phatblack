@@ -3,6 +3,7 @@ import { useState } from "react";
 import '../Styles/Home.css';
 import speakerImage from "../assets/SpeakerImage.png"; 
 import separator from "../assets/separator.png"; 
+import equalizer from "../assets/equalizer.png"; 
 import etv_vid from "../assets/etv_vid.mp4"
 import eradio_vid from "../assets/eradio_vid.mp4"; 
 import defenders_of_hip_hop_vid from "../assets/defenders_of_hip_hop_vid.mp4";
@@ -50,7 +51,7 @@ function Home() {
                 <div className="about-us">
                     <h2 className="about-us-orange-header">No. 1 Entertainment Platform</h2>
                     <h1 className="about-us-title"> ABOUT US</h1>
-                    <img src="src\assets\equalizer.png"></img>
+                    <img src={equalizer}></img>
                     <p className="about-us-text">
                         Welcome to PhatBlack.com – Your Cultural Soundstage. At PhatBlack.com we’re not just an entertainment platform, we’re a movement. Born from the vibrant streets of urban America, PhatBlack has grown into a global symphony of culture celebrating the richness of the urban African diaspora. Accordingly, Phatblack is dedicated to bringing to the fore the unique sounds, sights, and illustrative narratives reflective of the urban landscape
                     </p>
