@@ -42,7 +42,7 @@ function SignUp() {
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-                await setDoc(usernameRef, {});
+                await setDoc(usernameRef, {email:email});
                 await setDoc(emailRef, { username: username, uid: userCredential.user.uid});
                 console.log(userCredential);
                 navigate('/');
@@ -104,7 +104,7 @@ function SignUp() {
 
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                await setDoc(usernameRef, {});
+                await setDoc(usernameRef, {email});
                 await setDoc(emailRef, { username: tempUsername, uid: userCredential.user.uid});
                 console.log(userCredential);
                 navigate('/');
