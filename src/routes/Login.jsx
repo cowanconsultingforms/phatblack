@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/aut
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import redpants from "../assets/redpants-radio.jpg";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -71,7 +72,7 @@ function Login() {
     };
 
     return (
-        <div className="ImageContainer">
+        <div className="ImageContainer" style={{backgroundImage: `url('${redpants}')`}}>
             <div className="LoginContainer">
                 <h1> Log In </h1>
                 <form>

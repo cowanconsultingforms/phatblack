@@ -183,15 +183,27 @@ header {
   }
   
   
-  
-  
-  /* menu on mobile */
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 430px) {
     .logo{
       margin-top: 8px;
-      font-size: 3rem;
+      font-size: 2rem;
     }
+
+    .login, .sign-up {
+      margin: 10px;
+      font-size: 10px;
+      border: none;
+      background-color: #ffa646;
+      color: #000000;
+      cursor: pointer;
+      font-family: "Bebas Neue", sans-serif; 
+      width: 90%; ;
+  }
+  }
+
   
+  /* menu on mobile */
+  @media screen and (max-width: 740px) {
   
     .desktop-nav {
       display: none;
