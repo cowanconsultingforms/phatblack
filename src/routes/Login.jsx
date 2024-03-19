@@ -4,6 +4,7 @@ import { auth, db } from '../firebaseConfig';
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -98,7 +99,7 @@ function Login() {
                 </form>
 
                 <p className="ForgetPass">Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
-                <p className="NoAccount"> Don't have an account? <a href="/signup">Sign Up!</a></p>
+                <p className="NoAccount"> Don't have an account? <Link to='/signup'>Sign Up!</Link></p>
             </div>
         </div>
     );

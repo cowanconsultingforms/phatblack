@@ -3,13 +3,16 @@ body{
 }
 
 .imageDiv{
-    z-index: 1;
     position: relative;
 }
 
 .backgroundImage{
-    position: absolute;
+    position: fixed;
     width: 100vw;
+    z-index: -1;
+    margin-top: -20px;
+    transform: scale(1.2);
+    opacity: .6;
 }
 
 .image-wrapper{
@@ -22,7 +25,7 @@ body{
     display: block;
     text-align: center;
     position: absolute;
-    margin-top: 10%;
+    margin-top: 15%;
     color: orange;
     font-family: "Allison", cursive;
     font-weight: 100;
@@ -31,7 +34,7 @@ body{
 
 .whiteHeader{
     position: absolute;
-    margin-top: 16%;
+    margin-top: 20%;
     margin-left: 10%;
     font-family: Bebas Neue;
     font-size: clamp(1rem, 4vw, 6rem);
@@ -40,7 +43,7 @@ body{
 
 .homeButton{
     position: absolute;
-    margin-top: 22%;
+    margin-top: 26%;
     margin-left: 40%;
     width: max(20%, 125px);
     height: max(5vh, 40px);
@@ -78,23 +81,30 @@ body{
 }
 
 .pb-body{
+    z-index: 2;
+    background-color: black;
     position: relative;
-    margin-top: 60%;
+    margin-top: 75%;
 }
 
 .video-cards{
-    margin-top: 5%;
+    background-color: black;
+    margin-top: 0%;
+    padding: 20px;
     position: absolute;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 .video-title{
     display: block;
     color: white;
     font-size: 2rem;
+}
+
+.video-paragraph{
+    font-family: sans-serif;
 }
 
 .separator{
@@ -116,6 +126,7 @@ body{
     font-family: "Allison", cursive;
     font-weight: 100;
     font-size: 1.75rem;
+    padding-top: 50px;
 }
 
 .about-us-title{
@@ -127,9 +138,14 @@ body{
     margin-top: 10px;
     padding-left: 20%;
     padding-right: 20%;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: sans-serif;
     word-spacing: 2px;
     font-size: 1rem;
+}
+
+.title{
+    color: black;
+    margin-top: -40px;
 }
 
 @media screen and (max-width: 940px){

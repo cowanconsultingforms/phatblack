@@ -1,12 +1,14 @@
 import React from "react";
-import "./About.css";
+import "../Styles/About.css";
+import equalizer from "../assets/equalizer.png"; 
 
 function About() {
     return (
         <div className="page-container">
             <div className="page-content">
-                <h2>No. 1 Entertainment Platform</h2>
-                <h1>About Us</h1>
+                <h2 className="head1">No. 1 Entertainment Platform</h2>
+                <h1 className="head2">About Us</h1>
+                <img className="about-image-separator" src={equalizer}></img>
                 <div className="paragraph-container">
                     <p>
                         Welcome to PhatBlack.com – Your Cultural Soundstage.
