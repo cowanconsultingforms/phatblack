@@ -1,0 +1,114 @@
+.header {
+  padding-top: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white; 
+  margin-top: 60px;
+  margin-left: 50px;
+  margin-top: 150px;
+}
+  
+  .background-page { 
+    background-color: black;
+    color: rgb(163, 18, 18); /* This is to ensure the text is visible on the black background */
+    min-height: 100vh; /* This makes the div take up the full height of the viewport */
+    padding-top: 100px;
+  }
+
+.news-pictures {  /* This is the container for the images */
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+  grid-auto-rows: auto; 
+  gap: 20px;
+  row-gap: 10px; 
+  column-gap: 10px;  
+  padding-top: 20px; 
+  margin: 0 20px; 
+  width: auto; height: 
+  auto; margin-top: 30px; 
+  position: relative;
+
+}
+
+.news-pictures::before { /* This is the border above the images */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99%; /* Adjust this to control the width of the border */
+  border-top: 2px solid white;
+}
+
+.news-pictures img {
+  max-width: 100%; /* Make the images responsive and fit within their container */
+  height: auto;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.header2 {
+  color: white;
+  text-align:left;
+  margin: 0 20px;
+  padding-top: 20px;
+  font-size: 30px;
+  margin-top: 100px;
+  margin-left:60px;
+}
+
+.image-container { /* This is the container for the images */
+  position: relative;
+  display: inline-block;
+}
+  
+
+.Bottom-image { /* This is the image at the bottom */
+  width: 100vw;
+  border-radius: 2px;
+  object-fit:cover;
+  padding: 20px 40px 40px 40px;
+  height: 400px;
+  filter: blur(5px);
+}
+
+.Bottom-image-container { 
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid white;
+  display: block;
+  width: 97%; /* Adjust this to match the width of the image and header2 */
+  margin: 0 auto 0 20px; /* This aligns the left part of the border with header2 */
+}
+  
+.lockSymbol { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgb(169, 129, 72);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 150px;
+}
+
+.subOnly{ /* This is the text that appears on the lock symbol */
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* mobile media query */
+@media screen and (max-width: 700px) {
+  .news-pictures {  /* This is the container for the images */
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-auto-rows: auto; 
+  }
+}

@@ -1,0 +1,162 @@
+body{
+    overflow-x: hidden;
+}
+
+.imageDiv{
+    position: relative;
+}
+
+.backgroundImage{
+    position: fixed;
+    width: 100vw;
+    z-index: -1;
+    margin-top: -20px;
+    transform: scale(1.2);
+    opacity: .6;
+}
+
+.image-wrapper{
+    position: relative;
+    display: block;
+}
+
+.orangeHeader{
+    width: 100%;
+    display: block;
+    text-align: center;
+    position: absolute;
+    margin-top: 15%;
+    color: orange;
+    font-family: "Allison", cursive;
+    font-weight: 100;
+    font-size: clamp(1rem, 4vw, 5rem);
+}
+
+.whiteHeader{
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 10%;
+    font-family: Bebas Neue;
+    font-size: clamp(1rem, 4vw, 6rem);
+    font-weight: 100;
+}
+
+.homeButton{
+    position: absolute;
+    margin-top: 26%;
+    margin-left: 40%;
+    width: max(20%, 125px);
+    height: max(5vh, 40px);
+    color: white;
+    font-family: Bebas Neue;
+    font-weight:lighter;
+    font-size: clamp(1rem, 2vw, 1.75rem);
+    background: transparent;
+    border: 2px solid white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.homeButton:hover{
+    background-color: rgb(231, 151, 4);
+    transition: 0.3s;
+}
+
+.homeButton:not(:hover){
+    background-color: transparent;
+    transition: 0.3s;
+}
+ 
+.video{
+    width: 50%;
+    margin: 10px 0px 10px;
+}
+
+.video-card{
+    text-align: center;
+    padding: 20px;
+    background-color: #111111;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.pb-body{
+    z-index: 2;
+    background-color: black;
+    position: relative;
+    margin-top: 75%;
+}
+
+.video-cards{
+    background-color: black;
+    margin-top: 0%;
+    padding: 20px;
+    position: absolute;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.video-title{
+    display: block;
+    color: white;
+    font-size: 2rem;
+}
+
+.video-paragraph{
+    font-family: sans-serif;
+}
+
+.separator{
+    margin: 10px;
+}
+
+.about-us{
+    /* margin-top: -100px;
+    position: relative;
+    display: block; */
+    position: relative;
+    text-align: center;
+}
+
+.about-us-orange-header{
+    text-align: center;
+    margin-top: 10%;
+    color: orange;
+    font-family: "Allison", cursive;
+    font-weight: 100;
+    font-size: 1.75rem;
+    padding-top: 50px;
+}
+
+.about-us-title{
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+.about-us-text{
+    margin-top: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+    font-family: sans-serif;
+    word-spacing: 2px;
+    font-size: 1rem;
+}
+
+.title{
+    color: black;
+    margin-top: -40px;
+}
+
+@media screen and (max-width: 940px){
+    .video-cards{
+        position: absolute;
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-right: 20px;
+    }
+
+    .video{
+        width: 30%;
+    }
+}
