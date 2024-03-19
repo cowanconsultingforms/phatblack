@@ -18,7 +18,7 @@ import ContactUs from './routes/ContactUs';
 import PBcommunuties from './routes/PB-communities';
 import SignUp from './routes/Signup';
 import Login from './routes/Login';
-import Test from './routes/Test';
+import SearchResults from './components/SearchResults';
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </BrowserRouter>
     </>

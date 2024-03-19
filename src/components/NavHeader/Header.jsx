@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebaseConfig";
 import Sidebar from "./Sidebar";
 import "./Header.css";
+import Search from "../Search";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,6 +39,9 @@ const Header = () => {
         {/* for small screens 
         <MobileNav />
         */}
+
+        <Search />
+
         {!isAuthenticated ? (
           <div className='Container'>
             <Link to='/login'><button className='login' type='button'>Login</button></Link>
