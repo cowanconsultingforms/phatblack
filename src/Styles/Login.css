@@ -3,9 +3,8 @@
     top: 0px;
     /* Adjust this value to overlap with the shadow of the nav bar */
     right: 0px;
-    padding: 5px;
-    height: 86vh;
-    background-image: url('src/assets/redpants-radio.jpg');
+    padding: 1px;
+    height: 84vh;
     /* Specify the path to your image */
     background-size: cover;
     /* Cover the entire container with the image */

@@ -36,7 +36,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 94%; /* Adjust this to control the width of the border */
+  width: 99%; /* Adjust this to control the width of the border */
   border-top: 2px solid white;
 }
 
@@ -77,7 +77,7 @@
   justify-content: center;
   border-top: 2px solid white;
   display: block;
-  width: 100%; /* Adjust this to match the width of the image and header2 */
+  width: 97%; /* Adjust this to match the width of the image and header2 */
   margin: 0 auto 0 20px; /* This aligns the left part of the border with header2 */
 }
   
