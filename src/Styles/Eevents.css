@@ -1,0 +1,49 @@
+.event-head {
+    width: 96%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    border-bottom: 2px solid white;
+}
+
+
+.sub-header {
+    margin-top: 40px;
+}
+
+.upcoming-events,
+.popular-near-events {
+    text-align: center;
+    font-size: large;
+}
+
+.events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.events .event-card {
+    flex: 0 0 calc(20% - 40px); /* Adjust the width of each event card */
+    margin: 10px;
+    border: 1px solid #ccc; /* Add gray border */
+    border-radius: 8px; /* Optional: Add border radius for rounded corners */
+    padding: 10px; /* Optional: Add padding for spacing inside the card */
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .events .event-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
