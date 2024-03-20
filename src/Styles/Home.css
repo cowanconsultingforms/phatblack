@@ -90,11 +90,12 @@ body{
 .video-cards{
     background-color: black;
     margin-top: 0%;
-    padding: 20px;
-    position: absolute;
+
+    position: relative;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
 }
 
 .video-title{
@@ -157,6 +158,6 @@ body{
     }
 
     .video{
-        width: 30%;
+        width: 40%;
     }
 }

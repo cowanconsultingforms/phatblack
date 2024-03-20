@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import redpants from "../assets/redpants-radio.jpg";
 
 function SignUp() {
     let navigate = useNavigate();
@@ -122,7 +123,7 @@ function SignUp() {
     };
 
     return (
-        <div className="SigninImageContainer">
+        <div className="SigninImageContainer" style={{backgroundImage: `url('${redpants}')`}}>
             <div className="SigninContainer">
                 <h1> Sign Up </h1>
 
