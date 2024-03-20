@@ -19,6 +19,7 @@ import PBcommunuties from './routes/PB-communities';
 import SignUp from './routes/Signup';
 import Login from './routes/Login';
 import SearchResults from './components/SearchResults';
+import SendMessage from './routes/Test';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/test" element={<SendMessage />} />
         </Routes>
       </BrowserRouter>
     </>
