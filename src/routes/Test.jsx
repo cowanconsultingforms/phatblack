@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function SendMessage() {
     const [userId, setUserId] = useState('');
@@ -12,32 +13,23 @@ function SendMessage() {
     const deleteUser = async (userId) => {
         setLoadingDeleting(true);
         try {
-            const response = await fetch(
-                `http://127.0.0.1:9998/phat-black/us-central1/deleteUser`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ userId }),
-                }
-            );
+            const response = await axios.delete(`http://127.0.0.1:9998/phat-black/us-central1/deleteUser`, {
+                data: { userId },
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
-            const data = await response.json();
-            if (response.ok) {
-                console.log("User deleted successfully", data);
-                alert('User successfully deleted');
-            } else {
-                console.error("Failed to delete user", data);
-                alert(data.error || 'Failed to delete user');
-            }
+            console.log("User deleted successfully", response.data);
+            alert('User successfully deleted');
         } catch (error) {
             console.error("Error deleting user:", error);
-            alert('Failed to delete user');
+            alert(error.response.data.error || 'Failed to delete user');
         } finally {
             setLoadingDeleting(false);
         }
     };
+
 
     return (
         <form onSubmit={handleSubmit}>

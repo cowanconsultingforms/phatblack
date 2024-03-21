@@ -15,6 +15,44 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const generateRandomUsername = () => {
+        const leadingUsername = ["acrobatic", "adorable", "adventurous", "bitter", "boundless", "bright", "brilliant", "brittle",
+            "delirious", "diminutive", "exultant", "filthy", "foolhardy", "gregarious", "intrepid", "jocular",
+            "joyful", "jubilant", "keen", "kooky", "lanky", "lazy", "limp", "lush", "luxurious", "macabre", "magnanimous",
+            "mellow", "miserable", "nimble", "nocturnal", "opulent", "ornate", "ordinary", "palatial", "parsimonious", "peevish",
+            "picturesque", "potent", "practical", "precious", "putrid", "questionable", "quirky", "radiant", "raspy", "rustic",
+            "scornful", "scrumptious", "silky", "sly", "spider-like", "spectacular", "tentacular", "tense", "thorny", "verdant",
+            "whimsical", , "woeful", , "zesty",
+            "acclaimed", "accomplished", "amazing", "amused", "baby-faced", "battered", "beaten", "bleeding", "boring", "broken"
+            , "blushing", "bow-legged", "captivating", "cluttered", "confusing", "chosen", "complicated", "condemned", "crystallized",
+            "customized", "dazzling", "depressed", "disgusting", "distressing", "disturbing", "dreaming", "driven", "dyed", "embarrassing",
+            "exciting", "far-reaching", "fascinated", "freckled", "frustrating", "hard-hearted", "humiliating", "interesting", "irritating",
+            "lying", "melted", "mouthwatering", "peaked", "puzzling", "relaxing", "riveting", "satisfied", "scared", "scented", "shocking", "sickening",
+            "side-splitting", "staggering", "sweeping", "tattered", "threatening", "thrilled", "tired", "towering", "weathered", "wrinkled"
+        ];
+        const endingUsername = ["Aardvark", "Alligator", "Alpaca", "Anaconda", "Ant", "Anteater", "Antelope", "Aphid", "Armadillo", "Asp", "Ass", "Baboon", "Badger",
+            "Barracuda", "Bass", "Bat", "Beaver", "Bedbug", "Bee", "Bird", "Bison", "Blue Jay", "Blue Whale", "Bobcat", "Buffalo", "Butterfly",
+            "Buzzard", "Camel", "Carp", "Cat", "Caterpillar", "Catfish", "Cheetah", "Chicken", "Chimpanzee", "Chipmunk", "Cobra", "Cod", "Condor",
+            "Cougar", "Cow", "Coyote", "Crab", "Cricket", "Crocodile", "Crow", "Cuckoo", "Deer", "Dinosaur", "Dog", "Dolphin", "Donkey", "Dove",
+            "Dragonfly", "Duck", "Eagle", "Eel", "Elephant", "Emu", "Falcon", "Ferret", "Finch", "Fish", "Flamingo", "Flea", "Fly", "Fox", "Frog",
+            "Goat", "Goose", "Gopher", "Gorilla", "Hamster", "Hare", "Hawk", "Hippopotamus", "Horse", "Hummingbird", "Husky", "Iguana", "Impala",
+            "Kangaroo", "Lemur", "Leopard", "Lion", "Lizard", "Llama", "Lobster", "Margay", "Monkey", "Moose", "Mosquito", "Moth", "Mouse", "Mule",
+            "Octopus", "Orca", "Ostrich", "Otter", "Owl", "Ox", "Oyster", "Panda", "Panther", "Parrot", "Peacock", "Pelican", "Penguin", "Perch",
+            "Pheasant", "Pig", "Pigeon", "Porcupine", "Quagga", "Rabbit", "Raccoon", "Rat", "Rattlesnake", "Rooster", "Seal", "Sheep", "Skunk",
+            "Sloth", "Snail", "Snake", "Spider", "Tiger", "Whale", "Wolf", "Wombat", "Zebra"]
+
+        let tempUsername = "";
+
+        tempUsername = tempUsername.concat(leadingUsername[Math.floor(Math.random() * leadingUsername.length)]);
+
+        tempUsername = tempUsername.concat(endingUsername[Math.floor(Math.random() * endingUsername.length)]);
+
+        for (let i = 0; i < 3; i++) {
+            tempUsername = tempUsername.concat((Math.floor(Math.random() * 10)).toString())
+        }
+
+        return tempUsername;
+    }
 
     /*
         *handleSubmit button
@@ -29,120 +67,36 @@ function SignUp() {
             return;
         }
 
+        let finalUsername = username.trim();
 
-        if (username.trim() !== "") {
-            const userRef = doc(db, "users", email);
-            const usernameRef = doc(db, "usernames", username);
-            const emailSnap = await getDoc(userRef);
+        if (!finalUsername) {
+            // Generate a random username if not provided
+            finalUsername = generateRandomUsername();
+        }
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const userId = userCredential.user.uid;
+
+            const usernameRef = doc(db, "usernames", finalUsername);
             const usernameSnap = await getDoc(usernameRef);
-
-            if (emailSnap.exists()) {
-                alert("Email is already in use. Please login or use another email.");
-                return;
-            }
 
             if (usernameSnap.exists()) {
                 alert("Username is already taken. Please choose another one.");
                 return;
             }
 
+            await setDoc(doc(db, "users", userId), { email, username: finalUsername, uid: userId, role: "user" });
+            await setDoc(usernameRef, { email: email });
 
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-                //await setDoc(usernameRef, {email:email});
-                await setDoc(userRef, { username: username, uid: userCredential.user.uid, role: "user" });
-                await setDoc(usernameRef, { uid: userCredential.user.uid })
-                //console.log(userCredential);
-                navigate('/');
-                alert("Signed up successfully!");
-
-            }
-            catch (error) {
-                if (error.code === 'auth/email-already-in-use') {
-                    alert("The email address is already in use by another account.");
-                }
-                else {
-                    console.error("ERROR SIGNUP: ", error);
-                    alert(error.message);
-                }
-            }
+            navigate('/');
+            alert("Signed up successfully!");
+        } catch (error) {
+            console.error("ERROR SIGNUP: ", error);
+            alert(error.message);
         }
-        else if (username.trim() === "") {
-
-            const leadingUsername = ["acrobatic", "adorable", "adventurous", "bitter", "boundless", "bright", "brilliant", "brittle",
-                "delirious", "diminutive", "exultant", "filthy", "foolhardy", "gregarious", "intrepid", "jocular",
-                "joyful", "jubilant", "keen", "kooky", "lanky", "lazy", "limp", "lush", "luxurious", "macabre", "magnanimous",
-                "mellow", "miserable", "nimble", "nocturnal", "opulent", "ornate", "ordinary", "palatial", "parsimonious", "peevish",
-                "picturesque", "potent", "practical", "precious", "putrid", "questionable", "quirky", "radiant", "raspy", "rustic",
-                "scornful", "scrumptious", "silky", "sly", "spider-like", "spectacular", "tentacular", "tense", "thorny", "verdant",
-                "whimsical", , "woeful", , "zesty",
-                "acclaimed", "accomplished", "amazing", "amused", "baby-faced", "battered", "beaten", "bleeding", "boring", "broken"
-                , "blushing", "bow-legged", "captivating", "cluttered", "confusing", "chosen", "complicated", "condemned", "crystallized",
-                "customized", "dazzling", "depressed", "disgusting", "distressing", "disturbing", "dreaming", "driven", "dyed", "embarrassing",
-                "exciting", "far-reaching", "fascinated", "freckled", "frustrating", "hard-hearted", "humiliating", "interesting", "irritating",
-                "lying", "melted", "mouthwatering", "peaked", "puzzling", "relaxing", "riveting", "satisfied", "scared", "scented", "shocking", "sickening",
-                "side-splitting", "staggering", "sweeping", "tattered", "threatening", "thrilled", "tired", "towering", "weathered", "wrinkled"
-            ];
-            const endingUsername = ["Aardvark", "Alligator", "Alpaca", "Anaconda", "Ant", "Anteater", "Antelope", "Aphid", "Armadillo", "Asp", "Ass", "Baboon", "Badger",
-                "Barracuda", "Bass", "Bat", "Beaver", "Bedbug", "Bee", "Bird", "Bison", "Blue Jay", "Blue Whale", "Bobcat", "Buffalo", "Butterfly",
-                "Buzzard", "Camel", "Carp", "Cat", "Caterpillar", "Catfish", "Cheetah", "Chicken", "Chimpanzee", "Chipmunk", "Cobra", "Cod", "Condor",
-                "Cougar", "Cow", "Coyote", "Crab", "Cricket", "Crocodile", "Crow", "Cuckoo", "Deer", "Dinosaur", "Dog", "Dolphin", "Donkey", "Dove",
-                "Dragonfly", "Duck", "Eagle", "Eel", "Elephant", "Emu", "Falcon", "Ferret", "Finch", "Fish", "Flamingo", "Flea", "Fly", "Fox", "Frog",
-                "Goat", "Goose", "Gopher", "Gorilla", "Hamster", "Hare", "Hawk", "Hippopotamus", "Horse", "Hummingbird", "Husky", "Iguana", "Impala",
-                "Kangaroo", "Lemur", "Leopard", "Lion", "Lizard", "Llama", "Lobster", "Margay", "Monkey", "Moose", "Mosquito", "Moth", "Mouse", "Mule",
-                "Octopus", "Orca", "Ostrich", "Otter", "Owl", "Ox", "Oyster", "Panda", "Panther", "Parrot", "Peacock", "Pelican", "Penguin", "Perch",
-                "Pheasant", "Pig", "Pigeon", "Porcupine", "Quagga", "Rabbit", "Raccoon", "Rat", "Rattlesnake", "Rooster", "Seal", "Sheep", "Skunk",
-                "Sloth", "Snail", "Snake", "Spider", "Tiger", "Whale", "Wolf", "Wombat", "Zebra"]
-
-            let tempUsername = "";
-
-            tempUsername = tempUsername.concat(leadingUsername[Math.floor(Math.random() * leadingUsername.length)]);
-
-            tempUsername = tempUsername.concat(endingUsername[Math.floor(Math.random() * endingUsername.length)]);
-
-            for (let i = 0; i < 3; i++) {
-                tempUsername = tempUsername.concat((Math.floor(Math.random() * 10)).toString())
-            }
-
-            //console.log(tempUsername.toString());
-
-            const userRef = doc(db, "users", email);
-            const usernameRef = doc(db, "usernames", tempUsername);
-            const emailSnap = await getDoc(userRef);
-            const usernameSnap = await getDoc(usernameRef);
-
-            if (emailSnap.exists()) {
-                alert("Email is already in use. Please login or use another email.");
-                return;
-            }
-
-            if (usernameSnap.exists()) {
-                alert("Username is already taken. Please choose another one.");
-                return;
-            }
-
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-                await setDoc(userRef, { username: tempUsername, uid: userCredential.user.uid });
-                await setDoc(usernameRef, { uid: userCredential.user.uid })
-
-                navigate('/');
-                alert(`Signed up successfully! Your temporary username is ${tempUsername}.`);
-            }
-            catch (error) {
-                if (error.code === 'auth/email-already-in-use') {
-                    alert("The email address is already in use by another account.");
-                }
-                else {
-                    console.error("ERROR SIGNUP: ", error);
-                    alert(error.message);
-                }
-            }
-        }
-
     };
+
 
     return (
         <div className="SigninImageContainer" style={{ backgroundImage: `url('${redpants}')` }}>
