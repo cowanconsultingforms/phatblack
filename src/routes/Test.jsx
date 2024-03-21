@@ -1,19 +1,41 @@
-// SendMessage.js
 import React, { useState } from 'react';
-import axios from 'axios';
 
 function SendMessage() {
-    const [message, setMessage] = useState('');
+    const [userId, setUserId] = useState('');
+    const [loadingDeleting, setLoadingDeleting] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        await deleteUser(userId);
+    };
 
+    const deleteUser = async (userId) => {
+        setLoadingDeleting(true);
         try {
-            // Replace YOUR_CLOUD_FUNCTION_URL with your actual Cloud Function URL
-            const response = await axios.post('http://127.0.0.1:9998/phat-black/us-central1/receiveMessage', { message });
-            console.log(response.data);
+            const response = await fetch(
+                `http://127.0.0.1:9998/phat-black/us-central1/deleteUser`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ userId }),
+                }
+            );
+
+            const data = await response.json();
+            if (response.ok) {
+                console.log("User deleted successfully", data);
+                alert('User successfully deleted');
+            } else {
+                console.error("Failed to delete user", data);
+                alert(data.error || 'Failed to delete user');
+            }
         } catch (error) {
-            console.error('Error sending message:', error);
+            console.error("Error deleting user:", error);
+            alert('Failed to delete user');
+        } finally {
+            setLoadingDeleting(false);
         }
     };
 
@@ -21,11 +43,14 @@ function SendMessage() {
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Enter a message"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
+                placeholder="Enter user ID to delete"
+                disabled={loadingDeleting}
             />
-            <button type="submit">Send Message</button>
+            <button type="submit" disabled={loadingDeleting || !userId}>
+                {loadingDeleting ? 'Deleting...' : 'Delete User'}
+            </button>
         </form>
     );
 }
