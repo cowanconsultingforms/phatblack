@@ -2,7 +2,7 @@ import etv_vid from "../assets/etv_vid.mp4"
 import eradio_vid from "../assets/eradio_vid.mp4"; 
 import defenders_of_hip_hop_vid from "../assets/defenders_of_hip_hop_vid.mp4";
 import egaming_vid from "../assets/egaming_vid.mp4"; 
-import emall_vid from "../assets/emall_vid.mp4";
+import pbmall_vid from "../assets/pbmall_vid.mp4";
 import events_vid from "../assets/events_vid.mp4"; 
 import pbdigital_vid from "../assets/pbdigital_vid.mp4"; 
 import ezine_vid from "../assets/ezine_vid.mp4"; 
@@ -40,7 +40,7 @@ export const videoCardsData = [
       href: "/events"
     },
     {
-      src: emall_vid,
+      src: pbmall_vid,
       title: "PB-MALL",
       paragraph: "Shop for our products 24/7/365.",
       href: "/pbmall"
