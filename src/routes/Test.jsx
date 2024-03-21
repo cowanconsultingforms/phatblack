@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+//import { deleteUser } from 'firebase/auth';
 
-function SendMessage() {
+function deleteAccounts() {
     const [userId, setUserId] = useState('');
     const [loadingDeleting, setLoadingDeleting] = useState(false);
 
@@ -47,4 +48,4 @@ function SendMessage() {
     );
 }
 
-export default SendMessage;
+export default deleteAccounts;
