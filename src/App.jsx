@@ -16,6 +16,7 @@ import Subscribe from './routes/Subscribe';
 import Header from './components/NavHeader/Header';
 import ContactUs from './routes/ContactUs';
 import PBcommunuties from './routes/PB-communities';
+import PBsocial from './routes/PB-social'
 import SignUp from './routes/Signup';
 import Login from './routes/Login';
 import SearchResults from './components/SearchResults';
@@ -38,6 +39,7 @@ function App() {
           <Route path="/pbfashion" element={<PBfashion />} />
           <Route path="/pbmusic" element={<PBmusic />} />
           <Route path="/pbcommunities" element={<PBcommunuties />} />
+          <Route path="/pbsocial" element={<PBsocial/>}/>
           <Route path="/defendersofhiphop" element={<DefendersOfHipHop />} />
           <Route path="/about" element={<About />} />
           <Route path="/subscribe" element={<Subscribe />} />
