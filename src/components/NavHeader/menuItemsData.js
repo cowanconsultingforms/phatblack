@@ -56,6 +56,10 @@ export const menuItemsData = [
       url: "/about"
     },
     {
+      title: "FAQ",
+      url: "/faq"
+    },
+    {
       title:"Contact Us",
       url:"/contactus"
     },
