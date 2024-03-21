@@ -1,11 +1,11 @@
 import React from "react";
 
-function Emall() {
+function PBmall() {
     return (
         <div>
-            <h1>E-Mall</h1>
+            <h1>PB-Mall</h1>
         </div>
     )
 };
 
-export default Emall; 
+export default PBmall; 

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./routes/Home"
 import Eevents from './routes/E-events';
 import Egaming from './routes/E-gaming';
-import Emall from './routes/E-mall';
+import PBmall from './routes/PB-mall';
 import Eradio from './routes/E-radio';
 import Etv from './routes/E-tv';
 import Ezine from './routes/E-zine';
@@ -29,7 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Eevents />} />
           <Route path="/tv" element={<Etv />} />
-          <Route path="/mall" element={<Emall />} />
+          <Route path="/pbmall" element={<PBmall />} />
           <Route path="/radio" element={<Eradio />} />
           <Route path="/zine" element={<Ezine />} />
           <Route path="/gaming" element={<Egaming />} />

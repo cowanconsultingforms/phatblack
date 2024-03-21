@@ -41,9 +41,9 @@ export const videoCardsData = [
     },
     {
       src: emall_vid,
-      title: "E-MALL",
+      title: "PB-MALL",
       paragraph: "Shop for our products 24/7/365.",
-      href: "/mall"
+      href: "/pbmall"
     },
     {
       src: defenders_of_hip_hop_vid,
