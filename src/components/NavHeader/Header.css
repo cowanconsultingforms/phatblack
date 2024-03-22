@@ -36,6 +36,7 @@ header {
       cursor: pointer;
       font-family: "Bebas Neue", sans-serif; 
       width: 90%; 
+      height: 50px;
   }
   
   .login:hover, .sign-up:hover {
