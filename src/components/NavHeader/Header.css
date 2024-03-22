@@ -6,7 +6,6 @@ header {
   .nav-area {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin: 0 auto;
     padding: 10px 20px;
     color: white;
@@ -39,11 +38,11 @@ header {
   }
   
   .logo {
-    position: absolute;
+    position: relative;
     text-decoration: none;
     font-size: 25px;
     color: inherit;
-    margin-left: 50px;
+    margin-left: 20px;
     margin-right: 20px;
     color: #ffa646;
     font-weight: 700;
@@ -55,26 +54,64 @@ header {
     color: white;
     text-decoration: underline;
   }
+
+  .desktop-nav{
+    display: flex;
+  }
   
   /* menu on desktop */
   .desktop-nav .menus {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     list-style: none;
-    margin-left: 200px;
+    background-color: transparent;
+    overflow-x: scroll;
+    width: 60vw;
+  }
+
+
+  .desktop-nav .menus::-webkit-scrollbar{
+    height: 0;
+  }
+
+  .desktop-nav .menus{
+    --mask: linear-gradient(to right, 
+     rgba(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
+    100% 50% / 100% 100% repeat-x;
+
+    
+    -webkit-mask: var(--mask); 
+    mask: var(--mask);
+    
   }
   
   .desktop-nav .menu-items {
     position: relative;
     font-size: larger;
+    height: 50px;
+    
   }
   
   .desktop-nav .menu-items a {
     display: block;
-    font-size: inherit;
+    font-size: 15px;
     color: inherit;
     text-decoration: none;
+    background-color: #212529;
+    border-radius: 10px;
+    margin-left: 15px;
+    height: 35px;
+    width: max-content;
+    margin-top: 10px;
+  }
+
+  .desktop-nav .menu-items a:hover{
+    background-color: #525a63;
+    transition: 0.3s;
+  }
+
+  .desktop-nav .menu-items a:not(:hover){
+    background-color: #2d3338;
   }
   
   .desktop-nav .menu-items button {
@@ -98,10 +135,6 @@ header {
     padding: 0.7rem 1rem;
   }
   
-  .desktop-nav .menu-items a:hover,
-  .desktop-nav .menu-items button:hover {
-    text-decoration: underline;
-  }
   
   .desktop-nav .arrow::after {
     content: "";
@@ -153,14 +186,12 @@ header {
     height: 2rem;
   }
   
-  .arr:disabled {
-    opacity: 0;
-  }
   
   .arr:hover {
     background-color: gray;
     cursor: pointer;
   }
+
   
   .arr::before {
     content: "";
