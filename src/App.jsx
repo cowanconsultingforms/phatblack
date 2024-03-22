@@ -22,7 +22,7 @@ import Login from './routes/Login';
 import FAQ from './routes/FAQ';
 import SearchResults from './components/SearchResults';
 import UsersList from './routes/UsersList';
-import UserProfile from './routes/Profile';
+import UserProfile from './routes/UserProfile';
 function App() {
   return (
     <>
