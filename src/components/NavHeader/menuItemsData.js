@@ -48,12 +48,16 @@ export const menuItemsData = [
       url: "/subscribe"
     },
     {
-      title: "Mall",
-      url: "/mall"
+      title: "PB-Mall",
+      url: "/pbmall"
     },
     {
       title: "About",
       url: "/about"
+    },
+    {
+      title: "FAQ",
+      url: "/faq"
     },
     {
       title:"Contact Us",
