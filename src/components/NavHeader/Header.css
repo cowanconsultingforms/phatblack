@@ -77,11 +77,6 @@ header {
   cursor: grab;
 }
 
-.desktop .navbar-container {
-  display: flex;
-  align-items: center;
-}
-
 .desktop-nav .menu-items {
   position: relative;
   font-size: larger;
@@ -163,7 +158,7 @@ header {
 
 /*Navbar arrow buttons*/
 .arr {
-  position: relative;
+  position:relative;
   background-color: transparent;
   border:none;
   border-radius: 50%;
@@ -200,6 +195,21 @@ header {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+.arr-button-container {
+  display: flex;
+  position: relative;
+}
+
+.arr-button-container
+.left{
+  translate: 200px;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media screen and (max-width: 430px) {
   .logo{
