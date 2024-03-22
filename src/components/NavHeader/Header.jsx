@@ -61,7 +61,7 @@ const Header = () => {
 
             {(role == 'admin' || role == 'viewer' || role == 'owner') && <Link to='/users'><button className='login' type='button'>Admin Panel</button></Link>}
 
-            <button className="login" type='button' onClick={handleLogout}>Log out</button>
+            <button className="login" type='button' onClick={handleLogout}>Logout</button>
           </div>
         )}
       </div>

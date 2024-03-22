@@ -23,7 +23,7 @@ import FAQ from './routes/FAQ';
 import SearchResults from './components/SearchResults';
 import UsersList from './routes/UsersList';
 import TestCalls from './routes/TestCalls';
-
+import UserProfile from './routes/UserProfile';
 function App() {
   return (
     <>
@@ -52,6 +52,7 @@ function App() {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/users" element={<UsersList />} />
           <Route path="/test-calls" element={<TestCalls />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </>
