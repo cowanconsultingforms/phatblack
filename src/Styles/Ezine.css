@@ -9,26 +9,11 @@
   margin-top: 150px;
 }
   
-  .background-page { 
-    background-color: black;
-    color: rgb(163, 18, 18); /* This is to ensure the text is visible on the black background */
-    min-height: 100vh; /* This makes the div take up the full height of the viewport */
-    padding-top: 100px;
-  }
-
-.news-pictures {  /* This is the container for the images */
-  display: grid; 
-  grid-template-columns: repeat(5, 1fr); 
-  grid-auto-rows: auto; 
-  gap: 20px;
-  row-gap: 10px; 
-  column-gap: 10px;  
-  padding-top: 20px; 
-  margin: 0 20px; 
-  width: auto; height: 
-  auto; margin-top: 30px; 
-  position: relative;
-
+.background-page { 
+  background-color: black;
+  color: rgb(163, 18, 18); /* This is to ensure the text is visible on the black background */
+  min-height: 100vh; /* This makes the div take up the full height of the viewport */
+  padding-top: 100px;
 }
 
 .news-pictures::before { /* This is the border above the images */
@@ -41,8 +26,6 @@
 }
 
 .news-pictures img {
-  max-width: 100%; /* Make the images responsive and fit within their container */
-  height: auto;
   border-radius: 2px;
   cursor: pointer;
 }
@@ -102,13 +85,4 @@
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-/* mobile media query */
-@media screen and (max-width: 700px) {
-  .news-pictures {  /* This is the container for the images */
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    grid-auto-rows: auto; 
-  }
 }
