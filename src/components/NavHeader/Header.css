@@ -73,7 +73,7 @@ header {
   position: relative;
 }
 
-.desktop .carousel-container ::hover{
+.desktop .carousel-container:hover{
   cursor: grab;
 }
 
