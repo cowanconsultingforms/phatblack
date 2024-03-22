@@ -63,6 +63,8 @@ header {
   list-style: none;
   margin-left: 200px;
   white-space: nowrap;
+  max-width: 700px;
+  overflow: hidden;
 }
 
 .desktop .carousel-container {
@@ -71,7 +73,14 @@ header {
   position: relative;
 }
 
+.desktop .carousel-container ::hover{
+  cursor: grab;
+}
 
+.desktop .navbar-container {
+  display: flex;
+  align-items: center;
+}
 
 .desktop-nav .menu-items {
   position: relative;
@@ -108,7 +117,8 @@ header {
 
 .desktop-nav .menu-items a:hover,
 .desktop-nav .menu-items button:hover {
-  text-decoration: underline;
+  background-color: rgb(63, 61, 61);
+  border-radius: 50rem;
 }
 
 .desktop-nav .arrow::after {
