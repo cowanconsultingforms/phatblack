@@ -22,7 +22,7 @@ header {
       flex-direction: row;
   }
   
-  .login, .sign-up {
+  .login, .sign-up, .profile {
       margin: 20px;
       font-size: 20px;
       border: none;
@@ -33,7 +33,7 @@ header {
       width: 90%; ;
   }
   
-  .login:hover, .sign-up:hover {
+  .login:hover, .sign-up:hover, .profile:hover {
       background-color: #ef8b1fa1;
       color: #ffffff;
   }
@@ -189,7 +189,7 @@ header {
       font-size: 2rem;
     }
 
-    .login, .sign-up {
+    .login, .sign-up, .profile{
       margin: 10px;
       font-size: 10px;
       border: none;
