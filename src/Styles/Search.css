@@ -1,0 +1,66 @@
+/* Search.css */
+
+.searchContainer {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    /* Or the width that fits well in your navbar */
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75);
+    /* Slightly transparent black for a sleek look */
+    border-radius: 25px;
+    /* Rounded borders */
+    padding: 5px;
+}
+
+.searchInput {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 10px 20px;
+    color: #FFF;
+    /* White text color */
+    font-size: 16px;
+    /* Adjust the size as needed */
+}
+
+.searchButton {
+    padding: 10px;
+    color: #FFF;
+    /* White color for the icon */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style for the search icon */
+.faSearch {
+    width: 20px;
+    /* Adjust the size as needed */
+    height: 20px;
+    /* Adjust the size as needed */
+}
+
+/* Adjustments for the input placeholder */
+.searchInput::placeholder {
+    color: #DDD;
+    /* Light grey color for the placeholder */
+}
+
+/* Removing the focus outline to maintain the style on click */
+.searchInput:focus {
+    outline: none;
+}
+
+/* Adding transition for a smooth color change on button hover */
+.searchButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    /* Light highlight on hover */
+}
