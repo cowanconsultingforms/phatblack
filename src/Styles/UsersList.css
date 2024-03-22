@@ -56,6 +56,51 @@
   border-color: #888;
 }
 
+.filter-dropdown {
+  background-color: #ffa646;
+  /* Orange color to match the theme */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+  /* Space between the filter and sort buttons */
+  outline: none;
+  /* Removes the focus outline to match the styling */
+}
+
+.sort-button {
+  background-color: #ffa646;
+  /* Orange color to match the theme */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+  /* Removes the focus outline to match the styling */
+}
+
+.sort-button:hover,
+.filter-dropdown:hover {
+  background-color: #e6953b;
+  /* Darker orange on hover to indicate interactiveness */
+}
+
+.filter-sort-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  /* Add padding as needed */
+  background-color: #000;
+  /* Black background to match the header */
+}
+
+
 
 @media (max-width: 768px) {
 
