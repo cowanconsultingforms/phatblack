@@ -58,6 +58,7 @@ const Header = () => {
           </div>
         ) : (
           <div className='Container'>
+            <Link to={'/profile'}><button className="profile" type="button">Profile</button></Link>
 
             {(role == 'admin' || role == 'viewer' || role == 'owner') && <Link to='/users'><button className='login' type='button'>Admin Panel</button></Link>}
 
