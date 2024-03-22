@@ -22,7 +22,7 @@ import Login from './routes/Login';
 import FAQ from './routes/FAQ';
 import SearchResults from './components/SearchResults';
 import UsersList from './routes/UsersList';
-import DeleteUserTest from './routes/DeleteUserTest';
+import TestCalls from './routes/TestCalls';
 
 function App() {
   return (
@@ -51,7 +51,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/users" element={<UsersList />} />
-          <Route path="/delete-user" element={<DeleteUserTest />} />
+          <Route path="/test-calls" element={<TestCalls />} />
         </Routes>
       </BrowserRouter>
     </>
