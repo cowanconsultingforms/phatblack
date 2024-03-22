@@ -52,63 +52,63 @@ function Egaming() {
                 <hr/>
                 <div className="ReviewGrid">
                     <div className="ReviewBox">
-                        <img src="src/assets/HellDivers2.jpg" alt="Game 1" />
-                        <button>Hell Divers 2</button>
+                        <img src="src/assets/SpeakerImage.png" alt="Game 1" />
+                        <button>Game 1</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/fortnight.jpg" alt="Game 2" />
-                        <button>fortnight</button>
+                        <img src="src/assets/SpeakerImage.png" alt="Game 2" />
+                        <button>Game 2</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/CK3.jpg" alt="Game 3" />
-                        <button>Crusader Kings 3</button>
+                        <img src="src/assets/SpeakerImage.png" alt="Game 3" />
+                        <button>Game 3</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/DarkestDungeon.jpg" alt="Game 4" />
-                        <button>Darkest Dungeon</button>
+                        <img src="src/assets/SpeakerImage.png" alt="Game 4" />
+                        <button>Game 4</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/HFF2.jpg" alt="Game 5" />
-                        <button>Human Fall Falt 2</button>
+                        <img src="src/assets/SpeakerImage.png" alt="Game 5" />
+                        <button>Game 5</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 6" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 6" />
                         <button>Game 6</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 7" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 7" />
                         <button>Game 7</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 8" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 8" />
                         <button>Game 8</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 9" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 9" />
                         <button>Game 9</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 10" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 10" />
                         <button>Game 10</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 11" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 11" />
                         <button>Game 11</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 12" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 12" />
                         <button>Game 12</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 13" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 13" />
                         <button>Game 13</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 14" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 14" />
                         <button>Game 14</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/Witcher3.jpg" alt="Game 15" />
+                        <img src="src/assets/SpeakerImage.png" alt="Game 15" />
                         <button>Game 15</button>
                     </div>
                 </div>
