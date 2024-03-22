@@ -80,7 +80,7 @@ header {
 
 
   .desktop-nav .menus::-webkit-scrollbar{
-    height: 0;
+    display: none;
   }
 
   .desktop-nav .menus{
