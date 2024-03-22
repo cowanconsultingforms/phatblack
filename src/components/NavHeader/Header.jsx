@@ -8,7 +8,7 @@ import { collection, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore'
 import Sidebar from "./Sidebar";
 import "./Header.css";
 import Search from "../Search";
-import DropdownMenu from "./Dropdownmenu.jsx"; // Import the DropdownMenu component
+import DropdownMenu from "./ProfileDropdownmenu.jsx"; // Import the DropdownMenu component
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
