@@ -1,0 +1,25 @@
+.Header{
+    margin-right: 20px;
+    margin-left: 20px;
+    
+}
+.Subtopics
+{
+   
+        margin-top: 10px; /* adjust as needed */
+        margin-right: 20px; /* adjust as needed */
+        margin-bottom: 10px; /* adjust as needed */
+        margin-left: 20px; /* adjust as needed */
+
+}
+
+.subtopics-container {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+    
+.header-container { 
+    display: flex;
+    align-items: center;
+}
