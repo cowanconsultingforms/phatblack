@@ -33,8 +33,7 @@
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="password"] {
+input[class="change-user-info"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -44,8 +43,7 @@ input[type="password"] {
     color: white;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+input[class="change-user-info"]:focus {
     outline: none;
     border-color: orange;
 }

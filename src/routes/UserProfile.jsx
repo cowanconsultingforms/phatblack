@@ -109,6 +109,7 @@ function UserProfile() {
                 <form onSubmit={handleSubmit}>
                     <label className="label" htmlFor="username">Username: </label>
                     <input
+                        className='change-user-info'
                         type="text"
                         id="username"
                         name="username"
@@ -117,6 +118,7 @@ function UserProfile() {
                     />
                     <label className="label" htmlFor="role">Role: </label>
                     <input
+                        className='change-user-info'
                         type="text"
                         id="role"
                         name='role'
@@ -125,6 +127,7 @@ function UserProfile() {
                     />
                     <label className="label" htmlFor="email">Email: </label>
                     <input
+                        className='change-user-info'
                         type="text"
                         id="email"
                         name="email"
@@ -134,6 +137,7 @@ function UserProfile() {
 
                     <label className="label" htmlFor="newPassword">New Password: </label>
                     <input
+                        className='change-user-info'
                         type="password"
                         id="newPassword"
                         name="newPassword"
@@ -143,6 +147,7 @@ function UserProfile() {
 
                     <label className="label" htmlFor="confirmNewPassword">Confirm New Password: </label>
                     <input
+                        className='change-user-info'
                         type="password"
                         id="confirmNewPassword"
                         name="confirmNewPassword"
@@ -152,6 +157,7 @@ function UserProfile() {
 
                     <label className="label" htmlFor="authPassword">Current Password: </label>
                     <input
+                        className='change-user-info'
                         type="password"
                         id="authPassword"
                         name="authPassword"
