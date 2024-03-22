@@ -1,24 +1,30 @@
 header {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     color: #212529;
-  }
-  
-  .nav-area {
-    display: flex;
     align-items: center;
     margin: 0 auto;
     padding: 10px 20px;
     color: white;
     background-color: #000000;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     font-weight: 400;
     font-size: medium;
     letter-spacing: 2px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999999;
   }
+  
+  .nav-area {
+    display: flex;
+  }
+  
   
   .Container {
       display: flex;
       flex-direction: row;
+      min-width: 200px;
   }
   
   .login, .sign-up {
@@ -29,7 +35,7 @@ header {
       color: #000000;
       cursor: pointer;
       font-family: "Bebas Neue", sans-serif; 
-      width: 90%; ;
+      width: 90%; 
   }
   
   .login:hover, .sign-up:hover {
@@ -48,6 +54,7 @@ header {
     font-weight: 700;
     font-size: 3.5rem;
     letter-spacing: 0px;
+    padding-top: 10px;
   }
   
   .logo:hover{
@@ -57,6 +64,7 @@ header {
 
   .desktop-nav{
     display: flex;
+    width: 95vw;
   }
   
   /* menu on desktop */
@@ -66,7 +74,7 @@ header {
     list-style: none;
     background-color: transparent;
     overflow-x: scroll;
-    width: 60vw;
+    scroll-behavior: smooth;
   }
 
 
@@ -75,13 +83,21 @@ header {
   }
 
   .desktop-nav .menus{
-    --mask: linear-gradient(to right, 
-     rgba(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
+    --mask1: linear-gradient(to right, 
+     rgba(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
     100% 50% / 100% 100% repeat-x;
 
+    --mask2: linear-gradient(to right, 
+    rgb(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
+   100% 50% / 100% 100% repeat-x;
+
+   --mask3: linear-gradient(to right, 
+   rgba(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))
+  100% 50% / 100% 100% repeat-x;
+
     
-    -webkit-mask: var(--mask); 
-    mask: var(--mask);
+    -webkit-mask: var(--mask1); 
+    mask: var(--mask1);
     
   }
   
@@ -89,7 +105,6 @@ header {
     position: relative;
     font-size: larger;
     height: 50px;
-    
   }
   
   .desktop-nav .menu-items a {
@@ -178,17 +193,19 @@ header {
   
   /*Navbar arrow buttons*/
   .arr {
+
     position: relative;
     background-color: transparent;
     border:none;
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
+    top: 10px;
   }
   
   
   .arr:hover {
-    background-color: gray;
+    background-color: rgb(83, 82, 82);
     cursor: pointer;
   }
 
@@ -203,6 +220,10 @@ header {
     height: 0.5rem;
     border: solid white;
     border-width: 0 0.2rem 0.2rem 0;
+  }
+
+  .left{
+    display: none;
   }
   
   .left::before{
@@ -228,8 +249,10 @@ header {
       color: #000000;
       cursor: pointer;
       font-family: "Bebas Neue", sans-serif; 
-      width: 90%; ;
-  }
+      width: 90%; 
+    }
+
+
   }
 
   
@@ -237,8 +260,8 @@ header {
   @media screen and (max-width: 940px) {
   
     .desktop-nav {
-      display: none;
       text-align: right;
+      width: 90vw;
     }
   
     .mobile-nav {

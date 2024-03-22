@@ -3,7 +3,7 @@
 .searchContainer {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    padding-top: 10px;
     /* Or the width that fits well in your navbar */
 }
 
@@ -63,4 +63,15 @@
 .searchButton:hover {
     background: rgba(255, 255, 255, 0.2);
     /* Light highlight on hover */
+}
+
+/* Stoping the search input box from taking up screen space on mobile and small screens */
+@media screen and (max-width: 560px){
+    .searchInput{
+        display: none;
+    }
+    .searchButton{
+        padding: 5px;
+        padding-top: 20px;
+    }
 }
