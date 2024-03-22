@@ -53,26 +53,42 @@ function Login() {
             alert(errorMessage);
         }
     };
+
     /*
         *handlePasswordReset button
         *sendPasswordResetEmail is a firebase function that takes in the auth and the email
     */
     const handlePasswordReset = async () => {
-        if (email) {
-            try {
-                await sendPasswordResetEmail(auth, email);
-                alert('Please check your email to reset your password.');
-            } catch (error) {
-                console.error('Password reset error', error);
-                alert(error.message);
+        if (!email) {
+            alert('Please enter your email or username.');
+            return;
+        }
+
+        let resetEmail = email;
+
+        if (!email.includes('@')) {
+            const usernameRef = doc(db, 'usernames', email);
+            const usernameSnap = await getDoc(usernameRef);
+            if (usernameSnap.exists() && usernameSnap.data().email) {
+                resetEmail = usernameSnap.data().email; // Use the associated email
+            } else {
+                alert('Username does not exist. Please enter a valid username or email.');
+                return;
             }
-        } else {
-            alert('Please enter your email address first.');
+        }
+
+        try {
+            await sendPasswordResetEmail(auth, resetEmail);
+            alert('Please check your email to reset your password.');
+        } catch (error) {
+            console.error('Password reset error', error);
+            alert('Failed to send password reset email. Please try again.');
         }
     };
 
+
     return (
-        <div className="ImageContainer" style={{backgroundImage: `url('${redpants}')`}}>
+        <div className="ImageContainer" style={{ backgroundImage: `url('${redpants}')` }}>
             <div className="LoginContainer">
                 <h1> Log In </h1>
                 <form>
