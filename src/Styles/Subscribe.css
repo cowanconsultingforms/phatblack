@@ -16,12 +16,11 @@
 .subscription-card {
   text-align: center;
   font-size: larger;
-  flex: 0 0 calc(33% - 40px); /* Adjust the width of each event card */
+  flex: 0 100 calc(20%); /* Adjust the width of each event card */
   margin: 20px;
   border: 1px solid inherit;
   border-radius: 30px;
   padding: 50px;
-  height: 600px;
 }
 
 .card-title,
