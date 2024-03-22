@@ -20,7 +20,7 @@ import PBsocial from './routes/PB-social'
 import SignUp from './routes/Signup';
 import Login from './routes/Login';
 import SearchResults from './components/SearchResults';
-import SendMessage from './routes/Test';
+import UsersList from './routes/UsersList';
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function App() {
           <Route path="/pbfashion" element={<PBfashion />} />
           <Route path="/pbmusic" element={<PBmusic />} />
           <Route path="/pbcommunities" element={<PBcommunuties />} />
-          <Route path="/pbsocial" element={<PBsocial/>}/>
+          <Route path="/pbsocial" element={<PBsocial />} />
           <Route path="/defendersofhiphop" element={<DefendersOfHipHop />} />
           <Route path="/about" element={<About />} />
           <Route path="/subscribe" element={<Subscribe />} />
@@ -47,7 +47,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<SearchResults />} />
-          <Route path="/test" element={<SendMessage />} />
+          <Route path="/users" element={<UsersList />} />
         </Routes>
       </BrowserRouter>
     </>
