@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./routes/Home"
 import Eevents from './routes/E-events';
 import Egaming from './routes/E-gaming';
-import Emall from './routes/E-mall';
+import PBmall from './routes/PB-mall';
 import Eradio from './routes/E-radio';
 import Etv from './routes/E-tv';
 import Ezine from './routes/E-zine';
@@ -19,8 +19,7 @@ import PBcommunuties from './routes/PB-communities';
 import PBsocial from './routes/PB-social'
 import SignUp from './routes/Signup';
 import Login from './routes/Login';
-import SearchResults from './components/SearchResults';
-import UsersList from './routes/UsersList';
+import FAQ from './routes/FAQ';
 
 function App() {
   return (
@@ -31,7 +30,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Eevents />} />
           <Route path="/tv" element={<Etv />} />
-          <Route path="/mall" element={<Emall />} />
+          <Route path="/pbmall" element={<PBmall />} />
           <Route path="/radio" element={<Eradio />} />
           <Route path="/zine" element={<Ezine />} />
           <Route path="/gaming" element={<Egaming />} />
@@ -39,15 +38,14 @@ function App() {
           <Route path="/pbfashion" element={<PBfashion />} />
           <Route path="/pbmusic" element={<PBmusic />} />
           <Route path="/pbcommunities" element={<PBcommunuties />} />
-          <Route path="/pbsocial" element={<PBsocial />} />
+          <Route path="/pbsocial" element={<PBsocial/>}/>
           <Route path="/defendersofhiphop" element={<DefendersOfHipHop />} />
           <Route path="/about" element={<About />} />
           <Route path="/subscribe" element={<Subscribe />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/search" element={<SearchResults />} />
-          <Route path="/users" element={<UsersList />} />
         </Routes>
       </BrowserRouter>
     </>

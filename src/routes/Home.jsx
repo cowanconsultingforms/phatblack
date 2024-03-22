@@ -9,35 +9,35 @@ import { videoCardsData } from "./Videocards";
 
 function Home() {
     //UseState used to manage the text within the "get more details" button
-    const [buttonText, SetButtonText] = useState("GET MORE DETAILS")
+    const [buttonText, SetButtonText] = useState("Get more details");
 
     //Variable used to toggle whether button was pressed or not
-    let buttonPressed = true;
+    //button active state
+    const [isActive, setIsActive] = useState(false);
 
     //Function to handle the "get more details" button when pressed, as well as toggles the buttonPressed boolean
     function getMoreHandler(){
-        buttonPressed = !buttonPressed;
-        if(buttonPressed == false){
+        setIsActive(!isActive);
+        if(isActive == false){
             SetButtonText("Button works.");
         }
-        else if(buttonPressed==true){
-            SetButtonText("GET MORE DETAILS");
+        else if(isActive==true){
+            SetButtonText("Get more details");
         }
-        
-       
     }
+
     //Creates a div section thats houses the image, button, and texts.
     return (
         <div>
-            <div className="image-wrapper">
-                <div className="imageDiv">
-                    <img className="backgroundImage" src={speakerImage} alt="manHoldingSpeaker" />
-                    <h1 className="title">Home</h1>
-                    <h2 className="orangeHeader">Join The Network With</h2>
-                    <h3 className="whiteHeader">LIVE AND ON DEMAND URBAN MUSIC & ENTERTAINMENT 24/7/365</h3>
-                    <button className="homeButton" onClick={getMoreHandler}>{buttonText}</button>
+                <div className="image-wrapper">
+                    <div className="imageDiv">
+                        <img className="backgroundImage" src={speakerImage} alt="manHoldingSpeaker" />
+                        <h1 className="title">Home</h1>
+                        <h2 className="orangeHeader">Join The Network With</h2>
+                        <h3 className="whiteHeader">LIVE AND ON DEMAND URBAN MUSIC & ENTERTAINMENT 24/7/365</h3>
+                        <button className="homeButton" onClick={getMoreHandler}>{buttonText}</button>
+                    </div>
                 </div>
-            </div>
             <div className="pb-body">
                 <div className="about-us">
                     <h2 className="about-us-orange-header">No. 1 Entertainment Platform</h2>
