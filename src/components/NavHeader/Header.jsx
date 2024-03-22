@@ -42,12 +42,7 @@ const Header = () => {
           PHATBLACK
         </Link>
 
-        {/* for large screens */}
-        <Navbar />
-
-        {/* for small screens 
-        <MobileNav />
-        */}
+        
 
         <Search />
 
@@ -65,8 +60,14 @@ const Header = () => {
             <button className="login" type='button' onClick={handleLogout}>Logout</button>
           </div>
         )}
+       
       </div>
+        {/* for large screens */}
+        <Navbar />
 
+        {/* for small screens 
+        <MobileNav />
+        */}
     </header>
   );
 };

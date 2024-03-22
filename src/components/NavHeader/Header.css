@@ -1,27 +1,31 @@
 header {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     color: #212529;
-  }
-  
-  .nav-area {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
     margin: 0 auto;
     padding: 10px 20px;
     color: white;
     background-color: #000000;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     font-weight: 400;
     font-size: medium;
     letter-spacing: 2px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999999;
   }
+  
+  .nav-area {
+    display: flex;
+  }
+  
   
   .Container {
       position: relative;
       display: flex;
       flex-direction: row;
-      right: 60px;
+      min-width: 200px;
   }
   
   .login, .sign-up, .profile {
@@ -32,7 +36,8 @@ header {
       color: #000000;
       cursor: pointer;
       font-family: "Bebas Neue", sans-serif; 
-      width: 90%; ;
+      width: 90%; 
+      height: 50px;
   }
   
   .login:hover, .sign-up:hover, .profile:hover {
@@ -41,42 +46,89 @@ header {
   }
   
   .logo {
-    position: absolute;
+    position: relative;
     text-decoration: none;
     font-size: 25px;
     color: inherit;
-    margin-left: 50px;
+    margin-left: 20px;
     margin-right: 20px;
     color: #ffa646;
     font-weight: 700;
     font-size: 3.5rem;
     letter-spacing: 0px;
+    padding-top: 10px;
   }
   
   .logo:hover{
     color: white;
     text-decoration: underline;
   }
+
+  .desktop-nav{
+    display: flex;
+    width: 95vw;
+  }
   
   /* menu on desktop */
   .desktop-nav .menus {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     list-style: none;
-    margin-left: 200px;
+    background-color: transparent;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+
+
+  .desktop-nav .menus::-webkit-scrollbar{
+    height: 0;
+  }
+
+  .desktop-nav .menus{
+    --mask1: linear-gradient(to right, 
+     rgba(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
+    100% 50% / 100% 100% repeat-x;
+
+    --mask2: linear-gradient(to right, 
+    rgb(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
+   100% 50% / 100% 100% repeat-x;
+
+   --mask3: linear-gradient(to right, 
+   rgba(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))
+  100% 50% / 100% 100% repeat-x;
+
+    
+    -webkit-mask: var(--mask1); 
+    mask: var(--mask1);
+    
   }
   
   .desktop-nav .menu-items {
     position: relative;
     font-size: larger;
+    height: 50px;
   }
   
   .desktop-nav .menu-items a {
     display: block;
-    font-size: inherit;
+    font-size: 15px;
     color: inherit;
     text-decoration: none;
+    background-color: #212529;
+    border-radius: 10px;
+    margin-left: 15px;
+    height: 35px;
+    width: max-content;
+    margin-top: 10px;
+  }
+
+  .desktop-nav .menu-items a:hover{
+    background-color: #525a63;
+    transition: 0.3s;
+  }
+
+  .desktop-nav .menu-items a:not(:hover){
+    background-color: #2d3338;
   }
   
   .desktop-nav .menu-items button {
@@ -100,10 +152,6 @@ header {
     padding: 0.7rem 1rem;
   }
   
-  .desktop-nav .menu-items a:hover,
-  .desktop-nav .menu-items button:hover {
-    text-decoration: underline;
-  }
   
   .desktop-nav .arrow::after {
     content: "";
@@ -147,22 +195,22 @@ header {
   
   /*Navbar arrow buttons*/
   .arr {
+
     position: relative;
     background-color: transparent;
     border:none;
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
+    top: 10px;
   }
   
-  .arr:disabled {
-    opacity: 0;
-  }
   
   .arr:hover {
-    background-color: gray;
+    background-color: rgb(83, 82, 82);
     cursor: pointer;
   }
+
   
   .arr::before {
     content: "";
@@ -174,6 +222,10 @@ header {
     height: 0.5rem;
     border: solid white;
     border-width: 0 0.2rem 0.2rem 0;
+  }
+
+  .left{
+    display: none;
   }
   
   .left::before{
@@ -199,8 +251,10 @@ header {
       color: #000000;
       cursor: pointer;
       font-family: "Bebas Neue", sans-serif; 
-      width: 90%; ;
-  }
+      width: 90%; 
+    }
+
+
   }
 
   
@@ -208,8 +262,8 @@ header {
   @media screen and (max-width: 940px) {
   
     .desktop-nav {
-      display: none;
       text-align: right;
+      width: 90vw;
     }
   
     .mobile-nav {
