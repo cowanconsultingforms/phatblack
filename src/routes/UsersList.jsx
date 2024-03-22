@@ -7,8 +7,12 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function UsersList() {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [userRole, setUserRole] = useState('');
-  const [authorization, setAuthorization] = useState(false)
+  const [authorization, setAuthorization] = useState(false);
+  const [filterRole, setFilterRole] = useState('all');
+  const [sortField, setSortField] = useState('email');
+  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending, 'desc' for descending
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -18,10 +22,12 @@ function UsersList() {
         if (user) {
           const userRef = doc(db, "users", user.uid);
           const userDoc = await getDoc(userRef);
-          if (userDoc.exists() && (userDoc.data().role == "admin" || userDoc.data().role == "viewer" || userDoc.data().role == "owner")) {
-            fetchUsers();
+          if (userDoc.exists() && ['admin', 'viewer', 'owner'].includes(userDoc.data().role)) {
             setUserRole(userDoc.data().role);
             setAuthorization(true);
+            fetchUsers();
+          } else {
+            navigate('/');
           }
         } else {
           navigate('/');
@@ -31,6 +37,24 @@ function UsersList() {
 
     getUserRole();
   }, [navigate, auth]);
+
+  useEffect(() => {
+    const filtered = users
+      .filter(user => filterRole === 'all' || user.role === filterRole)
+      .sort((a, b) => {
+        if (sortField === 'email' || sortField === 'username') {
+          const valueA = a[sortField].toLowerCase();
+          const valueB = b[sortField].toLowerCase();
+
+          if (valueA < valueB) return sortOrder === 'asc' ? -1 : 1;
+          if (valueA > valueB) return sortOrder === 'asc' ? 1 : -1;
+          return 0; // values are equal
+        }
+        return 0;
+      });
+
+    setFilteredUsers(filtered);
+  }, [users, filterRole, sortField, sortOrder]);
 
   const fetchUsers = async () => {
     const usersCollectionRef = collection(db, 'users');
@@ -45,14 +69,29 @@ function UsersList() {
   };
 
   if (!authorization) {
-    return <div className="users-list-title">
-      Unauthorized Access
-    </div>
+    return <div className="users-list-title">Unauthorized Access</div>;
   }
 
   return (
     <div className="users-list-container">
       <h1 className="users-list-title">Users List</h1>
+      <div className="filters">
+        <select onChange={(e) => setFilterRole(e.target.value)} className="filter-dropdown">
+          <option value="all">All Roles</option>
+          <option value="user">User</option>
+          <option value="viewer">Viewer</option>
+          <option value="admin">Admin</option>
+          <option value="owner">Owner</option>
+        </select>
+        <select onChange={(e) => setSortField(e.target.value)} className="filter-dropdown">
+          <option value="email">Email</option>
+          <option value="username">Username</option>
+        </select>
+        <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')} className="filter-dropdown">
+          Sort: {sortOrder.toUpperCase()}
+        </button>
+      </div>
+      <br />
       <div className="users-list-table-wrapper">
         <table className="users-list-table">
           <thead>
@@ -61,17 +100,17 @@ function UsersList() {
               <th>UID</th>
               <th>Username</th>
               <th>Role</th>
-              {(userRole == "owner" || userRole == "admin") && <th>Actions</th>}
+              {(userRole === 'admin' || userRole === 'owner') && <th>Actions</th>}
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
               <tr key={user.id}>
                 <td>{user.email}</td>
                 <td>{user.uid}</td>
                 <td>{user.username}</td>
                 <td>{user.role}</td>
-                {(userRole == "owner" || userRole == "admin") &&
+                {(userRole === 'admin' || userRole === 'owner') && (
                   <td>
                     <select
                       value={user.role}
@@ -84,7 +123,7 @@ function UsersList() {
                       <option value="owner">Owner</option>
                     </select>
                   </td>
-                }
+                )}
               </tr>
             ))}
           </tbody>
@@ -93,5 +132,4 @@ function UsersList() {
     </div>
   );
 }
-
 export default UsersList;
