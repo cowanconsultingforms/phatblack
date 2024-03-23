@@ -1,0 +1,114 @@
+.users-list-container {
+  padding: 20px;
+  color: #fff;
+  background: #000;
+  font-family: Arial, sans-serif;
+}
+
+.users-list-title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2em;
+  color: #ffa646;
+  /* For consistency with your theme */
+}
+
+.users-list-table-wrapper {
+  overflow-x: auto;
+}
+
+.users-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /* This helps manage the width of columns */
+}
+
+.users-list-table th,
+.users-list-table td {
+  padding: 15px;
+  /* Adjust padding for spacing */
+  border: 1px solid #fff;
+  text-align: left;
+}
+
+.users-list-table th {
+  background-color: #ffa646;
+  /* Your header background color */
+  color: #000;
+  /* Text color for headers */
+}
+
+.users-list-table td {
+  background-color: #222;
+  /* Slightly lighter than the container for contrast */
+}
+
+.role-dropdown {
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+
+.role-dropdown:hover {
+  border-color: #888;
+}
+
+.filter-dropdown {
+  background-color: #ffa646;
+  /* Orange color to match the theme */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+  /* Space between the filter and sort buttons */
+  outline: none;
+  /* Removes the focus outline to match the styling */
+}
+
+.sort-button {
+  background-color: #ffa646;
+  /* Orange color to match the theme */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+  /* Removes the focus outline to match the styling */
+}
+
+.sort-button:hover,
+.filter-dropdown:hover {
+  background-color: #e6953b;
+  /* Darker orange on hover to indicate interactiveness */
+}
+
+.filter-sort-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  /* Add padding as needed */
+  background-color: #000;
+  /* Black background to match the header */
+}
+
+
+
+@media (max-width: 768px) {
+
+  .users-list-table th,
+  .users-list-table td {
+    padding: 10px;
+    /* Smaller padding for smaller screens */
+    font-size: 0.8em;
+    /* Smaller font size for readability on small screens */
+  }
+}
