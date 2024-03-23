@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import '../Styles/UsersList.css';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { FaTrash, FaPen } from 'react-icons/fa';
+import '../Styles/UsersList.css';
 
 function UsersList() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [userRole, setUserRole] = useState('');
-  const [authorization, setAuthorization] = useState(false);
   const [filterRole, setFilterRole] = useState('all');
   const [sortField, setSortField] = useState('email');
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending, 'desc' for descending
@@ -18,25 +16,19 @@ function UsersList() {
   const auth = getAuth();
 
   useEffect(() => {
-    const getUserRole = async () => {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          const userRef = doc(db, "users", user.uid);
-          const userDoc = await getDoc(userRef);
-          if (userDoc.exists() && ['admin', 'staff', 'owner'].includes(userDoc.data().role)) {
-            setUserRole(userDoc.data().role);
-            setAuthorization(true);
-            fetchUsers();
-          } else {
-            navigate('/');
-          }
-        } else {
-          navigate('/');
-        }
-      });
-    };
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) return navigate('/');
 
-    getUserRole();
+      const userRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userRef);
+      if (!['admin', 'staff', 'owner'].includes(userDoc.data()?.role)) {
+        navigate('/');
+        return;
+      }
+      fetchUsers();
+    });
+
+
   }, [navigate, auth]);
 
   useEffect(() => {
@@ -104,10 +96,6 @@ function UsersList() {
       handleDeleteUser(userId);
     }
   };
-
-  if (!authorization) {
-    return <div className="users-list-title">Unauthorized Access</div>;
-  }
 
   return (
     <div className="users-list-container">
