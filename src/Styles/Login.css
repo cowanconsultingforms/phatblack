@@ -4,7 +4,7 @@
     /* Adjust this value to overlap with the shadow of the nav bar */
     right: 0px;
     padding: 1px;
-    height: 84vh;
+    height: 84dvh;
     /* Specify the path to your image */
     background-size: cover;
     /* Cover the entire container with the image */
