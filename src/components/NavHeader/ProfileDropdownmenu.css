@@ -1,0 +1,57 @@
+.dropdown-menu {
+    position: absolute;
+    background-color: rgb(31, 31, 31);
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    height: 200px;
+    width: 100px;
+    margin: 10px;
+    right: 9px;
+    z-index: 2;
+    border-radius: 40px;
+}
+
+
+.dropdown-menu button {
+    margin: 10px;
+    font-size: 14px;
+    border: none;
+    background-color: #ffa646;
+    color: #000000;
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif; 
+    width: 65px; 
+    height: 30px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 940px) {
+    .dropdown-menu {
+        position: absolute;
+        background-color: rgb(31, 31, 31);
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        height: 160px;
+        width: 70px;
+        margin: 10px;
+        right: 5px;
+        z-index: 2;
+        border-radius: 40px;
+    }
+    
+    
+    .dropdown-menu button {
+        margin: 8px;
+        font-size: 11px;
+        border: none;
+        background-color: #ffa646;
+        color: #000000;
+        cursor: pointer;
+        font-family: "Bebas Neue", sans-serif; 
+        width: 40px; 
+        height: 30px;
+        border-radius: 10px;
+    }
+}

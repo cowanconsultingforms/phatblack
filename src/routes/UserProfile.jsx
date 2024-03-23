@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth';
-import { doc, getFirestore, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getFirestore, getDoc, updateDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from "../firebaseConfig";
 import "../Styles/UserProfile.css";
 
@@ -16,6 +16,7 @@ function UserProfile() {
     const [authPassword, setAuthPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
+    const [currentUser, setCurrentUser] = useState(formData.username);
 
     useEffect(() => {
         const auth = getAuth();
@@ -23,6 +24,7 @@ function UserProfile() {
         if (user) {
             const db = getFirestore();
             const userDocRef = doc(db, 'users', user.uid);
+            //setCurrentUser(formData.username);
             getDoc(userDocRef)
                 .then((docSnapshot) => {
                     if (docSnapshot.exists()) {
@@ -79,14 +81,19 @@ function UserProfile() {
             await reauthenticateWithCredential(user, credential);
             const uid = user.uid;
 
+            console.log(currentUser)
             const docRef = doc(db, "users", uid);
             await updateDoc(docRef, { username: formData.username, email: formData.email });
+
+            await deleteDoc(doc(db, "usernames", currentUser));
+            await setDoc(doc(db, "usernames", formData.username), { email: formData.email });
 
             if (newPassword === confirmNewPassword) {
                 await updatePassword(user, newPassword);
                 console.log("Password changed successfully!");
             }
 
+            window.location.reload();
             window.alert("Profile updated successfully!");
         } catch (error) {
             window.alert("Failed to update profile.");
