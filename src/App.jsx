@@ -24,6 +24,7 @@ import SearchResults from './components/SearchResults';
 import UsersList from './routes/UsersList';
 import TestCalls from './routes/TestCalls';
 import UserProfile from './routes/UserProfile';
+import UploadMedia from './routes/UploadMedia';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/users" element={<UsersList />} />
           <Route path="/test-calls" element={<TestCalls />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/upload" element={<UploadMedia />} />
         </Routes>
       </BrowserRouter>
     </>
