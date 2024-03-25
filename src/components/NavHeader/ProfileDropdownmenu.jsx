@@ -7,7 +7,7 @@ const DropdownMenu = ({ handleLogout, navigate, role, isActive }) => {
       <button className="dropdown-item" onClick={() => navigate('/profile')}>
         Profile
       </button>
-      {(role === 'admin' || role === 'staff' || role === 'owner') && (
+      {(role === 'admin' || role === 'staff' || role === 'super admin') && (
         <>
           <button className="dropdown-item" onClick={() => navigate('/users')}>
             Admin Panel

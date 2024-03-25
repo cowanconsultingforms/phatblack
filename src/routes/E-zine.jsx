@@ -2,55 +2,48 @@ import React from 'react';
 import {FaLock} from 'react-icons/fa';
 import '../Styles/Ezine.css';
 import speakerImage from "../assets/SpeakerImage.png"; 
-import cameraImage from "../assets/tech_camera.jpg";
-import micImage from "../assets/tech_mic.jpg";
-import phoneImage from "../assets/tech_phone.jpg";
-import tabletImage from "../assets/tech_tablet.jpg";
-import typewriterImage from "../assets/tech_typewriter.jpg";
 import Carousel from '../components/Carousel';
+import barImage from "../assets/bar.jpg";
+import cassetteImage from "../assets/cassette.jpg";
+import studioImage from "../assets/studio.jpg";
+import recordsImage from "../assets/records.jpg";
+import studioMicImage from "../assets/studiomic.jpg";
 
 //array of images/slides for carousel
 const eZineCards = [
   {
-    url: speakerImage,
-    title: "speaker",
-    text: "speaker image",
-    alt: "speaker image",
+    url: recordsImage,
+    title: "Records",
+    text: "Records Image, shot by Nihal Demir",
+    alt: "Records image",
     link: `details`
   },
   {
-    url: cameraImage,
-    title: "camera",
-    text: "camera Image",
-    alt: "camera Image",
+    url: barImage,
+    title: "Bar",
+    text: "Bar Image, shot by Gunsook N",
+    alt: "Bar Image",
     link: `details`
   },
   {
-    url: micImage,
-    title: "mic",
-    text: "mic Image",
-    alt: "mic Image",
+    url: cassetteImage,
+    title: "Cassettes",
+    text: "Cassettes Image, shot by Bruno Guerrero",
+    alt: "Cassettes Image",
     link: `details`
   },
   {
-    url: phoneImage,
-    title: "phone",
-    text: "phone Image",
-    alt: "phone Image",
+    url: studioImage,
+    title: "Studio",
+    text: "Studio Image, shot by Maksym Kaharlytskyi",
+    alt: "Studio Image",
     link: `details`
   },
   {
-    url: tabletImage,
-    title: "tablet",
-    text: "tablet Image",
-    alt: "tablet Image",
-    link: `details`
-  },
-  {
-    url: typewriterImage,
-    title: "Typewriter",
-    text: "Typewriter Image",
-    alt: "Typewriter Image",
+    url: studioMicImage,
+    title: "Studio Mic",
+    text: "Studio Mic Image, shot by Jonathan Velasquez",
+    alt: "Studio Mic Image",
     link: `details`
   },
 ];

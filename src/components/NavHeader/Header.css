@@ -422,3 +422,26 @@ header {
       border-radius: 100%;
     }
   }
+
+  @media screen and (max-width: 300px) {
+    .logo{
+      font-size: 1.6rem;
+    }
+
+    .Profilebutton {
+      position: absolute;
+      margin: 0 auto;
+      right: 20%;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      background-color: white;
+      border: none;
+    }
+
+    .Profilebutton img {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+    }
+  }

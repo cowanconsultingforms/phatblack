@@ -1,3 +1,7 @@
+.events-page{
+    overflow-x: hidden;
+}
+
 .event-head {
     width: 96%;
     display: flex;
@@ -19,9 +23,9 @@
 }
 
 .events {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
 }
 
 .events .event-card {
@@ -30,6 +34,12 @@
     border: 1px solid #ccc; /* Add gray border */
     border-radius: 8px; /* Optional: Add border radius for rounded corners */
     padding: 10px; /* Optional: Add padding for spacing inside the card */
+}
+
+.events .event-card img{
+    width: 100%;
+    object-fit: cover;
+    height: auto;
 }
 
 
