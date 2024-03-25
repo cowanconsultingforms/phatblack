@@ -1,8 +1,8 @@
 /* Search.css */
 
 .searchContainer {
-    padding-left: 15%;
-    padding-right: 20%;
+    margin-left: 15%;
+    margin-right: 20%;
     position: relative;
     width: 100%;
     padding-top: 10px;
@@ -101,8 +101,8 @@
 @media screen and (max-width: 430px){
     .searchContainer{
         margin-top: 15px;
-        padding-left: 10px;
-        padding-right: 0px;
+        margin-left: 10px;
+        margin-right: 0px;
         transition: 1s;
     }
 }
@@ -166,8 +166,8 @@
 @media screen and (max-width:560px) {
     .searchContainer{
         margin-top: 15px;
-        padding-left: 10px;
-        padding-right: 0px;
+        margin-left: 10px;
+        margin-right: 0px;
         transition: 1s;
     }
     .searchInput{
@@ -208,7 +208,7 @@
 
     .searchButtonExpanded{
         padding: 10px;
-        padding-left: 5px;
+        margin-left: 5px;
         color: #FFF;
         /* White color for the icon */
         background: #212529;
@@ -226,8 +226,8 @@
 
 @media screen and (max-width:940px) {
     .searchContainer{
-        padding-left: 0%;
-        padding-right: 0%;
+        margin-left: 0%;
+        margin-right: 0%;
     }
 }
 
