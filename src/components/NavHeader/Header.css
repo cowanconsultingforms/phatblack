@@ -1,28 +1,71 @@
 header {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     color: #212529;
-  }
-  
-  .nav-area {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
     margin: 0 auto;
     padding: 10px 20px;
     color: white;
     background-color: #000000;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     font-weight: 400;
     font-size: medium;
     letter-spacing: 2px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999999;
   }
+  
+  .nav-area {
+    display: flex;
+  }
+  
   
   .Container {
+      position: relative;
       display: flex;
       flex-direction: row;
+      min-width: 200px;
+  }
+
+  .LogedinContainer button{
+    display: none;
+  }
+
+  .ProfileIconContainer {
+    position: relative;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    top: 10px;
+    height: 70px;
+    width: 100px;
   }
   
-  .login, .sign-up .profile {
+  .Profilebutton {
+    position: absolute;
+    margin: 0 auto;
+    right: 20%;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: white;
+    border: none;
+  }
+
+  .Profilebutton:hover {
+    cursor: pointer;
+  }
+
+  .Profilebutton img {
+    width: 60px;
+    height: 60px;
+    
+    border-radius: 100%;
+  }
+
+  .login, .sign-up, .profile {
       margin: 20px;
       font-size: 20px;
       border: none;
@@ -30,7 +73,8 @@ header {
       color: #000000;
       cursor: pointer;
       font-family: "Bebas Neue", sans-serif; 
-      width: 90%; ;
+      width: 90%; 
+      height: 50px;
   }
   
   .login:hover, .sign-up:hover .profile:hover {
@@ -39,42 +83,89 @@ header {
   }
   
   .logo {
-    position: absolute;
+    position: relative;
     text-decoration: none;
     font-size: 25px;
     color: inherit;
-    margin-left: 50px;
+    margin-left: 20px;
     margin-right: 20px;
     color: #ffa646;
     font-weight: 700;
     font-size: 3.5rem;
     letter-spacing: 0px;
+    padding-top: 10px;
   }
   
   .logo:hover{
     color: white;
     text-decoration: underline;
   }
+
+  .desktop-nav{
+    display: flex;
+    width: 95vw;
+  }
   
   /* menu on desktop */
   .desktop-nav .menus {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     list-style: none;
-    margin-left: 200px;
+    background-color: transparent;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+
+
+  .desktop-nav .menus::-webkit-scrollbar{
+    height: 0;
+  }
+
+  .desktop-nav .menus{
+    --mask1: linear-gradient(to right, 
+     rgba(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
+    100% 50% / 100% 100% repeat-x;
+
+    --mask2: linear-gradient(to right, 
+    rgb(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0))
+   100% 50% / 100% 100% repeat-x;
+
+   --mask3: linear-gradient(to right, 
+   rgba(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))
+  100% 50% / 100% 100% repeat-x;
+
+    
+    -webkit-mask: var(--mask1); 
+    mask: var(--mask1);
+    
   }
   
   .desktop-nav .menu-items {
     position: relative;
     font-size: larger;
+    height: 50px;
   }
   
   .desktop-nav .menu-items a {
     display: block;
-    font-size: inherit;
+    font-size: 15px;
     color: inherit;
     text-decoration: none;
+    background-color: #212529;
+    border-radius: 10px;
+    margin-left: 15px;
+    height: 35px;
+    width: max-content;
+    margin-top: 10px;
+  }
+
+  .desktop-nav .menu-items a:hover{
+    background-color: #525a63;
+    transition: 0.3s;
+  }
+
+  .desktop-nav .menu-items a:not(:hover){
+    background-color: #2d3338;
   }
   
   .desktop-nav .menu-items button {
@@ -98,10 +189,6 @@ header {
     padding: 0.7rem 1rem;
   }
   
-  .desktop-nav .menu-items a:hover,
-  .desktop-nav .menu-items button:hover {
-    text-decoration: underline;
-  }
   
   .desktop-nav .arrow::after {
     content: "";
@@ -145,22 +232,22 @@ header {
   
   /*Navbar arrow buttons*/
   .arr {
+
     position: relative;
     background-color: transparent;
     border:none;
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
+    top: 10px;
   }
   
-  .arr:disabled {
-    opacity: 0;
-  }
   
   .arr:hover {
-    background-color: gray;
+    background-color: rgb(83, 82, 82);
     cursor: pointer;
   }
+
   
   .arr::before {
     content: "";
@@ -172,6 +259,10 @@ header {
     height: 0.5rem;
     border: solid white;
     border-width: 0 0.2rem 0.2rem 0;
+  }
+
+  .left{
+    display: none;
   }
   
   .left::before{
@@ -197,102 +288,136 @@ header {
       color: #000000;
       cursor: pointer;
       font-family: "Bebas Neue", sans-serif; 
-      width: 90%; ;
-  }
-  }
+      width: 90%; 
+    }
 
 
-/* menu on mobile */
-@media screen and (max-width: 940px) {
-
-  .desktop-nav {
-    display: none;
-    text-align: right;
   }
 
-  .mobile-nav {
-    display: block;
-  }
-  .mobile-nav .mobile-nav__menu-button {
-    color: inherit;
-    font-size: inherit;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    position: relative;
-    font-family: "Bebas Neue", sans-serif;
-  }
-  .mobile-nav .menus {
-    list-style: none;
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
-      0 4px 6px -2px rgba(71, 63, 79, 0.16);
-    z-index: 9999;
-    min-width: 12rem;
-    padding: 0.5rem 0;
-    background-color: rgb(23, 23, 23);
-    border-radius: 0.5rem;
-  }
+  
+  /* menu on mobile */
+  @media screen and (max-width: 940px) {
+  
+    .desktop-nav {
+      text-align: right;
+      width: 90vw;
+    }
+  
+    .mobile-nav {
+      display: block;
+    }
+    .mobile-nav .mobile-nav__menu-button {
+      color: inherit;
+      font-size: inherit;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      position: relative;
+      font-family: "Bebas Neue", sans-serif;
+    }
+    .mobile-nav .menus {
+      list-style: none;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+        0 4px 6px -2px rgba(71, 63, 79, 0.16);
+      z-index: 9999;
+      min-width: 12rem;
+      padding: 0.5rem 0;
+      background-color: rgb(23, 23, 23);
+      border-radius: 0.5rem;
+    }
+  
+    .mobile-nav .menu-items a {
+      display: block;
+      font-size: inherit;
+      color: inherit;
+      text-decoration: none;
+    }
+  
+    .mobile-nav .menu-items button {
+      display: flex;
+      align-items: center;
+      color: inherit;
+      font-size: inherit;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      width: 100%;
+    }
+  
+    .mobile-nav .menu-items > a,
+    .mobile-nav .menu-items button {
+      text-align: left;
+      padding: 0.7rem 1rem;
+    }
+  
+    .mobile-nav .menu-items a:hover,
+    .mobile-nav .menu-items button:hover {
+      text-decoration: underline;
+    }
+  
+    .mobile-nav .arrow::after {
+      content: "";
+      display: inline-block;
+      margin-left: 1.2em;
+      vertical-align: 0.09em;
+      border-top: 0.42em solid;
+      border-right: 0.32em solid transparent;
+      border-left: 0.32em solid transparent;
+    }
+    .mobile-nav .arrow-close::after {
+      content: "";
+      display: inline-block;
+      margin-left: 1.2em;
+      vertical-align: 0.09em;
+      border-bottom: 0.42em solid;
+      border-right: 0.32em solid transparent;
+      border-left: 0.32em solid transparent;
+    }
+  
+    .mobile-nav .dropdown {
+      margin-left: 1.2em;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      list-style: none;
+      display: none;
+    }
+  
+    .mobile-nav .dropdown.show {
+      display: block;
+    }
 
-  .mobile-nav .menu-items a {
-    display: block;
-    font-size: inherit;
-    color: inherit;
-    text-decoration: none;
+    .ProfileIconContainer {
+      position: relative;
+      display: flex;
+      align-content: center;
+      align-items: center;
+      text-align: center;
+      top: 10px;
+      height: 50px;
+      width: 50px;
+    }
+    
+    .Profilebutton {
+      position: absolute;
+      margin: 0 auto;
+      right: 20%;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      background-color: white;
+      border: none;
+    }
+  
+    .Profilebutton:hover {
+      cursor: pointer;
+    }
+  
+    .Profilebutton img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+    }
   }
-
-  .mobile-nav .menu-items button {
-    display: flex;
-    align-items: center;
-    color: inherit;
-    font-size: inherit;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  .mobile-nav .menu-items > a,
-  .mobile-nav .menu-items button {
-    text-align: left;
-    padding: 0.7rem 1rem;
-  }
-
-  .mobile-nav .menu-items a:hover,
-  .mobile-nav .menu-items button:hover {
-    text-decoration: underline;
-  }
-
-  .mobile-nav .arrow::after {
-    content: "";
-    display: inline-block;
-    margin-left: 1.2em;
-    vertical-align: 0.09em;
-    border-top: 0.42em solid;
-    border-right: 0.32em solid transparent;
-    border-left: 0.32em solid transparent;
-  }
-  .mobile-nav .arrow-close::after {
-    content: "";
-    display: inline-block;
-    margin-left: 1.2em;
-    vertical-align: 0.09em;
-    border-bottom: 0.42em solid;
-    border-right: 0.32em solid transparent;
-    border-left: 0.32em solid transparent;
-  }
-
-  .mobile-nav .dropdown {
-    margin-left: 1.2em;
-    font-size: 0.9rem;
-    padding: 0.5rem 0;
-    list-style: none;
-    display: none;
-  }
-
-  .mobile-nav .dropdown.show {
-    display: block;
-  }
-}

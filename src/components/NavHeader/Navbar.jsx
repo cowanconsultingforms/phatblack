@@ -1,95 +1,96 @@
 import { menuItemsData } from "./menuItemsData";
 import MenuItems from "./MenuItems";
 import { useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const Navbar = () => {
   // Initial depth level for menu items
   const depthLevel = 0;
+  const [currentMenuItems, setCurrentMenuItems] = useState(menuItemsData.slice(0,16));
+  const [startIndex, setStartIndex] = useState(0);
   const [isNextDisable, setNextDisable] = useState(false);
-  const [isPrevDisable, setPrevDisable] = useState(true); // Initially disable
+  const [isPrevDisable, setPrevDisable] = useState(false);  //Initially disable
 
-  // Initialize dragX to track drag position
-  const dragX = useMotionValue(0);
+  //Attributes used to refer to the list and respective buttons
+  const menuRef = useRef(null);
+  const leftButtonRef = useRef(null);
+  const rightButtonRef = useRef(null)
+
+  /* Checks to see if list is scrolled all the way to the left,right, 
+  or is somewhere in between and adjusts the visibility of buttons accordingly*/
+  const handleCheckButtons = () => {
+    if(menuRef.current.scrollLeft === 0){
+      leftButtonRef.current.style = "display: none";
+      menuRef.current.style.webkitMask = "var(--mask1)"
+    }
+    else if((menuRef.current.scrollLeft + menuRef.current.clientWidth !== menuRef.current.scrollWidth) && (menuRef.current.scrollLeft !== 0)){
+      leftButtonRef.current.style = "display: inline";
+      rightButtonRef.current.style = "display: inline";
+      menuRef.current.style.webkitMask = "var(--mask2)"
+    }
+    else {
+      rightButtonRef.current.style = "display: none";
+      menuRef.current.style.webkitMask = "var(--mask3)"
+    }
+   
+  }
+
+  
 
   //Handle Next Button Click
   const handleNextClick = () => {
-    const newX = dragX.get() - 100;
-    dragX.set(newX);
 
-    //Disable next button when reached the end
-    if (newX <= -1000) {
-      setNextDisable(true);
-    } else {
-      setNextDisable(false);
+
+    if(menuRef.current){
+      menuRef.current.scrollLeft += 400;
     }
 
-    //Enable prev button
-    setPrevDisable(false);
-  };
+    
+
+
+    // const newStartIndex = startIndex + 15;
+    // const newMenuItems = menuItemsData.slice(newStartIndex, newStartIndex + 15);
+    // setCurrentMenuItems(newMenuItems);
+    // setStartIndex(newStartIndex);
+    // setPrevDisable(false);
+
+    // //Disable next button when reached the end
+    // if (newStartIndex + 15 >= menuItemsData.length) {
+    //   setNextDisable(true);
+    // }
+  }
 
   const handlePrevClick = () => {
-    const newX = dragX.get() + 200;
-    dragX.set(newX);
 
-    //Disable prev button when reached the beginning
-    if (newX >= 10) {
-      setPrevDisable(true);
-    } else {
-      setPrevDisable(false);
+
+    if(menuRef.current){
+      menuRef.current.scrollLeft -= 400;
     }
+    // const newStartIndex = startIndex - 15;
+    // const newMenuItems = menuItemsData.slice(newStartIndex, startIndex);
+    // setCurrentMenuItems(newMenuItems);
+    // setStartIndex(newStartIndex);
+    // setNextDisable(false);
 
-    //Enable next button
-    setNextDisable(false);
-  };
-
-  // Handle drag end
-  const onDragEnd = () => {
-    const x = dragX.get();
-    const threshold = 1; 
-
-    if (Math.abs(x) > threshold) {
-      if (x > 0 && !isPrevDisable) {
-        handlePrevClick();
-      } else if (x < 0 && !isNextDisable) {
-        handleNextClick();
-      }
-    } else {
-      dragX.set(0); 
-    }
+    // //Disables prev button when reached the beginning
+    // if (newStartIndex === 0) {
+    //   setPrevDisable(true);
+    // }
   };
 
   return (
     <nav className="desktop-nav">
       {/* Render the desktop navigation */}
-        <div className="menu-container">
-          <div className="arr-button-container">
-            <button className="arr left" onClick={handlePrevClick} disabled={isPrevDisable}/>
-          </div>
-          <ul className="menus">
-            {/* Carousel Content */}
-            {menuItemsData.map((menu, index) => (
-              <motion.div
-                className="carousel-container"
-                drag="x"
-                dragConstraints={{
-                  left: -1100,
-                  right: 0,
-
-                }}
-                style={{
-                  x: dragX
-                }}
-                onDragEnd={onDragEnd}
-              >
-                <MenuItems items={menu} key={index} depthLevel={depthLevel} disabled={isPrevDisable}/>
-              </motion.div>
-            ))}
-          </ul>
-          <div className="arr-button-container">
-              <button className="arr right" onClick={handleNextClick} disabled={isNextDisable}/>
-          </div>
-        </div> 
+      <button ref={leftButtonRef} className="arr left" onClick={handlePrevClick} disabled={isPrevDisable}></button>
+      <ul ref={menuRef} className="menus" onScroll={handleCheckButtons} >
+  
+        {/* Map through menu items and render MenuItems component */}
+        
+        {currentMenuItems.map((menu, index) => (
+          <MenuItems items={menu} key={index} depthLevel={depthLevel} />
+        ))}
+      </ul>
+      <button ref={rightButtonRef} className= "arr right" onClick={handleNextClick} disabled={isNextDisable}></button>
     </nav>
   );
 };
