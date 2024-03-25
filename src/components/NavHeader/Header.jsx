@@ -47,7 +47,7 @@ const Header = () => {
       <div className="nav-area">
         <Sidebar />
         <Link to="/" className="logo">
-          <img src={PBPremiumLogo} alt="" />
+          <img src={PBPremiumLogo} alt="PhatBlackLogo" />
         </Link>
 
         <Search />
