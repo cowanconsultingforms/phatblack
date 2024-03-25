@@ -38,6 +38,7 @@ header {
     align-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 5px;
     top: 10px;
     height: 70px;
     width: 100px;
@@ -88,12 +89,12 @@ header {
     font-size: 25px;
     color: inherit;
     margin-left: 20px;
-    margin-right: 20px;
     color: #ffa646;
     font-weight: 700;
     font-size: 3.5rem;
     letter-spacing: 0px;
     padding-top: 10px;
+    
   }
   
   .logo:hover{
@@ -114,10 +115,12 @@ header {
     background-color: transparent;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    -ms-overflow-style: none;
   }
 
 
   .desktop-nav .menus::-webkit-scrollbar{
+    height: 0px;
     display: none;
   }
 
@@ -291,7 +294,13 @@ header {
       width: 90%; 
     }
 
+  }
 
+  @media screen and (max-width: 560px){
+    .ProfileIconContainer{
+      margin-left: 10px;
+      margin-top: 15px;
+    }
   }
 
   
@@ -395,7 +404,8 @@ header {
       align-content: center;
       align-items: center;
       text-align: center;
-      top: 10px;
+      margin-top: 15px;
+      margin-left: 10px;
       height: 50px;
       width: 50px;
     }

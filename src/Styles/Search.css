@@ -4,6 +4,7 @@
     position: relative;
     width: 100%;
     padding-top: 10px;
+    margin-top: 5px;
     /* Or the width that fits well in your navbar */
 }
 
@@ -21,6 +22,7 @@
     width: 100%;
     border: none;
     background: transparent;
+    border-radius: 25px;
     padding: 10px 20px;
     color: #FFF;
     /* White text color */
@@ -32,12 +34,13 @@
     padding: 10px;
     color: #FFF;
     /* White color for the icon */
-    background: transparent;
+    background: #212529;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 0rem 10rem 10rem 0rem;
 }
 
 /* Style for the search icon */
@@ -46,6 +49,7 @@
     /* Adjust the size as needed */
     height: 20px;
     /* Adjust the size as needed */
+    padding-right: 5px;
 }
 
 /* Adjustments for the input placeholder */
@@ -67,11 +71,18 @@
 
 /* Stoping the search input box from taking up screen space on mobile and small screens */
 @media screen and (max-width: 560px){
+    .searchContainer{
+        margin-top: 15px;
+    }
     .searchInput{
         display: none;
     }
     .searchButton{
-        padding: 5px;
-        padding-top: 20px;
+        padding: 10px;
+        border-radius: 10rem;
+        background: transparent;
+    }
+    .faSearch{
+        padding: 2px;
     }
 }

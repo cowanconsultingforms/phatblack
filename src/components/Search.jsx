@@ -21,6 +21,12 @@ const Search = () => {
         navigate(`/search?q=${encodeURIComponent(queryTerm)}`);
     };
 
+    const handleSearchExpansion = () =>{
+        if(window.innerWidth < 940){
+            console.log("window size is on mobile");
+        }
+    };
+
     return (
         // Wrap the input and button with a form and set the onSubmit handler
         <form className="searchContainer" onSubmit={handleSearch}>
@@ -32,7 +38,7 @@ const Search = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="searchInput"
                 />
-                <button className="searchButton">
+                <button className="searchButton" onClick={handleSearchExpansion}>
                     <FaSearch className="faSearch" />
                 </button>
             </div>
