@@ -71,15 +71,7 @@
     /* Light highlight on hover */
 }
 
-/* Stopping the search input box from taking up screen space on mobile and small screens */
-@media screen and (max-width: 430px){
-    .searchContainer{
-        margin-top: 15px;
-        padding-left: 10px;
-        padding-right: 0px;
-        transition: 1s;
-    }
-}
+
 
 .suggestion-dropdown {
   position: absolute;
@@ -103,6 +95,16 @@
 
 .suggestion-dropdown-item:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Stopping the search input box from taking up screen space on mobile and small screens */
+@media screen and (max-width: 430px){
+    .searchContainer{
+        margin-top: 15px;
+        padding-left: 10px;
+        padding-right: 0px;
+        transition: 1s;
+    }
 }
 
 /* Stoping the search input box from taking up screen space on mobile and small screens */

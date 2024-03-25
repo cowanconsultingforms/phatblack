@@ -91,8 +91,8 @@ const Search = () => {
     };
 
     return (
-        <form className="searchContainer" onSubmit={handleSearch}>
-          <div className="searchBar">
+        <form className={searchContainerStyling} onSubmit={handleSearch}>
+          <div className={searchBarStyling}>
             <input
               type="text"
               placeholder="Search PhatBlack..."
@@ -100,9 +100,9 @@ const Search = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               onFocus={() => setShowDropdown(true)}
               onBlur={() => setTimeout (() => {setShowDropdown(false)}, 200)}
-              className="searchInput"
+              className={searchInputStyling}
             />
-            <button className="searchButton">
+            <button className={searchButtonStyling} onClick= {handleSearchExpansion}>
               <FaSearch className="faSearch" />
             </button>
             {showDropdown && (

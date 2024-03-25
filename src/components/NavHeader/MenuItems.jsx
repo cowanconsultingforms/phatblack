@@ -1,7 +1,7 @@
 import Dropdown from "./Dropdown";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {motion} from 'framer-motion'
+import {motion} from 'framer-motion';
 
 const MenuItems = ({ items, depthLevel }) => {
   // State to manage the dropdown visibility
