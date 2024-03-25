@@ -8,10 +8,12 @@ import { collection, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore'
 import Sidebar from "./Sidebar";
 import "./Header.css";
 import Search from "../Search";
+import DropdownMenu from "./ProfileDropdownmenu.jsx"; // Import the DropdownMenu component
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +36,11 @@ const Header = () => {
     navigate('/');
   };
 
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+
   return (
     <header>
       <div className="nav-area">
@@ -41,8 +48,6 @@ const Header = () => {
         <Link to="/" className="logo">
           PHATBLACK
         </Link>
-
-        
 
         <Search />
 
@@ -52,12 +57,12 @@ const Header = () => {
             <Link to='/signup'><button className='sign-up' type='button'>Sign up</button></Link>
           </div>
         ) : (
-          <div className='Container'>
-
-            {(role === 'admin' || role == 'viewer' || role == 'owner') && <Link to='/users'><button className='login' type='button'>Admin Panel</button></Link>}
-
-            <button className="login" type='button' onClick={handleLogout}>Log out</button>
-          </div>
+          <div className="ProfileIcon">
+            <div className="ProfileIconContainer">
+              <button className="Profilebutton" onClick={toggleDropdown}><img src="src/assets/ProfileIcon.png"></img></button>
+            </div>
+            {showDropdown && (<DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} />)}
+            </div>
         )}
        
       </div>

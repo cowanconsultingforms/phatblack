@@ -1,0 +1,90 @@
+.Header{
+    margin-right: 20px;
+    margin-left: 20px;
+    font-size: 40px;
+    width: 200px;
+}
+.Subtopics
+{
+    font-size: 30px;
+}
+
+.subtopics-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+    
+.header-container { 
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-bottom: 2px solid white;
+    margin: 20px;
+}
+
+.image-map{ /* These are the two images in the center for men and women */
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 100%;
+    
+ 
+}
+
+.image-map img{
+    width: 650px;
+    margin: 20px;
+    height: auto;
+
+}
+
+
+
+.bottomHeader{  /* The "You might like" header */
+    display: flex;
+    margin: 20px;
+    font-size: 40px;
+}
+
+
+.bottom-suggestions{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px;
+    border-top: 2px solid white;
+   
+}
+
+.bottom-suggestions img{
+    width: 300px;
+    height: auto;
+    margin: 20px;
+
+}
+
+
+/* viewing for mobile */
+
+@media (max-width: 600px){  
+    .Subtopics{
+        margin: 10px;
+       
+    }
+    .image-map img{
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+    .bottom-suggestions{
+        margin: 10px;
+        max-width: 100%;
+    }
+}
+

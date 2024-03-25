@@ -5,6 +5,12 @@ import "../Styles/Subscribe.css"
 function Subscribe() {
     const subscriptionData = [
         {
+            title: "1 Month Free Trial",
+            planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
+            planAccess: ["Recurring Monthly"],
+            backgroundColor: "green"
+        },
+        {
             title: "$1.00 USD",
             planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
             planAccess: ["Recurring Monthly"],
