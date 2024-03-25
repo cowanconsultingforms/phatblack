@@ -274,6 +274,42 @@ header {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
   
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgb(31, 31, 31);
+    height: 150px;
+    width: 200px;
+    margin-top: 2%;
+    right: 5px;
+    z-index: 2;
+    border-radius: 5px;
+    padding-top: 3px;
+  }
+
+  .menu button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px;
+    margin-left: 0px;
+    padding-left: 20px;
+    font-size: 17px;
+    border-top: solid gray 1px;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    color: #FFFFFF;
+    background-color: transparent;
+    cursor: pointer;
+    width: 200px;
+    font-family: "Bebas Neue", sans-serif; 
+}
+
+
   
   @media screen and (max-width: 430px) {
     .logo{
@@ -421,6 +457,11 @@ header {
       height: 40px;
       border-radius: 100%;
     }
+
+    .menu {
+      width: 150px;
+    }
+
   }
 
   @media screen and (max-width: 300px) {

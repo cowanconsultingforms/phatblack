@@ -53,9 +53,16 @@ const Header = () => {
         <Search />
 
         {!isAuthenticated ? (
-          <div className='Container'>
-            <Link to='/login'><button className='login' type='button'>Login</button></Link>
-            <Link to='/signup'><button className='sign-up' type='button'>Sign up</button></Link>
+          <div className="ProfileIcon">
+          <div className="ProfileIconContainer">
+          <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}/></button>
+          </div>
+          {showDropdown && (
+              <div className="menu">
+                <Link to="/login"><button>Login</button></Link>
+                <Link to="/signup"><button>Sign up</button></Link>
+              </div>
+          )}
           </div>
         ) : (
           <div className="ProfileIcon">

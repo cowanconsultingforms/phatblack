@@ -1,7 +1,9 @@
 import React from "react";
 import "./ProfileDropdownmenu.css"
 
+
 const DropdownMenu = ({ handleLogout, navigate, role, isActive }) => {
+
   return (
     <div className={`dropdown-menu ${isActive ? 'active' : ''}`}>
       <button className="dropdown-item" onClick={() => navigate('/profile')}>
