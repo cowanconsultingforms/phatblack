@@ -5,6 +5,32 @@ import "./Carousel.css"
 //Carousel for displaying and cycling 
 function Carousel({ items }){
     const [currentIndex, setCurrentIndex] = useState(0);
+    let initialX = null;
+
+    //handle touch start -> start of swipe event for carousel
+    function handleTouchStart(event){
+        initialX = event.touches[0].clientX;
+    };
+
+    //handle touch move -> swiping through slides 
+    function handleTouchMove(event){
+        if(initialX === null){
+            return;
+        }
+
+        const currentX = event.touches[0].clientX;
+        const diffX = initialX - currentX;
+
+        if(Math.abs(diffX) > 50){
+            if(diffX > 0){
+                next();
+            } else{
+                previous();
+            }
+
+            initialX = null;
+        }
+    }
 
     //next slide
     function next(){
@@ -21,7 +47,7 @@ function Carousel({ items }){
     };
 
     return (
-    <div className="carousel">
+    <div className="carousel" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
         <button className="previous" onClick={previous}> {`<`} </button>
         <div className="slide">
             <img src={items[currentIndex].url} alt={items[currentIndex].alt} />

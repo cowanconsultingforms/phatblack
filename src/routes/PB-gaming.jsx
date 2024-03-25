@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "../Styles/E-gaming.css";
+import "../Styles/PB-gaming.css";
+import speakerImage from "../assets/SpeakerImage.png"
 
-function Egaming() {
+function PBgaming() {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -27,7 +28,7 @@ function Egaming() {
     return (
         <div className="GamingMainContainer">
             <div className={`GamingSidebar ${sidebarOpen ? 'open' : ''}`}>
-                <h1>E-GAMING</h1>
+                <h1>PB-GAMING</h1>
                 <ul>
                     <li><button>HOME</button></li>
                     <li><button>TRENDING</button></li>
@@ -52,63 +53,63 @@ function Egaming() {
                 <hr/>
                 <div className="ReviewGrid">
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 1" />
+                        <img src={speakerImage} alt="Game 1" />
                         <button>Game 1</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 2" />
+                        <img src={speakerImage} alt="Game 2" />
                         <button>Game 2</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 3" />
+                        <img src={speakerImage} alt="Game 3" />
                         <button>Game 3</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 4" />
+                        <img src={speakerImage} alt="Game 4" />
                         <button>Game 4</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 5" />
+                        <img src={speakerImage} alt="Game 5" />
                         <button>Game 5</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 6" />
+                        <img src={speakerImage} alt="Game 6" />
                         <button>Game 6</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 7" />
+                        <img src={speakerImage} alt="Game 7" />
                         <button>Game 7</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 8" />
+                        <img src={speakerImage} alt="Game 8" />
                         <button>Game 8</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 9" />
+                        <img src={speakerImage} alt="Game 9" />
                         <button>Game 9</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 10" />
+                        <img src={speakerImage} alt="Game 10" />
                         <button>Game 10</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 11" />
+                        <img src={speakerImage} alt="Game 11" />
                         <button>Game 11</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 12" />
+                        <img src={speakerImage} alt="Game 12" />
                         <button>Game 12</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 13" />
+                        <img src={speakerImage} alt="Game 13" />
                         <button>Game 13</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 14" />
+                        <img src={speakerImage} alt="Game 14" />
                         <button>Game 14</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src="src/assets/SpeakerImage.png" alt="Game 15" />
+                        <img src={speakerImage} alt="Game 15" />
                         <button>Game 15</button>
                     </div>
                 </div>
@@ -117,4 +118,4 @@ function Egaming() {
     )
 };
 
-export default Egaming;
+export default PBgaming;

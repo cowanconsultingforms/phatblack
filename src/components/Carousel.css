@@ -86,3 +86,9 @@
   margin: 0 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 940px) {
+  .slide img {
+    height: 600px;
+  }
+}

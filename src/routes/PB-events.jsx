@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../Styles/Eevents.css";
+import "../Styles/PBevents.css";
 import EventCard from "../components/EventCard";
 
-function Eevents() {
+function PBevents() {
     return (
         <div className="events-page">
             <div className="event-head">
-                <h1 className="page-header">E-Events</h1>
+                <h1 className="page-header">PB-Events</h1>
                 <Link to="/host-event">
                     <h1 className="page-header"> Host an Event</h1>
                 </Link>
@@ -40,4 +40,4 @@ function Eevents() {
     );
 }
 
-export default Eevents;
+export default PBevents;
