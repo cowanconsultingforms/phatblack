@@ -21,7 +21,7 @@ function UsersList() {
 
       const userRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userRef);
-      if (!['admin', 'staff', 'owner'].includes(userDoc.data()?.role)) {
+      if (!['admin', 'staff', 'super admin'].includes(userDoc.data()?.role)) {
         navigate('/');
         return;
       }
@@ -110,7 +110,7 @@ function UsersList() {
           <option value="vendor">Vendor</option>
           <option value="staff">Staff</option>
           <option value="admin">Admin</option>
-          <option value="owner">Owner</option>
+          <option value="super admin">Super Admin</option>
         </select>
         <select onChange={(e) => setSortField(e.target.value)} className="filter-dropdown">
           <option value="email">Email</option>
@@ -150,7 +150,7 @@ function UsersList() {
                     <option value="vendor">Vendor</option>
                     <option value="staff">Staff</option>
                     <option value="admin">Admin</option>
-                    <option value="owner">Owner</option>
+                    <option value="super admin">Super Admin</option>
 
                   </select>
                   <button onClick={() => handleDeleteClick(user.id)} className="delete-button">

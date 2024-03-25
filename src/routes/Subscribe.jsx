@@ -8,25 +8,25 @@ function Subscribe() {
             title: "1 Month Free Trial",
             planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
             planAccess: ["Recurring Monthly"],
-            backgroundColor: "green"
+            backgroundColor: "#212529"
         },
         {
             title: "$1.00 USD",
             planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
             planAccess: ["Recurring Monthly"],
-            backgroundColor: "#213372"
+            backgroundColor: "#2d3338"
         },
         {
             title: "$10.80",
             planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
             planAccess: ["Save 10% Compared to Monthly", "Recurring Yearly"],
-            backgroundColor: "#B18149"
+            backgroundColor: "#ffa646"
         },
         {
             title: "NFT",
             planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
             planAccess: ["Lifetime Access"],
-            backgroundColor: "#47185C"
+            backgroundColor: "#ED7D31"
         },
     ];
 
@@ -34,7 +34,7 @@ function Subscribe() {
         <div className="subscribe-page">
 
             <div className="subscribe-header">
-                <h1>Phatblack Premium</h1>
+                <h1>Subscribe</h1>
             </div>
 
             <div className="subscription-plans">

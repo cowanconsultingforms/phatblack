@@ -9,6 +9,7 @@ import Sidebar from "./Sidebar";
 import "./Header.css";
 import Search from "../Search";
 import DropdownMenu from "./ProfileDropdownmenu.jsx"; // Import the DropdownMenu component
+import profileIcon from "../../assets/ProfileIcon.png"
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -59,7 +60,7 @@ const Header = () => {
         ) : (
           <div className="ProfileIcon">
             <div className="ProfileIconContainer">
-              <button className="Profilebutton" onClick={toggleDropdown}><img src="src/assets/ProfileIcon.png"></img></button>
+              <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}></img></button>
             </div>
             {showDropdown && (<DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} />)}
             </div>
