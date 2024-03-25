@@ -65,6 +65,30 @@
     /* Light highlight on hover */
 }
 
+.suggestion-dropdown {
+  position: absolute;
+  background-color: rgb(28, 23, 23);
+  border-radius: 25px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.suggestion-dropdown-item {
+  padding: 10px 20px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.suggestion-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* Stoping the search input box from taking up screen space on mobile and small screens */
 @media screen and (max-width: 560px){
     .searchInput{
@@ -75,3 +99,4 @@
         padding-top: 20px;
     }
 }
+

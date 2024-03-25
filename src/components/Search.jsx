@@ -1,43 +1,89 @@
-// Search.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import '../Styles/Search.css'; // Make sure this path is correct
+import { collection, getDocs, query, limit } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import '../Styles/Search.css';
 
 const Search = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
 
-    // Updated to be form submission handler
-    const handleSearch = (e) => {
-        e.preventDefault(); // Prevent default form submission
-        const trimmedSearchTerm = searchTerm.trim();
-        if (!trimmedSearchTerm) {
-            return;
-        }
-
-        const queryTerm = trimmedSearchTerm.toLowerCase();
-        // Use `navigate` to push the user to the /search route with the searchTerm as a query param
-        navigate(`/search?q=${encodeURIComponent(queryTerm)}`);
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      try {
+        const suggestionRef = collection(db, "searchData");
+        const suggestionQuery = query(suggestionRef, limit(10));
+        const querySnapshot = await getDocs(suggestionQuery);
+        const suggestionList = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setSuggestions(suggestionList);
+      } catch (error) {
+        console.error("Error fetching suggestions: ", error);
+      }
     };
 
-    return (
-        // Wrap the input and button with a form and set the onSubmit handler
-        <form className="searchContainer" onSubmit={handleSearch}>
-            <div className="searchBar">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="searchInput"
-                />
-                <button className="searchButton">
-                    <FaSearch className="faSearch" />
-                </button>
-            </div>
-        </form>
-    );
+    fetchSuggestions();
+  }, []);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const trimmedSearchTerm = searchTerm.trim();
+
+    if (!trimmedSearchTerm) {
+      return;
+    }
+
+    const queryTerm = trimmedSearchTerm.toLowerCase();
+    navigate(`/search?q=${encodeURIComponent(queryTerm)}`);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    console.log("Suggestion clicked:", suggestion); // Check if this log is printed
+    setSearchTerm(suggestion);
+    setShowDropdown(false);
+  };
+  
+
+  return (
+    <form className="searchContainer" onSubmit={handleSearch}>
+      <div className="searchBar">
+        <input
+          type="text"
+          placeholder="Search PhatBlack..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onFocus={() => setShowDropdown(true)}
+          onBlur={() => setTimeout (() => {setShowDropdown(false)}, 200)}
+          className="searchInput"
+        />
+        <button className="searchButton">
+          <FaSearch className="faSearch" />
+        </button>
+        {showDropdown && (
+          <div className="suggestion-dropdown">
+            {suggestions
+              .filter((suggestion) =>
+                suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+              .map((suggestion) => (
+                <div
+                  key={suggestion.id}
+                  className="suggestion-dropdown-item"
+                  onClick={() => handleSuggestionClick(suggestion.title)}
+                >
+                  {suggestion.title}
+                </div>
+              ))}
+          </div>
+        )}
+      </div>
+    </form>
+  );
 };
 
 export default Search;
