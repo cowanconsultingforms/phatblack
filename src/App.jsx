@@ -20,6 +20,11 @@ import PBsocial from './routes/PB-social'
 import SignUp from './routes/Signup';
 import Login from './routes/Login';
 import FAQ from './routes/FAQ';
+import SearchResults from './components/SearchResults';
+import UsersList from './routes/UsersList';
+import TestCalls from './routes/TestCalls';
+import UserProfile from './routes/UserProfile';
+import UploadMedia from './routes/UploadMedia';
 
 function App() {
   return (
@@ -38,7 +43,7 @@ function App() {
           <Route path="/pbfashion" element={<PBfashion />} />
           <Route path="/pbmusic" element={<PBmusic />} />
           <Route path="/pbcommunities" element={<PBcommunuties />} />
-          <Route path="/pbsocial" element={<PBsocial/>}/>
+          <Route path="/pbsocial" element={<PBsocial />} />
           <Route path="/defendersofhiphop" element={<DefendersOfHipHop />} />
           <Route path="/about" element={<About />} />
           <Route path="/subscribe" element={<Subscribe />} />
@@ -46,6 +51,11 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/users" element={<UsersList />} />
+          <Route path="/test-calls" element={<TestCalls />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/upload" element={<UploadMedia />} />
         </Routes>
       </BrowserRouter>
     </>

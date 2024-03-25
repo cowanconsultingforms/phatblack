@@ -1,0 +1,145 @@
+.users-list-container {
+  padding: 20px;
+  color: #fff;
+  background: #000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.users-list-title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2em;
+  color: #ffa646;
+}
+
+.users-list-table-wrapper {
+  overflow-x: auto;
+}
+
+.users-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.users-list-table th,
+.users-list-table td {
+  padding: 15px;
+  border: 1px solid #fff;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.users-list-table th {
+  background-color: #ffa646;
+  color: #000;
+}
+
+.users-list-table td {
+  background-color: #222;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.action-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-dropdown {
+  flex: 1;
+  display: block;
+  width: 100%;
+}
+
+.action-icon {
+  margin-right: 5px;
+}
+
+.role-dropdown,
+.filter-dropdown,
+.sort-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.role-dropdown:hover,
+.filter-dropdown:hover,
+.sort-button:hover {
+  background-color: #218838;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.delete-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #d9534f;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #c9302c;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+
+  .users-list-table th,
+  .users-list-table td {
+    padding: 10px;
+    font-size: 0.8em;
+  }
+
+  .role-dropdown,
+  .filter-dropdown,
+  .sort-button,
+  .delete-button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+    margin: 2px;
+  }
+
+  .users-list-title {
+    font-size: 1.5em;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .action-button:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
