@@ -24,7 +24,7 @@ function UploadMedia() {
 
             const userRef = doc(db, "users", user.uid);
             const userDoc = await getDoc(userRef);
-            if (!['admin', 'staff', 'owner'].includes(userDoc.data()?.role)) {
+            if (!['admin', 'staff', 'super admin'].includes(userDoc.data()?.role)) {
                 navigate('/');
             }
         });

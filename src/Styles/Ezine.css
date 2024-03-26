@@ -14,6 +14,7 @@
   color: rgb(163, 18, 18); /* This is to ensure the text is visible on the black background */
   min-height: 100vh; /* This makes the div take up the full height of the viewport */
   padding-top: 100px;
+  overflow-x: hidden;
 }
 
 .news-pictures::before { /* This is the border above the images */

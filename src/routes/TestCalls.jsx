@@ -19,7 +19,7 @@ function TestCalls() {
                 if (user) {
                     const userRef = doc(db, "users", user.uid);
                     const userDoc = await getDoc(userRef);
-                    if (userDoc.exists() && ['admin', 'staff', 'owner'].includes(userDoc.data().role)) {
+                    if (userDoc.exists() && ['admin', 'staff', 'super admin'].includes(userDoc.data().role)) {
                         setAccess(true);
                     } else {
                         navigate('/');
