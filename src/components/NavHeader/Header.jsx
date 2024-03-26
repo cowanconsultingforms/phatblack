@@ -9,6 +9,8 @@ import Sidebar from "./Sidebar";
 import "./Header.css";
 import Search from "../Search";
 import DropdownMenu from "./ProfileDropdownmenu.jsx"; // Import the DropdownMenu component
+import PBPremiumLogo from "../../assets/PhatBlackLogo.png"
+import profileIcon from "../../assets/ProfileIcon.png"
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -45,25 +47,33 @@ const Header = () => {
     <header>
       <div className="nav-area">
         <Sidebar />
+        
         <Link to="/" className="logo">
-          PHATBLACK
+          <img src={PBPremiumLogo} alt="PhatBlackLogo" />
         </Link>
 
         <Search />
 
-        {!isAuthenticated ? (
-          <div className='Container'>
-            <Link to='/login'><button className='login' type='button'>Login</button></Link>
-            <Link to='/signup'><button className='sign-up' type='button'>Sign up</button></Link>
+        {/* {!isAuthenticated ? (
+          <div className="ProfileIcon">
+          <div className="ProfileIconContainer">
+          <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}/></button>
           </div>
-        ) : (
+          {showDropdown && (
+              <div className="menu">
+                <Link to="/login"><button>Login</button></Link>
+                <Link to="/signup"><button>Sign up</button></Link>
+              </div>
+          )}
+          </div> */}
+        {/* ) : ( */}
           <div className="ProfileIcon">
             <div className="ProfileIconContainer">
-              <button className="Profilebutton" onClick={toggleDropdown}><img src="src/assets/ProfileIcon.png"></img></button>
+              <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}></img></button>
             </div>
-            {showDropdown && (<DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} />)}
-            </div>
-        )}
+            {showDropdown && (<DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} authenticated={isAuthenticated}/>)}
+          </div>
+        {/* )} */}
        
       </div>
         {/* for large screens */}

@@ -1,9 +1,5 @@
 export const menuItemsData = [
     {
-      title: "E-Zine",
-      url: "/zine"
-    },
-    {
         title: "E-TV",
         url: "/tv",
     },
@@ -12,28 +8,36 @@ export const menuItemsData = [
       url: "/radio"
     },  
     {
-      title: "E-Gaming",
-      url: "/gaming"
+      title: "E-Zine",
+      url: "/zine"
+    },
+    {
+      title: "PB-Events",
+      url: "/pbevents"
+    },
+    {
+      title: "PB-Mall",
+      url: "/pbmall"
     },
     {
       title: "Defenders of Hip Hop",
       url: "/defendersofhiphop"
     },
     {
-      title: "PB-Digital",
-      url: "/pbdigital"
+      title: "PB-Gaming",
+      url: "/gaming"
     },
     {
-      title: "PB-Music",
-      url: "/pbmusic"
+      title: "PB-Digital",
+      url: "/pbdigital"
     },
     {
       title: "PB-Fashion",
       url: "/pbfashion"
     },
     {
-      title: "PB-Events",
-      url: "/events"
+      title: "PB-Music",
+      url: "/pbmusic"
     },
     {
       title: "PB-Communities",
@@ -44,16 +48,12 @@ export const menuItemsData = [
       url:"/pbsocial"
     },
     {
-      title: "Subscribe",
-      url: "/subscribe"
-    },
-    {
-      title: "PB-Mall",
-      url: "/pbmall"
-    },
-    {
       title: "About",
       url: "/about"
+    },
+    {
+      title: "Subscribe",
+      url: "/subscribe"
     },
     {
       title: "FAQ",

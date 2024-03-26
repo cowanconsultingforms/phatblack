@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.GamingMainContainer {
+    position: relative;
+    display: flex;
+    height: 86vh;
+    align-content: center;
+    text-align: center;
+}
+
+.GamingSidebar {
+    width: 30dvh; 
+    height: 86dvh;
+    background-color: rgb(32, 32, 32);
+    flex-shrink: 0;
+    align-content: center;
+    text-align: center;
+    position: fixed;
+    left: -30vh;
+    transition: left 0.3s ease;
+}
+
+.GamingSidebar h1 {
+    color: #ffa646;
+}
+
+.GamingSidebar.open {
+    left: 0;
+}
+
+.GamingSidebar ul {
+    list-style: none;
+}
+
+.GamingSidebar li {
+    margin: 30px;
+}
+
+.GamingContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(53, 53, 53);
+    overflow-x: hidden; /* Prevent horizontal overflow on smaller screens */
+}
+
+
+.sidebar-toggle {
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 50px;
+}
+
+.ReviewGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    gap: 20px; /* Gap between boxes */
+    padding: 20px; /* Padding for better visualization */
+}
+
+.ReviewBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 22dvh;
+    padding: 10px; /* Padding for better visualization */
+}
+
+.ReviewBox img {
+    height: 100%; /* Ensure images fit inside their containers */
+    width: 100%;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+.ReviewBox button {
+    background-color: transparent; /* Make buttons transparent */
+    border: none; /* Remove button border */
+    color: white; /* Set button text color */
+    padding: 5px 10px; /* Adjust button padding */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s, background-color 0.3s; /* Add transition effect */
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
+}
+
+/* Change button text color to orange on hover */
+.ReviewBox button:hover {
+    background-color: transparent;
+    color: orange;
+}
+
+/* Flash white on button click */
+.ReviewBox button:active {
+    color: rgb(238, 9, 9);
+}
+
+.GamingSidebar button {
+    background-color: transparent; /* Make buttons transparent */
+    border: none; /* Remove button border */
+    color: white; /* Set button text color */
+    padding: 5px 10px; /* Adjust button padding */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s, background-color 0.3s; /* Add transition effect */
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 25px;
+    font-weight: 200;
+}
+
+.GamingSidebar button:hover {
+    background-color: rgba(255, 166, 0, 0.611);
+}
+
+.GamingSidebar button:active {
+    color: red;
+}
+
+@media only screen and (max-width: 768px) {
+    .GamingMainContainer {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .GamingSidebar {
+        align-content: center;
+        text-align: center;
+        height: 100%;
+        width: 40%;
+    }
+
+    .sidebar-toggle {
+        right: 10px;
+        z-index: 999;
+    }
+
+    .GamingContainer {
+        height: 100%;
+        width: 100%;
+    }
+
+    .ReviewGrid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust columns for smaller screens */
+    }
+
+    .ReviewBox {
+        height: auto; /* Adjust height for smaller screens */
+        margin-bottom: 20px; /* Add margin between review boxes */
+    }
+
+    .ReviewBox img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+    }
+}

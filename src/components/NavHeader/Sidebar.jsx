@@ -37,13 +37,13 @@ function Sidebar() {
                 <AiOutlineClose />
               </Link>
             </li>
-            {menuItemsData.map((item, index) => {
-              return (
-                <li key={index} className={'nav-text'}>
-                  <Link to={item.url}>
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
+              {menuItemsData.map((item, index) => {
+                return (
+                  <li key={index} className={'nav-text'}>
+                    <Link to={item.url}>
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
               );
             })}
           </ul>

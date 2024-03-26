@@ -1,8 +1,8 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./routes/Home"
-import Eevents from './routes/E-events';
-import Egaming from './routes/E-gaming';
+import PBevents from './routes/PB-events';
+import PBgaming from './routes/PB-gaming';
 import PBmall from './routes/PB-mall';
 import Eradio from './routes/E-radio';
 import Etv from './routes/E-tv';
@@ -24,6 +24,8 @@ import SearchResults from './components/SearchResults';
 import UsersList from './routes/UsersList';
 import TestCalls from './routes/TestCalls';
 import UserProfile from './routes/UserProfile';
+import UploadMedia from './routes/UploadMedia';
+
 function App() {
   return (
     <>
@@ -31,12 +33,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Eevents />} />
+          <Route path="/pbevents" element={<PBevents />} />
           <Route path="/tv" element={<Etv />} />
           <Route path="/pbmall" element={<PBmall />} />
           <Route path="/radio" element={<Eradio />} />
           <Route path="/zine" element={<Ezine />} />
-          <Route path="/gaming" element={<Egaming />} />
+          <Route path="/gaming" element={<PBgaming />} />
           <Route path="/pbdigital" element={<PBdigital />} />
           <Route path="/pbfashion" element={<PBfashion />} />
           <Route path="/pbmusic" element={<PBmusic />} />
@@ -53,6 +55,7 @@ function App() {
           <Route path="/users" element={<UsersList />} />
           <Route path="/test-calls" element={<TestCalls />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/upload" element={<UploadMedia />} />
         </Routes>
       </BrowserRouter>
     </>

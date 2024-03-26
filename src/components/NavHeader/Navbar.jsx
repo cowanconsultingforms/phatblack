@@ -78,7 +78,6 @@ const Navbar = () => {
     // }
   };
 
-
   return (
     <nav className="desktop-nav">
       {/* Render the desktop navigation */}
@@ -95,4 +94,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
 export default Navbar;
