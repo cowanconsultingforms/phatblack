@@ -34,7 +34,7 @@ const DropdownMenu = ({ handleLogout, navigate, role, isActive, authenticated })
         Sign up
       </button>
     </div>
-    )};
+    )}
     </div>
   );
 };

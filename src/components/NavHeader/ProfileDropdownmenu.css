@@ -34,7 +34,6 @@
     background-color: rgb(31, 31, 31);
     height: 300px;
     width: 200px;
-    margin-top: 2%;
     right: 5px;
     z-index: 2;
     border-radius: 5px;
@@ -75,6 +74,7 @@
     .dropdown-menu {
         height: 200px;
         width: 200px;
+        margin-top: 2%;
     }
     
     

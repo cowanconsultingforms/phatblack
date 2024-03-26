@@ -72,7 +72,7 @@ const Header = () => {
               <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}></img></button>
             </div>
             {showDropdown && (<DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} authenticated={isAuthenticated}/>)}
-            </div>
+          </div>
         {/* )} */}
        
       </div>
