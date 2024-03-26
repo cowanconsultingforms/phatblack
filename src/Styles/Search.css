@@ -99,6 +99,10 @@
 
 
 @media screen and (max-width: 300px) {
+    .logo img{
+        width: 140px;
+        margin-top: 5px;
+    }
     .searchContainerExpanded{
         max-width: 200px;
         margin-left: 19px !important;
