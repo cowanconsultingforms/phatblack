@@ -68,7 +68,7 @@ span {
 }
 
 .Sidebar{
-    padding-top: 14px;
+    padding-top: 35px;
 }
 
 ::-webkit-scrollbar {
@@ -78,4 +78,14 @@ span {
 ::-webkit-scrollbar-thumb {
     background-color: white;
     border-radius: 4px;
+}
+
+
+@media screen and (max-width: 300px) {
+    .menu-bars{
+        font-size: 1rem;
+    }
+    .Sidebar{
+        padding-top: 45px;
+    }
 }
