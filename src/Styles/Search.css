@@ -114,10 +114,9 @@
         padding-left: 0px !important;
     }
     .searchButton{
-        position: relative;
         margin-left: -5px !important;
-        left: -30px;
-        top: 2px;
+        position: relative;
+        left: -90%;
     }
 }
 

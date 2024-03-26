@@ -18,7 +18,6 @@ header {
   
   .nav-area {
     display: flex;
-    overflow-x: hidden;
   }
   
   
@@ -337,7 +336,10 @@ header {
   
   /* menu on mobile */
   @media screen and (max-width: 940px) {
-  
+    .nav-area {
+      overflow: hidden;
+    }
+    
     .desktop-nav {
       text-align: right;
       width: 90vw;
