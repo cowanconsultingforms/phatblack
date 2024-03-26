@@ -1,7 +1,7 @@
 import etv_vid from "../assets/etv_vid.mp4"
 import eradio_vid from "../assets/eradio_vid.mp4"; 
 import defenders_of_hip_hop_vid from "../assets/defenders_of_hip_hop_vid.mp4";
-import egaming_vid from "../assets/egaming_vid.mp4"; 
+import pbgaming_vid from "../assets/pbgaming_vid.mp4"; 
 import pbmall_vid from "../assets/pbmall_vid.mp4";
 import events_vid from "../assets/events_vid.mp4"; 
 import pbdigital_vid from "../assets/pbdigital_vid.mp4"; 
@@ -28,14 +28,14 @@ export const videoCardsData = [
       href: "/zine"
     },
     {
-      src: egaming_vid,
-      title: "E-GAMING",
+      src: pbgaming_vid,
+      title: "PB-GAMING",
       paragraph: "Passion and innovation intersect to create extraordinary gaming experiences here. Our enthusiasm drives us to push the boundaries of gaming and deliver unparalleled entertainment to our community.",
       href: "/gaming"
     },
     {
       src: events_vid,
-      title: "E-EVENTS",
+      title: "PB-EVENTS",
       paragraph: "Creative, signature events from concept to design, right through to production and management of the event itself.",
       href: "/events"
     },
