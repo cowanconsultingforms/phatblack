@@ -4,6 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import { collection, getDocs, query, limit } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import '../Styles/Search.css';
+import { AiOutlineClose } from "react-icons/ai";
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -14,6 +15,8 @@ const Search = () => {
 
     const [suggestions, setSuggestions] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
+    //focused state for conditionally rendering X icon for clearing search
+    const [isFocused, setIsFocused] = useState(false);
     
     const navigate = useNavigate();
 
@@ -101,10 +104,21 @@ const Search = () => {
           setSearchTerm(e.target.value)
           setShowDropdown(true)
           }}
-            onFocus={() => setShowDropdown(true)}
-            onBlur={() => setTimeout(() => { setShowDropdown(false) }, 200)}
+            onFocus={() => {
+              setShowDropdown(true);
+              setIsFocused(true);
+              }}
+            onBlur={() => {
+              setTimeout(() => { setShowDropdown(false) }, 200);
+              setTimeout(() => { setIsFocused(false)},200);
+              }}
             className={searchInputStyling}
           />
+          {searchTerm === "" ? null : (
+            <AiOutlineClose className={`clear ${isFocused ? "visible" : "invisible" }`} onClick={()=>{
+            setSearchTerm("");
+            }}/>
+          )}
           <button className={searchButtonStyling} onClick= {handleSearchExpansion}>
             <FaSearch className="faSearch" />
           </button>
