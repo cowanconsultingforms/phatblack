@@ -77,7 +77,8 @@
     top: -20%;
     padding: 2px;
     border-radius: 100%;
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid white;
     cursor: pointer;
 }
 
@@ -89,7 +90,8 @@
     top: -7.5%;
     padding: 2px;
     border-radius: 100%;
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid white;
     cursor: pointer;
 }
 
