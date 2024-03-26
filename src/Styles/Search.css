@@ -79,7 +79,7 @@
   border-radius: 1.5rem;
   max-height: 200px;
   overflow-y: auto;
-  z-index: 1;
+  z-index: 5;
   width: 100%;
   top: 80%;
   left: 0;
@@ -97,11 +97,29 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* .back.invisible{
+    background: black;
+    color: white;
+    display: none;
+}
+
+.back.visible{
+    display: inline;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    height: 60px;
+    border-radius: 10px 0px 0px 10px;
+} */
+
 .clear{
     position: absolute;
-    right: 10%;
+    right: 50px;
     top: 30%;
-    font-size: 2rem;
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
 }
 
 .clear.invisible{
@@ -110,6 +128,12 @@
 
 .clear.visible{
     visibility: visible;
+}
+
+.clear.visible:hover{
+    background-color: #212529;
+    border-radius: 10rem;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 300px) {
@@ -147,6 +171,12 @@
         margin-right: 0px;
         transition: 1s;
     }
+    .suggestion-dropdown{
+        margin-top: 20px;
+    }
+    .clear{
+        top: 15%;
+    }
 }
 
 /* Stoping the search input box from taking up screen space on mobile and small screens */
@@ -155,6 +185,7 @@
         display: none;
     }
     .searchButton{
+        margin-top: 5px;
         padding: 10px;
         border-radius: 10rem;
         background: transparent;
@@ -169,7 +200,7 @@
         height: 60px;
         width: 290px;
         margin-left: 50px;
-        z-index: 2;
+        z-index: 5;
         transition: 0.7s;
     }
     .searchBarExpanded{
@@ -230,7 +261,7 @@
         height: 60px;
         width: 290px;
         margin-left: 50px;
-        z-index: 2;
+        z-index: 5;
         transition: 0.7s;
     }
     .searchBarExpanded{
@@ -263,6 +294,10 @@
         height: 60px;
         justify-content: center;
         border-radius: 0rem 10rem 10rem 0rem;
+    }
+    .clear{
+        top: 40%;
+        right: 40px;
     }
 }
 

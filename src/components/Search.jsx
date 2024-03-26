@@ -5,6 +5,8 @@ import { collection, getDocs, query, limit } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import '../Styles/Search.css';
 import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -90,15 +92,17 @@ const Search = () => {
             setSearchBarStyling('searchBar');
             setSearchButtonStyling('searchButton');
         }
-        console.log(windowWidth);
     };
 
   return (
       <form className={searchContainerStyling} onSubmit={handleSearch}>
         <div className={searchBarStyling}>
+          {/* <button className={`back ${(!windowWidthTooBig && (searchContainerStyling == 'searchContainer')) ? "invisible" : "visible"}`} onClick={handleSearchExpansion}>
+          <AiOutlineArrowLeft />
+          </button> */}
           <input
             type="text"
-            placeholder="Search PhatBlack..."
+            placeholder="Search PhatBlack-Premium..."
             value={searchTerm}
             onChange={(e) => {
           setSearchTerm(e.target.value)

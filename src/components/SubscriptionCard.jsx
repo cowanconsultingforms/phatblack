@@ -1,13 +1,13 @@
 import React from "react";
 import { getAuth } from "firebase/auth";
 
-function SubscriptionCard({ title, planBenefits, planAccess, backgroundColor }) {
+function SubscriptionCard({ path, title, planBenefits, planAccess, backgroundColor }) {
 
     function redirect() {
         const authInstance = getAuth();
         const user = authInstance.currentUser;
         if (user) {
-            window.location.href = "/payment"; // Redirect to payment page if user is logged in
+            window.location.href = path; // Redirect to payment page if user is logged in
         } else {
             window.location.href = "/signup"; // Redirect to signup page if user is not logged in
         }
