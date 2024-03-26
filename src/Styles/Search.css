@@ -76,14 +76,14 @@
 .suggestion-dropdown {
   position: absolute;
   background-color: rgb(28, 23, 23);
-  border-radius: 25px;
+  border-radius: 1.5rem;
   max-height: 200px;
   overflow-y: auto;
   z-index: 1;
   width: 100%;
-  top: 100%;
+  top: 80%;
   left: 0;
-  padding: 5px;
+  padding: 2px;
   box-sizing: border-box;
 }
 

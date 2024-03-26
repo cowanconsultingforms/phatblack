@@ -90,40 +90,49 @@ const Search = () => {
         console.log(windowWidth);
     };
 
-    return (
-        <form className={searchContainerStyling} onSubmit={handleSearch}>
-          <div className={searchBarStyling}>
-            <input
-              type="text"
-              placeholder="Search PhatBlack..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onFocus={() => setShowDropdown(true)}
-              onBlur={() => setTimeout (() => {setShowDropdown(false)}, 200)}
-              className={searchInputStyling}
-            />
-            <button className={searchButtonStyling} onClick= {handleSearchExpansion}>
-              <FaSearch className="faSearch" />
-            </button>
-            {showDropdown && (
-              <div className="suggestion-dropdown">
-                {suggestions
-                  .filter((suggestion) =>
-                    suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
-                  )
-                  .map((suggestion) => (
-                    <div
-                      key={suggestion.id}
-                      className="suggestion-dropdown-item"
-                      onClick={() => handleSuggestionClick(suggestion.title)}
-                    >
-                      {suggestion.title}
-                    </div>
-                  ))}
-              </div>
-            )}
-          </div>
-        </form>
+  return (
+      <form className={searchContainerStyling} onSubmit={handleSearch}>
+        <div className={searchBarStyling}>
+          <input
+            type="text"
+            placeholder="Search PhatBlack..."
+            value={searchTerm}
+            onChange={(e) => {
+          setSearchTerm(e.target.value)
+          setShowDropdown(true)
+          }}
+            onFocus={() => setShowDropdown(true)}
+            onBlur={() => setTimeout(() => { setShowDropdown(false) }, 200)}
+            className={searchInputStyling}
+          />
+          <button className={searchButtonStyling} onClick= {handleSearchExpansion}>
+            <FaSearch className="faSearch" />
+          </button>
+          {showDropdown && (
+            <div className="suggestion-dropdown">
+              {suggestions
+                .filter((suggestion) =>
+                  suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                .map((suggestion) => (
+                  <div
+                    key={suggestion.id}
+                    className="suggestion-dropdown-item"
+                    onClick={() => handleSuggestionClick(suggestion.title)}
+                  >
+                    {suggestion.title}
+                  </div>
+                ))}
+              {/* Add this conditional rendering */}
+          {suggestions.filter((suggestion) =>
+            suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
+          ).length === 0 && searchTerm.length > 0 && (
+            <div className="suggestion-dropdown-item">{setShowDropdown(false)}</div>
+          )}
+        </div>
+          )}
+        </div>
+      </form>
       );
     };
 
