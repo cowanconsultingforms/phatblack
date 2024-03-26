@@ -79,3 +79,13 @@ span {
     background-color: white;
     border-radius: 4px;
 }
+
+
+@media screen and (max-width: 300px) {
+    .menu-bars{
+        font-size: 1rem;
+    }
+    .Sidebar{
+        padding-top: 45px;
+    }
+}

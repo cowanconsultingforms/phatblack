@@ -97,6 +97,23 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+
+@media screen and (max-width: 300px) {
+    .searchContainerExpanded{
+        max-width: 175px;
+        margin-left: 25px !important;
+    }
+    .searchButtonExpanded{
+        margin-left: 135px !important;
+    }
+    .searchContainer{
+        padding-left: 0px !important;
+    }
+    .searchButton{
+        margin-left: -5px !important;
+    }
+}
+
 /* Stopping the search input box from taking up screen space on mobile and small screens */
 @media screen and (max-width: 430px){
     .searchContainer{
