@@ -100,11 +100,11 @@
 
 @media screen and (max-width: 300px) {
     .searchContainerExpanded{
-        max-width: 175px;
-        margin-left: 25px !important;
+        max-width: 200px;
+        margin-left: 19px !important;
     }
     .searchButtonExpanded{
-        margin-left: 135px !important;
+        margin-left: 160px !important;
     }
     .searchContainer{
         padding-left: 0px !important;
