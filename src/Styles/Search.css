@@ -97,8 +97,27 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+.clear{
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    font-size: 2rem;
+}
+
+.clear.invisible{
+    visibility: hidden;
+}
+
+.clear.visible{
+    visibility: visible;
+}
 
 @media screen and (max-width: 300px) {
+    .clear{
+        right: 20%;
+        top: 35%;
+    }
+
     .logo img{
         width: 140px;
         margin-top: 5px;
@@ -114,10 +133,9 @@
         padding-left: 0px !important;
     }
     .searchButton{
-        position: relative;
         margin-left: -5px !important;
-        left: -30px;
-        top: 2px;
+        position: relative;
+        left: -90%;
     }
 }
 

@@ -1,0 +1,70 @@
+.payment-header {
+    text-align: center;
+}
+
+.payment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.payment-inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cart-info, .payment-form {
+    background: #0D0D0C;
+    flex: 0 0 calc(40%);
+    padding-top: 20px;
+}
+
+#firstName, #lastName {
+    width: 50%;
+}
+
+#address {
+    width: 100%;
+}
+
+#expiry, #cvv {
+    width: 30%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.payment-button {
+    background-color: #CA883B;
+    width: 60%;
+    height: 150%;
+    border-radius: 5px;
+}
+
+.payment-button:hover {
+    background-color: rgb(231, 151, 4);
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 600px){
+    .payment-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .cart-info, .payment-form {
+        margin: 20px;
+    }
+}

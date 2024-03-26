@@ -69,6 +69,25 @@
     height: 100%;
 }
 
+.close-login{
+    font-size: 1rem;
+    z-index: 3;
+    position: absolute;
+    left: 90%;
+    top: 10%;
+}
+
+.close-profile{
+    font-size: 1rem;
+    z-index: 3;
+    position: absolute;
+    left: 90%;
+    top: 5%;
+}
+
+.hidden{
+    visibility: hidden;
+}
 
 @media screen and (max-width: 940px) {
     .dropdown-menu {
