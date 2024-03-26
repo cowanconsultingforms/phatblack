@@ -1,6 +1,7 @@
 import Dropdown from "./Dropdown";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import {motion} from 'framer-motion';
 
 const MenuItems = ({ items, depthLevel }) => {
   // State to manage the dropdown visibility
@@ -52,7 +53,9 @@ const MenuItems = ({ items, depthLevel }) => {
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={closeDropdown}>
+      onClick={closeDropdown}
+
+      >
       {items.url && items.submenu ? (
         // Render button with link if there's a submenu
         <>
