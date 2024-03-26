@@ -74,7 +74,11 @@
     z-index: 3;
     position: absolute;
     left: 90%;
-    top: 10%;
+    top: -20%;
+    padding: 2px;
+    border-radius: 100%;
+    background-color: orange;
+    cursor: pointer;
 }
 
 .close-profile{
@@ -82,7 +86,11 @@
     z-index: 3;
     position: absolute;
     left: 90%;
-    top: 5%;
+    top: -7.5%;
+    padding: 2px;
+    border-radius: 100%;
+    background-color: orange;
+    cursor: pointer;
 }
 
 .hidden{
