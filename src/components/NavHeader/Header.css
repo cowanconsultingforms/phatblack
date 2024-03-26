@@ -18,6 +18,7 @@ header {
   
   .nav-area {
     display: flex;
+    overflow-x: hidden;
   }
   
   
@@ -38,7 +39,6 @@ header {
     align-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 8px;
     top: 10px;
     height: 70px;
     width: 100px;
@@ -78,16 +78,23 @@ header {
       height: 50px;
   }
   
-  .login:hover, .sign-up:hover .profile:hover {
+  .login:hover, .sign-up:hover, .profile:hover {
       background-color: #ef8b1fa1;
       color: #ffffff;
   }
   
   .logo {
     position: relative;
+    text-decoration: none;
+    font-size: 25px;
     color: inherit;
     margin-left: 20px;
-    padding-top: 15px;
+    margin-right: 20px;
+    color: #ffa646;
+    font-weight: 700;
+    font-size: 3.5rem;
+    letter-spacing: 0px;
+    padding-top: 10px;
   }
   
   .logo:hover{
@@ -108,13 +115,11 @@ header {
     background-color: transparent;
     overflow-x: scroll;
     scroll-behavior: smooth;
-    -ms-overflow-style: none;
   }
 
 
   .desktop-nav .menus::-webkit-scrollbar{
-    height: 0px;
-    display: none;
+    height: 0;
   }
 
   .desktop-nav .menus{
@@ -133,6 +138,7 @@ header {
     
     -webkit-mask: var(--mask1); 
     mask: var(--mask1);
+    
   }
   
   .desktop-nav .menu-items {
@@ -269,20 +275,11 @@ header {
   }
   
 
-  @media screen and (max-width: 300px) {
-      .ProfileIconContainer{
-        margin-top: 16px !important;
-      }
-      .logo{
-        margin-left: 3px !important;
-      }
-      .ProfileIconContainer{
-        margin-left: -5px !important;
-      }
-  }
   .menu {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     position: absolute;
     background-color: rgb(31, 31, 31);
     height: 150px;
@@ -318,11 +315,11 @@ header {
   
   @media screen and (max-width: 430px) {
     .logo{
-      margin-top: 0px;
+      margin-top: 8px;
       font-size: 2rem;
     }
 
-    .login, .sign-up .profile {
+    .login, .sign-up, .profile{
       margin: 10px;
       font-size: 10px;
       border: none;
@@ -332,16 +329,8 @@ header {
       font-family: "Bebas Neue", sans-serif; 
       width: 90%; 
     }
-    
-    
 
-  }
 
-  @media screen and (max-width: 560px){
-    .ProfileIconContainer{
-      margin-left: 10px;
-      margin-top: 15px;
-    }
   }
 
   
@@ -445,8 +434,7 @@ header {
       align-content: center;
       align-items: center;
       text-align: center;
-      margin-top: 16px;
-      margin-left: 10px;
+      top: 10px;
       height: 50px;
       width: 50px;
     }

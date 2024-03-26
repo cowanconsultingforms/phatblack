@@ -62,6 +62,15 @@
     border-radius: 0%;
 }
 
+.dropdown-menu.guest{
+    height: 50%;
+}
+
+.dropdown-menu.guest button{
+    height: 100%;
+}
+
+
 @media screen and (max-width: 940px) {
     .dropdown-menu {
         height: 200px;
