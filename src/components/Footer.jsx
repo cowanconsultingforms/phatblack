@@ -1,5 +1,5 @@
 import React from "react";
-import { FiFacebook, FiMapPin, FiTwitter } from "react-icons/fi";
+import { FiMapPin} from "react-icons/fi";
 import { FiPhone } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { RiFacebookCircleFill } from "react-icons/ri";
