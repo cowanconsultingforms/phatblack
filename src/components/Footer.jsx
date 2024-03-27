@@ -9,6 +9,11 @@ import { RiInstagramFill } from "react-icons/ri";
 import "../Styles/Footer.css";
 
 function Footer() {
+
+    function handleOnClick() {
+        window.location.href = "/subscribe"
+    }
+
     return (
         <footer className="footer-container">
             <div className="footer-banner">
@@ -17,7 +22,7 @@ function Footer() {
                     <h1>GET WEEKLY NEWSLETTER</h1>
                 </div>
                 <div className="footer-subscribe">
-                    <button>Subscribe Now</button>
+                    <button onClick={handleOnClick}>Subscribe Now</button>
                 </div>
             </div>
 
