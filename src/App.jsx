@@ -26,6 +26,7 @@ import TestCalls from './routes/TestCalls';
 import UserProfile from './routes/UserProfile';
 import UploadMedia from './routes/UploadMedia';
 import Payment from './routes/Payment';
+import Stripe from './routes/Stripe';
 import Footer from './components/Footer';
 function App() {
   return (
@@ -145,7 +146,8 @@ function App() {
           <Route path="/test-calls" element={<TestCalls />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/upload" element={<UploadMedia />} />
-          <Route path="/payment/:id" element={<Payment />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/stripe/:param" element={<Stripe></Stripe>}/>
           
         </Routes>
       </BrowserRouter>
