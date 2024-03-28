@@ -14,35 +14,35 @@ const eZineCards = [
   {
     url: recordsImage,
     title: "Records",
-    text: "Records Image, shot by Nihal Demir",
+    text: "Records Image",
     alt: "Records image",
     link: `details`
   },
   {
     url: barImage,
     title: "Bar",
-    text: "Bar Image, shot by Gunsook N",
+    text: "Bar Image",
     alt: "Bar Image",
     link: `details`
   },
   {
     url: cassetteImage,
     title: "Cassettes",
-    text: "Cassettes Image, shot by Bruno Guerrero",
+    text: "Cassettes Image",
     alt: "Cassettes Image",
     link: `details`
   },
   {
     url: studioImage,
     title: "Studio",
-    text: "Studio Image, shot by Maksym Kaharlytskyi",
+    text: "Studio Image",
     alt: "Studio Image",
     link: `details`
   },
   {
     url: studioMicImage,
     title: "Studio Mic",
-    text: "Studio Mic Image, shot by Jonathan Velasquez",
+    text: "Studio Mic Image",
     alt: "Studio Mic Image",
     link: `details`
   },

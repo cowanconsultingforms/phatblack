@@ -34,7 +34,6 @@
     background-color: rgb(31, 31, 31);
     height: 300px;
     width: 200px;
-    margin-top: 2%;
     right: 5px;
     z-index: 2;
     border-radius: 5px;
@@ -62,10 +61,49 @@
     border-radius: 0%;
 }
 
+.dropdown-menu.guest{
+    height: 50%;
+}
+
+.dropdown-menu.guest button{
+    height: 100%;
+}
+
+.close-login{
+    font-size: 1rem;
+    z-index: 3;
+    position: absolute;
+    left: 90%;
+    top: -20%;
+    padding: 2px;
+    border-radius: 100%;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.close-profile{
+    font-size: 1rem;
+    z-index: 3;
+    position: absolute;
+    left: 90%;
+    top: -7.5%;
+    padding: 2px;
+    border-radius: 100%;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
 @media screen and (max-width: 940px) {
     .dropdown-menu {
         height: 200px;
         width: 200px;
+        margin-top: 2%;
     }
     
     
