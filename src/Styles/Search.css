@@ -115,10 +115,10 @@
 .clear{
     position: absolute;
     right: 50px;
-    top: 30%;
+    top: 34%;
     font-size: 1rem;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     padding: 5px;
 }
 
@@ -139,7 +139,7 @@
 @media screen and (max-width: 300px) {
     .clear{
         right: 20%;
-        top: 35%;
+        top: 38%;
     }
 
     .logo img{
@@ -175,7 +175,7 @@
         margin-top: 20px;
     }
     .clear{
-        top: 15%;
+        top: 18%;
     }
 }
 
@@ -296,7 +296,7 @@
         border-radius: 0rem 10rem 10rem 0rem;
     }
     .clear{
-        top: 40%;
+        top: 50%;
         right: 40px;
     }
 }

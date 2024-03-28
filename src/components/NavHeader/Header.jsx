@@ -54,19 +54,6 @@ const Header = () => {
 
         <Search />
 
-        {/* {!isAuthenticated ? (
-          <div className="ProfileIcon">
-          <div className="ProfileIconContainer">
-          <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}/></button>
-          </div>
-          {showDropdown && (
-              <div className="menu">
-                <Link to="/login"><button>Login</button></Link>
-                <Link to="/signup"><button>Sign up</button></Link>
-              </div>
-          )}
-          </div> */}
-        {/* ) : ( */}
           <div className="ProfileIcon">
             <div className="ProfileIconContainer">
               <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}></img></button>
@@ -79,9 +66,6 @@ const Header = () => {
         {/* for large screens */}
         <Navbar />
 
-        {/* for small screens 
-        <MobileNav />
-        */}
     </header>
   );
 };
