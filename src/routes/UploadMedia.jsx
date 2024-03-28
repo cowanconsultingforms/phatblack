@@ -60,7 +60,13 @@ function UploadMedia() {
                         description,
                         url,
                         subscriptionType,
-                        keywords: []
+                        keywords: [],
+                        views: 0,
+                        likes: 0,
+                        dislikes: 0,
+                        //comments: [],
+                        time_uploaded: new Date().toISOString(),
+                        author: ""
                     });
 
                     const searchDataRef = doc(db, 'searchData', title.toLowerCase());
