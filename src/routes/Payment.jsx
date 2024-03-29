@@ -54,7 +54,7 @@ const Payment = () => {
           <div>
             <div className='payment-inline'>
             <h2>Your Plan </h2>
-            <Link to="/subscribe"><h2>Change</h2></Link>
+            <Link to="/subscribe"><h2>Change Plan</h2></Link>
           </div>
           <div className='payment-inline'>
             <p>Phatblack-Premium-{plan} </p>

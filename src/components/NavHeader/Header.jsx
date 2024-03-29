@@ -9,7 +9,7 @@ import Sidebar from "./Sidebar";
 import "./Header.css";
 import Search from "../Search";
 import DropdownMenu from "./ProfileDropdownmenu.jsx"; // Import the DropdownMenu component
-import PBPremiumLogo from "../../assets/PhatBlackLogo.png"
+import PBPremiumLogo from "../../assets/PHATBLACK.png"
 import profileIcon from "../../assets/ProfileIcon.png"
 
 const Header = () => {
@@ -48,8 +48,8 @@ const Header = () => {
       <div className="nav-area">
         <Sidebar />
         
-        <Link to="/" className="logo">
-          <img src={PBPremiumLogo} alt="PhatBlackLogo" />
+        <Link to="/" >
+          <img className="logo" src={PBPremiumLogo} alt="PhatBlackLogo" />
         </Link>
 
         <Search />

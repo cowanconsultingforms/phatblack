@@ -151,7 +151,6 @@ body{
 
 @media screen and (max-width: 940px){
     .video-cards{
-        position: absolute;
         display: grid;
         grid-template-columns: 1fr;
         margin-right: 20px;
