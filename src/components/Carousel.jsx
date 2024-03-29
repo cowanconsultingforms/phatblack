@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./Carousel.css"
 
@@ -6,7 +7,15 @@ import "./Carousel.css"
 function Carousel({ items }){
     const [currentIndex, setCurrentIndex] = useState(0);
     let initialX = null;
-
+    
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          next();
+        }, 5000); // Change slide every 3 seconds
+    
+        return () => clearInterval(intervalId); // Cleanup function to clear the interval when component unmounts
+      }, [currentIndex]);
+    
     //handle touch start -> start of swipe event for carousel
     function handleTouchStart(event){
         initialX = event.touches[0].clientX;
@@ -37,6 +46,7 @@ function Carousel({ items }){
     setCurrentIndex((prevIndex) =>
         prevIndex === items.length - 1 ? 0 : prevIndex + 1
         );
+        console.log(currentIndex);
     };
 
     //previous slide
