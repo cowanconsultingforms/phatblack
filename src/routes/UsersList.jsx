@@ -79,7 +79,7 @@ function UsersList() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:9998/phat-black/us-central1/deleteUser`,
+        `https://us-central1-phat-black.cloudfunctions.net/deleteUser`,
         {
           method: "DELETE",
           headers: {
@@ -170,7 +170,6 @@ function UsersList() {
                         className="role-dropdown"
                       >
 
-                        <option value="super admin">Super Admin</option>
                         <option value="admin">Admin</option>
                         <option value="staff">Staff</option>
                         <option value="vendor">Vendor</option>
@@ -180,7 +179,7 @@ function UsersList() {
                         <option value="user">User</option>
 
                       </select>
-                      <button onClick={() => handleDeleteUser(user.id)} className="delete-button">
+                      <button onClick={() => handleDeleteClick(user.id)} className="delete-button">
                         <FaTrash />
                         Delete
                       </button>
