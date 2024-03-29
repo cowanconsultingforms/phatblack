@@ -96,6 +96,8 @@ header {
     font-size: 3.5rem;
     letter-spacing: 0px;
     padding-top: 10px;
+    width: 150px;
+    height: 75%;
   }
   
   .logo:hover{

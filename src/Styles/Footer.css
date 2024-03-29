@@ -1,0 +1,157 @@
+.footer-container {
+    background: black;
+    font-family: "Jost", sans-serif;
+}
+
+.footer-banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: rgb(140, 107, 46);
+    background: linear-gradient(90deg, rgba(140, 107, 46, 1) 0%, rgba(232, 200, 139, 1) 100%);
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.footer-banner >div> h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.footer-banner >div> h1 {
+    font-size: 30px;
+}
+
+.footer-contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.footer-about,
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+
+.footer-contents>div>p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.footer-contact>div>a {
+    text-decoration: underline;
+}
+
+.footer-contact>div {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.footer-contents>div>h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.footer-subscribe {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-subscribe>button {
+    background-color: black;
+    color: white;
+    height: 50px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 175px;
+}
+
+.footer-banner > div {
+    margin: 20px;
+}
+
+.contact-icon {
+    color: #B59558;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.footer-media-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.footer-media-container>div {
+    background-color: #B59558;
+    margin-right: 10px;
+    width: 50px;
+    text-align: center;
+    border-radius: 20%;
+}
+
+.footer-media {
+    color: white;
+    font-size: 30px;
+}
+
+.copyright {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.copyright > p {
+    margin-left: 8%;
+}
+
+@media screen and (max-width: 500px) {
+    .footer-contents {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer-about,
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        margin: 10px;
+    }
+
+    .footer-media-container {
+        justify-content: center;
+    }
+
+    .copyright > p {
+        margin-left: 10px;
+    }
+
+    .footer-banner {
+        flex-direction: column;
+    }
+    .footer-banner > div {
+        margin-bottom: 0px;
+    }
+    .footer-subscribe > button {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 1330px) 
+{
+    .footer-banner >div> h2 {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    .footer-banner >div> h1 {
+        font-size: 20px;
+    }
+    .footer-banner {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+
