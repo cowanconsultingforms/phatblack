@@ -1,13 +1,46 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import '../Styles/PbMall.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import Carousel from "../components/Carousel";
+import carouselItem1 from "../assets/ClothesExample1.jpeg";
+import carouselItem2 from "../assets/ClothesExample2.jpeg";
+import carouselItem3 from "../assets/ClothesExample3.jpeg";
+import mensImage from "../assets/mensClothes.jpeg";
+import womensImage from "../assets/womensClothes.png";
+
+
+const mallCarouselItems = [
+    {
+        url: carouselItem1,
+        title: "Live Jazz",
+        text: "Social event: Live Jazz at...",
+        alt: "Live Jazz Event image",
+        link: `details`
+    },
+    {
+        url: carouselItem2,
+        title: "Neon Night",
+        text: "Neon Night: Neon DJ set on friday night at...",
+        alt: "Neon DJ Image",
+        link: `details`
+    },
+    {
+        url: carouselItem3,
+        title: "Hip Hop Night",
+        text: "Hip Hop Night: Listen and dance to the hottest hip hop songs out at...",
+        alt: "Night DJ Image",
+        link: `details`
+    },
+];
 
 function PBmall() {  
     return (
         <div className="pb-mall">
             <Header />
             <Imagemap /> 
+            <Carousel items= {mallCarouselItems}></Carousel>
             <Bottompage />
         </div>
     );
@@ -17,16 +50,16 @@ function PBmall() {
 function Imagemap(){
         return(
         <div className = "image-map">
-            <a href= "https://phat-black.web.app/mall">
-            <img src="https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="image" className="image"/>
-            </a>
-            <a href= "https://phat-black.web.app/mall">
-            <img src="https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="map" className="map-image"/>
-            </a>
-           
+            <Link to="/pbmall" className="image-map-cards">
+                <img src={mensImage} alt="image" className="image"/>
+            </Link>
+            <Link to="/pbmall" className="image-map-cards">
+                <img src={womensImage} alt="image" className="image"/>
+            </Link>
         </div>
     );
 };
+
 {/* Header and sub headers for the page */}
 function Header(){
     return(
@@ -67,20 +100,20 @@ function Bottompage(){
     return(
         <div className= "bottom-page">
             <div>
-            <h2 className= "bottomHeader"> You Might Like</h2>
+            <h2 className= "bottomHeader"> You May Also Like</h2>
             </div>
         <div className= "bottom-suggestions">
             <a href= "https://phat-black.web.app/mall">
-            <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg" alt="image"/>
+            <img src={carouselItem1} alt="image"/>
             </a>
             <a href= "https://phat-black.web.app/mall">
-            <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg" alt="image"/>
+            <img src={carouselItem1} alt="image"/>
             </a>
             <a href= "https://phat-black.web.app/mall">
-            <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg" alt="image"/>
+            <img src={carouselItem1} alt="image"/>
             </a>
             <a href= "https://phat-black.web.app/mall">
-            <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg" alt="image"/>
+            <img src={carouselItem1} alt="image"/>
             </a>
         </div>
 
