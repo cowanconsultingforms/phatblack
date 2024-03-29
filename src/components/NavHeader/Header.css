@@ -149,6 +149,20 @@ header {
     font-size: larger;
     height: 50px;
   }
+  .header-media-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-right: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .header-media {
+    font-size: 20px;
+    margin-left: 5px;
+  }
   
   .desktop-nav .menu-items a {
     display: block;
@@ -495,5 +509,11 @@ header {
       width: 30px;
       height: 30px;
       border-radius: 100%;
+    }
+  }
+
+  @media screen  and (max-width: 1000) {
+    .header-media-container {
+      margin-right: 5%;
     }
   }
