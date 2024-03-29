@@ -4,6 +4,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
+
+
 function TestCalls() {
     const [userId, setUserId] = useState('');
     const [query, setQuery] = useState('');
@@ -12,6 +14,9 @@ function TestCalls() {
     const [access, setAccess] = useState(false);
     const navigate = useNavigate();
     const auth = getAuth();
+
+    const testUrl = import.meta.env.VITE_APP_TEST_URL;
+    const deleteUserUrl = import.meta.env.VITE_APP_DELETE_USER_URL;
 
     useEffect(() => {
         const getUserRole = async () => {
@@ -39,7 +44,7 @@ function TestCalls() {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `http://127.0.0.1:9998/phat-black/us-central1/deleteUser`,
+                    deleteUserUrl,
                     {
                         method: "DELETE",
                         headers: {
@@ -69,7 +74,7 @@ function TestCalls() {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `http://127.0.0.1:9998/phat-black/us-central1/api/generateContent`,
+                    `${testUrl}/generateContent`,
                     {
                         method: 'POST',
                         headers: {
@@ -98,16 +103,20 @@ function TestCalls() {
             }
         }
 
-        const handleSubmit = async (e) => {
+        const handleDeleteUserSubmit = async (e) => {
             e.preventDefault();
             if (userId) await handleDeleteUser(userId);
+        };
+
+        const handleGenerateContentSubmit = async (e) => {
+            e.preventDefault();
             if (query) await handleGenerateContent(query);
         };
 
         return (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <h2>Delete User & Generate Content</h2>
-                <form onSubmit={handleSubmit}>
+                <h2>Delete User</h2>
+                <form onSubmit={handleDeleteUserSubmit}>
                     <input
                         type="text"
                         value={userId}
@@ -115,6 +124,12 @@ function TestCalls() {
                         placeholder="Enter user ID to delete"
                         disabled={loading}
                     />
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Processing...' : 'Submit'}
+                    </button>
+                <h2>Generate Content</h2>
+                </form>
+                <form onSubmit={handleGenerateContentSubmit}>
                     <input
                         type="text"
                         value={query}
@@ -125,7 +140,7 @@ function TestCalls() {
                     <button type="submit" disabled={loading}>
                         {loading ? 'Processing...' : 'Submit'}
                     </button>
-                </form>
+                    </form>
                 <br />
                 <h1>{output}</h1>
             </div>

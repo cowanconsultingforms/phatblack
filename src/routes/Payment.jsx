@@ -1,79 +1,107 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import '../Styles/Payment.css';
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useState } from "react";
+import "../Styles/Payment.css"
+import { useNavigate } from "react-router-dom";
 
-const Payment = () => {
-  const [plan, setPlan] = useState(''); 
-  const [cost, setCost] = useState(''); 
-  const { id } = useParams();
+//payment card styling
+const CARD_OPTIONS = {
+	iconStyle: "solid",
+	style: {
+		base: {
+			iconColor: "#ffa646",
+			color: "#fff",
+			fontWeight: 500,
+			fontFamily: "Bebas Neue",
+			fontSize: "18px",
+			":-webkit-autofill": { color: "white" },
+			"::placeholder": { color: "white" }
+		},
+		invalid: {
+			iconColor: "red",
+			color: "darkgray"
+		}
+	}
+}
 
-  useEffect(() => {
-    setPlan(id);
+//payment component
+function Payment({ cost, plan}){
+    const [success,setSuccess] = useState(false);
+    const stripe = useStripe();
+    const elements = useElements();
+    const [processing, setProcessing] = useState(false);
+    const navigate = useNavigate();
 
-    if (id === 'trial') {
-      setCost('0.00');
-    } else if (id === 'monthly') {
-      setCost('1.00');
-    } else if (id === 'yearly') {
-      setCost('10.80');
-    } else if (id === 'nft') {
+    const subscriptionPaymentUrl = import.meta.env.VITE_APP_SUBSCRIPTION_PAYMENT_URL;
 
+    //handle form(credit card) submission for payment
+    async function handlePaymentSubmission(event) {
+        event.preventDefault();
+        const {error,paymentMethod} = await stripe.createPaymentMethod({
+            type: "card",
+            card: elements.getElement(CardElement)
+        });
+        setProcessing(true);
+        //post request to backend for payment
+        try {
+            const {id} = paymentMethod;
+            const response = await fetch(
+                subscriptionPaymentUrl,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ payment: cost, id: id}),
+                }
+            );
+
+            const data = await response.json();
+            if (response.ok) {
+                console.log("Subscribed Successfuly", data);
+                alert('Subscribed Successfuly');
+                setProcessing(false);
+                setSuccess(true);
+                setTimeout(()=>{
+                    navigate("/");
+                },3000);
+            } else {
+                console.error("Failed to subscribe", data);
+                alert(data.error || 'Failed to subscribe');
+                setProcessing(false);
+                setSuccess(false);
+            }
+        } catch (error) {
+            console.error("Error subscribing user:", error);
+            alert('Error processing payment');
+            setProcessing(false);
+            setSuccess(false);
+        } 
     }
-  }, [id]);
-  
-  return (
-    <div className="payment-page">
-      <div className="payment-header">
-        <h1>Payment Method</h1>
-      </div>
 
-      <div className='payment-container'>
-        <div className="payment-form">
-          <h2>VISA/ DISCOVER/ AMERICAN EXPRESS</h2>
-          <div className="form-group">
-            <input type="text" id="firstName" placeholder="FIRST NAME" />
-            <input type="text" id="lastName" placeholder="LAST NAME" />
-          </div>
-          <div className="form-group">
-            <input type="text" id="address" placeholder="ADDRESS" />
-          </div>
-          <div className="form-group">
-            <input type="text" id="city" placeholder="CITY" />
-            <input type="text" id="state" placeholder="STATE" />
-            <input type="text" id="zipCode" placeholder="ZIP CODE" />
-          </div>
-          <div className="form-group">
-            <input type="text" id="cardNumber" placeholder="CARD NUMBER" />
-            <input type="text" id="expiry" placeholder="MM/YY" />
-            <input type="text" id="cvv" placeholder=" CVV" />
-          </div>
+    return(
+        <div>
+            {!success ? 
+            <div>
+            <h1>{plan} Plan: ${cost}</h1>
+            <br></br>
+            <form onSubmit={handlePaymentSubmission}>
+                <fieldset className="FormGroup">
+                    <div className="FormRow">
+                        <CardElement options={CARD_OPTIONS}></CardElement>
+                    </div>
+                </fieldset>
+                <button className="paymentButton">{!processing ? "Subscribe to PhatBlack Premium" : "Processing..."}</button>
+            </form>
+            </div>
+            :
+            <div>
+                <h1>You are now a PhatBlack Premium user</h1>
+                <br></br>
+                <h1>Redirecting you to the home page...</h1>
+            </div>
+            }
         </div>
-
-        <div className='cart-info'>
-          <div>
-            <div className='payment-inline'>
-            <h2>Your Plan </h2>
-            <Link to="/subscribe"><h2>Change Plan</h2></Link>
-          </div>
-          <div className='payment-inline'>
-            <p>Phatblack-Premium-{plan} </p>
-            <p>${cost}/{plan}</p>
-          </div>
-          <div className='payment-inline'>
-            <p>Today's Total: </p>
-            <p>${cost}</p>
-          </div>
-          </div>
-          
-          <div>
-            <button className='payment-button'>Start Phatblack-Premium</button>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Payment;
