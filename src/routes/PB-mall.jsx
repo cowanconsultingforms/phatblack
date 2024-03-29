@@ -40,7 +40,7 @@ function PBmall() {
         <div className="pb-mall">
             <Header />
             <Imagemap /> 
-            <Carousel items= {mallCarouselItems}></Carousel>
+            <Carousel items= {mallCarouselItems} className="carousel"></Carousel>
             <Bottompage />
         </div>
     );
@@ -67,16 +67,16 @@ function Header(){
     <h1 className="Header">PB-Mall</h1>
     <div className="subtopics-container">
         <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Featured </h2>
+        <h2 className="Subtopics">Home</h2>
+        </a>
+        <a href= "https://phat-black.web.app/mall">
+        <h2 className="Subtopics">Featured</h2>
         </a>
         <a href= "https://phat-black.web.app/mall">
         <h2 className="Subtopics">Clothes</h2>
         </a>
         <a href= "https://phat-black.web.app/mall">
         <h2 className="Subtopics">Accessories</h2>
-        </a>
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Home</h2>
         </a>
         <a href= "https://phat-black.web.app/mall">
         <h2 className="Subtopics">Electronics</h2>

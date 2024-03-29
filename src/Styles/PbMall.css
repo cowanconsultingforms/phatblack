@@ -88,12 +88,20 @@
 }
 
     @media (max-width: 940px){
+        .Header{
+            display: none;
+        }
+        .subtopics-container{
+            justify-content: center;
+        }
         .image-map{
             flex-wrap: row wrap;
         }
         .image-map-cards{
             width: 100%;
-            margin-bottom: 10px;
+        }
+        .carousel{
+            margin-top: 1px;
         }
     }
 
