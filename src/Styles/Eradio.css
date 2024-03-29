@@ -1,0 +1,19 @@
+.radio-head {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+    margin: 20px;
+}
+
+.slick-dots li button:before {
+    background-color: #808080; /* Default color for dots */
+}
+
+.slick-dots li button:after {
+    background-color: #808080; /* Default color for dots */
+}
+
+.slick-dots li.slick-active button:before {
+    background-color: white; /* Dark color for the currently active dot */
+}
+
