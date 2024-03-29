@@ -1,7 +1,8 @@
 .users-list-container {
   padding: 20px;
   color: #fff;
-  background: #000;
+  background: #121212;
+  /* Slightly lighter than pure black for contrast */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1200px;
   margin: auto;
@@ -12,10 +13,48 @@
   text-align: center;
   font-size: 2em;
   color: #ffa646;
+  /* Orange accent similar to the site */
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-label {
+  color: #fff;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.filter-dropdown,
+.role-dropdown {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #ffa646;
+  /* Orange border for contrast */
+  background-color: #282828;
+  /* Dark gray background */
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.filter-dropdown:hover,
+.role-dropdown:hover {
+  background-color: #333333;
+  /* Slightly lighter on hover */
+  border-color: #ffc107;
+  /* Brighter orange on hover */
 }
 
 .users-list-table-wrapper {
   overflow-x: auto;
+  margin-top: 20px;
 }
 
 .users-list-table {
@@ -27,62 +66,21 @@
 .users-list-table th,
 .users-list-table td {
   padding: 15px;
-  border: 1px solid #fff;
+  border: 1px solid #333;
+  /* Dark border for subtle distinction */
   text-align: left;
   word-wrap: break-word;
 }
 
 .users-list-table th {
   background-color: #ffa646;
+  /* Orange background for headers */
   color: #000;
 }
 
 .users-list-table td {
-  background-color: #222;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
-}
-
-.action-button {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.role-dropdown {
-  flex: 1;
-  display: block;
-  width: 100%;
-}
-
-.action-icon {
-  margin-right: 5px;
-}
-
-.role-dropdown,
-.filter-dropdown,
-.sort-button {
-  padding: 8px 16px;
-  border-radius: 4px;
-  border: none;
-  background-color: #28a745;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.role-dropdown:hover,
-.filter-dropdown:hover,
-.sort-button:hover {
-  background-color: #218838;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  background-color: #1a1a1a;
+  /* Darker cells for better readability */
 }
 
 .delete-button {
@@ -90,6 +88,7 @@
   border-radius: 4px;
   border: none;
   background-color: #d9534f;
+  /* Red-ish color for delete */
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -98,6 +97,7 @@
 
 .delete-button:hover {
   background-color: #c9302c;
+  /* Darker shade on hover */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
@@ -109,9 +109,8 @@
     font-size: 0.8em;
   }
 
-  .role-dropdown,
   .filter-dropdown,
-  .sort-button,
+  .role-dropdown,
   .delete-button {
     padding: 6px 12px;
     font-size: 0.8em;
@@ -134,12 +133,4 @@
   .action-button:last-child {
     margin-bottom: 0;
   }
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
 }
