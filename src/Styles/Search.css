@@ -302,6 +302,11 @@
 }
 
 @media screen and (max-width:940px) {
+
+    .clear {
+        top: 40%;
+    }
+
     .searchContainer{
         margin-left: 0%;
         margin-right: 0%;
