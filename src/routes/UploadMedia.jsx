@@ -13,13 +13,12 @@ function UploadMedia() {
     const [file, setFile] = useState(null);
     const [mediaType, setMediaType] = useState('');
     const [subscriptionType, setSubscriptionType] = useState('');
-
     const [vendor, setVendor] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [uploadTask, setUploadTask] = useState(null); // State to manage the upload task
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,14 +44,19 @@ function UploadMedia() {
 
         setLoading(true);
         const fileRef = ref(storage, `media/${new Date().getTime()}_${file.name}`);
-        const uploadTask = uploadBytesResumable(fileRef, file);
+        const currentUploadTask = uploadBytesResumable(fileRef, file);
 
-        uploadTask.on('state_changed',
+        setUploadTask(currentUploadTask); // Store the current upload task
+
+        currentUploadTask.on('state_changed',
             null,
-            error => setError(`Upload failed: ${error.message}`),
+            error => {
+                setError(`Upload failed: ${error.message}`);
+                setLoading(false);
+            },
             async () => {
                 try {
-                    const url = await getDownloadURL(uploadTask.snapshot.ref);
+                    const url = await getDownloadURL(currentUploadTask.snapshot.ref);
                     await setDoc(doc(db, mediaType, title), {
                         mediaType,
                         title,
@@ -73,20 +77,28 @@ function UploadMedia() {
                     setError(`Upload failed: ${uploadError.message}`);
                 } finally {
                     setLoading(false);
+                    setUploadTask(null); // Reset the upload task
                 }
             }
         );
+    };
+
+    const cancelUpload = () => {
+        if (uploadTask) {
+            uploadTask.cancel();
+            setLoading(false);
+            setError('Upload canceled.');
+            setUploadTask(null);
+        }
     };
 
     const resetForm = () => {
         setFile(null);
         setMediaType('');
         setSubscriptionType('');
-
         setVendor('');
         setTitle('');
         setDescription('');
-
         setLoading(false);
         setError('');
     };
@@ -95,7 +107,15 @@ function UploadMedia() {
         <div className="upload-form-container">
             {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit} className="upload-form">
-                {loading ? <p>Loading...</p> : (
+                {loading ? (
+                    <>
+                        <div className="loading-indicator">
+                            <div className="loading-spinner"></div>
+                            <p>Loading...</p>
+                        </div>
+                        <button type="button" onClick={cancelUpload} className="cancel-btn">Cancel Upload</button>
+                    </>
+                ) : (
                     <>
                         <div className="form-group">
                             <input type="file" onChange={e => setFile(e.target.files[0])} />
