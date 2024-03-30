@@ -70,7 +70,7 @@ function Sidebar() {
         <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <div className='SidebarIconsv2'>
             <Link to='#' className='close'>
-              <FaBars onClick={showSidebar} />
+              <AiOutlineClose onClick={showSidebar} />
             </Link>
 
             <Link to="/" >
