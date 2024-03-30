@@ -131,7 +131,6 @@
     /* Darker shade on hover */
 }
 
-/* Additions to match the site's aesthetic */
 .upload-form-container {
     background-color: rgba(0, 0, 0, 0.8);
     /* Slight transparency */
@@ -140,5 +139,3 @@
     border: 1px solid #555;
     /* Border to lift the panel slightly */
 }
-
-/* You may already have some of these styles, but I included them for completeness */
