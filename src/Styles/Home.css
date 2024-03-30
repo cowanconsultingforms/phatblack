@@ -2,8 +2,26 @@ body{
     overflow-x: hidden;
 }
 
+.HomeContainer {
+    position: relative;
+    left: 60px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
 .imageDiv{
     position: relative;
+}
+
+.backgroundImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homeButton {
+    left: 0;
 }
 
 .backgroundImage{

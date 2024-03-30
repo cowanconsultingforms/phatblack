@@ -1,12 +1,35 @@
+.Sidebar{
+    padding-top: 35px;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    height: 100dvh;
+    width: 60px;
+    text-align: center;
+}
+
+.SidebarIconsv2 {
+    font-size: small;
+}
+
+.Sidebar ul {
+    padding-top: 85%;
+}
+
+.Sidebar li {
+    margin: 1px;
+    font-size: 25px;
+}
 
 .menu-bars {
     font-size: 2rem;
     background: none;
 }
 
-#menu-close  {
- margin-left: 2rem;
- margin-top: 2rem; 
+.close  {
+    font-size: 2rem;
+    position: relative;
+    top: 5px;
+    left: 5px;
 }
 
 .nav-menu {
@@ -34,9 +57,8 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 8px 0px 8px 16px;
     list-style: none;
-    height: 60px;
+    height: min-content;
 }
 
 .nav-text a {
@@ -49,6 +71,7 @@
 }
 
 .nav-menu-items {
+    padding-top: 23%;
     width: 100%;
     overflow-y: scroll;
 }
@@ -62,14 +85,19 @@
     align-items: center;
 }
 
-span {
-    margin-left: 16px;
-    font-size: 30px;
+.Sidebarlogo {
+    position: absolute;
+    max-height: 65%;
+    max-width: 65%;
+    left: 25%;
+    top: 2%;
 }
 
-.Sidebar{
-    padding-top: 35px;
+
+span {
+    font-size: 25px;
 }
+
 
 ::-webkit-scrollbar {
     width: 5px;

@@ -10,6 +10,8 @@
     height: 86vh;
     align-content: center;
     text-align: center;
+    left: 10vh;
+    width: 210vh;
 }
 
 .GamingSidebar {
@@ -29,7 +31,7 @@
 }
 
 .GamingSidebar.open {
-    left: 0;
+    left: 10vh;
 }
 
 .GamingSidebar ul {
@@ -58,7 +60,7 @@
     border: none;
     cursor: pointer; /* Change cursor to pointer on hover */
     font-family: "Bebas Neue", sans-serif;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .ReviewGrid {

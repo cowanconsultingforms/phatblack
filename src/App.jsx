@@ -27,6 +27,7 @@ import UserProfile from './routes/UserProfile';
 import UploadMedia from './routes/UploadMedia';
 import Payment from './routes/Payment';
 import Footer from './components/Footer';
+import Sidebar from './components/NavHeader/Sidebar';
 function App() {
   return (
     <>

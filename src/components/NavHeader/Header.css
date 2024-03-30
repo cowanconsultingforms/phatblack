@@ -3,7 +3,6 @@ header {
     color: #212529;
     align-items: center;
     margin: 0 auto;
-    padding: 10px 20px 0px;
     color: white;
     background-color: #000000;
     font-weight: 400;
@@ -14,6 +13,12 @@ header {
     left: 0;
     height: 150px;
     z-index: 4;
+  }
+
+  .testing {
+    padding: 10px 20px 0px;
+    position: relative;
+    left: 40px;
   }
   
   .nav-area {
@@ -47,7 +52,7 @@ header {
   .Profilebutton {
     position: absolute;
     margin: 0 auto;
-    right: 20%;
+    right: 40%;
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -109,6 +114,7 @@ header {
     display: flex;
     position: relative;
     top: -26px;
+    max-width: 98%;
   }
   
   /* menu on desktop */

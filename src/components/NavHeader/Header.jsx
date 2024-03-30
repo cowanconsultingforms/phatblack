@@ -45,9 +45,9 @@ const Header = () => {
 
   return (
     <header>
+      <Sidebar/>
+      <div className="testing">
       <div className="nav-area">
-        <Sidebar />
-        
         <Link to="/" >
           <img className="logo" src={PBPremiumLogo} alt="PhatBlackLogo" />
         </Link>
@@ -65,7 +65,7 @@ const Header = () => {
       </div>
         {/* for large screens */}
         <Navbar />
-
+        </div>
     </header>
   );
 };
