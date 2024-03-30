@@ -149,9 +149,9 @@ function UsersList() {
           <thead>
             <tr>
               <th>Actions</th>
+              <th>Email</th>
               <th>Username</th>
               <th>Role</th>
-              <th>Email</th>
             </tr>
           </thead>
           <tbody>
