@@ -46,7 +46,7 @@ const Header = () => {
   return (
     <header>
       <Sidebar/>
-      <div className="testing">
+      <div className="HeaderContainer">
       <div className="nav-area">
         <Link to="/" >
           <img className="logo" src={PBPremiumLogo} alt="PhatBlackLogo" />

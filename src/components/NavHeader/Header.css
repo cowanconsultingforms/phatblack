@@ -15,7 +15,7 @@ header {
     z-index: 4;
   }
 
-  .testing {
+  .HeaderContainer {
     padding: 10px 20px 0px;
     position: relative;
     left: 40px;
