@@ -1,3 +1,11 @@
+.pb-mall {
+    overflow-x: hidden;
+    position: relative;
+    left: 50px;
+    max-width: 1485px;
+    height: auto;
+}
+
 .Header{
     margin-right: 20px;
     margin-left: 20px;

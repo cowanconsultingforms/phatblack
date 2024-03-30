@@ -1,5 +1,9 @@
 .events-page{
     overflow-x: hidden;
+    position: relative;
+    left: 50px;
+    max-width: 1485px;
+    height: auto;
 }
 
 .event-head {
