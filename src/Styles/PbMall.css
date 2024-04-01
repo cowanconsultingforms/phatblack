@@ -45,6 +45,10 @@
     height: min-content;
 }
 
+.bottom-page{
+    width: 100%;
+}
+
 
 .bottomHeader{  /* The "You might like" header */
     display: flex;
@@ -66,8 +70,7 @@
 .bottom-suggestions img{
     width: 300px;
     height: auto;
-    margin: 20px;
-
+    margin-top: 10px;
 }
 
 
@@ -82,8 +85,7 @@
         max-width: 100%;
     }
     .bottom-suggestions{
-        margin: 10px;
-        max-width: 100%;
+        width: 100%;
     }
 }
 
@@ -102,6 +104,10 @@
         }
         .carousel{
             margin-top: 1px;
+        }
+        .bottom-suggestions{
+            margin-left: 0px;
+            width: 100%;
         }
     }
 

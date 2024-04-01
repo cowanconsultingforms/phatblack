@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import '../Styles/Home.css';
-import speakerImage from "../assets/SpeakerImage.png"; 
+import speakerImage from "../assets/redpants-radio.jpg"; 
 import separator from "../assets/separator.png"; 
 import equalizer from "../assets/equalizer.png"; 
 import VideoCard from "../components/Videocard";
