@@ -46,7 +46,7 @@ function UploadMedia() {
         const fileRef = ref(storage, `media/${new Date().getTime()}_${file.name}`);
         const currentUploadTask = uploadBytesResumable(fileRef, file);
 
-        setUploadTask(currentUploadTask); // Store the current upload task
+        setUploadTask(currentUploadTask);
 
         currentUploadTask.on('state_changed',
             null,
@@ -71,13 +71,20 @@ function UploadMedia() {
                         time_uploaded: new Date(),
                     });
 
+                    await setDoc(doc(db, 'searchData', title.toLowerCase()),
+                        {
+                            mediaType,
+                            title,
+                            path: `${mediaType}/${title}`,
+                        })
+
                     alert('Media uploaded successfully!');
                     resetForm();
                 } catch (uploadError) {
                     setError(`Upload failed: ${uploadError.message}`);
                 } finally {
                     setLoading(false);
-                    setUploadTask(null); // Reset the upload task
+                    setUploadTask(null);
                 }
             }
         );
