@@ -86,7 +86,7 @@ function SignUp() {
                 return;
             }
 
-            await setDoc(doc(db, "users", userId), { email, username: finalUsername, uid: userId, role: "user" });
+            await setDoc(doc(db, "users", userId), { email, username: finalUsername, /*uid: userId,*/ role: "user", createdAt: new Date() });
             await setDoc(usernameRef, { email: email });
 
             navigate('/');

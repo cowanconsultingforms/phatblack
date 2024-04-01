@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from "./routes/Home"
 import PBevents from './routes/PB-events';
 import PBgaming from './routes/PB-gaming';
@@ -26,12 +26,27 @@ import TestCalls from './routes/TestCalls';
 import UserProfile from './routes/UserProfile';
 import UploadMedia from './routes/UploadMedia';
 import Payment from './routes/Payment';
+import Stripe from './routes/Stripe';
 import Footer from './components/Footer';
+import { useEffect } from 'react';
+
+//scrolling to the top of the page whenever entering a new route
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <Header />
+        <ScrollToTop></ScrollToTop>
         <Routes>
           <Route path="/"
             element={
@@ -145,7 +160,8 @@ function App() {
           <Route path="/test-calls" element={<TestCalls />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/upload" element={<UploadMedia />} />
-          <Route path="/payment/:id" element={<Payment />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/stripe/:param" element={<Stripe></Stripe>}/>
           
         </Routes>
       </BrowserRouter>
