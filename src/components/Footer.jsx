@@ -3,7 +3,7 @@ import { FiMapPin} from "react-icons/fi";
 import { FiPhone } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { RiFacebookCircleFill } from "react-icons/ri";
-import { RiTwitterFill } from "react-icons/ri";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiYoutubeFill } from "react-icons/ri";
 import { RiInstagramFill } from "react-icons/ri";
 import "../Styles/Footer.css";
@@ -49,7 +49,7 @@ function Footer() {
                             <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill className="footer-media"/></a>
                         </div>
                         <div>
-                            <a href="https://twitter.com/phatblackonline"><RiTwitterFill className="footer-media"/></a>
+                            <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter className="footer-media"/></a>
                         </div>
                         <div>
                             <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill className="footer-media" /></a>
