@@ -77,3 +77,29 @@ button[type="submit"]:hover {
 .NoAccount a:hover {
     text-decoration: underline;
 }
+
+@media screen and (max-width: 940px){
+
+    .ImageContainer {
+        position: relative;
+        left: 5%;
+        width: 95%;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .ImageContainer {
+        position: relative;
+        left: 13%;
+        width: 87%;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .ImageContainer {
+        position: relative;
+        left: 15%;
+        width: 86%;
+    }
+}

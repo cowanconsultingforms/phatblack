@@ -61,3 +61,26 @@ a:hover {
         flex: 0 0 calc(50% - 20px);
     }
 }
+
+@media screen and (max-width: 940px){
+
+    .events-page {
+        left: 5%;
+        width: 95%;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .events-page {
+        left: 13%;
+        width: 87%;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+  
+    .events-page {
+        left: 15%;
+        width: 86%;
+    }
+  }

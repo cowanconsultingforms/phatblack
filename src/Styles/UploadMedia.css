@@ -86,3 +86,29 @@
     font-style: italic;
 }
 */
+
+@media screen and (max-width: 940px){
+
+    .upload-form-container {
+        position: relative;
+        left: 5%;
+        width: 95%;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .upload-form-container {
+        position: relative;
+        left: 6%;
+        width: 87%;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .upload-form-container {
+        position: relative;
+        left: 8%;
+        width: 86%;
+    }
+}

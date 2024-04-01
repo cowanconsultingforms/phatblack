@@ -332,6 +332,9 @@ header {
 
   
   @media screen and (max-width: 560px) {
+
+
+
     .logo{
       margin-top: 8px;
       font-size: 2rem;
@@ -355,13 +358,21 @@ header {
   /* menu on mobile */
   @media screen and (max-width: 940px) {
     
+    .HeaderContainer {
+      padding: 10px 20px 0px;
+      position: relative;
+      left: 40px;
+    }
+
     .nav-area {
+      top: 10px;
       overflow: hidden;
     }
     
     .desktop-nav {
+      padding-top: 13px;
       text-align: right;
-      width: 90vw;
+      width: 80vw;  
     }
   
     .mobile-nav {
@@ -456,9 +467,10 @@ header {
       align-content: center;
       align-items: center;
       text-align: center;
-      top: 10px;
+      top: 5px;
       height: 50px;
       width: 50px;
+      right: 25px;
     }
     
     .Profilebutton {
@@ -513,3 +525,25 @@ header {
       border-radius: 100%;
     }
   }
+
+@media screen and (max-width: 500px) {
+  .HeaderContainer {
+    padding: 10px 20px 0px;
+    position: relative;
+    left: 40px;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .HeaderContainer {
+    padding: 10px 20px 0px;
+    position: relative;
+    left: 40px;
+    width: 90%;
+  }
+
+  .ProfileIconContainer {
+    right: 10px;
+  }
+}

@@ -256,11 +256,11 @@
     }
     .searchContainerExpanded{
         position: absolute;
-        margin-top: 15px;
+        margin-top: 10px;
         background-color: transparent;
         height: 60px;
         width: 290px;
-        margin-left: 50px;
+        margin-left: 20px;
         z-index: 5;
         transition: 0.7s;
     }
@@ -301,6 +301,27 @@
     }
 }
 
+@media screen and (max-width: 450px) {
+    .searchContainer {
+        position: relative;
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .searchContainer {
+        position: relative;
+        right: 20px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .searchContainer {
+        position: relative;
+        right: 60px;
+    }
+}
+
 @media screen and (max-width:940px) {
 
     .clear {
@@ -310,6 +331,12 @@
     .searchContainer{
         margin-left: 0%;
         margin-right: 0%;
+    }
+
+    .searchBar {
+        position: relative;
+        bottom: 7px;
+        left: 50px;
     }
 }
 

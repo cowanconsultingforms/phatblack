@@ -165,3 +165,35 @@
         border-radius: 20px;
     }
 }
+
+@media screen and (max-width: 940px){
+
+    .GamingMainContainer {
+        left: 5%;
+        width: 95%;
+    }
+    .GamingSidebar.open {
+        left: 6vh;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .GamingMainContainer {
+        left: 13%;
+        width: 87%;
+    }
+    .GamingSidebar.open {
+        left: 6vh;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .GamingMainContainer {
+        left: 15%;
+        width: 86%;
+    }
+    .GamingSidebar.open {
+        left: 6vh;
+    }
+}
