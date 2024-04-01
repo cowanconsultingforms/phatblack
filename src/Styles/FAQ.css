@@ -16,3 +16,13 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.faq-footer{
+   /* leave in center or push to left?   margin-right: 75%; */
+    margin-top: 20px;
+    text-align: center;
+}
+.faq-header {
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
