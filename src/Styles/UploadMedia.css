@@ -80,35 +80,62 @@
     margin-bottom: 15px;
 }
 
-/* If you need a progress message, uncomment this
-.uploading-progress {
+/* Existing styles */
+
+/* Additions for the loading screen and cancel button */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
-    font-style: italic;
+    /* Positioning */
 }
-*/
 
-@media screen and (max-width: 940px){
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    /* Light grey */
+    border-top: 4px solid #3498db;
+    /* Blue color */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
 
-    .upload-form-container {
-        position: relative;
-        left: 5%;
-        width: 95%;
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
-  
-@media screen and (max-width: 500px) {
-    .upload-form-container {
-        position: relative;
-        left: 6%;
-        width: 87%;
-    }
+
+.cancel-btn {
+    background-color: #e74c3c;
+    /* Red color for cancellation */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    /* Spacing */
+    outline: none;
 }
-  
-@media screen and (max-width: 400px) {
-  
-    .upload-form-container {
-        position: relative;
-        left: 8%;
-        width: 86%;
-    }
+
+.cancel-btn:hover {
+    background-color: #c0392b;
+    /* Darker shade on hover */
+}
+
+.upload-form-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Slight transparency */
+    backdrop-filter: blur(10px);
+    /* Blur effect for background content */
+    border: 1px solid #555;
+    /* Border to lift the panel slightly */
 }

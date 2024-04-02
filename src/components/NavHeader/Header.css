@@ -157,6 +157,19 @@ header {
     font-size: larger;
     height: 50px;
   }
+  .header-media-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    position: absolute;
+    top: 0;
+    right: 40px;
+  }
+
+  .header-media {
+    font-size: 20px;
+    margin-left: 5px;
+  }
   
   .desktop-nav .menu-items a {
     display: block;
@@ -361,7 +374,8 @@ header {
     .HeaderContainer {
       padding: 10px 20px 0px;
       position: relative;
-      left: 40px;
+      left: 10%;
+      width: 90%;
     }
 
     .nav-area {
@@ -526,24 +540,8 @@ header {
     }
   }
 
-@media screen and (max-width: 500px) {
-  .HeaderContainer {
-    padding: 10px 20px 0px;
-    position: relative;
-    left: 40px;
-    width: 90%;
+  @media screen  and (max-width: 1000) {
+    .header-media-container {
+      margin-right: 5%;
+    }
   }
-}
-
-@media screen and (max-width: 420px) {
-  .HeaderContainer {
-    padding: 10px 20px 0px;
-    position: relative;
-    left: 40px;
-    width: 90%;
-  }
-
-  .ProfileIconContainer {
-    right: 10px;
-  }
-}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/PB-gaming.css";
-import speakerImage from "../assets/SpeakerImage.png"
 import { FaBars } from "react-icons/fa";
+import speakerImage from "../assets/redpants-radio.jpg"
 
 function PBgaming() {
 

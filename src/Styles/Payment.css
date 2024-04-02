@@ -69,28 +69,63 @@
     }
 }
 
-@media screen and (max-width: 940px){
+h1{
+	text-align: center;
+}
 
-    .payment-container {
-        position: relative;
-        left: 5%;
-        width: 95%;
-    }
+.FormGroup {
+	margin: 0 15px 20px;
+	border-style: none;
+	background-color: #2d3338;
+	border-radius: 4px;
 }
-  
-@media screen and (max-width: 500px) {
-    .payment-container {
-        position: relative;
-        left: 13%;
-        width: 87%;
-    }
+
+.FormRow {
+	display: flex;
+	align-items: center;
+	margin-left: 15px;
+	border-top: 1px solid #212529;
 }
-  
-@media screen and (max-width: 400px) {
-  
-    .payment-container {
-        position: relative;
-        left: 15%;
-        width: 86%;
-    }
+
+.StripeElement--webkit-autofill {
+	background: transparent !important;
 }
+
+.StripeElement {
+	width: 100%;
+	padding: 11px 15px 11px 0;
+}
+
+.paymentButton {
+	display: block;
+	font-size: 17px;
+	width: calc(100% - 30px);
+	height: 40px;
+	margin: 40px 15px;
+	background-color: #ffa646;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 100ms ease-in-out;
+	border: none;
+}
+
+.paymentButton:hover{
+    background-color: #ED7D31;
+    transition: .2s
+}
+
+.paymentButton:active {
+	transform: scale(0.98);
+}
+
+.paymentButton.cancel{
+    background-color: #2d3338;
+    width: 25%;
+}
+
+.paymentButton.cancel:hover{
+    background-color: #212529;
+}
+
