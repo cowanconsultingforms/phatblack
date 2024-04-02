@@ -54,3 +54,27 @@
   border: 1;
   border-top: 2px solid #ccc;
 }
+
+.restriction {
+margin-top: 10px;
+  font-weight: normal;
+  font-family: 'Newsreader';
+  font-size: 12px;
+}
+
+@media screen and (max-width: 500px) {
+  .subscribe-page {
+      position: relative;
+      left: 6%;
+      width: 91%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .subscribe-page {
+      position: relative;
+      left: 8%;
+      width: 91%;
+  }
+}

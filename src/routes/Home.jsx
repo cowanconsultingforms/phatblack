@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import '../Styles/Home.css';
-import speakerImage from "../assets/SpeakerImage.png"; 
+import speakerImage from "../assets/redpants-radio.jpg"; 
 import separator from "../assets/separator.png"; 
 import equalizer from "../assets/equalizer.png"; 
 import VideoCard from "../components/Videocard";
@@ -57,7 +57,7 @@ function Home() {
 
     //Creates a div section thats houses the image, button, and texts.
     return (
-        <div>
+        <div className="HomeContainer">
                 <div className="image-wrapper">
                     <div className="imageDiv">
                         <img className="backgroundImage" src={speakerImage} alt="manHoldingSpeaker" />

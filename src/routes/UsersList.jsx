@@ -12,6 +12,10 @@ function UsersList() {
   const [filterRole, setFilterRole] = useState('all');
   const [sortField, setSortField] = useState('email');
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending, 'desc' for descending
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchMode, setSearchMode] = useState('email');
+
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -43,21 +47,35 @@ function UsersList() {
   };
 
   useEffect(() => {
-    const sortedUsers = users.sort((a, b) => {
-      const roleCompare = (rolePriority[a.role] || Infinity) - (rolePriority[b.role] || Infinity);
-      if (roleCompare !== 0) {
-        return roleCompare;
+    let sortedAndFiltered = users.filter(user => {
+      if (searchTerm.trim()) {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
+        if (searchMode === 'email') {
+          const emailLocalPart = user.email.split('@')[0].toLowerCase();
+          return emailLocalPart.includes(lowerCaseSearchTerm);
+        } else if (searchMode === 'username') {
+          return user.username.toLowerCase().includes(lowerCaseSearchTerm);
+        }
       }
+      return true;
+    });
 
+    sortedAndFiltered.sort((a, b) => {
+      const roleCompare = (rolePriority[a.role] || Infinity) - (rolePriority[b.role] || Infinity);
+      if (roleCompare !== 0) return roleCompare;
       const valueA = a[sortField].toLowerCase();
       const valueB = b[sortField].toLowerCase();
       return (sortOrder === 'asc' ? 1 : -1) * (valueA.localeCompare(valueB));
     });
 
-    const filtered = filterRole === 'all' ? sortedUsers : sortedUsers.filter(user => user.role === filterRole);
+    if (filterRole !== 'all') {
+      sortedAndFiltered = sortedAndFiltered.filter(user => user.role === filterRole);
+    }
 
-    setFilteredUsers(filtered);
-  }, [users, filterRole, sortField, sortOrder]);
+    setFilteredUsers(sortedAndFiltered);
+  }, [users, filterRole, sortField, sortOrder, searchTerm, searchMode]);
+
+
 
   const fetchUsers = async () => {
     const usersCollectionRef = collection(db, 'users');
@@ -142,6 +160,23 @@ function UsersList() {
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
+      </div>
+
+      <div className="search-settings">
+        <select
+          onChange={(e) => setSearchMode(e.target.value)}
+          className="search-mode-dropdown"
+        >
+          <option value="email">Email</option>
+          <option value="username">Username</option>
+        </select>
+
+        <input
+          type="text"
+          placeholder={`Search by ${searchMode}...`}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
       </div>
 
       <div className="users-list-table-wrapper">

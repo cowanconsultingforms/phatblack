@@ -61,3 +61,30 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #ff7f00;
 }
+
+
+@media screen and (max-width: 940px){
+
+    .profile-page {
+        position: relative;
+        left: 5%;
+        width: 95%;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .profile-page {
+        position: relative;
+        left: 11%;
+        width: 87%;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .profile-page {
+        position: relative;
+        left: 13%;
+        width: 86%;
+    }
+}

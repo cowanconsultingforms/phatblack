@@ -98,3 +98,29 @@
     font-family: "Bebas Neue";
     font-size: 30px;
 }
+
+@media screen and (max-width: 940px){
+
+    .ContactUs-page {
+        position: relative;
+        left: 5%;
+        width: 95%;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .ContactUs-page {
+        position: relative;
+        left: 13%;
+        width: 87%;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .ContactUs-page {
+        position: relative;
+        left: 15%;
+        width: 86%;
+    }
+}

@@ -118,7 +118,7 @@ function ContactUs() {
       }
 
     return (
-        <div>
+        <div className="ContactUs-page">
             <h1 className="Contact-Us-Header">Contact Us</h1>
                 <div className="Forms-Container">
                     <form ref={form} onSubmit={sendFormData}>
@@ -128,7 +128,7 @@ function ContactUs() {
                         value={selectedOption}
                         onChange={(e) => setSelectedOption(e.target.value)}
                         >
-                            <option value="">Select an Issue</option>
+                            <option value="">Reason for contacting...</option>
                             <option value="billing">Billing</option>
                             <option value="media">Media</option>
                             <option value="advertisement">Advertisement</option>
