@@ -54,3 +54,10 @@
   border: 1;
   border-top: 2px solid #ccc;
 }
+
+.restriction {
+margin-top: 10px;
+  font-weight: normal;
+  font-family: 'Newsreader';
+  font-size: 12px;
+}

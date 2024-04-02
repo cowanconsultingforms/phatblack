@@ -29,6 +29,10 @@ import Payment from './routes/Payment';
 import Stripe from './routes/Stripe';
 import Footer from './components/Footer';
 import { useEffect } from 'react';
+import CopyRight from './routes/CopyRight';
+import PrivacyPolicy from './routes/PrivacyPolicy';
+import TermsService from './routes/TermsService';
+import Restrictions from './routes/Restrictions';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -148,6 +152,30 @@ function App() {
           <Route path="/contactus" element={
               <>
                 <ContactUs />
+                <Footer />
+              </>
+            } />
+           <Route path="/copyright" element={
+              <>
+                <CopyRight />
+                <Footer />
+              </>
+            } />
+             <Route path="/privacy-policy" element={
+              <>
+                <PrivacyPolicy />
+                <Footer />
+              </>
+            } />
+             <Route path="/terms-of-service" element={
+              <>
+                <TermsService />
+                <Footer />
+              </>
+            } />
+              <Route path="/restrictions" element={
+              <>
+                <Restrictions />
                 <Footer />
               </>
             } />
