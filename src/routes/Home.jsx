@@ -57,7 +57,7 @@ function Home() {
 
     //Creates a div section thats houses the image, button, and texts.
     return (
-        <div>
+        <div className="HomeContainer">
                 <div className="image-wrapper">
                     <div className="imageDiv">
                         <img className="backgroundImage" src={speakerImage} alt="manHoldingSpeaker" />

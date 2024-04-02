@@ -115,10 +115,10 @@
 .clear{
     position: absolute;
     right: 50px;
-    top: 30%;
+    top: 34%;
     font-size: 1rem;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     padding: 5px;
 }
 
@@ -139,7 +139,7 @@
 @media screen and (max-width: 300px) {
     .clear{
         right: 20%;
-        top: 35%;
+        top: 38%;
     }
 
     .logo img{
@@ -175,7 +175,7 @@
         margin-top: 20px;
     }
     .clear{
-        top: 15%;
+        top: 18%;
     }
 }
 
@@ -256,11 +256,11 @@
     }
     .searchContainerExpanded{
         position: absolute;
-        margin-top: 15px;
+        margin-top: 10px;
         background-color: transparent;
         height: 60px;
         width: 290px;
-        margin-left: 50px;
+        margin-left: 20px;
         z-index: 5;
         transition: 0.7s;
     }
@@ -296,15 +296,47 @@
         border-radius: 0rem 10rem 10rem 0rem;
     }
     .clear{
-        top: 40%;
+        top: 50%;
         right: 40px;
     }
 }
 
+@media screen and (max-width: 450px) {
+    .searchContainer {
+        position: relative;
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .searchContainer {
+        position: relative;
+        right: 20px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .searchContainer {
+        position: relative;
+        right: 60px;
+    }
+}
+
 @media screen and (max-width:940px) {
+
+    .clear {
+        top: 40%;
+    }
+
     .searchContainer{
         margin-left: 0%;
-        margin-right: 0%;
+        margin-right: 20%;
+    }
+
+    .searchBar {
+        position: relative;
+        bottom: 7px;
+        left: 40px;
     }
 }
 

@@ -75,7 +75,7 @@ function News_pictures() {
 // content that appears after the news thumbnails
 function Bottom_content() {
   return(
-    <div>
+    <div className='ezine-page'>
     <div className='header2-container'>
       <h2 className = "header2">E-Zine</h2>
     </div>

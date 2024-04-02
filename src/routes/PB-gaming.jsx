@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/PB-gaming.css";
+import { FaBars } from "react-icons/fa";
 import speakerImage from "../assets/redpants-radio.jpg"
 
 function PBgaming() {
@@ -38,18 +39,7 @@ function PBgaming() {
             </div>
             <div className="GamingContainer">
                 <h1>GAMES</h1>
-                <svg
-                    className="sidebar-toggle"
-                    onClick={toggleSidebar}
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    width="30"
-                    height="40"
-                >
-                    <rect x="0" y="4" width="30" height="2" fill="currentColor"/>
-                    <rect x="0" y="9" width="30" height="2" fill="currentColor"/>
-                    <rect x="0" y="14" width="30" height="2" fill="currentColor"/>
-                </svg>
+                <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>
                 <hr/>
                 <div className="ReviewGrid">
                     <div className="ReviewBox">

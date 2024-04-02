@@ -15,6 +15,9 @@
   min-height: 100vh; /* This makes the div take up the full height of the viewport */
   padding-top: 100px;
   overflow-x: hidden;
+  position: relative;
+  left: 5%;
+  width: 95%;
 }
 
 .news-pictures::before { /* This is the border above the images */
@@ -86,4 +89,27 @@
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 940px){
+
+  .background-page {
+      left: 5%;
+      width: 95%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .background-page {
+      left: 13%;
+      width: 87%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .background-page {
+      left: 15%;
+      width: 86%;
+  }
 }
