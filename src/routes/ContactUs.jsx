@@ -56,7 +56,7 @@ function ContactUs() {
         let mailLocation;
         switch (selectedOption) {
             case "billing":
-                recipientEmail = "stanleychen934@gmail.com";
+                recipientEmail = "billing@phatblack.com";
                 mailLocation = "mail-billing"
                 break;
             case "media":
@@ -64,7 +64,7 @@ function ContactUs() {
                 mailLocation = "mail-media"
                 break;
             case "advertisement":
-                recipientEmail = "advertisement@phatblack.com"
+                recipientEmail = "advertising@phatblack.com"
                 mailLocation = "mail-advertisement"
                 break;
             case "copyright":
@@ -74,15 +74,17 @@ function ContactUs() {
             case "support":
                 recipientEmail = "support@phatblack.com"
                 mailLocation = "mail-support"
-
+                break
             case "general":
                 recipientEmail= "general@phatblack.com";
                 mailLocation = "mail-general"
+                break
         }
 
         try {
             const docRef = await addDoc(collection(db, mailLocation), {
                 to: recipientEmail,
+                from: email,
                 message: {
                     subject: `Case:${selectedOption}`,
                     html: `
