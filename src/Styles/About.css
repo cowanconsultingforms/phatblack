@@ -2,7 +2,10 @@
   display: flex;
   justify-content: center;
   margin-top: 100px; /* Adjust the height of your navbar */
-  height: 100%; /* Subtract the height of your navbar from the viewport height */
+  height: 80vh; /* Subtract the height of your navbar from the viewport height */
+  position: relative;
+  left: 5%;
+  width: 95%;
 }
 
 .page-content {
@@ -36,3 +39,25 @@
   text-align: center; 
 }
 
+@media screen and (max-width: 940px){
+
+  .page-container {
+      left: 5%;
+      width: 95%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .page-container {
+      left: 13%;
+      width: 87%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .page-container {
+      left: 15%;
+      width: 86%;
+  }
+}

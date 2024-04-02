@@ -26,3 +26,29 @@
     margin-bottom: 20px;
     text-decoration: underline;
 }
+
+@media screen and (max-width: 940px){
+
+    .faq-page {
+        position: relative;
+        left: 5%;
+        width: 95%;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .faq-page {
+        position: relative;
+        left: 13%;
+        width: 87%;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .faq-page {
+        position: relative;
+        left: 15%;
+        width: 86%;
+    }
+}
