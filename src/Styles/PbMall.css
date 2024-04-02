@@ -10,16 +10,20 @@
     margin-right: 20px;
     margin-left: 20px;
     font-size: clamp(1.25rem, 5vw, 1.75rem);
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
     width: 200px;
 }
 .Subtopics
 {
     font-size: clamp(1rem, 4vw, 1.2rem);
     margin-left: 40px;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-left: 40px;
 }
 
 .subtopics-container {
     display: flex;
+    gap: 20px;
     gap: 20px;
     width: 100%;
     flex-wrap: wrap;
@@ -48,7 +52,19 @@
 }
 
 
+.image-map-cards{
+    width: 50%;
+    height: min-content;
+}
+
+
+
 .image-map img{
+    width: 100%;
+    height: min-content;
+}
+
+.bottom-page{
     width: 100%;
     height: min-content;
 }
@@ -78,6 +94,7 @@
 .bottom-suggestions img{
     width: 300px;
     height: auto;
+    margin-top: 10px;
     margin-top: 10px;
 }
 

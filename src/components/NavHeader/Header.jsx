@@ -65,6 +65,20 @@ const Header = () => {
             <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill className="header-media" /></a>
           </div>
         </div>
+      <div className="header-media-container">
+          <div>
+            <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill className="header-media" /></a>
+          </div>
+          <div>
+            <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter className="header-media" /></a>
+          </div>
+          <div>
+            <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill className="header-media" /></a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill className="header-media" /></a>
+          </div>
+        </div>
       <div className="nav-area">
 
         <Link to="/" >

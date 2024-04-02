@@ -41,10 +41,32 @@ function Eradio() {
         nextArrow: <CustomNextArrow />,
     };
 
+
     return (
         <div className="eradio-page">
             <div className="radio-head">
-                <h1>E-Radio</h1>
+            <div className="radio-head">
+                    <h1>E-Radio</h1>
+            </div>
+
+            <Slider {...settings} className="radio-container events">
+                {/**TEST IMAGES */}
+                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard title="Test" imgSrc={cassette} />
+            </Slider>
+
+            <div className="radio-head">
+                <h1>Podcasts</h1>
+            </div>
+
+            <div className="podcast-container events">
+                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard title="Test" imgSrc={cassette} />
+            </div>
             </div>
 
             <Slider {...settings} className="radio-container events">

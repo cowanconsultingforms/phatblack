@@ -11,11 +11,13 @@ function UploadMedia() {
     const auth = getAuth();
 
     const [file, setFile] = useState(null);
+    const [expectedFileType, setExpectedFileType] = useState('');
     const [mediaType, setMediaType] = useState('');
     const [subscriptionType, setSubscriptionType] = useState('');
     const [vendor, setVendor] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [uploadTask, setUploadTask] = useState(null); // State to manage the upload task
@@ -37,8 +39,13 @@ function UploadMedia() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!file || !title) {
-            setError('Please fill all required fields and select a file.');
+        if (!file || !title || !expectedFileType) {
+            setError('Please fill all required fields, select a file, and specify the file type.');
+            return;
+        }
+
+        if (file.type !== expectedFileType) {
+            setError('The selected file does not match the specified file type.');
             return;
         }
 
@@ -125,7 +132,18 @@ function UploadMedia() {
                 ) : (
                     <>
                         <div className="form-group">
-                            <input type="file" onChange={e => setFile(e.target.files[0])} />
+                            <select
+                                value={expectedFileType}
+                                onChange={e => setExpectedFileType(e.target.value)}
+                                aria-label="Select expected file type"
+                            >
+                                <option value="" disabled>Select File Type</option>
+                                <option value="image/png">PNG Image (.png)</option>
+                                <option value="image/jpeg">JPEG Image (.jpeg/.jpg)</option>
+                                <option value="video/mp4">MP4 Video (.mp4)</option>
+                                <option value="audio/mpeg">Audio File (.mp3)</option>
+                                <option value="application/pdf">PDF Document (.pdf)</option>
+                            </select>
                         </div>
 
                         <div className="form-group">
@@ -164,6 +182,10 @@ function UploadMedia() {
 
                         <div className="form-group">
                             <input type="text" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+                        </div>
+
+                        <div className="form-group">
+                            <input type="file" onChange={e => setFile(e.target.files[0])} />
                         </div>
 
                         <button type="submit" className="submit-btn">Upload</button>

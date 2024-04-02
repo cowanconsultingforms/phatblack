@@ -41,7 +41,6 @@ function ScrollToTop() {
   return null;
 }
 
-import Sidebar from './components/NavHeader/Sidebar';
 function App() {
   return (
     <>
