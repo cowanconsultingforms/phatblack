@@ -65,7 +65,7 @@ function Footer() {
                 <div className="footer-contact">
                     <h1>CONTACT US</h1>
                     <p>
-                        <strong><u><Link to = "/copyright">Copy Right</Link></u></strong>: Have an issue? Reach out to our support team for assistance.
+                        <strong><u><Link to = "/copyright">Copyright</Link></u></strong>: Have an issue? Reach out to our support team for assistance.
                     </p>
                     <p>
                         <strong> <u><Link to = "/faq">FAQs</Link></u></strong>: Find answers to commonly asked questions and helpful tips for navigating our content.
