@@ -81,7 +81,7 @@ function UploadMedia() {
                     await setDoc(doc(db, 'searchData', title.toLowerCase()),
                         {
                             mediaType,
-                            title,
+                            title: title.toLowerCase(),
                             path: `${mediaType}/${title}`,
                         })
 
