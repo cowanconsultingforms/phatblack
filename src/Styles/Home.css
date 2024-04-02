@@ -2,8 +2,27 @@ body{
     overflow-x: hidden;
 }
 
+.HomeContainer {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    position: relative;
+    left: 5%;
+    width: 95%;
+}
+
 .imageDiv{
     position: relative;
+}
+
+.backgroundImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homeButton {
+    left: 0;
 }
 
 .backgroundImage{
@@ -150,8 +169,17 @@ body{
 }
 
 @media screen and (max-width: 940px){
+
+    .HomeContainer {
+        left: 5%;
+        width: 95%;
+    }
+
+    .backgroundImage {
+        width: 95%;
+    }
+
     .video-cards{
-        position: absolute;
         display: grid;
         grid-template-columns: 1fr;
         margin-right: 20px;
@@ -159,5 +187,34 @@ body{
 
     .video{
         width: 40%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .HomeContainer {
+        left: 13%;
+        width: 87%;
+    }
+    .backgroundImage {
+        width: 95%;
+    }
+    .homeButton {
+        margin: 130px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .homeButton {
+        margin: 110px;
+    }
+
+    .HomeContainer {
+        left: 15%;
+        width: 86%;
+    }
+    .backgroundImage {
+        width: 79%;
+        top: 26%;
     }
 }

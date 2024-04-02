@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    padding: 0;
+    padding-top: 0;
     box-sizing: border-box;
 }
 
@@ -10,6 +10,8 @@
     height: 86vh;
     align-content: center;
     text-align: center;
+    left: 10vh;
+    width: 210vh;
 }
 
 .GamingSidebar {
@@ -29,7 +31,7 @@
 }
 
 .GamingSidebar.open {
-    left: 0;
+    left: 10vh;
 }
 
 .GamingSidebar ul {
@@ -58,7 +60,7 @@
     border: none;
     cursor: pointer; /* Change cursor to pointer on hover */
     font-family: "Bebas Neue", sans-serif;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .ReviewGrid {
@@ -161,5 +163,37 @@
         max-width: 100%;
         height: auto;
         border-radius: 20px;
+    }
+}
+
+@media screen and (max-width: 940px){
+
+    .GamingMainContainer {
+        left: 5%;
+        width: 95%;
+    }
+    .GamingSidebar.open {
+        left: 7vh;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .GamingMainContainer {
+        left: 13%;
+        width: 87%;
+    }
+    .GamingSidebar.open {
+        left: 7vh;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .GamingMainContainer {
+        left: 15%;
+        width: 86%;
+    }
+    .GamingSidebar.open {
+        left: 7vh;
     }
 }

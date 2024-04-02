@@ -12,6 +12,10 @@ function UsersList() {
   const [filterRole, setFilterRole] = useState('all');
   const [sortField, setSortField] = useState('email');
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending, 'desc' for descending
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchMode, setSearchMode] = useState('email');
+
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -31,23 +35,47 @@ function UsersList() {
 
   }, [navigate, auth]);
 
+  const rolePriority = {
+    'super admin': 1,
+    'admin': 2,
+    'staff': 3,
+    'vendor': 4,
+    'client': 5,
+    'partner': 6,
+    'premium_user': 7,
+    'user': 8
+  };
+
   useEffect(() => {
-    const filtered = users
-      .filter(user => filterRole === 'all' || user.role === filterRole)
-      .sort((a, b) => {
-        if (sortField === 'email' || sortField === 'username') {
-          const valueA = a[sortField].toLowerCase();
-          const valueB = b[sortField].toLowerCase();
-
-          if (valueA < valueB) return sortOrder === 'asc' ? -1 : 1;
-          if (valueA > valueB) return sortOrder === 'asc' ? 1 : -1;
-          return 0;
+    let sortedAndFiltered = users.filter(user => {
+      if (searchTerm.trim()) {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
+        if (searchMode === 'email') {
+          const emailLocalPart = user.email.split('@')[0].toLowerCase();
+          return emailLocalPart.includes(lowerCaseSearchTerm);
+        } else if (searchMode === 'username') {
+          return user.username.toLowerCase().includes(lowerCaseSearchTerm);
         }
-        return 0;
-      });
+      }
+      return true;
+    });
 
-    setFilteredUsers(filtered);
-  }, [users, filterRole, sortField, sortOrder]);
+    sortedAndFiltered.sort((a, b) => {
+      const roleCompare = (rolePriority[a.role] || Infinity) - (rolePriority[b.role] || Infinity);
+      if (roleCompare !== 0) return roleCompare;
+      const valueA = a[sortField].toLowerCase();
+      const valueB = b[sortField].toLowerCase();
+      return (sortOrder === 'asc' ? 1 : -1) * (valueA.localeCompare(valueB));
+    });
+
+    if (filterRole !== 'all') {
+      sortedAndFiltered = sortedAndFiltered.filter(user => user.role === filterRole);
+    }
+
+    setFilteredUsers(sortedAndFiltered);
+  }, [users, filterRole, sortField, sortOrder, searchTerm, searchMode]);
+
+
 
   const fetchUsers = async () => {
     const usersCollectionRef = collection(db, 'users');
@@ -61,10 +89,15 @@ function UsersList() {
     fetchUsers();
   };
 
-  async function handleDeleteUser(userId) {
+  async function handleDeleteUser(userId, userRole) {
+    if (userRole === 'super admin') {
+      alert("Cannot perform operations on Super Admin users.");
+      return;
+    }
+
     try {
       const response = await fetch(
-        `http://127.0.0.1:9998/phat-black/us-central1/deleteUser`,
+        `https://us-central1-phat-black.cloudfunctions.net/deleteUser`,
         {
           method: "DELETE",
           headers: {
@@ -86,10 +119,9 @@ function UsersList() {
     } catch (error) {
       console.error("Error deleting user:", error);
       alert('Failed to delete user');
-    } finally {
-      //
     }
   }
+
 
   const handleDeleteClick = (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
@@ -100,71 +132,106 @@ function UsersList() {
   return (
     <div className="users-list-container">
       <h1 className="users-list-title">Users List</h1>
+
       <div className="filters">
-        <select onChange={(e) => setFilterRole(e.target.value)} className="filter-dropdown">
+        <label htmlFor="filterRole" className="filter-label">Filter by Role:</label>
+        <select id="filterRole" onChange={(e) => setFilterRole(e.target.value)} className="filter-dropdown">
+
           <option value="all">All Users</option>
-          <option value="user">User</option>
-          <option value="premium_user">Premium User</option>
-          <option value="partner">Partner</option>
-          <option value="client">Client</option>
-          <option value="vendor">Vendor</option>
-          <option value="staff">Staff</option>
-          <option value="admin">Admin</option>
           <option value="super admin">Super Admin</option>
+          <option value="admin">Admin</option>
+          <option value="staff">Staff</option>
+          <option value="vendor">Vendor</option>
+          <option value="client">Client</option>
+          <option value="partner">Partner</option>
+          <option value="premium_user">Premium User</option>
+          <option value="user">User</option>
+
         </select>
-        <select onChange={(e) => setSortField(e.target.value)} className="filter-dropdown">
+
+        <label htmlFor="sortField" className="filter-label">Sort By:</label>
+        <select id="sortField" onChange={(e) => setSortField(e.target.value)} className="filter-dropdown">
           <option value="email">Email</option>
           <option value="username">Username</option>
         </select>
-        <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')} className="sort-button">
-          Sort: {sortOrder.toUpperCase()}
-        </button>
+
+        <label htmlFor="sortOrder" className="filter-label">Order (Alphabetical):</label>
+        <select id="sortOrder" onChange={(e) => setSortOrder(e.target.value)} className="filter-dropdown">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
       </div>
+
+      <div className="search-settings">
+        <select
+          onChange={(e) => setSearchMode(e.target.value)}
+          className="search-mode-dropdown"
+        >
+          <option value="email">Email</option>
+          <option value="username">Username</option>
+        </select>
+
+        <input
+          type="text"
+          placeholder={`Search by ${searchMode}...`}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+      </div>
+
       <div className="users-list-table-wrapper">
         <table className="users-list-table">
           <thead>
             <tr>
+              <th>Actions</th>
               <th>Email</th>
               <th>Username</th>
               <th>Role</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
+
             {filteredUsers.map((user) => (
               <tr key={user.id}>
+
+                <td className="action-buttons">
+                  {user.role === "super admin" ? (
+                    <h3> CANNOT BE MODIFIED </h3>
+                  ) : (
+                    <>
+                      <select
+                        value={user.role}
+                        onChange={(e) => updateUserRole(user.id, e.target.value)}
+                        className="role-dropdown"
+                      >
+
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                        <option value="vendor">Vendor</option>
+                        <option value="client">Client</option>
+                        <option value="partner">Partner</option>
+                        <option value="premium_user">Premium User</option>
+                        <option value="user">User</option>
+
+                      </select>
+                      <button onClick={() => handleDeleteClick(user.id)} className="delete-button">
+                        <FaTrash />
+                        Delete
+                      </button>
+                    </>
+                  )}
+                </td>
+
                 <td>{user.email}</td>
                 <td>{user.username}</td>
                 <td>{user.role}</td>
-                <td className="action-buttons">
-
-                  <select
-                    value={user.role}
-                    onChange={(e) => updateUserRole(user.id, e.target.value)}
-                    className="role-dropdown"
-                  >
-                    <option value="user">User</option>
-                    <option value="premium_user">Premium User</option>
-                    <option value="partner">Partner</option>
-                    <option value="client">Client</option>
-                    <option value="vendor">Vendor</option>
-                    <option value="staff">Staff</option>
-                    <option value="admin">Admin</option>
-                    <option value="super admin">Super Admin</option>
-
-                  </select>
-                  <button onClick={() => handleDeleteClick(user.id)} className="delete-button">
-                    <FaTrash />
-                    Delete
-                  </button>
-                </td>
               </tr>
             ))}
+
           </tbody>
         </table>
       </div>
     </div>
   );
-
 }
 export default UsersList;

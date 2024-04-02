@@ -1,0 +1,54 @@
+.faq-page {
+    font-family: "Jost", sans-serif;
+}
+.faq-head {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.question {
+    margin: 10px;
+    margin-left: 10%;
+}
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.faq-footer{
+   /* leave in center or push to left?   margin-right: 75%; */
+    margin-top: 20px;
+    text-align: center;
+}
+.faq-header {
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 940px){
+
+    .faq-page {
+        position: relative;
+        left: 5%;
+        width: 95%;
+    }
+}
+  
+@media screen and (max-width: 500px) {
+    .faq-page {
+        position: relative;
+        left: 13%;
+        width: 87%;
+    }
+}
+  
+@media screen and (max-width: 400px) {
+  
+    .faq-page {
+        position: relative;
+        left: 15%;
+        width: 86%;
+    }
+}

@@ -1,17 +1,30 @@
+.pb-mall {
+    overflow-x: hidden;
+    position: relative;
+    left: 50px;
+    max-width: 1485px;
+    height: auto;
+}
+
 .Header{
     margin-right: 20px;
     margin-left: 20px;
-    font-size: 40px;
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
     width: 200px;
 }
 .Subtopics
 {
-    font-size: 30px;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-left: 40px;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-left: 40px;
 }
 
 .subtopics-container {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
+    gap: 20px;
     width: 100%;
     flex-wrap: wrap;
 }
@@ -28,21 +41,37 @@
 .image-map{ /* These are the two images in the center for men and women */
     display: flex;
     position: relative;
-    flex-direction: row;
-    justify-content: space-around;
     flex-wrap: wrap;
     max-width: 100%;
-    
- 
 }
+
+
+.image-map-cards{
+    width: 50%;
+    height: min-content;
+}
+
+
+.image-map-cards{
+    width: 50%;
+    height: min-content;
+}
+
+
 
 .image-map img{
-    width: 650px;
-    margin: 20px;
-    height: auto;
-
+    width: 100%;
+    height: min-content;
 }
 
+.bottom-page{
+    width: 100%;
+    height: min-content;
+}
+
+.bottom-page{
+    width: 100%;
+}
 
 
 .bottomHeader{  /* The "You might like" header */
@@ -65,8 +94,8 @@
 .bottom-suggestions img{
     width: 300px;
     height: auto;
-    margin: 20px;
-
+    margin-top: 10px;
+    margin-top: 10px;
 }
 
 
@@ -75,16 +104,57 @@
 @media (max-width: 600px){  
     .Subtopics{
         margin: 10px;
-       
     }
     .image-map img{
         width: 100%;
         max-width: 100%;
-        margin-bottom: 10px;
     }
     .bottom-suggestions{
-        margin: 10px;
-        max-width: 100%;
+        width: 100%;
     }
 }
 
+    @media (max-width: 940px){
+        .Header{
+            display: none;
+        }
+        .subtopics-container{
+            justify-content: center;
+        }
+        .image-map{
+            flex-wrap: row wrap;
+        }
+        .image-map-cards{
+            width: 100%;
+        }
+        .carousel{
+            margin-top: 1px;
+        }
+        .bottom-suggestions{
+            margin-left: 0px;
+            width: 100%;
+        }
+    }
+
+@media screen and (max-width: 940px){
+
+    .pb-mall {
+        left: 5%;
+        width: 95%;
+    }
+}
+      
+@media screen and (max-width: 500px) {
+    .pb-mall {
+        left: 13%;
+        width: 87%;
+    }
+}
+      
+@media screen and (max-width: 400px) {
+      
+    .pb-mall {
+     left: 15%;
+     width: 85%;
+    }
+}

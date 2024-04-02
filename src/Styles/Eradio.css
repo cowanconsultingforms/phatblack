@@ -1,0 +1,66 @@
+.eradio-page {
+    position: relative;
+    left: 5%;
+    width: 95%;
+}
+
+.radio-head {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+    margin: 20px;
+}
+
+.slick-dots li button:before {
+    background-color: #808080; /* Default color for dots */
+}
+
+.slick-dots li button:after {
+    background-color: #808080; /* Default color for dots */
+}
+
+.slick-dots li.slick-active button:before {
+    background-color: white; /* Dark color for the currently active dot */
+}
+
+@media screen and (max-width: 940px){
+
+    .eradio-page {
+        left: 5%;
+        width: 95%;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .eradio-page {
+        left: 13%;
+        width: 87%;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+  
+    .eradio-page {
+        left: 15%;
+        width: 86%;
+    }
+  }
+.radio-head {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+    margin: 20px;
+}
+
+.slick-dots li button:before {
+    background-color: #808080; /* Default color for dots */
+}
+
+.slick-dots li button:after {
+    background-color: #808080; /* Default color for dots */
+}
+
+.slick-dots li.slick-active button:before {
+    background-color: white; /* Dark color for the currently active dot */
+}
+
