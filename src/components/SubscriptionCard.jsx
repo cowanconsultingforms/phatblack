@@ -1,7 +1,9 @@
 import React from "react";
 import { getAuth } from "firebase/auth";
+import {Link } from "react-router-dom";
 
-function SubscriptionCard({ path, title, planBenefits, planAccess, backgroundColor }) {
+
+function SubscriptionCard({ path, title, planBenefits, planAccess, backgroundColor, restrictions}) {
 
     function redirect() {
         const authInstance = getAuth();
@@ -36,6 +38,11 @@ function SubscriptionCard({ path, title, planBenefits, planAccess, backgroundCol
                     <h2 className="access" key={index}>{access}</h2>
                 ))}
             </div>
+            <div className="restriction">
+                <Link to ="/restrictions" onClick={(e) => e.stopPropagation()}> 
+                    <h2>{restrictions}</h2>
+                </Link>
+                </div>
 
         </div>
     );

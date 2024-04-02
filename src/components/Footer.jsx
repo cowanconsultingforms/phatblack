@@ -7,6 +7,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiYoutubeFill } from "react-icons/ri";
 import { RiInstagramFill } from "react-icons/ri";
 import "../Styles/Footer.css";
+import {Link } from "react-router-dom";
 
 function Footer() {
 
@@ -64,16 +65,16 @@ function Footer() {
                 <div className="footer-contact">
                     <h1>CONTACT US</h1>
                     <p>
-                        Contact Us: Have questions? Reach out to our support team for assistance.
+                        <strong><u><Link to = "/copyright">Copyright</Link></u></strong>: Have an issue? Reach out to our support team for assistance.
                     </p>
                     <p>
-                        <strong>FAQs</strong>: Find answers to commonly asked questions and helpful tips for navigating our content.
+                        <strong> <u><Link to = "/faq">FAQs</Link></u></strong>: Find answers to commonly asked questions and helpful tips for navigating our content.
                     </p>
                     <p>
-                        <strong>Privacy Policy</strong>: Your privacy matters. Learn how we protect and use your information.
+                        <strong><u><Link to = "/privacy-policy">Privacy Policy</Link></u></strong>: Your privacy matters. Learn how we protect and use your information.
                     </p>
                     <p>
-                        <strong>Terms of Service</strong>: Understand the terms that guide our services and your use of Phatblack.com.
+                        <strong><u><Link to = "/terms-of-service"> Terms of Service</Link></u></strong>: Understand the terms that guide our services and your use of Phatblack.com.
                     </p>
                     <h1>LOCATION</h1>
                     <div>
