@@ -159,18 +159,4 @@
     }
 }
 
-@media screen and (max-width: 940px) {
-    .footer-container {
-        position: relative;
-        left: 13%;
-        width: 87%;
-    }
-}
 
-@media screen and (max-width: 400px) {
-    .footer-container {
-        position: relative;
-        left: 14%;
-        width: 87%;
-    }
-} 
