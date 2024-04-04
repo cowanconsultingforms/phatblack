@@ -33,6 +33,7 @@ import CopyRight from './routes/CopyRight';
 import PrivacyPolicy from './routes/PrivacyPolicy';
 import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
+import EtvComponent from './routes/E-tv-component';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -68,6 +69,12 @@ function App() {
           <Route path="/tv" element={
               <>
                 <Etv />
+                <Footer />
+              </>
+            } />
+            <Route path="/etv/:vidTitle" element={
+              <>
+                <EtvComponent/>
                 <Footer />
               </>
             } />

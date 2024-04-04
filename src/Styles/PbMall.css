@@ -2,7 +2,6 @@
     overflow-x: hidden;
     position: relative;
     left: 50px;
-    max-width: 1485px;
     height: auto;
 }
 
@@ -27,6 +26,7 @@
     gap: 20px;
     width: 100%;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
     

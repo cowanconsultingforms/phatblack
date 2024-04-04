@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import '../Styles/PbMall.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Carousel from "../components/Carousel";
 import carouselItem1 from "../assets/ClothesExample1.jpeg";
 import carouselItem2 from "../assets/ClothesExample2.jpeg";
@@ -35,87 +35,91 @@ const mallCarouselItems = [
     },
 ];
 
-function PBmall() {  
+function PBmall() {
     return (
         <div className="pb-mall">
             <Header />
-            <Imagemap /> 
-            <Carousel items= {mallCarouselItems} className="carousel"></Carousel>
+            <Imagemap />
+            <Carousel items={mallCarouselItems} className="carousel"></Carousel>
             <Bottompage />
         </div>
     );
 }
 
 
-function Imagemap(){
-        return(
-        <div className = "image-map">
+function Imagemap() {
+    return (
+        <div className="image-map">
             <Link to="/pbmall" className="image-map-cards">
-                <img src={mensImage} alt="image" className="image"/>
+                <img src={mensImage} alt="image" className="image" />
             </Link>
             <Link to="/pbmall" className="image-map-cards">
-                <img src={womensImage} alt="image" className="image"/>
+                <img src={womensImage} alt="image" className="image" />
             </Link>
         </div>
     );
 };
 
-{/* Header and sub headers for the page */}
-function Header(){
-    return(
-    <div className="header-container"> {/* container for header and sub headers */ }
-    <h1 className="Header">PB-Mall</h1>
-    <div className="subtopics-container">
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Home</h2>
-        </a>
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Featured</h2>
-        </a>
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Clothes</h2>
-        </a>
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Accessories</h2>
-        </a>
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Electronics</h2>
-        </a>
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Personal Care</h2>
-        </a>
-        <a href= "https://phat-black.web.app/mall">
-        <h2 className="Subtopics">Miscellaneous</h2>
-        </a>
-        
-      {/* Maybe add search bar? Or would it be too much with the general search bar of the website?
+{/* Header and sub headers for the page */ }
+function Header() {
+    return (
+        <>
+            <h1 >PB-Mall</h1>
+            <div className="header-container"> {/* container for header and sub headers */}
+
+                <div className="subtopics-container">
+                    <a href="https://phat-black.web.app/mall">
+                        <h2 className="Subtopics">Home</h2>
+                    </a>
+                    <a href="https://phat-black.web.app/mall">
+                        <h2 className="Subtopics">Featured</h2>
+                    </a>
+                    <a href="https://phat-black.web.app/mall">
+                        <h2 className="Subtopics">Clothes</h2>
+                    </a>
+                    <a href="https://phat-black.web.app/mall">
+                        <h2 className="Subtopics">Accessories</h2>
+                    </a>
+                    <a href="https://phat-black.web.app/mall">
+                        <h2 className="Subtopics">Electronics</h2>
+                    </a>
+                    <a href="https://phat-black.web.app/mall">
+                        <h2 className="Subtopics">Personal Care</h2>
+                    </a>
+                    <a href="https://phat-black.web.app/mall">
+                        <h2 className="Subtopics">Miscellaneous</h2>
+                    </a>
+
+                    {/* Maybe add search bar? Or would it be too much with the general search bar of the website?
       <FontAwesomeIcon icon={faSearch} className="search-icon"> */}
-    </div>
-</div>
+                </div>
+            </div>
+        </>
+
     );
 };
 
-{/* Bottom page suggestions and header */}
-function Bottompage(){
-    return(
-        <div className= "bottom-page">
+{/* Bottom page suggestions and header */ }
+function Bottompage() {
+    return (
+        <div className="bottom-page">
             <div>
-            <h2 className= "bottomHeader"> You May Also Like</h2>
+                <h2 className="bottomHeader"> You May Also Like</h2>
             </div>
-        <div className= "bottom-suggestions">
-            <a href= "https://phat-black.web.app/mall">
-            <img src={carouselItem1} alt="image"/>
-            </a>
-            <a href= "https://phat-black.web.app/mall">
-            <img src={carouselItem1} alt="image"/>
-            </a>
-            <a href= "https://phat-black.web.app/mall">
-            <img src={carouselItem1} alt="image"/>
-            </a>
-            <a href= "https://phat-black.web.app/mall">
-            <img src={carouselItem1} alt="image"/>
-            </a>
-        </div>
+            <div className="bottom-suggestions">
+                <a href="https://phat-black.web.app/mall">
+                    <img src={carouselItem1} alt="image" />
+                </a>
+                <a href="https://phat-black.web.app/mall">
+                    <img src={carouselItem1} alt="image" />
+                </a>
+                <a href="https://phat-black.web.app/mall">
+                    <img src={carouselItem1} alt="image" />
+                </a>
+                <a href="https://phat-black.web.app/mall">
+                    <img src={carouselItem1} alt="image" />
+                </a>
+            </div>
 
 
 
