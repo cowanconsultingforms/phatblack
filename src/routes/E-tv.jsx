@@ -55,25 +55,25 @@ function Etv() {
             <h1>E-TV</h1>
             <div className="etv-head">
                 <div className="subtopics-container">
-                    <a href="https://phat-black.web.app/etv">
+                    <a href="https://phat-black.web.app/tv">
                         <h2 className="Subtopics">PB-Music</h2>
                     </a>
-                    <a href="https://phat-black.web.app/etv">
+                    <a href="https://phat-black.web.app/tv">
                         <h2 className="Subtopics">Genres</h2>
                     </a>
-                    <a href="https://phat-black.web.app/etv">
+                    <a href="https://phat-black.web.app/tv">
                         <h2 className="Subtopics">On-Demand</h2>
                     </a>
-                    <a href="https://phat-black.web.app/etv">
+                    <a href="https://phat-black.web.app/tv">
                         <h2 className="Subtopics">Movies</h2>
                     </a>
-                    <a href="https://phat-black.web.app/etv">
+                    <a href="https://phat-black.web.app/tv">
                         <h2 className="Subtopics">Documentaries</h2>
                     </a>
-                    <a href="https://phat-black.web.app/etv">
+                    <a href="https://phat-black.web.app/tv">
                         <h2 className="Subtopics">TV-Series</h2>
                     </a>
-                    <a href="https://phat-black.web.app/etv">
+                    <a href="https://phat-black.web.app/tv">
                         <h2 className="Subtopics">Live Broadcast</h2>
                     </a>
 
