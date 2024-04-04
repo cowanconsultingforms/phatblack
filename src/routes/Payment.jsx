@@ -24,7 +24,7 @@ const CARD_OPTIONS = {
 }
 
 //payment component
-function Payment({ cost, plan}){
+function Payment({ userId, cost, plan}){
     const [success,setSuccess] = useState(false);
     const stripe = useStripe();
     const elements = useElements();
@@ -51,7 +51,7 @@ function Payment({ cost, plan}){
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ payment: cost, id: id}),
+                    body: JSON.stringify({ paymentCost: cost * 100, id: id, user: userId}),
                 }
             );
 
@@ -92,6 +92,7 @@ function Payment({ cost, plan}){
                 </fieldset>
                 <button className="paymentButton">{!processing ? "Subscribe to PhatBlack Premium" : "Processing..."}</button>
             </form>
+            <button onClick={()=>navigate("/subscribe")} className="paymentButton cancel">{"< Go Back"}</button>
             </div>
             :
             <div>

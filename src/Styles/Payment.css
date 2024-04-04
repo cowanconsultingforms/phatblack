@@ -120,3 +120,12 @@ h1{
 	transform: scale(0.98);
 }
 
+.paymentButton.cancel{
+    background-color: #2d3338;
+    width: 25%;
+}
+
+.paymentButton.cancel:hover{
+    background-color: #212529;
+}
+

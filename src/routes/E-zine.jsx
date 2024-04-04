@@ -1,7 +1,7 @@
 import React from 'react';
 import {FaLock} from 'react-icons/fa';
 import '../Styles/Ezine.css';
-import speakerImage from "../assets/SpeakerImage.png"; 
+import speakerImage from "../assets/redpants-radio.jpg"; 
 import Carousel from '../components/Carousel';
 import barImage from "../assets/bar.jpg";
 import cassetteImage from "../assets/cassette.jpg";
