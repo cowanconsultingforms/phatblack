@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { getFirestore, doc, updateDoc, increment, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import "../Styles/EtvComponent.css";
+import "../Styles/PBTvComponent.css";
 
-function EtvComponent() {
+function PBTvComponent() {
     const { vidTitle } = useParams();
     const [videoDetails, setVideoDetails] = useState(null);
     const [userLiked, setUserLiked] = useState(false);
@@ -19,7 +19,7 @@ function EtvComponent() {
             try {
                 if (vidTitle) {
                     const db = getFirestore();
-                    const docRef = doc(db, "e-tv", vidTitle);
+                    const docRef = doc(db, "pb-tv", vidTitle);
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         setVideoDetails(docSnap.data());
@@ -66,7 +66,7 @@ function EtvComponent() {
                 return;
             }
             const db = getFirestore();
-            const videoDocRef = doc(db, "e-tv", vidTitle);
+            const videoDocRef = doc(db, "pb-tv", vidTitle);
             if (userLiked) {
                 await updateDoc(videoDocRef, {
                     likes: increment(-1),
@@ -92,7 +92,7 @@ function EtvComponent() {
                 return;
             }
             const db = getFirestore();
-            const videoDocRef = doc(db, "e-tv", vidTitle);
+            const videoDocRef = doc(db, "pb-tv", vidTitle);
             if (userDisliked) {
                 await updateDoc(videoDocRef, {
                     dislikes: increment(-1),
@@ -162,4 +162,4 @@ function EtvComponent() {
     );
 }
 
-export default EtvComponent;
+export default PBTvComponent;
