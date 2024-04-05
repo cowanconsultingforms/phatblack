@@ -95,7 +95,7 @@ function Footer() {
             </div>
 
             <div className="copyright">
-                <p>Copyright 2024. All Rights Reserved</p>
+                <p>Copyright. Trademark. 1998 – present. PhatBlack, LLC. All Rights Reserved.</p>
             </div>
         </footer>
     )
