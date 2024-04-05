@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/Eradio.css";
+import "../Styles/PBradio.css";
 import EventCard from "../components/EventCard";
 import cassette from "../assets/cassette.jpg";
 import Slider from "react-slick";
@@ -27,7 +27,7 @@ const CustomNextArrow = (props) => {
 };
 
 
-function Eradio() {
+function PBradio() {
     // Settings for the carousel
     const settings = {
         dots: true,
@@ -43,10 +43,10 @@ function Eradio() {
 
 
     return (
-        <div className="eradio-page">
+        <div className="pbradio-page">
             <div>
                 <div className="radio-head">
-                    <h1>E-Radio</h1>
+                    <h1>PB-Radio</h1>
                 </div>
 
                 <Slider {...settings} className="radio-container events">
@@ -91,4 +91,4 @@ function Eradio() {
     );
 }
 
-export default Eradio;
+export default PBradio;

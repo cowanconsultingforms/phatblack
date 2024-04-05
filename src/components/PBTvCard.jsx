@@ -36,12 +36,12 @@ const VideoCard = ({ id, src, title, vendor, timeuploaded, views }) => {
         // Increment view count in the database
         updateViewCount(title);
         // Navigate to the video page
-        navigate(`/etv/${title}`);
+        navigate(`/pbtv/${title}`);
     };
     
     const updateViewCount = async (videoId) => {
         try {
-            const videoRef = doc(db, "e-tv", videoId);
+            const videoRef = doc(db, "pb-tv", videoId);
             await updateDoc(videoRef, {
                 views: increment(1)
             });
@@ -71,7 +71,7 @@ const VideoCard = ({ id, src, title, vendor, timeuploaded, views }) => {
 
     return (
         <div
-            className="etv-card"
+            className="pbtv-card"
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
             onClick={handleOnClick}

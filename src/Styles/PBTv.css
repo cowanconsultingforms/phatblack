@@ -1,4 +1,4 @@
-.etv-head {
+.pbtv-head {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -8,27 +8,27 @@
     margin-bottom: 20px;
 }
 
-.etv-nav {
+.pbtv-nav {
     display: flex;
 
     justify-content: center;
     align-items: center;
 }
 
-.etv-nav p {
+.pbtv-nav p {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
 }
 
-.etv-featured {
+.pbtv-featured {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-bottom: 30px;
 }
 
-.etv-featured .featured-video  {
+.pbtv-featured .featured-video  {
     width: 60%;
     height: 400px;
 }
@@ -36,7 +36,7 @@
 .featured-video:hover {
     cursor: pointer;
 }
-.etv-card-container {
+.pbtv-card-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
@@ -44,7 +44,7 @@
     margin-left: 13%;
 }
 
-.etv-card {
+.pbtv-card {
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
@@ -53,16 +53,16 @@
     position: relative; /* Ensure the video fills the card container */
   }
 
-  .etv-card:hover {
+  .pbtv-card:hover {
     cursor: pointer;
   }
   
-  .etv-card video {
+  .pbtv-card video {
     width: 100%;
     height: auto; /* Maintain aspect ratio */
   }
   
-  .etv-card .mute-button {
+  .pbtv-card .mute-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -72,22 +72,22 @@
     cursor: pointer;
   }
   
-  .etv-card .mute-button i {
+  .pbtv-card .mute-button i {
     color: white;
   }
   
-  .etv-card h2 {
+  .pbtv-card h2 {
     font-size: 18px;
     margin: 5px;
   }
   
-  .etv-card p {
+  .pbtv-card p {
     font-size: 14px;
     color: #888;
     margin: 5px;
   }
   
-  .etv-card video {
+  .pbtv-card video {
     width: 100%; /* Ensure all images have the same width */
     height: 200px; /* Set a fixed height for all images */
     object-fit: cover;
