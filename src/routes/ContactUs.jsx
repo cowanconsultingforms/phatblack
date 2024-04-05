@@ -2,7 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import "../Styles/ContactUs.css"
-import emailjs from '@emailjs/browser';
+import { db } from "../firebaseConfig";
+import { addDoc,collection } from "firebase/firestore";
+//import emailjs, { sendForm } from '@emailjs/browser';
 
 function ContactUs() {
     const[name, setName] = useState("");
@@ -18,11 +20,14 @@ function ContactUs() {
     };
     const [placeHolders, setPlaceHolders] = useState(InitialPlaceHolders);
     const [showPopUp, setShowPopUp] = useState(false);
+    const [selectedOption, setSelectedOption] = useState("");
 
+    /*
     //import service id, template id, service key for emailjs
     const serviceID = import.meta.env.VITE_APP_SERVICE_ID;
     const templateID = import.meta.env.VITE_APP_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
+    
     
     //Using emailjs, allows users to send a message to email
     const sendEmail = (e) => {
@@ -43,6 +48,60 @@ function ContactUs() {
             },
         );
     };
+    */
+
+    const sendFormData = async(e) => {
+        e.preventDefault();
+        let recipientEmail;
+        let mailLocation;
+        switch (selectedOption) {
+            case "billing":
+                recipientEmail = "billing@phatblack.com";
+                mailLocation = "mail-billing"
+                break;
+            case "media":
+                recipientEmail = "media@phatblack.com"
+                mailLocation = "mail-media"
+                break;
+            case "advertisement":
+                recipientEmail = "advertising@phatblack.com"
+                mailLocation = "mail-advertisement"
+                break;
+            case "copyright":
+                recipientEmail = "copyright@phatblack.com"
+                mailLocation = "mail-copyright"
+                break;
+            case "support":
+                recipientEmail = "support@phatblack.com"
+                mailLocation = "mail-support"
+                break
+            case "general":
+                recipientEmail= "general@phatblack.com";
+                mailLocation = "mail-general"
+                break
+        }
+
+        try {
+            const docRef = await addDoc(collection(db, mailLocation), {
+                to: recipientEmail,
+                from: email,
+                message: {
+                    subject: `Case:${selectedOption}`,
+                    html: `
+                    <p>Name: ${name}</p>
+                    <p>Email: ${email}</p>
+                    <p>Phone Number: ${phoneNumber}</p>
+                    <p>Message: ${message}</p>
+                    `,
+                },
+            });
+            resetForm();
+            setShowPopUp(true);
+            console.log("Success")
+        } catch (error) {
+            console.log("Error", error)
+        }
+    };
 
     //Resets form to original placeholder value 
     const resetForm = () => {
@@ -62,7 +121,21 @@ function ContactUs() {
         <div className="ContactUs-page">
             <h1 className="Contact-Us-Header">Contact Us</h1>
                 <div className="Forms-Container">
-                    <form ref={form} onSubmit={sendEmail}>
+                    <form ref={form} onSubmit={sendFormData}>
+                        <select
+                        className="Contact-Us-Input"
+                        type="Select-Menu"
+                        value={selectedOption}
+                        onChange={(e) => setSelectedOption(e.target.value)}
+                        >
+                            <option value="">Reason for contacting...</option>
+                            <option value="billing">Billing</option>
+                            <option value="media">Media</option>
+                            <option value="advertisement">Advertisement</option>
+                            <option value="copyright">Copyright</option>
+                            <option value="support">Support</option>
+                            <option value="general">General</option>
+                        </select>
                         <input
                             className="Contact-Us-Input"
                             type="name"
