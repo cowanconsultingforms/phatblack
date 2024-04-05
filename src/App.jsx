@@ -34,6 +34,7 @@ import PrivacyPolicy from './routes/PrivacyPolicy';
 import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
 import EtvComponent from './routes/E-tv-component';
+import EzineComponent from './routes/E-zine-component';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -94,6 +95,12 @@ function App() {
               <>
                 <Ezine />
                 <Footer />
+              </>
+            } />
+            <Route path='/zine/:zineTitle' element={
+              <>
+                <EzineComponent/>
+                <Footer/>
               </>
             } />
           <Route path="/gaming" element={

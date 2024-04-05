@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig.js"; 
 import { doc, updateDoc, increment } from "firebase/firestore";
 
-const VideoCard = ({ id, src, title, vendor, timeuploaded, views }) => {
+const EtvCard = ({ id, src, title, vendor, timeuploaded, views }) => {
     const videoRef = useRef(null);
     const [isMuted, setIsMuted] = useState(true);
     const navigate = useNavigate();
@@ -102,4 +102,4 @@ const VideoCard = ({ id, src, title, vendor, timeuploaded, views }) => {
     );
 };
 
-export default VideoCard;
+export default EtvCard;
