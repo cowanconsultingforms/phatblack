@@ -359,9 +359,6 @@ header {
 
   
   @media screen and (max-width: 560px) {
-
-
-
     .logo{
       margin-top: 8px;
       font-size: 2rem;
@@ -377,8 +374,6 @@ header {
       font-family: "Bebas Neue", sans-serif; 
       width: 90%; 
     }
-
-
   }
 
   

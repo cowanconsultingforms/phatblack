@@ -3,7 +3,7 @@
     position: absolute;
     background-color: rgb(0, 0, 0);
     height: 120dvh;
-    width: 60px;
+    width: clamp(40px, 3%, 60px);
     text-align: center;
 }
 
@@ -133,9 +133,6 @@ span {
 }
 
 @media  screen and (max-width: 560px) {
-    .Sidebar{
-        width: 25px !important;
-    }
     .Sidebar li:hover {
         font-size: 25px;
     }
@@ -146,15 +143,12 @@ span {
 }
 
 @media screen and (max-width: 940px){
-    .Sidebar{
-        width: 40px !important;
-    }
     .Sidebar li:hover {
         font-size: 40px !important;
     }
     
     .Sidebar li:not(:hover){
-        font-size: 25px;
+        font-size: 25px !important;
     }
 }
 
