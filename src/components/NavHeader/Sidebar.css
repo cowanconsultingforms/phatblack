@@ -7,6 +7,10 @@
     text-align: center;
 }
 
+.SidebarIconsDiv{
+    cursor: pointer;
+}
+
 .SidebarIconsv2 {
     font-size: small;
 }
@@ -117,3 +121,12 @@ span {
         padding-top: 45px;
     }
 }
+
+@media screen and (max-width: 940px){
+    .Sidebar{
+        width: 40px;
+    }
+}
+
+
+
