@@ -80,17 +80,17 @@ function Sidebar() {
             <ul className='nav-menu-items' onClick={showSidebar}>
               <li className={'nav-text'}>
                 <Link to="/tv">
-                  <span><PiTelevisionSimple /> E-TV</span>
+                  <span><PiTelevisionSimple /> PB-TV</span>
                 </Link>
               </li>
               <li className={'nav-text'}>
                 <Link to="/radio">
-                  <span><HiOutlineSignal /> E-Radio</span>
+                  <span><HiOutlineSignal /> PB-Radio</span>
                 </Link>
               </li>
               <li className={'nav-text'}>
                 <Link to="/zine">
-                  <span><FaBookBookmark /> E-Zine</span>
+                  <span><FaBookBookmark /> PB-Zine</span>
                 </Link>
               </li>
               <li className={'nav-text'}>

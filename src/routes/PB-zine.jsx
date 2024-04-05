@@ -1,6 +1,6 @@
 import React from 'react';
 import {FaLock} from 'react-icons/fa';
-import '../Styles/Ezine.css';
+import '../Styles/PBzine.css';
 import speakerImage from "../assets/redpants-radio.jpg"; 
 import Carousel from '../components/Carousel';
 import barImage from "../assets/bar.jpg";
@@ -10,7 +10,7 @@ import recordsImage from "../assets/records.jpg";
 import studioMicImage from "../assets/studiomic.jpg";
 
 //array of images/slides for carousel
-const eZineCards = [
+const pbZineCards = [
   {
     url: recordsImage,
     title: "Records",
@@ -48,7 +48,7 @@ const eZineCards = [
   },
 ];
 
-export default function Ezine() {
+export default function PBzine() {
     return (
       <div className="background-page">
         <div> <News_pictures /> </div>
@@ -66,7 +66,7 @@ function News_pictures() {
   
   return (
     <div className='news-pictures'>
-      <Carousel items={eZineCards}></Carousel>
+      <Carousel items={pbZineCards}></Carousel>
     </div>
   )
    
@@ -75,9 +75,9 @@ function News_pictures() {
 // content that appears after the news thumbnails
 function Bottom_content() {
   return(
-    <div className='ezine-page'>
+    <div className='pbzine-page'>
     <div className='header2-container'>
-      <h2 className = "header2">E-Zine</h2>
+      <h2 className = "header2">PB-Zine</h2>
     </div>
       <div className ="Bottom-image-container"></div>
     <div className="image-container">

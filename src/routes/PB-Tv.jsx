@@ -1,22 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
-import EtvCard from "../components/EtvCard.jsx";
+import PBTvCard from "../components/PBTvCard.jsx";
 import { db } from "../firebaseConfig.js";
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
-import "../Styles/Etv.css";
+import "../Styles/PBTv.css";
 
-function Etv() {
-    const [etvVideos, setEtvVideos] = useState([]);
+function PBTv() {
+    const [pbtvVideos, setPbTvVideos] = useState([]);
     const [featuredVideo, setFeaturedVideo] = useState(null);
     const videoRef = useRef(null);
 
     useEffect(() => {
-        const fetchEtvVideos = async () => {
+        const fetchPBTvVideos = async () => {
             try {
-                const etvVideosCollection = collection(db, "e-tv");
-                const q = query(etvVideosCollection);
+                const pbtvVideosCollection = collection(db, "pb-tv");
+                const q = query(pbtvVideosCollection);
                 const querySnapshot = await getDocs(q);
                 const videos = querySnapshot.docs.map(doc => doc.data());
-                setEtvVideos(videos);
+                setPbTvVideos(videos);
 
                 // Find the video with the most views
                 const sortedVideos = videos.sort((a, b) => b.views - a.views);
@@ -24,11 +24,11 @@ function Etv() {
                     setFeaturedVideo(sortedVideos[0]);
                 }
             } catch (error) {
-                console.error("Error fetching e-tv videos:", error);
+                console.error("Error fetching pb-tv videos:", error);
             }
         };
 
-        fetchEtvVideos();
+        fetchPBTvVideos();
 
     }, []);
 
@@ -41,7 +41,7 @@ function Etv() {
 
     const handleVideoClick = async (videoTitle) => {
         try {
-            const videoDocRef = doc(db, "e-tv", videoTitle);
+            const videoDocRef = doc(db, "pb-tv", videoTitle);
             await updateDoc(videoDocRef, {
                 views: increment(1)
             });
@@ -51,9 +51,9 @@ function Etv() {
     };
 
     return (
-        <div className="etv-page">
-            <h1>E-TV</h1>
-            <div className="etv-head">
+        <div className="pbtv-page">
+            <h1>PB-TV</h1>
+            <div className="pbtv-head">
                 <div className="subtopics-container">
                     <a href="/tv">
                         <h2 className="Subtopics">PB-Music</h2>
@@ -83,7 +83,7 @@ function Etv() {
             </div>
 
 
-            <div className="etv-featured">
+            <div className="pbtv-featured">
                 {featuredVideo && (
                     <video
                         ref={videoRef}
@@ -95,9 +95,9 @@ function Etv() {
                 )}
             </div>
 
-            <div className="etv-card-container">
-                {etvVideos.map((video, index) => (
-                    <EtvCard
+            <div className="pbtv-card-container">
+                {pbtvVideos.map((video, index) => (
+                    <PBTvCard
                         key={index}
                         src={video.url}
                         title={video.title}
@@ -111,4 +111,4 @@ function Etv() {
     );
 }
 
-export default Etv;
+export default PBTv;

@@ -153,8 +153,8 @@ function UploadMedia() {
                                 aria-label="Select media type"
                             >
                                 <option value="" disabled hidden>Select Media Type</option>
-                                <option value="e-tv">E-TV</option>
-                                <option value="e-zine">E-ZINE</option>
+                                <option value="pb-tv">PB-TV</option>
+                                <option value="pb-zine">PB-ZINE</option>
                                 <option value="pb-music">PB-MUSIC</option>
                                 <option value="pb-fashion">PB-FASHION</option>
                             </select>

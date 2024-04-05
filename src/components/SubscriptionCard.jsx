@@ -39,7 +39,7 @@ function SubscriptionCard({ path, title, planBenefits, planAccess, backgroundCol
                 ))}
             </div>
             <div className="restriction">
-                <Link to ="/restrictions" onClick={(e) => e.stopPropagation()}> 
+                <Link to ="https://phatblack.com/WP/restrictions/" onClick={(e) => e.stopPropagation()}> 
                     <h2>{restrictions}</h2>
                 </Link>
                 </div>
