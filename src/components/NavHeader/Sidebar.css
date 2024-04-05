@@ -24,6 +24,21 @@
     font-size: 25px;
 }
 
+.Sidebar li:hover {
+    font-size: 50px;
+    transition: 0.3s;
+}
+
+.Sidebar li:not(:hover){
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.Sidebar li:hover + li{
+    font-size: 100px;
+    transition: 0.3s;
+}
+
 .menu-bars {
     font-size: 2rem;
     background: none;
