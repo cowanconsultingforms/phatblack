@@ -21,7 +21,7 @@
 
 .Sidebar li {
     margin: 1px;
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .Sidebar li:hover {
@@ -30,7 +30,7 @@
 }
 
 .Sidebar li:not(:hover){
-    font-size: 25px;
+    font-size: 30px;
     transition: 0.5s;
 }
 
@@ -134,31 +134,27 @@ span {
 
 @media  screen and (max-width: 560px) {
     .Sidebar{
-        width: 20px !important;
+        width: 25px !important;
     }
     .Sidebar li:hover {
-        font-size: 40px;
-        transition: 0.5s;
+        font-size: 25px;
     }
     
     .Sidebar li:not(:hover){
-        font-size: 25px;
-        transition: 0.5s;
+        font-size: 20px;
     }
 }
 
 @media screen and (max-width: 940px){
     .Sidebar{
-        width: 40px;
+        width: 40px !important;
     }
     .Sidebar li:hover {
-        font-size: 45px;
-        transition: 0.5s;
+        font-size: 40px !important;
     }
     
     .Sidebar li:not(:hover){
         font-size: 25px;
-        transition: 0.5s;
     }
 }
 
