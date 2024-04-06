@@ -54,25 +54,19 @@
 @media screen and (max-width: 940px){
 
   .page-container {
-      left: 5%;
-      width: 95%;
+      left: 40px;
+      width: calc(100% - 40px);
   }
 }
 
 @media screen and (max-width: 500px) {
   .page-container {
-      left: 13%;
-      width: 87%;
+      left: 30px;
+      width: calc(100% - 30px);
   }
 }
 
 @media screen and (max-width: 400px) {
-
-  .page-container {
-      left: 15%;
-      width: 86%;
-  }
-
   .head1{
     font-size: 30px;
   }

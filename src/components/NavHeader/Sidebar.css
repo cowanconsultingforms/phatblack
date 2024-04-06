@@ -1,14 +1,15 @@
 .Sidebar{
-    padding-top: 35px;
+    margin-top: 35px;
     position: absolute;
     background-color: rgb(0, 0, 0);
-    height: 120dvh;
-    width: clamp(40px, 3%, 60px);
+    height: 100vh;
+    width: 60px;
     text-align: center;
 }
 
 .SidebarIconsDiv{
     cursor: pointer;
+    height: 100%;
 }
 
 .SidebarIconsv2 {
@@ -16,11 +17,21 @@
 }
 
 .Sidebar ul {
-    padding-top: 85%;
+    margin-top: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    padding-bottom: 150px;
+}
+
+.Sidebar ul::-webkit-scrollbar{
+    width: 0px;
+    display: none;
 }
 
 .Sidebar li {
     margin: 1px;
+    margin-top: 10px;
     font-size: 30px;
 }
 
@@ -123,32 +134,41 @@ span {
 }
 
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
     .menu-bars{
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
     .Sidebar{
-        padding-top: 45px;
+        padding-top: 15px;
     }
 }
 
-@media  screen and (max-width: 560px) {
+@media  screen and (max-width: 500px) {
+    .Sidebar{
+        width: 30px !important;
+    }
+    .Sidebar li{
+        margin-top: 20px;
+    }
     .Sidebar li:hover {
-        font-size: 25px;
+        font-size: 30px !important;
     }
     
     .Sidebar li:not(:hover){
-        font-size: 20px;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (max-width: 940px){
+    .Sidebar{
+        width: 40px;
+    }
     .Sidebar li:hover {
-        font-size: 40px !important;
+        font-size: 40px ;
     }
     
     .Sidebar li:not(:hover){
-        font-size: 25px !important;
+        font-size: 30px ;
     }
 }
 

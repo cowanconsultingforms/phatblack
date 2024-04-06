@@ -1,5 +1,10 @@
+.subscribe-page{
+  margin-left: 60px;
+  width: calc(100% - 60px);
+}
+
 .subscribe-header {
-  width: 96%;
+  width: calc(100% - 60px);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -62,19 +67,21 @@ margin-top: 10px;
   font-size: 12px;
 }
 
+@media  screen and (max-width: 940px) {
+  .subscribe-page{
+    margin-left: 40px;
+    width: calc(100% - 40px);
+  }
+}
+
 @media screen and (max-width: 500px) {
   .subscribe-page {
       position: relative;
-      left: 6%;
-      width: 91%;
+      margin-left: 30px;
+      width: calc(100% - 30px);
   }
 }
 
 @media screen and (max-width: 400px) {
 
-  .subscribe-page {
-      position: relative;
-      left: 8%;
-      width: 91%;
-  }
 }
