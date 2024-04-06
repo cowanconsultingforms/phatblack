@@ -1,0 +1,180 @@
+.pbfashion-page {
+    position: relative;
+    left: 5%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Middle-Subscribe {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Align items vertically */
+    text-align: center;
+    margin-left: 25%;
+}
+  
+.Middle-Subscribe button {
+    margin-left: 20px; /* Push the button to the right */
+}
+
+.svg {
+    font-size: 35px;
+    padding-right: 10px;
+}
+
+.Subscribe {
+    background-color: orange;
+    color: white;
+    font-size: 15px;
+    height: 30px;
+    width: 100px;
+}
+
+.Top-Featured {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.Featured-Info {
+    width: 100%;
+}
+
+.Featured-Image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.Image {
+    max-width: 70%;
+}
+
+.Fashion {
+    display: flex;
+    flex-direction: row;
+}
+
+.Current-Popular-Item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+.BigOne {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Side {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-top: 3%;
+    max-width: 50%;
+}
+
+.SideContainer {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.Small-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.Pop-Image {
+    max-width: 90%;
+    max-height: 70%;
+}
+
+.Small-Pop-Image {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.Fashion-Articles {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.Article-Image {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.Beauty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+    
+}
+
+.Cover {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(64, 64, 64);
+    position: relative;
+    width: 110vh;
+    height: 65vh;
+    left: 25%
+}
+
+.Cover-text {
+    padding-top: 25%;
+    padding-left: 3%;
+    margin: 7px;
+    justify-content: center;
+    align-content: center;
+    text-align: left;
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.Cover-Image {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.Cover-Image img {
+    max-width: 100%;
+    height: 200%;
+}
+
+.Beauty-Articles {
+    display: flex;
+    flex-direction: row;
+    padding-top: 3%;
+}
+.Beauty-Articles div {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.Beauty-Article-Image {
+    max-width: 90%;
+    max-height: 90%;
+}
