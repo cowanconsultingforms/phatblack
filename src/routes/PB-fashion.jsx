@@ -3,6 +3,7 @@ import "../Styles/PB-fashion.css"
 import Barimage from "../assets/bar.jpg"
 import redpants from "../assets/redpants-radio.jpg"
 import model from "../assets/model.jpg"
+import gathering from "../assets/gathering.jpg"
 import { CiCircleCheck } from "react-icons/ci";
 
 
@@ -128,7 +129,73 @@ function PBfashion() {
                         <h5>Author</h5>
                     </div>
                 </div>
-            <div className="Culture"></div>
+            <hr />
+            <h1>CULTURE</h1>
+            <hr />
+            <div className="Culture">
+                <div className="Culture-Container">
+                    <img src={redpants} alt="barimage" />
+                    <h1>Title</h1>
+                    <h2>Discription</h2>
+                    <h3>Author</h3>
+                </div>    
+                <div className="Culture-Side">
+                    <div className="Culture-SideContainer">
+                        <img className="Culture-Small-Pop-Image" src={Barimage} alt="barimage" />
+                        <div className="Culture-Small-text">
+                            <h3>Title</h3>
+                            <p>Here is something about the article that you might like.</p>
+                            <h5>Author</h5>
+                        </div>
+                    </div>
+                    <div className="Culture-SideContainer">
+                        <img className="Culture-Small-Pop-Image" src={Barimage} alt="barimage" />
+                        <div className="Culture-Small-text">
+                            <h3>Title</h3>
+                            <p>Here is something about the article that you might like.</p>
+                            <h5>Author</h5>
+                        </div>
+                    </div>
+                    <div className="Culture-SideContainer">
+                        <img className="Culture-Small-Pop-Image" src={Barimage} alt="barimage" />
+                        <div className="Culture-Small-text">
+                            <h3>Title</h3>
+                            <p>Here is something about the article that you might like.</p>
+                            <h5>Author</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="Celebrities">
+                <div>
+                    <img src={gathering} alt="gathering" />
+                    <h1>Name of Celeb</h1>
+                </div>
+                <div>
+                    <img src={gathering} alt="gathering" />
+                    <h1>Name of Celeb</h1>
+                </div>
+                <div>
+                    <img src={gathering} alt="gathering" />
+                    <h1>Name of Celeb</h1>
+                </div>
+                <div>
+                    <img src={gathering} alt="gathering" />
+                    <h1>Name of Celeb</h1>
+                </div>
+                <div>
+                    <img src={gathering} alt="gathering" />
+                    <h1>Name of Celeb</h1>
+                </div>
+                <div>
+                    <img src={gathering} alt="gathering" />
+                    <h1>Name of Celeb</h1>
+                </div>
+                <div>
+                    <img src={gathering} alt="gathering" />
+                    <h1>Name of Celeb</h1>
+                </div>
+            </div>       
         </div>
     )
 };
