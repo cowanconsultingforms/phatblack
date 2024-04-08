@@ -1,0 +1,73 @@
+.media-list-container {
+    padding: 20px;
+    background: #1F1F1F;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.media-item {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.media-item h3 {
+    color: #ffa646;
+    margin-bottom: 15px;
+}
+
+.media-item p {
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.media-item a {
+    color: #61dafb;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.media-item a:hover {
+    text-decoration: underline;
+}
+
+.delete-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.delete-btn:hover {
+    background-color: #ffa646;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .delete-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .media-list-container {
+        grid-template-columns: 1fr;
+    }
+}

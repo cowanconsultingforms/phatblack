@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db, storage } from '../firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+// import loadImage from 'blueimp-load-image';
 import '../Styles/UploadMedia.css';
 
 function UploadMedia() {
@@ -49,8 +50,13 @@ function UploadMedia() {
             return;
         }
 
+        if (file.size > 5 * 1024 * 1024) {
+            setError('The file size should not exceed 5MB.');
+            return;
+        }
+
         setLoading(true);
-        const fileRef = ref(storage, `media/${new Date().getTime()}_${file.name}`);
+        const fileRef = ref(storage, `media/${file.name}`);
         const currentUploadTask = uploadBytesResumable(fileRef, file);
 
         setUploadTask(currentUploadTask);
@@ -70,6 +76,7 @@ function UploadMedia() {
                         description,
                         vendor,
                         url,
+                        fileName: file.name, // This is the original file name
                         subscriptionType,
                         keywords: [],
                         views: 0,
@@ -119,7 +126,6 @@ function UploadMedia() {
 
     return (
         <div className="upload-form-container">
-            {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit} className="upload-form">
                 {loading ? (
                     <>
@@ -192,6 +198,14 @@ function UploadMedia() {
                     </>
                 )}
             </form>
+
+            {error && <>
+                <br />
+                <hr />
+                <br />
+                <p className="error-message">{error}</p>
+                <hr />
+            </>}
         </div>
     );
 }
