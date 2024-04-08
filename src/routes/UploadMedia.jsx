@@ -50,6 +50,11 @@ function UploadMedia() {
             return;
         }
 
+        if (file.size > 5 * 1024 * 1024) {
+            setError('The file size should not exceed 5MB.');
+            return;
+        }
+
         setLoading(true);
         const fileRef = ref(storage, `media/${file.name}`);
         const currentUploadTask = uploadBytesResumable(fileRef, file);
@@ -121,7 +126,6 @@ function UploadMedia() {
 
     return (
         <div className="upload-form-container">
-            {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit} className="upload-form">
                 {loading ? (
                     <>
@@ -194,6 +198,14 @@ function UploadMedia() {
                     </>
                 )}
             </form>
+
+            {error && <>
+                <br />
+                <hr />
+                <br />
+                <p className="error-message">{error}</p>
+                <hr />
+            </>}
         </div>
     );
 }
