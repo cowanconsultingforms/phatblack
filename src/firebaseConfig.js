@@ -18,6 +18,8 @@ const firebaseConfig = {
     messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
     appId: import.meta.env.VITE_APP_APP_ID,
     measurementId: import.meta.env.VITE_APP_MEASUREMENT_ID,
+    stripeKey: import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY,
+    paymentUrl: import.meta.env.VITE_APP_SUBSCRIPTION_PAYMENT_URL,
 };
 
 // Initialize Firebase
