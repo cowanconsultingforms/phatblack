@@ -34,6 +34,7 @@ import PrivacyPolicy from './routes/PrivacyPolicy';
 import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
 import PBTvComponent from './routes/PB-Tv-component';
+import PBzineComponent from './routes/PB-zine-component';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -96,6 +97,12 @@ function App() {
                 <Footer />
               </>
             } />
+          <Route path='/zine/:zineTitle' element={
+            <>
+              <PBzineComponent/>
+              <Footer/>
+            </>
+          } />
           <Route path="/gaming" element={
               <>
                 <PBgaming />

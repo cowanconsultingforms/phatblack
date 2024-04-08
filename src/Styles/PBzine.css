@@ -91,6 +91,31 @@
   margin-bottom: 10px;
 }
 
+.ezine-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensure the video fills the card container */
+  height: auto;
+}
+
+.ezine-card img {
+  width: 100%;
+  height: 60%;
+}
+.ezine-card:hover {
+  cursor: pointer;
+}
+.subscribed-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    margin: 20px;
+
+}
+
 @media screen and (max-width: 940px){
     .background-page{
       left: 40px;
