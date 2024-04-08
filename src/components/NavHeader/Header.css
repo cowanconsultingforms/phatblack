@@ -21,6 +21,7 @@ header {
     position: relative;
     left: 60px;
     background-color: #000000;
+    height: 150px;
   }
   
   .nav-area {
@@ -116,7 +117,7 @@ header {
     display: flex;
     position: relative;
     top: -26px;
-    max-width: 90%;
+    max-width: 100%;
   }
   
   /* menu on desktop */
@@ -151,6 +152,8 @@ header {
     
     -webkit-mask: var(--mask1); 
     mask: var(--mask1);
+
+    padding-right: 70px;
     
   }
   
@@ -376,6 +379,10 @@ header {
       font-family: "Bebas Neue", sans-serif; 
       width: 90%; 
     }
+
+    .desktop-nav .menus{
+      padding-right: 24px;
+    }
   }
 
   
@@ -523,6 +530,9 @@ header {
       width: 150px;
     }
 
+    .desktop-nav .menus{
+      padding-right: 24px;
+    }
   }
 
   @media screen and (max-width: 400px) {
@@ -552,10 +562,21 @@ header {
       height: 30px;
       border-radius: 100%;
     }
+    
   }
 
   @media screen  and (max-width: 1000) {
     .header-media-container {
       margin-right: 5%;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .logo{
+      left: -20px;
+    }
+
+    .ProfileIconContainer{
+      right: 100px;
     }
   }
