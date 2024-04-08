@@ -139,3 +139,10 @@
     border: 1px solid #555;
     /* Border to lift the panel slightly */
 }
+
+@media screen and (max-width: 940px){
+    .upload-form-container{
+        margin: 40px 15%;
+        margin-left: 20%;
+    }
+}
