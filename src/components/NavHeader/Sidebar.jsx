@@ -45,24 +45,57 @@ function Sidebar() {
             <Link to='#' className='menu-bars'>
               <FaBars onClick={showSidebar} />
             </Link>
-            <div className='SidebarIcons'>
+            <div className='SidebarIconsDiv'>
               <ul>
-                <li><PiTelevisionSimple /></li>
-                <li><HiOutlineSignal /></li>
-                <li><FaBookBookmark /></li>
-                <li><FaRegCalendarCheck /></li>
-                <li><HiShoppingBag /></li>
-                <li><LuMic2 /></li>
-                <li><SiApplearcade /></li>
-                <li><GiSmartphone /></li>
-                <li><GiAmpleDress /></li>
-                <li><IoMusicalNotesOutline/></li>
-                <li><PiUsersThreeLight /></li>
-                <li><LuMessagesSquare /></li>
-                <li><IoIosInformationCircle /></li>
-                <li><CiMail /></li>
-                <li><FaQuestionCircle /></li>
-                <li><BiSolidPhoneCall /></li>
+                <Link to="/tv">
+                  <li><PiTelevisionSimple /></li>
+                </Link>
+                <Link to="/radio">
+                  <li><HiOutlineSignal /></li>
+                </Link>
+                <Link to="/zine">
+                  <li><FaBookBookmark /></li>
+                </Link>
+                <Link to="/pbevents">
+                  <li><FaRegCalendarCheck /></li>
+                </Link>
+                <Link to="/pbmall">
+                  <li><HiShoppingBag /></li>
+                </Link>
+                <Link to="/defendersofhiphop">
+                  <li><LuMic2 /></li>
+                </Link>
+                <Link to="/gaming">
+                  <li><SiApplearcade /></li>
+                </Link>
+                <Link to="/pbdigital">
+                  <li><GiSmartphone /></li>
+                </Link>
+                <Link to="/pbfashion">
+                  <li><GiAmpleDress /></li>
+                </Link>
+                <Link to="pbmusic">
+                  <li><IoMusicalNotesOutline/></li>
+                </Link>
+                <Link to="/pbcommunities">
+                  <li><PiUsersThreeLight /></li>
+                </Link>
+                <Link to="/pbsocial">
+                  <li><LuMessagesSquare /></li>
+                </Link>
+                <Link to="/about">
+                  <li><IoIosInformationCircle /></li>
+                </Link>
+                <Link to="/subscribe">
+                  <li><CiMail /></li>
+                </Link>
+                <Link to="/faq">
+                  <li><FaQuestionCircle /></li>
+                </Link>
+                <Link to="/contactus"> 
+                  <li><BiSolidPhoneCall /></li>
+                </Link>
+                
               </ul>
             </div>
         </div>
@@ -80,17 +113,17 @@ function Sidebar() {
             <ul className='nav-menu-items' onClick={showSidebar}>
               <li className={'nav-text'}>
                 <Link to="/tv">
-                  <span><PiTelevisionSimple /> E-TV</span>
+                  <span><PiTelevisionSimple /> PB-TV</span>
                 </Link>
               </li>
               <li className={'nav-text'}>
                 <Link to="/radio">
-                  <span><HiOutlineSignal /> E-Radio</span>
+                  <span><HiOutlineSignal /> PB-Radio</span>
                 </Link>
               </li>
               <li className={'nav-text'}>
                 <Link to="/zine">
-                  <span><FaBookBookmark /> E-Zine</span>
+                  <span><FaBookBookmark /> PB-Zine</span>
                 </Link>
               </li>
               <li className={'nav-text'}>

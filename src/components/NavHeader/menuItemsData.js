@@ -20,17 +20,17 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 
 export const menuItemsData = [
     {
-        title: "E-TV",
+        title: "PB-TV",
         url: "/tv",
         svg: "PiTelevisionSimple"
     },
     {
-      title: "E-Radio",
+      title: "PB-Radio",
       url: "/radio",
       svg: "HiOutlineSignal" 
     },  
     {
-      title: "E-Zine",
+      title: "PB-Zine",
       url: "/zine",
       svg: "FaBookBookmark" 
     },

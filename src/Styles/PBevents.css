@@ -1,8 +1,8 @@
 .events-page{
     overflow-x: hidden;
     position: relative;
-    left: 50px;
-    max-width: 1485px;
+    left: 60px;
+    width: calc(100% - 60px);
     height: auto;
 }
 
@@ -65,22 +65,20 @@ a:hover {
 @media screen and (max-width: 940px){
 
     .events-page {
-        left: 5%;
-        width: 95%;
+        left: 40px;
+        width: calc(100% - 40px);
     }
   }
   
   @media screen and (max-width: 500px) {
     .events-page {
-        left: 13%;
-        width: 87%;
+        left: 30px;
+        width: calc(100% - 30px);
+    }
+    .event-head{
+        margin: 20px 10px;
     }
   }
   
   @media screen and (max-width: 400px) {
-  
-    .events-page {
-        left: 15%;
-        width: 85%;
-    }
   }

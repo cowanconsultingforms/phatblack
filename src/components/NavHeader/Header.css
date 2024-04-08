@@ -17,8 +17,10 @@ header {
 
   .HeaderContainer {
     padding: 10px 20px 0px;
+    padding-right: 0px;
     position: relative;
-    left: 40px;
+    left: 60px;
+    background-color: #000000;
   }
   
   .nav-area {
@@ -52,7 +54,7 @@ header {
   .Profilebutton {
     position: absolute;
     margin: 0 auto;
-    right: 40%;
+    right: 100%;
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -114,7 +116,7 @@ header {
     display: flex;
     position: relative;
     top: -26px;
-    max-width: 98%;
+    max-width: 90%;
   }
   
   /* menu on desktop */
@@ -177,7 +179,7 @@ header {
     margin-right: 40px;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 100;
   }
 
   .header-media {
@@ -359,9 +361,6 @@ header {
 
   
   @media screen and (max-width: 560px) {
-
-
-
     .logo{
       margin-top: 8px;
       font-size: 2rem;
@@ -377,8 +376,6 @@ header {
       font-family: "Bebas Neue", sans-serif; 
       width: 90%; 
     }
-
-
   }
 
   
@@ -388,8 +385,8 @@ header {
     .HeaderContainer {
       padding: 10px 20px 0px;
       position: relative;
-      left: 10%;
-      width: 90%;
+      left: 40px;
+      width: calc(100% - 40px);
     }
 
     .nav-area {
@@ -528,8 +525,11 @@ header {
 
   }
 
-  @media screen and (max-width: 300px) {
-    
+  @media screen and (max-width: 400px) {
+
+    .HeaderContainer{
+      padding-left: 0px;
+    }
 
     .Profilebutton {
       position: absolute;
@@ -537,7 +537,7 @@ header {
       right: 20%;
       width: 30px;
       height: 30px;
-      top: 0px;
+      top: 10px;
       border-radius: 100%;
       background-color: white;
       border: none;

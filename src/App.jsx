@@ -4,9 +4,9 @@ import Home from "./routes/Home"
 import PBevents from './routes/PB-events';
 import PBgaming from './routes/PB-gaming';
 import PBmall from './routes/PB-mall';
-import Eradio from './routes/E-radio';
-import Etv from './routes/E-tv';
-import Ezine from './routes/E-zine';
+import PBradio from './routes/PB-radio';
+import PBTv from './routes/PB-Tv';
+import PBzine from './routes/PB-zine';
 import PBdigital from './routes/PB-digital';
 import PBmusic from './routes/PB-music';
 import PBfashion from './routes/PB-fashion';
@@ -33,6 +33,8 @@ import CopyRight from './routes/CopyRight';
 import PrivacyPolicy from './routes/PrivacyPolicy';
 import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
+import PBTvComponent from './routes/PB-Tv-component';
+import PBzineComponent from './routes/PB-zine-component';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -67,7 +69,13 @@ function App() {
             } />
           <Route path="/tv" element={
               <>
-                <Etv />
+                <PBTv />
+                <Footer />
+              </>
+            } />
+            <Route path="/pbtv/:vidTitle" element={
+              <>
+                <PBTvComponent/>
                 <Footer />
               </>
             } />
@@ -79,16 +87,22 @@ function App() {
             } />
           <Route path="/radio" element={
               <>
-                <Eradio />
+                <PBradio />
                 <Footer />
               </>
             } />
           <Route path="/zine" element={
               <>
-                <Ezine />
+                <PBzine />
                 <Footer />
               </>
             } />
+          <Route path='/zine/:zineTitle' element={
+            <>
+              <PBzineComponent/>
+              <Footer/>
+            </>
+          } />
           <Route path="/gaming" element={
               <>
                 <PBgaming />

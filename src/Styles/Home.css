@@ -7,8 +7,8 @@ body{
     align-content: center;
     text-align: center;
     position: relative;
-    left: 5%;
-    width: 95%;
+    left: 60px;
+    width: calc(100% - 60px);
 }
 
 .imageDiv{
@@ -137,6 +137,7 @@ body{
     display: block; */
     position: relative;
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .about-us-orange-header{
@@ -170,9 +171,9 @@ body{
 
 @media screen and (max-width: 940px){
 
-    .HomeContainer {
-        left: 5%;
-        width: 95%;
+    .HomeContainer{
+        left: 39px;
+        width: calc(100% - 39px);
     }
 
     .backgroundImage {
@@ -192,8 +193,8 @@ body{
 
 @media screen and (max-width: 500px) {
     .HomeContainer {
-        left: 13%;
-        width: 87%;
+        left: 30px;
+        width: calc(100% - 30px);
     }
     .backgroundImage {
         width: 95%;
@@ -207,11 +208,6 @@ body{
 
     .homeButton {
         margin: 110px;
-    }
-
-    .HomeContainer {
-        left: 15%;
-        width: 86%;
     }
     .backgroundImage {
         width: 79%;

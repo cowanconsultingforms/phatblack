@@ -13,19 +13,22 @@
 }
 
 .head1 {
-  font-family: 'Allison';
-  font-size: 60px;
-  color: orange;
+    text-align: center;
+    margin-top: -5%;
+    color: orange;
+    font-family: "Allison", cursive;
+    font-weight: 100;
+    font-size: 1.75rem;
+    padding-top: 50px;
 }
 
 .head2 {
-  font-size: 80px;
+  font-size: 3rem;
+  font-weight: 400;
 }
 
 .about-image-separator {
   position: relative;
-  height: 50px;
-  width: 70px;
 }
   
 .paragraph-container {
@@ -39,25 +42,51 @@
   text-align: center; 
 }
 
+.paragraph-container p{
+    margin-top: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+    font-family: sans-serif;
+    word-spacing: 2px;
+    font-size: 1rem;
+}
+
 @media screen and (max-width: 940px){
 
   .page-container {
-      left: 5%;
-      width: 95%;
+      left: 40px;
+      width: calc(100% - 40px);
   }
 }
 
 @media screen and (max-width: 500px) {
   .page-container {
-      left: 13%;
-      width: 87%;
+      left: 30px;
+      width: calc(100% - 30px);
   }
 }
 
 @media screen and (max-width: 400px) {
+  .head1{
+    font-size: 30px;
+  }
 
-  .page-container {
-      left: 15%;
-      width: 86%;
+  .head2{
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .head1{
+    font-size: 25px;
+  }
+
+  .head2{
+    font-size: 55px;
+  }
+
+  .about-image-separator {
+    height: 40px;
+    width: 60px;
   }
 }
