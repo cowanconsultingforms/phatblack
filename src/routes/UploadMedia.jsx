@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db, storage } from '../firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+// import loadImage from 'blueimp-load-image';
 import '../Styles/UploadMedia.css';
 
 function UploadMedia() {
@@ -50,7 +51,7 @@ function UploadMedia() {
         }
 
         setLoading(true);
-        const fileRef = ref(storage, `media/${new Date().getTime()}_${file.name}`);
+        const fileRef = ref(storage, `media/${file.name}`);
         const currentUploadTask = uploadBytesResumable(fileRef, file);
 
         setUploadTask(currentUploadTask);
@@ -70,6 +71,7 @@ function UploadMedia() {
                         description,
                         vendor,
                         url,
+                        fileName: file.name, // This is the original file name
                         subscriptionType,
                         keywords: [],
                         views: 0,

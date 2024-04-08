@@ -35,6 +35,7 @@ import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
 import PBTvComponent from './routes/PB-Tv-component';
 import PBzineComponent from './routes/PB-zine-component';
+import HandleMedia from './routes/HandleMedia';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -62,137 +63,137 @@ function App() {
               </>
             } />
           <Route path="/pbevents" element={
-              <>
-                <PBevents/>
-                <Footer />
-              </>
-            } />
+            <>
+              <PBevents />
+              <Footer />
+            </>
+          } />
           <Route path="/tv" element={
-              <>
-                <PBTv />
-                <Footer />
-              </>
-            } />
-            <Route path="/pbtv/:vidTitle" element={
-              <>
-                <PBTvComponent/>
-                <Footer />
-              </>
-            } />
+            <>
+              <PBTv />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbtv/:vidTitle" element={
+            <>
+              <PBTvComponent />
+              <Footer />
+            </>
+          } />
           <Route path="/pbmall" element={
-              <>
-                <PBmall />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBmall />
+              <Footer />
+            </>
+          } />
           <Route path="/radio" element={
-              <>
-                <PBradio />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBradio />
+              <Footer />
+            </>
+          } />
           <Route path="/zine" element={
-              <>
-                <PBzine />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBzine />
+              <Footer />
+            </>
+          } />
           <Route path='/zine/:zineTitle' element={
             <>
-              <PBzineComponent/>
-              <Footer/>
+              <PBzineComponent />
+              <Footer />
             </>
           } />
           <Route path="/gaming" element={
-              <>
-                <PBgaming />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBgaming />
+              <Footer />
+            </>
+          } />
           <Route path="/pbdigital" element={
-              <>
-                <PBdigital />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBdigital />
+              <Footer />
+            </>
+          } />
           <Route path="/pbfashion" element={
-              <>
-                <PBfashion />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBfashion />
+              <Footer />
+            </>
+          } />
           <Route path="/pbmusic" element={
-              <>
-                <PBmusic />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBmusic />
+              <Footer />
+            </>
+          } />
           <Route path="/pbcommunities" element={
-              <>
-                <PBcommunuties />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBcommunuties />
+              <Footer />
+            </>
+          } />
           <Route path="/pbsocial" element={
-              <>
-                <PBsocial />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBsocial />
+              <Footer />
+            </>
+          } />
           <Route path="/defendersofhiphop" element={
-              <>
-                <DefendersOfHipHop />
-                <Footer />
-              </>
-            } />
+            <>
+              <DefendersOfHipHop />
+              <Footer />
+            </>
+          } />
           <Route path="/about" element={
-              <>
-                <About />
-                <Footer />
-              </>
-            } />
+            <>
+              <About />
+              <Footer />
+            </>
+          } />
           <Route path="/subscribe" element={
-              <>
-                <Subscribe/>
-                <Footer />
-              </>
-            } />
+            <>
+              <Subscribe />
+              <Footer />
+            </>
+          } />
           <Route path="/faq" element={
-              <>
-                <FAQ/>
-                <Footer />
-              </>
-            } />
+            <>
+              <FAQ />
+              <Footer />
+            </>
+          } />
           <Route path="/contactus" element={
-              <>
-                <ContactUs />
-                <Footer />
-              </>
-            } />
-           <Route path="/copyright" element={
-              <>
-                <CopyRight />
-                <Footer />
-              </>
-            } />
-             <Route path="/privacy-policy" element={
-              <>
-                <PrivacyPolicy />
-                <Footer />
-              </>
-            } />
-             <Route path="/terms-of-service" element={
-              <>
-                <TermsService />
-                <Footer />
-              </>
-            } />
-              <Route path="/restrictions" element={
-              <>
-                <Restrictions />
-                <Footer />
-              </>
-            } />
+            <>
+              <ContactUs />
+              <Footer />
+            </>
+          } />
+          <Route path="/copyright" element={
+            <>
+              <CopyRight />
+              <Footer />
+            </>
+          } />
+          <Route path="/privacy-policy" element={
+            <>
+              <PrivacyPolicy />
+              <Footer />
+            </>
+          } />
+          <Route path="/terms-of-service" element={
+            <>
+              <TermsService />
+              <Footer />
+            </>
+          } />
+          <Route path="/restrictions" element={
+            <>
+              <Restrictions />
+              <Footer />
+            </>
+          } />
 
           {/**Pages that don't need a footer */}
           <Route path="/login" element={<Login />} />
@@ -203,8 +204,9 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/upload" element={<UploadMedia />} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="/stripe/:param" element={<Stripe></Stripe>}/>
-          
+          <Route path="/stripe/:param" element={<Stripe></Stripe>} />
+          <Route path="/handlemedia" element={<HandleMedia />} />
+
         </Routes>
       </BrowserRouter>
     </>
