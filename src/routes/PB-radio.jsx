@@ -37,8 +37,8 @@ function PBradio() {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
-        prevArrow: <CustomPrevArrow />,
-        nextArrow: <CustomNextArrow />,
+        // prevArrow: <CustomPrevArrow />,
+        // nextArrow: <CustomNextArrow />,
     };
 
 

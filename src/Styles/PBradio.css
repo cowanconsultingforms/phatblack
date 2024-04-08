@@ -1,7 +1,7 @@
 .pbradio-page {
     position: relative;
-    left: 5%;
-    width: 95%;
+    left: 60px;
+    width: calc(100% - 60px);
 }
 
 .radio-head {
@@ -26,24 +26,19 @@
 @media screen and (max-width: 940px){
 
     .pbradio-page {
-        left: 5%;
-        width: 95%;
+        left: 40px;
+        width: calc(100% - 40px);
     }
   }
   
   @media screen and (max-width: 500px) {
     .pbradio-page {
-        left: 13%;
-        width: 87%;
+        left: 30px;
+        width: calc(100% - 30px);
     }
   }
   
   @media screen and (max-width: 400px) {
-  
-    .pbradio-page {
-        left: 15%;
-        width: 86%;
-    }
   }
 .radio-head {
     display: flex;

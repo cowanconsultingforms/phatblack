@@ -16,8 +16,8 @@
   padding-top: 100px;
   overflow-x: hidden;
   position: relative;
-  left: 5%;
-  width: 95%;
+  left: 60px;
+  width: calc(100% - 60px);
 }
 
 .news-pictures::before { /* This is the border above the images */
@@ -92,24 +92,23 @@
 }
 
 @media screen and (max-width: 940px){
-
-  .background-page {
-      left: 5%;
-      width: 95%;
-  }
+    .background-page{
+      left: 40px;
+      width: calc(100% - 40px);
+    }
 }
 
 @media screen and (max-width: 500px) {
   .background-page {
-      left: 13%;
-      width: 87%;
+      left: 30px;
+      width: calc(100% - 30px);
   }
 }
 
 @media screen and (max-width: 400px) {
 
-  .background-page {
+  /* .background-page {
       left: 15%;
       width: 86%;
-  }
+  } */
 }

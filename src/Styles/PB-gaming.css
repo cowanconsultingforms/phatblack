@@ -5,13 +5,13 @@
 }
 
 .GamingMainContainer {
+    margin-top: 10px;
     position: relative;
     display: flex;
-    height: 86vh;
     align-content: center;
     text-align: center;
-    left: 10vh;
-    width: 210vh;
+    left: 60px;
+    width: calc(100% - 60px);
 }
 
 .GamingSidebar {
@@ -142,7 +142,7 @@
 
     .sidebar-toggle {
         right: 10px;
-        z-index: 999;
+        z-index: 3;
     }
 
     .GamingContainer {
@@ -169,8 +169,8 @@
 @media screen and (max-width: 940px){
 
     .GamingMainContainer {
-        left: 5%;
-        width: 95%;
+        left: 40px;
+        width: calc(100% - 40px);
     }
     .GamingSidebar.open {
         left: 7vh;
@@ -179,8 +179,8 @@
   
 @media screen and (max-width: 500px) {
     .GamingMainContainer {
-        left: 13%;
-        width: 87%;
+        left: 30px;
+        width: calc(100% - 30px);
     }
     .GamingSidebar.open {
         left: 7vh;
