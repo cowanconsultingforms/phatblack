@@ -3,6 +3,7 @@ import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updatePasswor
 import { doc, getFirestore, getDoc, updateDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from "../firebaseConfig";
 import "../Styles/UserProfile.css";
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile() {
     const [formData, setFormData] = useState(() => {
@@ -11,12 +12,16 @@ function UserProfile() {
             username: "",
             role: "",
             email: "",
+            subscriptionId: "",
+            paymentId: "",
         };
     });
     const [authPassword, setAuthPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [currentUser, setCurrentUser] = useState(formData.username);
+    const [userId, setUserId] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const auth = getAuth();
@@ -24,6 +29,7 @@ function UserProfile() {
         if (user) {
             const db = getFirestore();
             const userDocRef = doc(db, 'users', user.uid);
+            setUserId(user.uid);
             //setCurrentUser(formData.username);
             getDoc(userDocRef)
                 .then((docSnapshot) => {
@@ -31,6 +37,7 @@ function UserProfile() {
                         const userData = docSnapshot.data();
                         setFormData(userData);
                         localStorage.setItem('formData', JSON.stringify(userData));
+                        console.log(formData);
                     }
                 })
                 .catch((error) => {
@@ -38,6 +45,41 @@ function UserProfile() {
                 });
         }
     }, []);
+
+    const subscriptionCancellationUrl = import.meta.env.VITE_APP_SUBSCRIPTION_CANCELLATION_URL;
+
+    //handle cancelling subscription
+    async function cancelSubscription(event) {
+        event.preventDefault();
+        //post request to backend for cancellation
+        try {
+            const response = await fetch(
+                subscriptionCancellationUrl,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ user: userId, subId: formData.subscriptionId, payId: formData.paymentId }),
+                }
+            );
+
+            const data = await response.json();
+            if (response.ok) {
+                console.log("Cancelled Successfuly", data);
+                alert('Cancelled Successfuly');
+                setTimeout(()=>{
+                    navigate("/");
+                },3000);
+            } else {
+                console.error("Failed to cancel", data);
+                alert(data.error || 'Failed to cancel');
+            }
+        } catch (error) {
+            console.error("Error cancelling subscription:", error);
+            alert('Error cancelling subscription');
+        } 
+    }
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -174,6 +216,7 @@ function UserProfile() {
                     />
                     <button type="submit">Update </button>
                 </form>
+                <button style={{backgroundColor: "#d35400"}} type="submit" onClick={cancelSubscription}> Cancel Subscription </button>
             </div>
         </div>
     );
