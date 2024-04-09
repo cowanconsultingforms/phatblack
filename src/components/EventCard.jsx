@@ -7,7 +7,7 @@ function EventCard({ title, imgSrc }) {
     <div className="event-card">
         {/**Event details below**/}
         <h1>{title}</h1>
-        <Link to={"/event-details"}>
+        <Link to={`/pbevent/${title}`}>
             <img src={imgSrc}></img>
         </Link>
         

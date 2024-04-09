@@ -36,6 +36,7 @@ import Restrictions from './routes/Restrictions';
 import PBTvComponent from './routes/PB-Tv-component';
 import PBzineComponent from './routes/PB-zine-component';
 import HandleMedia from './routes/HandleMedia';
+import PBEventComponent from './routes/PB-Event-component';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -68,7 +69,13 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/tv" element={
+          <Route path="/pbevent/:eventTitle" element={
+            <>
+              <PBEventComponent />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbtv" element={
             <>
               <PBTv />
               <Footer />
