@@ -137,7 +137,7 @@ function PBzineComponent() {
                             {zineDetails.url.endsWith('.pdf') ? (
                                 <iframe src={zineDetails.url} title={zineDetails.title} width="100%" height="300px" />
                             ) : (
-                                <img src={zineDetails.url} alt={zineDetails.title} />
+                                <img src={zineDetails.url} alt={zineDetails.title} width="80%" />
                             )}
                         </div>
 
