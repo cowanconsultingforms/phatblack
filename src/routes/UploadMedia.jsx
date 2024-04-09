@@ -82,8 +82,11 @@ function UploadMedia() {
             }
 
             setLoading(true);
-            const fileRef = ref(storage, `media/${new Date().getTime()}_${uploadFile.name}`);
-            const uploadTask = uploadBytesResumable(fileRef, uploadFile); // Use uploadFile here as well
+            setError('');
+
+            const mediaPath = `${mediaType}/${uploadFile.name}`;
+            const fileRef = ref(storage, `${mediaPath}`);
+            const uploadTask = uploadBytesResumable(fileRef, uploadFile);
 
             uploadTask.on(
                 'state_changed',
