@@ -39,7 +39,7 @@
     text-decoration: underline;
 }
 
-.delete-btn {
+.media-btn {
     padding: 8px 16px;
     border-radius: 4px;
     border: none;
@@ -54,13 +54,13 @@
     gap: 8px;
 }
 
-.delete-btn:hover {
+.media-btn:hover {
     background-color: #ffa646;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 768px) {
-    .delete-btn {
+    .media-btn {
         padding: 6px 12px;
         font-size: 0.8em;
     }
