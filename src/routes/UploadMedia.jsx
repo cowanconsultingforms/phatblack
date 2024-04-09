@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db, storage } from '../firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-// import loadImage from 'blueimp-load-image';
+import Compressor from 'compressorjs';
 import '../Styles/UploadMedia.css';
 
 function UploadMedia() {
@@ -21,7 +21,7 @@ function UploadMedia() {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [uploadTask, setUploadTask] = useState(null); // State to manage the upload task
+    const [uploadTask, setUploadTask] = useState(null);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -38,8 +38,25 @@ function UploadMedia() {
         return () => unsubscribe();
     }, [navigate, auth]);
 
+    const imageCompress = (file) => {
+        return new Promise((resolve, reject) => {
+            new Compressor(file, {
+                quality: 0.4,
+                maxWidth: 1920,
+                maxHeight: 1080,
+                success: (compressedResult) => {
+                    resolve(compressedResult);
+                },
+                error: (err) => {
+                    reject(err);
+                },
+            });
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (!file || !title || !expectedFileType) {
             setError('Please fill all required fields, select a file, and specify the file type.');
             return;
@@ -50,33 +67,43 @@ function UploadMedia() {
             return;
         }
 
-        if (file.size > 5 * 1024 * 1024) {
-            setError('The file size should not exceed 5MB.');
-            return;
-        }
+        let uploadFile = file;
 
-        setLoading(true);
-        const fileRef = ref(storage, `media/${file.name}`);
-        const currentUploadTask = uploadBytesResumable(fileRef, file);
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
-        setUploadTask(currentUploadTask);
+        try {
+            if (imageExtensions.includes(fileExtension) && file.size > 5 * 1024 * 1024) {
+                const compressedFile = await imageCompress(file);
+                uploadFile = compressedFile;
+            } else if (file.size > 5 * 1024 * 1024) {
+                setError('The file size should not exceed 5MB.');
+                return;
+            }
 
-        currentUploadTask.on('state_changed',
-            null,
-            error => {
-                setError(`Upload failed: ${error.message}`);
-                setLoading(false);
-            },
-            async () => {
-                try {
-                    const url = await getDownloadURL(currentUploadTask.snapshot.ref);
+            setLoading(true);
+            const fileRef = ref(storage, `media/${new Date().getTime()}_${uploadFile.name}`);
+            const uploadTask = uploadBytesResumable(fileRef, uploadFile); // Use uploadFile here as well
+
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    setError(`Upload failed: ${error.message}`);
+                    setLoading(false);
+                },
+                async () => {
+                    const url = await getDownloadURL(uploadTask.snapshot.ref);
                     await setDoc(doc(db, mediaType, title), {
                         mediaType,
                         title,
                         description,
                         vendor,
                         url,
-                        fileName: file.name, // This is the original file name
+                        fileName: uploadFile.name,
                         subscriptionType,
                         keywords: [],
                         views: 0,
@@ -85,23 +112,21 @@ function UploadMedia() {
                         time_uploaded: new Date(),
                     });
 
-                    await setDoc(doc(db, 'searchData', title.toLowerCase()),
-                        {
-                            mediaType,
-                            title: title.toLowerCase(),
-                            path: `${mediaType}/${title}`,
-                        })
+                    await setDoc(doc(db, 'searchData', title.toLowerCase()), {
+                        mediaType,
+                        title: title.toLowerCase(),
+                        path: `${mediaType}/${title}`,
+                    });
 
                     alert('Media uploaded successfully!');
                     resetForm();
-                } catch (uploadError) {
-                    setError(`Upload failed: ${uploadError.message}`);
-                } finally {
-                    setLoading(false);
-                    setUploadTask(null);
                 }
-            }
-        );
+            );
+        } catch (error) {
+            setError(`Error: ${error.message}`);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const cancelUpload = () => {
