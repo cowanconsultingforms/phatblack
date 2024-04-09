@@ -7,6 +7,7 @@ import '../Styles/Search.css';
 import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { FaFilter } from 'react-icons/fa';
+import FilterTabs from './FilterTabs';
 
 
 const Search = () => {
@@ -49,6 +50,9 @@ const Search = () => {
         const fetchSuggestions = async () => {
           try {
             let suggestionRef;
+            if (filterSearch === 'all') {
+              suggestionRef = collection (db, 'searchData')
+            } else {
             switch(filterSearch) {
 
               case "pb-tv":
@@ -98,6 +102,7 @@ const Search = () => {
 
               default:
                 suggestionRef = collection(db, "searchData");
+            }
             }
 
             const suggestionQuery = query(suggestionRef, limit(10));
@@ -155,6 +160,10 @@ const Search = () => {
       setTimeout(setShowFilterForm(false), 100);
     }
 
+    const handleFilterChange = (filtervalue) => {
+      setFilterSearch(filtervalue);
+    }
+
 
   return (
       <form className={searchContainerStyling} onSubmit={handleSearch}>
@@ -167,29 +176,30 @@ const Search = () => {
             placeholder="Search PhatBlack-Premium..."
             value={searchTerm}
             onChange={(e) => {
-          setSearchTerm(e.target.value)
-          setShowDropdown(true)
-          }}
+              setSearchTerm(e.target.value)
+              setShowDropdown(true)
+            }}
             onFocus={() => {
               setShowDropdown(true);
               setIsFocused(true);
               }}
             onBlur={() => {
-              setTimeout(() => { setShowDropdown(false) }, 200);
-              setTimeout(() => { setIsFocused(false)},200);
+              setTimeout(() => { setIsFocused(false);},200);
               }}
             className={searchInputStyling}
           />
-          {searchTerm === "" ? null : (
             <AiOutlineClose className={`clear ${isFocused ? "visible" : "invisible" }`} onClick={()=>{
-            setSearchTerm("");
+            setSearchTerm(""); setShowDropdown(false);
             }}/>
-          )}
           <button className={searchButtonStyling} onClick= {handleSearchExpansion}>
             <FaSearch className="faSearch" />
           </button>
           {showDropdown && (
             <div className="suggestion-dropdown">
+               <FilterTabs
+                onFilterChange={handleFilterChange}
+                visible={showDropdown}
+              />
               {suggestions
                 .filter((suggestion) =>
                   suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -207,7 +217,7 @@ const Search = () => {
               {suggestions.filter((suggestion) =>
                 suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
               ).length === 0 && searchTerm.length > 0 && (
-                <div className="suggestion-dropdown-item">{setShowDropdown(false)}</div>
+                <div className="suggestion-dropdown-item">No Results Found</div>
               )}
             </div>
           )}
