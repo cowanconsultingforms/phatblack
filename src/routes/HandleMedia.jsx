@@ -50,8 +50,12 @@ function HandleMedia() {
             const mediaPath = docSnapshot.data().path;
             if (mediaPath) {
                 const [collectionName, documentId] = mediaPath.split('/');
-                const mediaDocRef = doc(db, collectionName, documentId);
-                mediaFetchPromises.push(getDoc(mediaDocRef));
+                if (collectionName && documentId) {
+                    const mediaDocRef = doc(db, collectionName, documentId);
+                    mediaFetchPromises.push(getDoc(mediaDocRef));
+                } else {
+                    console.warn("Incomplete media path:", mediaPath);
+                }
             }
         });
 
@@ -70,6 +74,7 @@ function HandleMedia() {
 
         setMedia(mediaList);
     };
+
 
 
     const deleteMedia = async (mediaItem) => {
