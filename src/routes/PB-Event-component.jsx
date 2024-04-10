@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { getFirestore, doc, updateDoc, increment, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import "../Styles/PBzineComponent.css";
+import "../Styles/PBEventsComponent.css";
 
-function PBzineComponent() {
-    const { zineTitle } = useParams();
-    const [zineDetails, setZineDetails] = useState(null);
+function PBEventComponent () {
+    const { eventTitle } = useParams();
+    const [eventDetails, setEventDetails] = useState(null);
     const [userLiked, setUserLiked] = useState(false);
     const [userDisliked, setUserDisliked] = useState(false);
     const auth = getAuth();
     const user = auth.currentUser;
 
     useEffect(() => {
-        const fetchZineDetails = async () => {
+        const fetchEventDetails = async () => {
             try {
-                if (zineTitle) {
+                if (eventTitle) {
                     const db = getFirestore();
-                    const docRef = doc(db, "e-zine", zineTitle);
+                    const docRef = doc(db, "pb-event", eventTitle);
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
-                        setZineDetails(docSnap.data());
+                        setEventDetails(docSnap.data());
                         if (user) {
                             const userDocRef = doc(db, 'users', user.uid);
                             const userDocSnap = await getDoc(userDocRef);
                             if (userDocSnap.exists()) {
                                 const userData = userDocSnap.data();
-                                if (userData && userData.likes && userData.likes.includes(zineTitle)) {
+                                if (userData && userData.likes && userData.likes.includes(eventTitle)) {
                                     setUserLiked(true);
                                 }
-                                if (userData && userData.dislikes && userData.dislikes.includes(zineTitle)) {
+                                if (userData && userData.dislikes && userData.dislikes.includes(eventTitle)) {
                                     setUserDisliked(true);
                                 }
                             } else {
@@ -41,38 +41,37 @@ function PBzineComponent() {
                         console.log("No such document!");
                     }
                 } else {
-                    console.log("zineTitle is undefined or empty.");
+                    console.log("eventTitle is undefined or empty.");
                 }
             } catch (error) {
-                console.error("Error fetching zine details:", error);
+                console.error("Error fetching event details:", error);
             }
         };
+    
+        fetchEventDetails();
+    }, [eventTitle, user]);
 
-        fetchZineDetails();
-    }, [zineTitle, user]);
-
-    console.log(zineDetails);
     const handleLikeClick = async () => {
         try {
             if (!user) {
-                alert("Please sign in to like videos.");
+                alert("Please sign in to like events.");
                 return;
             }
             const db = getFirestore();
-            const zineDocDef = doc(db, "e-zine", zineTitle);
+            const eventDocRef = doc(db, "pb-event", eventTitle);
             if (userLiked) {
-                await updateDoc(zineDocDef, {
+                await updateDoc(eventDocRef, {
                     likes: increment(-1),
                     likesBy: arrayRemove(user.uid)
                 });
             } else {
-                await updateDoc(zineDocDef, {
+                await updateDoc(eventDocRef, {
                     likes: increment(1),
                     likesBy: arrayUnion(user.uid)
                 });
             }
             setUserLiked(prevState => !prevState);
-            setUserDisliked(false); // Reset dislike status when user likes 
+            setUserDisliked(false); // Reset dislike status when user likes the event
         } catch (error) {
             console.error("Error updating like count:", error);
         }
@@ -81,24 +80,24 @@ function PBzineComponent() {
     const handleDislikeClick = async () => {
         try {
             if (!user) {
-                alert("Please sign in to dislike videos.");
+                alert("Please sign in to dislike events.");
                 return;
             }
             const db = getFirestore();
-            const zineDocDef = doc(db, "e-zine", zineTitle);
+            const eventDocRef = doc(db, "pb-event", eventTitle);
             if (userDisliked) {
-                await updateDoc(zineDocDef, {
+                await updateDoc(eventDocRef, {
                     dislikes: increment(-1),
                     dislikesBy: arrayRemove(user.uid)
                 });
             } else {
-                await updateDoc(zineDocDef, {
+                await updateDoc(eventDocRef, {
                     dislikes: increment(1),
                     dislikesBy: arrayUnion(user.uid)
                 });
             }
             setUserDisliked(prevState => !prevState);
-            setUserLiked(false); // Reset like status when user dislikes the video
+            setUserLiked(false); // Reset like status when user dislikes the event
         } catch (error) {
             console.error("Error updating dislike count:", error);
         }
@@ -124,40 +123,30 @@ function PBzineComponent() {
     }
 
     return (
-        <div className="zine-container">
-            {zineDetails && (
+        <div className="event-container">
+            {eventDetails && (
                 <div>
-                    <div className="zine-details-container">
-                        <div className="zine-head">
-                            <h1>{zineDetails.title}</h1>
-                            <h3>By: {zineDetails.vendor}</h3>
+                    <div className="event-component-head">
+                            <h1>{eventDetails.title}</h1>
+                            <h3>By: {eventDetails.vendor}</h3>
                         </div>
+                    <img src={eventDetails.url} />
 
-                        <div className="zine-media-container">
-                            {zineDetails.url.endsWith('.pdf') ? (
-                                <iframe src={zineDetails.url} title={zineDetails.title} width="100%" height="300px" />
-                            ) : (
-                                <img src={zineDetails.url} alt={zineDetails.title} width="80%" />
-                            )}
-                        </div>
-
-
-                        <div className="zine-info">
-                            <div>
-                                <p>{zineDetails.views} Views</p>
-                                <p>{timeSince(new Date(zineDetails.time_uploaded.toDate()))}</p>
-                            </div>
-
-                            <div className="zine-like-dislike">
+                    <div className="event-details-container">
+                        <div className="event-info">
+                            <p>{eventDetails.views} Views</p>
+                            <div className="event-like-dislike">
                                 <AiOutlineLike onClick={handleLikeClick} color={userLiked ? "blue" : "gray"} />
-                                <p>{zineDetails.likes}</p>
+                                <p>{eventDetails.likes}</p>
                                 <AiOutlineDislike onClick={handleDislikeClick} color={userDisliked ? "red" : "gray"} />
-                                <p>{zineDetails.dislikes}</p>
+                                <p>{eventDetails.dislikes}</p>
                             </div>
                         </div>
 
-                        <div className="zine-description">
-                            <p>{zineDetails.description}</p>
+                        <div className="event-description">
+                            
+                            <p>{timeSince(new Date(eventDetails.time_uploaded.toDate()))}</p>
+                            <p>{eventDetails.description}</p>
                         </div>
                     </div>
                 </div>
@@ -166,4 +155,4 @@ function PBzineComponent() {
     );
 }
 
-export default PBzineComponent;
+export default PBEventComponent; 
