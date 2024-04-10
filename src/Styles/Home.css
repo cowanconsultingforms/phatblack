@@ -177,7 +177,7 @@ body{
     }
 
     .backgroundImage {
-        width: 95%;
+        width: 100vw;
     }
 
     .video-cards{
@@ -197,7 +197,7 @@ body{
         width: calc(100% - 30px);
     }
     .backgroundImage {
-        width: 95%;
+        width: 100vw;
     }
     .homeButton {
         margin: 130px;
@@ -210,7 +210,7 @@ body{
         margin: 110px;
     }
     .backgroundImage {
-        width: 79%;
-        top: 26%;
+        width: 100vw;
+        top: 23%;
     }
 }

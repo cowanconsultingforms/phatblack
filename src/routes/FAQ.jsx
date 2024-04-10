@@ -55,9 +55,9 @@ const FAQ = () => {
             <div className="faq-footer">
                 <h3>Can't find an answer? <Link className="faq-header" to="/contactus">Contact Us</Link></h3>
                 <h3><Link className="faq-header" to="https://phatblack.com/WP/restrictions/">RESTRICTIONS</Link></h3>
-                <h3><Link className="faq-header" to="/terms-of-service">TERMS OF SERVICE</Link></h3>
-                <h3><Link className="faq-header" to="/copyright">COPYRIGHT</Link></h3>
-                <h3><Link className="faq-header" to="/privacy-policy">PRIVACY POLICY</Link></h3>
+                <h3><Link className="faq-header" to="https://phatblack.com/WP/terms-of-service/">TERMS OF SERVICE</Link></h3>
+                <h3><Link className="faq-header" to="https://phatblack.com/WP/copyright/">COPYRIGHT</Link></h3>
+                <h3><Link className="faq-header" to="https://phatblack.com/WP/privacy-policy/">PRIVACY POLICY</Link></h3>
             </div>
         </div>
     );

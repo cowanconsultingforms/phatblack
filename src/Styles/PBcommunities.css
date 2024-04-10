@@ -1,0 +1,81 @@
+.Teaching-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+    border-bottom: 2px solid white; /* Add a border to the bottom */
+    border-top: 2px solid white; /* Add a border to the bottom */
+
+}
+
+.header-container {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+.page-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+
+ .PBcommunitiesCard{
+    width: 500px; 
+    margin: 30px 10px 10px 100px; /* top, right, bottom, left */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.PBcommunitiesCard img {
+    max-width: 100%;
+    width: 500px;
+    height: auto;
+
+}
+
+ .PBcommunitiesCard p{
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+ .PBcommunitiesCard h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.PBcommunitiesCard:hover {
+    transform: scale(1.05); /* This will slightly enlarge the card */
+    transition: transform 0.3s ease-in-out; /* This will animate the transformation */
+}
+
+.scholarship-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+}
+
+.page-header2 {
+    margin-top: 50px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.service-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.page-header3{
+    margin-top: 50px;
+    font-size: 36px;
+    font-weight: bold;
+}
