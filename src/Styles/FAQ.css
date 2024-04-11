@@ -5,7 +5,6 @@
 .faq-container {
   display: flex; 
   flex-direction: column;
-  margin-left: 8%;
 }
 
 .faq-layout{
@@ -14,9 +13,11 @@
 }
 
 .faq-grid {
+  background-color: #CA883B;
+  height: 100vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-  grid-gap: 10px;
+  grid-gap: 30px;
   list-style-type: none;
   padding: 10px;
 }
@@ -24,6 +25,10 @@
 .faq-grid li {
   text-align: center;
   margin: 5px;
+}
+
+.topic{
+  margin-top: 50px;
 }
 
 .faq-navbar ul li a {
@@ -38,8 +43,23 @@
 .topic-head {
   color: #CA883B;
 }
-.question {
+.questionDiv {
   margin-top: 10px;
+}
+
+.question{
+  cursor: pointer;
+}
+
+.answerNotShown{
+  height: 0;
+  overflow: hidden;
+  transition: height 1s ease; /* Transition for smooth sliding */
+}
+
+.answerShown{
+  height: 200px;
+  transition: height 1s ease;
 }
 
 .faq-footer{

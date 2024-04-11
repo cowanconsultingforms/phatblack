@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Questions } from "./Questions";
 import { Link } from "react-router-dom";
 import "../Styles/FAQ.css";
 
 const FAQ = () => {
-    const [selectedTopic, setSelectedTopic] = useState(null);
+    const [selectedQuestions, setSelectedQuestions] = useState({});
 
     const handleTopicClick = (e, topic) => {
         e.preventDefault();
@@ -19,7 +19,14 @@ const FAQ = () => {
             });
         }
     };
-    
+
+    const handleQuestionClicked = (topicIndex, questionIndex) => {
+        setSelectedQuestions(prevState => {
+            const newSelectedQuestions = { ...prevState };
+            newSelectedQuestions[topicIndex] = questionIndex === newSelectedQuestions[topicIndex] ? null : questionIndex;
+            return newSelectedQuestions;
+        });
+    };
 
     return (
         <div className="faq-page">
@@ -34,18 +41,21 @@ const FAQ = () => {
                                 </a>
                             </li>
                         ))}
-
                     </ul>
                 </nav>
                 <div className="faq-container">
-                    {Questions.map((topic, index) => (
-                        <div key={index} className="topic" id={topic.topic}>
+                    {Questions.map((topic, topicIndex) => (
+                        <div key={topicIndex} className="topic" id={topic.topic}>
                             <h2 className="topic-head">{topic.topic}</h2>
                             <div className="questions">
-                                {topic.questions.map((question, qIndex) => (
-                                    <div key={qIndex} className="question">
-                                        <h3>Question: {question.question}</h3>
-                                        <p>Answer: {question.answer}</p>
+                                {topic.questions.map((question, questionIndex) => (
+                                    <div key={questionIndex} className="questionDiv">
+                                        <h3 className="question" onClick={() => handleQuestionClicked(topicIndex, questionIndex)}>
+                                            {selectedQuestions[topicIndex] === questionIndex ? '▼' : '►'}{question.question}
+                                        </h3>
+                                        <p className={selectedQuestions[topicIndex] === questionIndex ? "answerShown" : "answerNotShown"}>
+                                            Answer: {question.answer}
+                                        </p>
                                     </div>
                                 ))}
                             </div>
@@ -55,10 +65,10 @@ const FAQ = () => {
             </div>
             <div className="faq-footer">
                 <h3>Can't find an answer? <Link className="faq-header contact" to="/contactus">Contact Us</Link></h3>
-                <h3>What are your restrictions? <br></br><Link className="faq-header" to="https://phatblack.com/WP/restrictions/">SEE RESTRICTIONS</Link></h3>
-                <h3>What are your terms of service? <br></br><Link className="faq-header" to="https://phatblack.com/WP/terms-of-service/">SEE TERMS OF SERVICE</Link></h3>
-                <h3>What are your copyright rules? <br></br><Link className="faq-header" to="https://phatblack.com/WP/copyright/">SEE COPYRIGHT</Link></h3>
-                <h3>What is your privacy policy? <br></br><Link className="faq-header" to="https://phatblack.com/WP/privacy-policy/">SEE PRIVACY POLICY</Link></h3>
+                <h3>What are your restrictions? <br /><Link className="faq-header" to="https://phatblack.com/WP/restrictions/">SEE RESTRICTIONS</Link></h3>
+                <h3>What are your terms of service? <br /><Link className="faq-header" to="https://phatblack.com/WP/terms-of-service/">SEE TERMS OF SERVICE</Link></h3>
+                <h3>What are your copyright rules? <br /><Link className="faq-header" to="https://phatblack.com/WP/copyright/">SEE COPYRIGHT</Link></h3>
+                <h3>What is your privacy policy? <br /><Link className="faq-header" to="https://phatblack.com/WP/privacy-policy/">SEE PRIVACY POLICY</Link></h3>
             </div>
         </div>
     );
