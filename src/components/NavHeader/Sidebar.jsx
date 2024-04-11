@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { menuItemsData } from './menuItemsData';
 import './Sidebar.css';
@@ -26,7 +26,25 @@ import PBPremiumLogo from "../../assets/PHATBLACK.png"
 function Sidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+  const sidebarRef = useRef(null);
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+  }
+
+  const handleOutsideClick = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)){
+      setSidebar(false);
+    } else {
+      setSidebar(true);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick)
+    };
+  },[]);
 
   useEffect(() => {
     setIsAuthenticated(!!sessionStorage.getItem("accessToken"));
@@ -100,8 +118,8 @@ function Sidebar() {
             </div>
         </div>
 
-        <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <div className='SidebarIconsv2'>
+        <div className={sidebar ? 'nav-menu active' : 'nav-menu'} ref={sidebarRef}>
+          <div className='SidebarIconsv2'> 
             <Link to='#' className='close'>
               <AiOutlineClose onClick={showSidebar} />
             </Link>
