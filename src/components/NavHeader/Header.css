@@ -398,7 +398,7 @@ header {
 
     .nav-area {
       top: 10px;
-      overflow: hidden;
+      overflow:hidden;
     }
     
     .desktop-nav {
