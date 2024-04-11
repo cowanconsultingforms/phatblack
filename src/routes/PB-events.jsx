@@ -52,10 +52,10 @@ function PBevents() {
                 <h1 className="sub-header">Upcoming</h1>
                 <div className="events">
                     {/**TEST IMAGES */}
-                    <EventCard title='Neon Night' imgSrc={neonDj} />
-                    <EventCard title='Book club' imgSrc={recordStore} />
-                    <EventCard title='Underground DJ' imgSrc={pioneerDj} />
-                    <EventCard title='Bar Karaoke' imgSrc={bar} />
+                    <EventCard title='neon night' imgSrc={neonDj} />
+                    <EventCard title='book club' imgSrc={recordStore} />
+                    <EventCard title='underground dj' imgSrc={pioneerDj} />
+                    <EventCard title='bar karaoke' imgSrc={bar} />
                 </div>
             </div>
 
@@ -63,10 +63,10 @@ function PBevents() {
                 <h1 className="sub-header">Popular Near You </h1>
                 <div className="events">
                     {/**TEST IMAGES */}
-                    <EventCard title='Hip Hop Night' imgSrc={nightDj} />
-                    <EventCard title='Jazz Concert' imgSrc={concertHall} />
-                    <EventCard title='Dj Set' imgSrc={mixer} />
-                    <EventCard title='The Ensemble' imgSrc={bandInstruments} />                </div>
+                    <EventCard title='hip hop night' imgSrc={nightDj} />
+                    <EventCard title='jazz concert' imgSrc={concertHall} />
+                    <EventCard title='dj set' imgSrc={mixer} />
+                    <EventCard title='the ensemble' imgSrc={bandInstruments} />                </div>
             </div>
         </div>
     );
