@@ -8,7 +8,7 @@ import "../Styles/ComponentPages.css";
 
 function ComponentPage({ collection }) {
     const { title } = useParams();
-    const [eventDetails, setEventDetails] = useState(null);
+    const [data, setdata] = useState(null);
     const [userLiked, setUserLiked] = useState(false);
     const [userDisliked, setUserDisliked] = useState(false);
     const auth = getAuth();
@@ -17,14 +17,14 @@ function ComponentPage({ collection }) {
     const [userRole, setUserRole] = useState('');
 
     useEffect(() => {
-        const fetchEventDetails = async () => {
+        const fetchdata = async () => {
             try {
                 if (title) {
                     const db = getFirestore();
                     const docRef = doc(db, collection, title);
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
-                        setEventDetails(docSnap.data());
+                        setdata(docSnap.data());
                         if (user) {
                             const userDocRef = doc(db, 'users', user.uid);
                             const userDocSnap = await getDoc(userDocRef);
@@ -50,34 +50,34 @@ function ComponentPage({ collection }) {
                     console.log("title is undefined or empty.");
                 }
             } catch (error) {
-                console.error("Error fetching event details:", error);
+                console.error("Error fetching data details:", error);
             }
         };
 
-        fetchEventDetails();
+        fetchdata();
     }, [title, user]);
 
     const handleLikeClick = async () => {
         try {
             if (!user) {
-                alert("Please sign in to like events.");
+                alert("Please sign in to like datas.");
                 return;
             }
             const db = getFirestore();
-            const eventDocRef = doc(db, collection, title);
+            const dataDocRef = doc(db, collection, title);
             if (userLiked) {
-                await updateDoc(eventDocRef, {
+                await updateDoc(dataDocRef, {
                     likes: increment(-1),
                     likesBy: arrayRemove(user.uid)
                 });
             } else {
-                await updateDoc(eventDocRef, {
+                await updateDoc(dataDocRef, {
                     likes: increment(1),
                     likesBy: arrayUnion(user.uid)
                 });
             }
             setUserLiked(prevState => !prevState);
-            setUserDisliked(false); // Reset dislike status when user likes the event
+            setUserDisliked(false); // Reset dislike status when user likes the data
         } catch (error) {
             console.error("Error updating like count:", error);
         }
@@ -86,24 +86,24 @@ function ComponentPage({ collection }) {
     const handleDislikeClick = async () => {
         try {
             if (!user) {
-                alert("Please sign in to dislike events.");
+                alert("Please sign in to dislike datas.");
                 return;
             }
             const db = getFirestore();
-            const eventDocRef = doc(db, collection, title);
+            const dataDocRef = doc(db, collection, title);
             if (userDisliked) {
-                await updateDoc(eventDocRef, {
+                await updateDoc(dataDocRef, {
                     dislikes: increment(-1),
                     dislikesBy: arrayRemove(user.uid)
                 });
             } else {
-                await updateDoc(eventDocRef, {
+                await updateDoc(dataDocRef, {
                     dislikes: increment(1),
                     dislikesBy: arrayUnion(user.uid)
                 });
             }
             setUserDisliked(prevState => !prevState);
-            setUserLiked(false); // Reset like status when user dislikes the event
+            setUserLiked(false); // Reset like status when user dislikes the data
         } catch (error) {
             console.error("Error updating dislike count:", error);
         }
@@ -112,16 +112,16 @@ function ComponentPage({ collection }) {
     const handleDelete = async () => {
         try {
             const db = getFirestore();
-            const eventDocRef = doc(db, collection, title);
-            await deleteDoc(eventDocRef);
+            const dataDocRef = doc(db, collection, title);
+            await deleteDoc(dataDocRef);
 
             // Delete associated storage reference
             const storage = getStorage();
-            await deleteObject(ref(storage, eventDetails.url));
+            await deleteObject(ref(storage, data.url));
 
             // Redirect or perform any other action after deletion
         } catch (error) {
-            console.error("Error deleting event:", error);
+            console.error("Error deleting data:", error);
         }
     };
 
@@ -149,46 +149,46 @@ function ComponentPage({ collection }) {
             // Set the start time of the video to 0.2 seconds
             videoRef.current.currentTime = 0.2;
         }
-    }, [eventDetails]);
+    }, [data]);
 
 
     return (
-        <div className="event-container">
-            {eventDetails && (
+        <div className="data-container">
+            {data && (
                 <div>
-                    <div className="event-component-head">
-                        <h1>{eventDetails.title}</h1>
-                        <h3>By: {eventDetails.vendor}</h3>
+                    <div className="data-component-head">
+                        <h1>{data.title}</h1>
+                        <h3>By: {data.vendor}</h3>
                     </div>
                     {/**If collection is tv, show a video instead of img*/}
                     {
                         (collection === "pb-tv") && (
                             <video className="video-player" controls loop>
-                                <source src={eventDetails.url} type="video/mp4" />
+                                <source src={data.url} type="video/mp4" />
                             </video>
                         )
                     }
-                    {/**If collection is not tv or eventDetails is not available, show an image*/}
+                    {/**If collection is not tv or data is not available, show an image*/}
                     {
                         (collection !== "pb-tv") && (
-                            <img src={eventDetails.url} />
+                            <img src={data.url} />
                         )
                     }
 
-                    <div className="event-details-container">
-                        <div className="event-info">
-                            <p>{eventDetails.views} Views</p>
-                            <div className="event-like-dislike">
+                    <div className="data-details-container">
+                        <div className="data-info">
+                            <p>{data.views} Views</p>
+                            <div className="data-like-dislike">
                                 <AiOutlineLike onClick={handleLikeClick} color={userLiked ? "blue" : "gray"} />
-                                <p>{eventDetails.likes}</p>
+                                <p>{data.likes}</p>
                                 <AiOutlineDislike onClick={handleDislikeClick} color={userDisliked ? "red" : "gray"} />
-                                <p>{eventDetails.dislikes}</p>
+                                <p>{data.dislikes}</p>
                             </div>
                         </div>
 
-                        <div className="event-description">
-                            <p>{timeSince(new Date(eventDetails.time_uploaded.toDate()))}</p>
-                            <p>{eventDetails.description}</p>
+                        <div className="data-description">
+                            <p>{timeSince(new Date(data.time_uploaded.toDate()))}</p>
+                            <p>{data.description}</p>
                         </div>
                     </div>
 
