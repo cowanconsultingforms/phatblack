@@ -40,8 +40,19 @@ function UploadMedia() {
 
     const imageCompress = (file) => {
         return new Promise((resolve, reject) => {
+            let quality;
+            const fileSizeInMB = file.size / 1024 / 1024;
+
+            if (fileSizeInMB > 5) {
+                quality = 0.3;
+            } else if (fileSizeInMB > 1) {
+                quality = 0.5;
+            } else {
+                quality = 0.8;
+            }
+
             new Compressor(file, {
-                quality: 0.4,
+                quality: quality,
                 maxWidth: 1920,
                 maxHeight: 1080,
                 success: (compressedResult) => {
@@ -73,12 +84,9 @@ function UploadMedia() {
         const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
         try {
-            if (imageExtensions.includes(fileExtension) && file.size > 5 * 1024 * 1024) {
+            if (imageExtensions.includes(fileExtension)) {
                 const compressedFile = await imageCompress(file);
                 uploadFile = compressedFile;
-            } else if (file.size > 5 * 1024 * 1024) {
-                setError('The file size should not exceed 5MB.');
-                return;
             }
 
             setLoading(true);
