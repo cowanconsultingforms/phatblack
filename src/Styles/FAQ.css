@@ -8,8 +8,9 @@
   margin-left: 8%;
 }
 
-.faq-navbar h3 {
-  text-align: center;
+.faq-layout{
+  display: grid;
+  grid-template-columns: 0.25fr 0.75fr;
 }
 
 .faq-grid {
@@ -35,7 +36,7 @@
   margin-top: 10px ;
 }
 .topic-head {
-  text-decoration: underline;
+  color: #CA883B;
 }
 .question {
   margin-top: 10px;

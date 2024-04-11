@@ -24,33 +24,34 @@ const FAQ = () => {
     return (
         <div className="faq-page">
             <h1>Frequently Asked Questions</h1>
-            <nav className="faq-navbar">
-                <h3>Search by Topic</h3>
-                <ul className="faq-grid">
-                    {Questions.map((topic, index) => (
-                        <li key={index}>
-                            <a href={`#${topic.topic}`} onClick={(e) => handleTopicClick(e, topic)}>
-                                {topic.topic}
-                            </a>
-                        </li>
-                    ))}
+            <div className="faq-layout">
+                <nav className="faq-navbar">
+                    <ul className="faq-grid">
+                        {Questions.map((topic, index) => (
+                            <li key={index}>
+                                <a href={`#${topic.topic}`} onClick={(e) => handleTopicClick(e, topic)}>
+                                    {topic.topic}
+                                </a>
+                            </li>
+                        ))}
 
-                </ul>
-            </nav>
-            <div className="faq-container">
-                {Questions.map((topic, index) => (
-                    <div key={index} className="topic" id={topic.topic}>
-                        <h2 className="topic-head">{topic.topic}</h2>
-                        <div className="questions">
-                            {topic.questions.map((question, qIndex) => (
-                                <div key={qIndex} className="question">
-                                    <h3>Question: {question.question}</h3>
-                                    <p>Answer: {question.answer}</p>
-                                </div>
-                            ))}
+                    </ul>
+                </nav>
+                <div className="faq-container">
+                    {Questions.map((topic, index) => (
+                        <div key={index} className="topic" id={topic.topic}>
+                            <h2 className="topic-head">{topic.topic}</h2>
+                            <div className="questions">
+                                {topic.questions.map((question, qIndex) => (
+                                    <div key={qIndex} className="question">
+                                        <h3>Question: {question.question}</h3>
+                                        <p>Answer: {question.answer}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
             <div className="faq-footer">
                 <h3>Can't find an answer? <Link className="faq-header" to="/contactus">Contact Us</Link></h3>
