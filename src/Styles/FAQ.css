@@ -52,6 +52,9 @@
     text-decoration: underline;
     color: orange;
 }
+.faq-header.contact{
+  color: white;
+}
 .faq-footer h3 {
   margin-bottom: 15px;
 }

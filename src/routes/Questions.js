@@ -100,7 +100,7 @@ export const Questions = [
         ]
     },
     {
-        topic: "About PB-Mall",
+        topic: "PB-Mall",
         questions: [
             {
                 question: "What is PB-Mall and how does it work?",

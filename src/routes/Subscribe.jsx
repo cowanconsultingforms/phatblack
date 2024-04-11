@@ -30,9 +30,9 @@ function Subscribe() {
         },
         {
             path: "/stripe/nft",
-            title: "$1000",
+            title: "$10000",
             planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
-            planAccess: ["NFT", "Lifetime Access", "Cancel Anytime"],
+            planAccess: ["NFT", "Lifetime Access"],
             backgroundColor: "#ED7D31",
             restrictions: "Restrictions Apply"
         },
