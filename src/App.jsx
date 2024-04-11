@@ -33,10 +33,8 @@ import CopyRight from './routes/CopyRight';
 import PrivacyPolicy from './routes/PrivacyPolicy';
 import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
-import PBTvComponent from './routes/PB-Tv-component';
-import PBzineComponent from './routes/PB-zine-component';
 import HandleMedia from './routes/HandleMedia';
-import PBEventComponent from './routes/PB-Event-component';
+import ComponentPage from './routes/ComponentPage';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -69,9 +67,9 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/pbevent/:eventTitle" element={
+          <Route path="/pbevent/:title" element={
             <>
-              <PBEventComponent />
+              <ComponentPage collection="pb-event"/>
               <Footer />
             </>
           } />
@@ -81,9 +79,9 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/pbtv/:vidTitle" element={
+          <Route path="/pbtv/:title" element={
             <>
-              <PBTvComponent />
+              <ComponentPage collection="pb-tv"/>
               <Footer />
             </>
           } />
@@ -105,9 +103,9 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path='/zine/:zineTitle' element={
+          <Route path='/zine/:title' element={
             <>
-              <PBzineComponent />
+              <ComponentPage collection="pb-zine"/>
               <Footer />
             </>
           } />
