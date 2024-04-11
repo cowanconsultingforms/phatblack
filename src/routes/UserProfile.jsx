@@ -4,7 +4,11 @@ import { doc, getFirestore, getDoc, updateDoc, setDoc, deleteDoc } from 'firebas
 import { db } from "../firebaseConfig";
 import "../Styles/UserProfile.css";
 import { useNavigate } from 'react-router-dom';
-
+import { Dialog } from "primereact/dialog";
+import { InputText } from "primereact/inputtext";
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import AvatarEdit from 'react-avatar-edit';
+ 
 function UserProfile() {
     const [formData, setFormData] = useState(() => {
         const savedData = localStorage.getItem('formData');
@@ -142,6 +146,41 @@ function UserProfile() {
         }
     };
 
+    const [image, setImage] = useState("")
+
+    const storage = getStorage();
+
+    const handleFileUpload = async (event) => {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+            // Create a reference to Firebase Storage where you want to store the image.
+            const storageRef = ref(storage, `profileImages/${userId}/${file.name}`);
+    
+            try {
+                // Upload the image file to the storage reference.
+                await uploadBytes(storageRef, file);
+    
+                // Get the URL of the uploaded image.
+                const imageUrl = await getDownloadURL(storageRef);
+    
+                // Update the image state to the new image URL.
+                setImage(imageUrl);
+    
+                // Update the user's profile in Firestore.
+                const docRef = doc(db, "users", userId);
+                await updateDoc(docRef, { profileImageUrl: imageUrl });
+    
+                // Notify the user that the profile image has been updated.
+                alert("Profile image updated successfully!");
+            } catch (error) {
+                console.error("Error uploading the image:", error);
+                alert("Failed to update profile image.");
+            }
+        } else {
+            alert("Please upload a valid image file.");
+        }
+    };
+
 
     return (
         <div className='profile-page'>
@@ -149,12 +188,14 @@ function UserProfile() {
                 <div className='profile-title'>
                     <h1>User Profile</h1>
                 </div>
-                <div >
-                    Sample icon
+                <div className="profile-icon">
+                    <img src={image || 'https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png'} alt="Profile Icon" />
                 </div>
-                <div className='profile-icon'>
-                    <img src='https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png'></img>
-                </div>
+                <InputText
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                />
                 <form onSubmit={handleSubmit}>
                     <label className="label" htmlFor="username">Username: </label>
                     <input
