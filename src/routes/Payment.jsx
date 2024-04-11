@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import "../Styles/Payment.css"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //payment card styling
 const CARD_OPTIONS = {
@@ -79,7 +80,7 @@ function Payment({ userId, cost, plan}){
     }
 
     return(
-        <div>
+        <div className="payment-container">
             {!success ? 
             <div>
             <h1>{plan} Plan: ${cost}</h1>
@@ -93,6 +94,11 @@ function Payment({ userId, cost, plan}){
                 <button className="paymentButton">{!processing ? "Subscribe to PhatBlack Premium" : "Processing..."}</button>
             </form>
             <button onClick={()=>navigate("/subscribe")} className="paymentButton cancel">{"< Go Back"}</button>
+            <div className="links">
+                <h3 className="link"><Link to="https://phatblack.com/WP/restrictions/" target="_blank">SEE RESTRICTIONS</Link></h3>
+                <h3 className="link"><Link to="https://phatblack.com/WP/terms-of-service/" target="_blank">SEE TERMS OF SERVICE</Link></h3>
+                <h3 className="link"><Link to="https://phatblack.com/WP/privacy-policy/" target="_blank">SEE PRIVACY POLICY</Link></h3>
+            </div>
             </div>
             :
             <div>

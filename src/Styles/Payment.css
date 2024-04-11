@@ -1,4 +1,4 @@
-.payment-header {
+/* .payment-header {
     text-align: center;
 }
 
@@ -30,7 +30,7 @@
 
 #expiry, #cvv {
     width: 30%;
-}
+} */
 
 .form-group {
     display: flex;
@@ -55,18 +55,6 @@
 .payment-button:hover {
     background-color: rgb(231, 151, 4);
     transition: 0.3s;
-}
-
-@media screen and (max-width: 600px){
-    .payment-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .cart-info, .payment-form {
-        margin: 20px;
-    }
 }
 
 h1{
@@ -129,3 +117,38 @@ h1{
     background-color: #212529;
 }
 
+.payment-container{
+    margin-left: 9%;
+    margin-right: 5%;
+}
+
+.links{
+    display: flex;
+    justify-content: space-between;
+}
+
+.link{
+    font-size: 1.5rem;
+    margin-left: 2%;
+}
+
+@media screen and (max-width: 600px){
+    .paymentButton.cancel{
+        font-size: .75rem;
+    }
+
+    .link{
+        font-size: 1rem;
+        margin-left: 2%;
+    }
+
+    .payment-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .cart-info, .payment-form {
+        margin: 20px;
+    }
+}
