@@ -20,6 +20,7 @@ const firebaseConfig = {
     measurementId: import.meta.env.VITE_APP_MEASUREMENT_ID,
     stripeKey: import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY,
     paymentUrl: import.meta.env.VITE_APP_SUBSCRIPTION_PAYMENT_URL,
+    subscriptionCancellationUrl: import.meta.env.VITE_APP_SUBSCRIPTION_CANCELLATION_URL,
 };
 
 // Initialize Firebase

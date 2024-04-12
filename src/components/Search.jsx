@@ -49,6 +49,9 @@ const Search = () => {
         const fetchSuggestions = async () => {
           try {
             let suggestionRef;
+            if (filterSearch === 'all') {
+              suggestionRef = collection (db, 'searchData')
+            } else {
             switch(filterSearch) {
 
               case "pb-tv":
@@ -63,8 +66,8 @@ const Search = () => {
                 suggestionRef = collection(db, "pb-zine");
                 break;
 
-              case "pb-events":
-                suggestionRef = collection(db, "pb-events");
+              case "pb-event":
+                suggestionRef = collection(db, "pb-event");
                 break;
               
               case "pb-mall":
@@ -98,6 +101,7 @@ const Search = () => {
 
               default:
                 suggestionRef = collection(db, "searchData");
+            }
             }
 
             const suggestionQuery = query(suggestionRef, limit(10));
@@ -167,24 +171,22 @@ const Search = () => {
             placeholder="Search PhatBlack-Premium..."
             value={searchTerm}
             onChange={(e) => {
-          setSearchTerm(e.target.value)
-          setShowDropdown(true)
-          }}
+              setSearchTerm(e.target.value)
+              setShowDropdown(true)
+            }}
             onFocus={() => {
               setShowDropdown(true);
               setIsFocused(true);
               }}
             onBlur={() => {
-              setTimeout(() => { setShowDropdown(false) }, 200);
+              setTimeout(() => { setShowDropdown(false)}, 200);
               setTimeout(() => { setIsFocused(false)},200);
               }}
             className={searchInputStyling}
           />
-          {searchTerm === "" ? null : (
             <AiOutlineClose className={`clear ${isFocused ? "visible" : "invisible" }`} onClick={()=>{
-            setSearchTerm("");
+            setSearchTerm(""); setShowDropdown(false);
             }}/>
-          )}
           <button className={searchButtonStyling} onClick= {handleSearchExpansion}>
             <FaSearch className="faSearch" />
           </button>
@@ -207,7 +209,7 @@ const Search = () => {
               {suggestions.filter((suggestion) =>
                 suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
               ).length === 0 && searchTerm.length > 0 && (
-                <div className="suggestion-dropdown-item">{setShowDropdown(false)}</div>
+                <div className="suggestion-dropdown-item">No Results Found</div>
               )}
             </div>
           )}
@@ -250,8 +252,8 @@ const Search = () => {
                       <button
                       className= "filterform-button" 
                       onClick = {(e) => handleApplyFilter(e.target.value)}
-                      value="pb-events">
-                        PB-Events
+                      value="pb-event">
+                        PB-Event
                       </button>
                       <button
                       className= "filterform-button" 

@@ -3,7 +3,7 @@ import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updatePasswor
 import { doc, getFirestore, getDoc, updateDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from "../firebaseConfig";
 import "../Styles/UserProfile.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -41,7 +41,6 @@ function UserProfile() {
                         const userData = docSnapshot.data();
                         setFormData(userData);
                         localStorage.setItem('formData', JSON.stringify(userData));
-                        console.log(formData);
                     }
                 })
                 .catch((error) => {
@@ -57,6 +56,7 @@ function UserProfile() {
         event.preventDefault();
         //post request to backend for cancellation
         try {
+            console.log(formData.subscriptionId);
             const response = await fetch(
                 subscriptionCancellationUrl,
                 {
@@ -356,6 +356,11 @@ function UserProfile() {
                     <button type="submit">Update </button>
                 </form>
                 <button style={{backgroundColor: "#d35400"}} type="submit" onClick={cancelSubscription}> Cancel Subscription </button>
+                <div className="links">
+                    <h3 className="link"><Link to="https://phatblack.com/WP/restrictions/" target="_blank">SEE RESTRICTIONS</Link></h3>
+                    <h3 className="link"><Link to="https://phatblack.com/WP/terms-of-service/" target="_blank">SEE TERMS OF SERVICE</Link></h3>
+                    <h3 className="link"><Link to="https://phatblack.com/WP/privacy-policy/" target="_blank">SEE PRIVACY POLICY</Link></h3>
+                </div>
             </div>
         </div>
     );

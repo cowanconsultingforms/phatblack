@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { menuItemsData } from './menuItemsData';
 import './Sidebar.css';
@@ -11,7 +11,7 @@ import { HiOutlineSignal } from "react-icons/hi2";
 import { SiApplearcade } from "react-icons/si";
 import { LuMic2 } from "react-icons/lu";
 import { GiSmartphone } from "react-icons/gi";
-import { IoMusicalNotesOutline } from "react-icons/io5";
+import { IoMusicalNotesOutline, IoShare } from "react-icons/io5";
 import { GiAmpleDress } from "react-icons/gi";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { PiUsersThreeLight } from "react-icons/pi";
@@ -21,12 +21,43 @@ import { HiShoppingBag } from "react-icons/hi2";
 import { IoIosInformationCircle } from "react-icons/io";
 import { FaQuestionCircle } from "react-icons/fa";
 import { BiSolidPhoneCall } from "react-icons/bi";
+import { IoHomeSharp } from 'react-icons/io5';
+import { FaRegCompass } from "react-icons/fa";
+import { IoShareSocial } from "react-icons/io5";
+import { RiFacebookCircleFill } from "react-icons/ri";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { RiYoutubeFill } from "react-icons/ri";
+import { RiInstagramFill } from "react-icons/ri";
 import PBPremiumLogo from "../../assets/PHATBLACK.png"
 
 function Sidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+  const sidebarRef = useRef(null);
+  const [infoHover, setInfoHover] = useState(false);
+  const [socialHover, setSocialHover] = useState(false);
+  const [socialPopOut, setSocialPopOut] = useState(false);
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+  }
+
+  //Function to close sidebar when user clicks off
+  const handleOutsideClick = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)){
+      setSidebar(false);
+    } else {
+      setSidebar(true);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick)
+    };
+  },[]);
+  //End of function
+
 
   useEffect(() => {
     setIsAuthenticated(!!sessionStorage.getItem("accessToken"));
@@ -47,61 +78,87 @@ function Sidebar() {
             </Link>
             <div className='SidebarIconsDiv'>
               <ul>
-                <Link to="/tv">
-                  <li><PiTelevisionSimple /></li>
+                <Link to="/">
+                  <li><IoHomeSharp/></li>
                 </Link>
-                <Link to="/radio">
-                  <li><HiOutlineSignal /></li>
-                </Link>
-                <Link to="/zine">
-                  <li><FaBookBookmark /></li>
-                </Link>
-                <Link to="/pbevents">
-                  <li><FaRegCalendarCheck /></li>
-                </Link>
-                <Link to="/pbmall">
-                  <li><HiShoppingBag /></li>
-                </Link>
-                <Link to="/defendersofhiphop">
-                  <li><LuMic2 /></li>
-                </Link>
-                <Link to="/gaming">
-                  <li><SiApplearcade /></li>
-                </Link>
-                <Link to="/pbdigital">
-                  <li><GiSmartphone /></li>
-                </Link>
-                <Link to="/pbfashion">
-                  <li><GiAmpleDress /></li>
-                </Link>
-                <Link to="pbmusic">
-                  <li><IoMusicalNotesOutline/></li>
-                </Link>
-                <Link to="/pbcommunities">
-                  <li><PiUsersThreeLight /></li>
-                </Link>
-                <Link to="/pbsocial">
-                  <li><LuMessagesSquare /></li>
-                </Link>
-                <Link to="/about">
-                  <li><IoIosInformationCircle /></li>
-                </Link>
+                <li><FaRegCompass onClick={showSidebar}/></li>
+                <li><IoIosInformationCircle onMouseEnter={() => setInfoHover(true)}  onMouseLeave={() => setInfoHover(false)}/>
+                {infoHover && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '215px',
+                        left: '100%',
+                        width: '400px',
+                        border: '1px solid #ccc',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        background: 'black'
+                      }}
+                    >
+                      <p
+                       style={{
+                        fontSize: 'medium'
+                       }}>PhatBlack-Premium is a voice for the voiceless</p>
+                    </div>
+                  )}
+                </li> 
                 <Link to="/subscribe">
                   <li><CiMail /></li>
                 </Link>
                 <Link to="/faq">
-                  <li><FaQuestionCircle /></li>
+                  <li><FaQuestionCircle onMouseEnter={() => setSocialHover(false)}/></li>
                 </Link>
+                <li><IoShareSocial 
+                  onMouseEnter={() => {
+                    setSocialHover(true);
+                    setSocialPopOut(true);
+                    }}
+                    onMouseLeave={() => {
+                      setTimeout(() => {
+                        if (!socialHover && !socialPopOut) {
+                          setSocialPopOut(false);
+                        }
+                      }, 500);
+                    }}
+                  />
+                  {(socialHover && socialPopOut) && (
+                    <div
+                      onMouseEnter={() => setSocialHover(true)}
+                      onMouseLeave={() => setSocialHover(false)}
+                      style={{
+                        position: 'absolute',
+                        top: '300px',
+                        left: '100%',
+                        width: '400px',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        background: 'black',
+                      }}
+                        >
+                        <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill/>Facebook</a>
+                        <div>
+                          <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter/>Twitter</a>
+                        </div>
+                        <div>
+                          <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill />YouTube</a>
+                        </div>
+                        <div>
+                          <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill />Instagram</a>
+                        </div>
+                      </div>
+                  )}
+                </li>
                 <Link to="/contactus"> 
-                  <li><BiSolidPhoneCall /></li>
-                </Link>
-                
+                  <li><BiSolidPhoneCall onMouseEnter={() => setSocialHover(false)}/></li>
+                </Link> 
               </ul>
+              
             </div>
         </div>
 
-        <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <div className='SidebarIconsv2'>
+        <div className={sidebar ? 'nav-menu active' : 'nav-menu'} ref={sidebarRef}>
+          <div className='SidebarIconsv2'> 
             <Link to='#' className='close'>
               <AiOutlineClose onClick={showSidebar} />
             </Link>

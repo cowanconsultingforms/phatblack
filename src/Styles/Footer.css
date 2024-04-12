@@ -1,26 +1,18 @@
 .footer-container {
     background: black;
+    min-width: 100%;
+    max-width: 100%;
     font-family: "Jost", sans-serif;
     padding-top: 3%;
-    padding-left: 5%;
-    margin-left: -5%;
 }
 
 .footer-banner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: #CA883B;
+    background: #FFA646;
     margin-left: 25%;
     margin-right: 25%;
-}
-
-.footer-banner >div> h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-.footer-banner >div> h1 {
-    font-size: 30px;
 }
 
 .footer-contents {
@@ -61,24 +53,28 @@
     justify-content: center;
 }
 
-.footer-subscribe>button {
+/* .footer-subscribe>button {
     background-color: black;
     color: white;
     height: 50px;
     margin-top: 10%;
     margin-bottom: 10%;
     width: 175px;
-}
-.footer-subscribe>button:hover {
+} */
+/* .footer-subscribe>button:hover {
     cursor: pointer;
-}
+} */
 
 .footer-banner > div {
     margin: 20px;
 }
 
+.footer-banner > div > h1{
+    color: black;
+}
+
 .contact-icon {
-    color: #CA883B;
+    color: #FFA646;
     font-size: 30px;
     margin-right: 10px;
 }
@@ -90,7 +86,7 @@
 }
 
 .footer-media-container>div {
-    background-color: #CA883B;
+    background-color: #FFA646;
     margin-right: 10px;
     width: 50px;
     text-align: center;
@@ -111,7 +107,43 @@
     margin-left: 8%;
 }
 
+.subscribe-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 50px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 175px;
+}
+
+.subscribe-button:hover{
+    cursor: pointer;
+}
+
+.footer-banner >div> h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-bottom: 10px;
+}
+.footer-banner >div> h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2rem;
+    font-weight: 200;
+    color: black;
+    text-align: start;
+}
+
 @media screen and (max-width: 500px) {
+    .footer-container{
+        min-width: 92%;
+        max-width: 100%;
+        margin-left: -5%;
+    }
+
     .footer-contents {
         flex-direction: column;
         justify-content: center;
@@ -142,6 +174,12 @@
     .footer-subscribe > button {
         margin-top: 0px;
     }
+
+    .subscribe-button{
+        margin-bottom: 20px;
+        margin-top: -10px;
+    }
+
     .footer-container {
         position: relative;
         left: 13%;
@@ -152,16 +190,17 @@
 @media screen and (max-width: 1330px) 
 {
     .footer-banner >div> h2 {
-        font-size: 12px;
+        font-size: 1rem;
+        font-weight: 100;
         margin-bottom: 10px;
     }
     .footer-banner >div> h1 {
-        font-size: 20px;
+        font-size: 2.5rem;
+        font-weight: 200;
+        font-size: 2rem;
     }
     .footer-banner {
         margin-left: 10%;
         margin-right: 10%;
     }
 }
-
-
