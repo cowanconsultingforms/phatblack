@@ -170,6 +170,13 @@ function UserProfile() {
                 const docRef = doc(db, "users", userId);
                 await updateDoc(docRef, { profileImageUrl: imageUrl });
     
+                // Update local storage
+                setFormData((prevState) => {
+                    const updatedFormData = { ...prevState, profileImageUrl: imageUrl };
+                    localStorage.setItem('formData', JSON.stringify(updatedFormData));
+                    return updatedFormData;
+                });
+    
                 // Notify the user that the profile image has been updated.
                 alert("Profile image updated successfully!");
             } catch (error) {
@@ -180,6 +187,29 @@ function UserProfile() {
             alert("Please upload a valid image file.");
         }
     };
+
+    useEffect(() => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user) {
+            const db = getFirestore();
+            const userDocRef = doc(db, 'users', user.uid);
+            setUserId(user.uid);
+            getDoc(userDocRef)
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists()) {
+                        const userData = docSnapshot.data();
+                        setFormData(userData);
+                        setImage(userData.profileImageUrl || ''); // Set the profile image URL in state
+                        localStorage.setItem('formData', JSON.stringify(userData));
+                        console.log(formData);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+        }
+    }, []);
 
 
     return (
