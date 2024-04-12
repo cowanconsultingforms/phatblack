@@ -1,18 +1,31 @@
 import { useState } from "react";
 import { Questions } from "./Questions";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import "../Styles/FAQ.css";
 
 const FAQ = () => {
     const [selectedQuestions, setSelectedQuestions] = useState({});
+
+    useEffect(() => {
+        const handleScroll = () => {
+            console.log("hello");
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     const handleTopicClick = (e, topic) => {
         e.preventDefault();
         const targetElement = document.getElementById(topic.topic);
         if (targetElement) {
             const offsetTop = targetElement.offsetTop;
-            const windowHeight = window.innerHeight;
-            const targetPosition = offsetTop - (windowHeight / 2);
+            // const windowHeight = window.innerHeight;
+            const targetPosition = offsetTop - 180;
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
@@ -30,8 +43,8 @@ const FAQ = () => {
 
     return (
         <div className="faq-page">
-            <h1>Frequently Asked Questions</h1>
-            <div className="faq-layout">
+            <h1>FAQ</h1>
+            <h2 className="contactus-header">If you cannot find the answers you are looking for here, contact us <Link className="contact-Link" to={"/contactus"}>here</Link></h2>
                 <nav className="faq-navbar">
                     <ul className="faq-grid">
                         {Questions.map((topic, index) => (
@@ -51,7 +64,7 @@ const FAQ = () => {
                                 {topic.questions.map((question, questionIndex) => (
                                     <div key={questionIndex} className="questionDiv">
                                         <h3 className="question" onClick={() => handleQuestionClicked(topicIndex, questionIndex)}>
-                                            {selectedQuestions[topicIndex] === questionIndex ? '▼' : '►'}{question.question}
+                                        {question.question} {selectedQuestions[topicIndex] === questionIndex ? '▼' : '◀︎'}
                                         </h3>
                                         <p className={selectedQuestions[topicIndex] === questionIndex ? "answerShown" : "answerNotShown"}>
                                             Answer: {question.answer}
@@ -62,7 +75,6 @@ const FAQ = () => {
                         </div>
                     ))}
                 </div>
-            </div>
             <div className="faq-footer">
                 <h3>Can't find an answer? <Link className="faq-header contact" to="/contactus">Contact Us</Link></h3>
                 <h3>What are your restrictions? <br /><Link className="faq-header" to="https://phatblack.com/WP/restrictions/">SEE RESTRICTIONS</Link></h3>
