@@ -150,49 +150,92 @@ function UserProfile() {
 
     const storage = getStorage();
 
+    const [previewImage, setPreviewImage] = useState("");
+    const [croppedImage, setCroppedImage] = useState("");
+    const [isCropDialogOpen, setIsCropDialogOpen] = useState(false);
+
     const handleFileUpload = async (event) => {
+        // Define the file size limit in bytes (5MB)
+        const fileSizeLimit = 5 * 1024 * 1024; // 5 MB
+    
+        // Get the selected file
         const file = event.target.files[0];
+    
+        // Check if the file exists and if it's an image
         if (file && file.type.startsWith("image/")) {
-            // Create a reference to Firebase Storage where you want to store the image.
-            const storageRef = ref(storage, `profileImages/${userId}/${file.name}`);
+            // Check if the file size exceeds the limit
+            if (file.size > fileSizeLimit) {
+                alert("File size exceeds the 5MB limit. Please upload a smaller image.");
+                return; // Stop further processing
+            }
     
+            // Display the cropping interface
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreviewImage(reader.result);
+                setIsCropDialogOpen(true); // Open cropping dialog
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please upload a valid image file.");
+        }
+    };
+
+    const handleImageSave = async () => {
+        if (croppedImage) {
             try {
-                // Upload the image file to the storage reference.
-                await uploadBytes(storageRef, file);
-    
-                // Get the URL of the uploaded image.
+                // Fetch the cropped image and get its blob
+                const response = await fetch(croppedImage);
+                const blob = await response.blob();
+                
+                // Determine the file extension based on the MIME type of the blob
+                const fileType = blob.type.split('/')[1]; // e.g. 'image/jpeg' -> 'jpeg'
+                
+                // Create a storage reference with the userId and the file extension
+                const storageRef = ref(storage, `profileImages/${userId}.${fileType}`);
+                
+                // Upload the cropped image to Firebase storage
+                await uploadBytes(storageRef, blob);
+                
+                // Get the URL of the uploaded image
                 const imageUrl = await getDownloadURL(storageRef);
-    
-                // Update the image state to the new image URL.
-                setImage(imageUrl);
-    
-                // Update the user's profile in Firestore.
+                
+                // Update the user's profile in Firestore with the new profile image URL
                 const docRef = doc(db, "users", userId);
                 await updateDoc(docRef, { profileImageUrl: imageUrl });
-    
+                
                 // Update local storage
                 setFormData((prevState) => {
                     const updatedFormData = { ...prevState, profileImageUrl: imageUrl };
                     localStorage.setItem('formData', JSON.stringify(updatedFormData));
                     return updatedFormData;
                 });
-    
-                // Notify the user that the profile image has been updated.
+                
+                // Notify the user that the profile image has been updated
                 alert("Profile image updated successfully!");
                 
-                // Redirect the user back to the home page
-                navigate('/');
-
+                // Close the cropping dialog
+                setIsCropDialogOpen(false);
+    
+                // Go to the home page
+                navigate("/");
+    
+                // Reload the website
                 window.location.reload();
-
+    
+                // Reset preview image and cropped image state
+                setPreviewImage("");
+                setCroppedImage("");
             } catch (error) {
-                console.error("Error uploading the image:", error);
+                console.error("Error uploading the cropped image:", error);
                 alert("Failed to update profile image.");
             }
         } else {
-            alert("Please upload a valid image file.");
+            alert("Please crop the image before saving.");
         }
     };
+    
+
 
     useEffect(() => {
         const auth = getAuth();
@@ -227,11 +270,30 @@ function UserProfile() {
                 <div className="profile-icon">
                     <img src={image || 'https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png'} alt="Profile Icon" />
                 </div>
-                <InputText
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileUpload}
-                />
+                <div className='UploadProfileImage'>
+                    <label htmlFor="ProfileImage">Profile Image</label>
+                    <InputText
+                        className='NewProfileImage'
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileUpload}
+                    />
+                    <small id="ProfileImage-help">
+                        Enter a image file, maximum file size 5MB
+                    </small>
+                </div>
+                <Dialog header="Crop Image" visible={isCropDialogOpen} onHide={() => setIsCropDialogOpen(false)}>
+                    <AvatarEdit
+                        width={500}
+                        height={500}
+                        onCrop={setCroppedImage}
+                        onClose={() => setIsCropDialogOpen(false)}
+                        src={previewImage}
+                        imageWidth={500}
+                        exportAsSquare
+                    />
+                    <button className='Save-Image' onClick={handleImageSave}>Save Image</button>
+                </Dialog>
                 <form onSubmit={handleSubmit}>
                     <label className="label" htmlFor="username">Username: </label>
                     <input

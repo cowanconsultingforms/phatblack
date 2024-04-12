@@ -33,6 +33,56 @@
     margin-bottom: 5px;
 }
 
+/* Style for the file input with the class 'NewProfileImage' */
+.UploadProfileImage {
+    display: flex; /* Ensures it is treated as a block element */
+    flex-direction: column;
+    width: auto; /* Let it take its natural width */
+    padding: 10px 20px; /* Padding from top and bottom, and sides */
+    margin: 20px auto; /* Add margin from top and bottom, center it horizontally */
+    border-radius: 5px; /* Add a border radius */
+    color: white; /* Set the text color to black */
+    cursor: pointer; /* Show cursor pointer on hover */
+    text-align: center; /* Center the text */
+    outline: none; /* Remove the default outline */
+    border: none; /* Remove border */
+}
+
+input.NewProfileImage {
+    display: block; /* Ensures it is treated as a block element */
+    width: auto; /* Let it take its natural width */
+    margin: 5px auto; /* Add margin from top and bottom, center it horizontally */
+    cursor: pointer; /* Show cursor pointer on hover */
+    text-align: center; /* Center the text */
+}
+
+.Save-Image {
+    height: 50px;
+    width: auto;
+    background-color: orange;
+    font-size: 30px;
+    font-family: Bebas Neue;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Custom styles for the PrimeReact Dialog */
+.p-dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the dialog horizontally */
+    align-items: center; /* Center the dialog vertically */
+}
+
+.p-dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content within the dialog */
+    align-items: center; /* Center the content vertically */
+}
+
+
 input[class="change-user-info"] {
     width: 100%;
     padding: 10px;
