@@ -82,8 +82,11 @@ function UploadMedia() {
             }
 
             setLoading(true);
-            const fileRef = ref(storage, `media/${new Date().getTime()}_${uploadFile.name}`);
-            const uploadTask = uploadBytesResumable(fileRef, uploadFile); // Use uploadFile here as well
+            setError('');
+
+            const mediaPath = `${mediaType}/${uploadFile.name}`;
+            const fileRef = ref(storage, `${mediaPath}`);
+            const uploadTask = uploadBytesResumable(fileRef, uploadFile);
 
             uploadTask.on(
                 'state_changed',
@@ -188,6 +191,7 @@ function UploadMedia() {
                                 <option value="pb-zine">PB-ZINE</option>
                                 <option value="pb-music">PB-MUSIC</option>
                                 <option value="pb-fashion">PB-FASHION</option>
+                                <option value="pb-event">PB-EVENT</option>
                             </select>
                         </div>
 

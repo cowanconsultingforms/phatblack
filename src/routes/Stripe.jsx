@@ -31,7 +31,7 @@ const Stripe = () => {
     } else if (param === 'yearly') {
       setCost(10.80);
     } else if (param === 'nft') {
-      setCost(1000.00)
+      setCost(10000.00)
     }
   }, [param]);
 

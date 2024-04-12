@@ -94,7 +94,7 @@ function HandleMedia() {
 
             try {
                 const storage = getStorage();
-                const fileRef = ref(storage, `media/${mediaItem.fileName}`);
+                const fileRef = ref(storage, `${mediaItem.mediaType}/${mediaItem.fileName}`);
                 await deleteObject(fileRef);
                 console.log('File deleted successfully');
             } catch (error) {

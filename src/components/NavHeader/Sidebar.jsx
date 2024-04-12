@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { menuItemsData } from './menuItemsData';
 import './Sidebar.css';
@@ -21,12 +21,36 @@ import { HiShoppingBag } from "react-icons/hi2";
 import { IoIosInformationCircle } from "react-icons/io";
 import { FaQuestionCircle } from "react-icons/fa";
 import { BiSolidPhoneCall } from "react-icons/bi";
+import { IoHomeSharp } from 'react-icons/io5';
+import { FaRegCompass } from "react-icons/fa";
 import PBPremiumLogo from "../../assets/PHATBLACK.png"
 
 function Sidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+  const sidebarRef = useRef(null);
+  const [hover, setHover] = useState(false);
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+  }
+
+  //Function to close sidebar when user clicks off
+  const handleOutsideClick = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)){
+      setSidebar(false);
+    } else {
+      setSidebar(true);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick)
+    };
+  },[]);
+  //End of function
+
 
   useEffect(() => {
     setIsAuthenticated(!!sessionStorage.getItem("accessToken"));
@@ -47,45 +71,28 @@ function Sidebar() {
             </Link>
             <div className='SidebarIconsDiv'>
               <ul>
-                <Link to="/tv">
-                  <li><PiTelevisionSimple /></li>
+                <Link to="/">
+                  <li><IoHomeSharp/></li>
                 </Link>
-                <Link to="/radio">
-                  <li><HiOutlineSignal /></li>
-                </Link>
-                <Link to="/zine">
-                  <li><FaBookBookmark /></li>
-                </Link>
-                <Link to="/pbevents">
-                  <li><FaRegCalendarCheck /></li>
-                </Link>
-                <Link to="/pbmall">
-                  <li><HiShoppingBag /></li>
-                </Link>
-                <Link to="/defendersofhiphop">
-                  <li><LuMic2 /></li>
-                </Link>
-                <Link to="/gaming">
-                  <li><SiApplearcade /></li>
-                </Link>
-                <Link to="/pbdigital">
-                  <li><GiSmartphone /></li>
-                </Link>
-                <Link to="/pbfashion">
-                  <li><GiAmpleDress /></li>
-                </Link>
-                <Link to="pbmusic">
-                  <li><IoMusicalNotesOutline/></li>
-                </Link>
-                <Link to="/pbcommunities">
-                  <li><PiUsersThreeLight /></li>
-                </Link>
-                <Link to="/pbsocial">
-                  <li><LuMessagesSquare /></li>
-                </Link>
-                <Link to="/about">
-                  <li><IoIosInformationCircle /></li>
-                </Link>
+                <li><FaRegCompass/></li>
+                <li><IoIosInformationCircle onMouseEnter={()=> setHover(true)} onMouseLeave={() => setHover(false)}/>
+                {hover && (
+                    <div 
+                      style={{
+                        position: 'absolute',
+                        top: '0',
+                        left: '100%',
+                        width: '200px',
+                        backgroundColor: '#fff',
+                        border: '1px solid #ccc',
+                        padding: '10px',
+                        borderRadius: '5px',
+                      }}
+                    >
+                      <p>This is some test sidebar content</p>
+                    </div>
+                  )}
+                </li> 
                 <Link to="/subscribe">
                   <li><CiMail /></li>
                 </Link>
@@ -94,14 +101,14 @@ function Sidebar() {
                 </Link>
                 <Link to="/contactus"> 
                   <li><BiSolidPhoneCall /></li>
-                </Link>
-                
+                </Link> 
               </ul>
+              
             </div>
         </div>
 
-        <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <div className='SidebarIconsv2'>
+        <div className={sidebar ? 'nav-menu active' : 'nav-menu'} ref={sidebarRef}>
+          <div className='SidebarIconsv2'> 
             <Link to='#' className='close'>
               <AiOutlineClose onClick={showSidebar} />
             </Link>
