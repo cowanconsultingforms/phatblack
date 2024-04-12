@@ -7,7 +7,6 @@ import '../Styles/Search.css';
 import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { FaFilter } from 'react-icons/fa';
-import FilterTabs from './FilterTabs';
 
 
 const Search = () => {

@@ -11,7 +11,7 @@ import { HiOutlineSignal } from "react-icons/hi2";
 import { SiApplearcade } from "react-icons/si";
 import { LuMic2 } from "react-icons/lu";
 import { GiSmartphone } from "react-icons/gi";
-import { IoMusicalNotesOutline } from "react-icons/io5";
+import { IoMusicalNotesOutline, IoShare } from "react-icons/io5";
 import { GiAmpleDress } from "react-icons/gi";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { PiUsersThreeLight } from "react-icons/pi";
@@ -23,13 +23,20 @@ import { FaQuestionCircle } from "react-icons/fa";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoHomeSharp } from 'react-icons/io5';
 import { FaRegCompass } from "react-icons/fa";
+import { IoShareSocial } from "react-icons/io5";
+import { RiFacebookCircleFill } from "react-icons/ri";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { RiYoutubeFill } from "react-icons/ri";
+import { RiInstagramFill } from "react-icons/ri";
 import PBPremiumLogo from "../../assets/PHATBLACK.png"
 
 function Sidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const sidebarRef = useRef(null);
-  const [hover, setHover] = useState(false);
+  const [infoHover, setInfoHover] = useState(false);
+  const [socialHover, setSocialHover] = useState(false);
+  const [socialPopOut, setSocialPopOut] = useState(false);
   const showSidebar = () => {
     setSidebar(!sidebar);
   }
@@ -74,22 +81,25 @@ function Sidebar() {
                 <Link to="/">
                   <li><IoHomeSharp/></li>
                 </Link>
-                <li><FaRegCompass/></li>
-                <li><IoIosInformationCircle onMouseEnter={()=> setHover(true)} onMouseLeave={() => setHover(false)}/>
-                {hover && (
-                    <div 
+                <li><FaRegCompass onClick={showSidebar}/></li>
+                <li><IoIosInformationCircle onMouseEnter={() => setInfoHover(true)}  onMouseLeave={() => setInfoHover(false)}/>
+                {infoHover && (
+                    <div
                       style={{
                         position: 'absolute',
-                        top: '0',
+                        top: '215px',
                         left: '100%',
-                        width: '200px',
-                        backgroundColor: '#fff',
+                        width: '400px',
                         border: '1px solid #ccc',
                         padding: '10px',
                         borderRadius: '5px',
+                        background: 'black'
                       }}
                     >
-                      <p>This is some test sidebar content</p>
+                      <p
+                       style={{
+                        fontSize: 'medium'
+                       }}>PhatBlack-Premium is a voice for the voiceless</p>
                     </div>
                   )}
                 </li> 
@@ -97,10 +107,50 @@ function Sidebar() {
                   <li><CiMail /></li>
                 </Link>
                 <Link to="/faq">
-                  <li><FaQuestionCircle /></li>
+                  <li><FaQuestionCircle onMouseEnter={() => setSocialHover(false)}/></li>
                 </Link>
+                <li><IoShareSocial 
+                  onMouseEnter={() => {
+                    setSocialHover(true);
+                    setSocialPopOut(true);
+                    }}
+                    onMouseLeave={() => {
+                      setTimeout(() => {
+                        if (!socialHover && !socialPopOut) {
+                          setSocialPopOut(false);
+                        }
+                      }, 500);
+                    }}
+                  />
+                  {(socialHover && socialPopOut) && (
+                    <div
+                      onMouseEnter={() => setSocialHover(true)}
+                      onMouseLeave={() => setSocialHover(false)}
+                      style={{
+                        position: 'absolute',
+                        top: '300px',
+                        left: '100%',
+                        width: '400px',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        background: 'black',
+                      }}
+                        >
+                        <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill/>Facebook</a>
+                        <div>
+                          <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter/>Twitter</a>
+                        </div>
+                        <div>
+                          <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill />YouTube</a>
+                        </div>
+                        <div>
+                          <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill />Instagram</a>
+                        </div>
+                      </div>
+                  )}
+                </li>
                 <Link to="/contactus"> 
-                  <li><BiSolidPhoneCall /></li>
+                  <li><BiSolidPhoneCall onMouseEnter={() => setSocialHover(false)}/></li>
                 </Link> 
               </ul>
               
