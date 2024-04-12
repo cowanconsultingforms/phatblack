@@ -69,7 +69,7 @@ function App() {
           } />
           <Route path="/pbevent/:title" element={
             <>
-              <ComponentPage collection="pb-event"/>
+              <ComponentPage collection="pb-event" />
               <Footer />
             </>
           } />
@@ -81,7 +81,7 @@ function App() {
           } />
           <Route path="/pbtv/:title" element={
             <>
-              <ComponentPage collection="pb-tv"/>
+              <ComponentPage collection="pb-tv" />
               <Footer />
             </>
           } />
@@ -105,7 +105,7 @@ function App() {
           } />
           <Route path='/zine/:title' element={
             <>
-              <ComponentPage collection="pb-zine"/>
+              <ComponentPage collection="pb-zine" />
               <Footer />
             </>
           } />

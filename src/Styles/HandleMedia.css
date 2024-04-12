@@ -71,3 +71,61 @@
         grid-template-columns: 1fr;
     }
 }
+
+.update-form-container {
+    background-color: #222;
+    /* Match with dark theme */
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    /* Fixed width for medium screens and up */
+    margin: 2rem auto;
+    /* Center align */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-form-group {
+    margin-bottom: 1rem;
+}
+
+.update-form-group select,
+.update-form-group input[type="text"],
+.update-form-group input[type="file"] {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: #333;
+    /* Dark input fields */
+    color: #fff;
+    /* White text */
+    font-size: 1rem;
+}
+
+.update-form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="%23fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat right 0.75rem center/12px 12px;
+    cursor: pointer;
+}
+
+.update-form-group input[type="file"] {
+    background-color: #444;
+    /* Slightly lighter to distinguish */
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .update-form-container {
+        width: calc(100% - 40px);
+        /* Full width minus padding */
+        margin: 2rem 20px;
+        /* Keep margin consistent */
+    }
+}
