@@ -179,6 +179,12 @@ function UserProfile() {
     
                 // Notify the user that the profile image has been updated.
                 alert("Profile image updated successfully!");
+                
+                // Redirect the user back to the home page
+                navigate('/');
+
+                window.location.reload();
+
             } catch (error) {
                 console.error("Error uploading the image:", error);
                 alert("Failed to update profile image.");
