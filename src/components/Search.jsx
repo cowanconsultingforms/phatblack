@@ -66,8 +66,8 @@ const Search = () => {
                 suggestionRef = collection(db, "pb-zine");
                 break;
 
-              case "pb-events":
-                suggestionRef = collection(db, "pb-events");
+              case "pb-event":
+                suggestionRef = collection(db, "pb-event");
                 break;
               
               case "pb-mall":
@@ -159,10 +159,6 @@ const Search = () => {
       setTimeout(setShowFilterForm(false), 100);
     }
 
-    const handleFilterChange = (filtervalue) => {
-      setFilterSearch(filtervalue);
-    }
-
 
   return (
       <form className={searchContainerStyling} onSubmit={handleSearch}>
@@ -183,7 +179,8 @@ const Search = () => {
               setIsFocused(true);
               }}
             onBlur={() => {
-              setTimeout(() => { setIsFocused(false);},200);
+              setTimeout(() => { setShowDropdown(false)}, 200);
+              setTimeout(() => { setIsFocused(false)},200);
               }}
             className={searchInputStyling}
           />
@@ -195,10 +192,6 @@ const Search = () => {
           </button>
           {showDropdown && (
             <div className="suggestion-dropdown">
-               <FilterTabs
-                onFilterChange={handleFilterChange}
-                visible={showDropdown}
-              />
               {suggestions
                 .filter((suggestion) =>
                   suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -259,8 +252,8 @@ const Search = () => {
                       <button
                       className= "filterform-button" 
                       onClick = {(e) => handleApplyFilter(e.target.value)}
-                      value="pb-events">
-                        PB-Events
+                      value="pb-event">
+                        PB-Event
                       </button>
                       <button
                       className= "filterform-button" 
