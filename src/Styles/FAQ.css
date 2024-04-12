@@ -47,6 +47,11 @@
   margin-top: 10px;
 }
 
+.faq-grid li a:hover{
+  text-decoration: none;
+  color: rgba(255, 166, 0, 0.594);
+}
+
 .topic{
   margin-top: 50px;
 }
