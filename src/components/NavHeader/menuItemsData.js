@@ -21,7 +21,7 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 export const menuItemsData = [
     {
         title: "PB-TV",
-        url: "/tv",
+        url: "/pbtv",
         svg: "PiTelevisionSimple"
     },
     {

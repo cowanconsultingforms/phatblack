@@ -33,8 +33,9 @@ import CopyRight from './routes/CopyRight';
 import PrivacyPolicy from './routes/PrivacyPolicy';
 import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
-import PBTvComponent from './routes/PB-Tv-component';
-import PBzineComponent from './routes/PB-zine-component';
+import HandleMedia from './routes/HandleMedia';
+import ComponentPage from './routes/ComponentPage';
+import Popup from './components/Popup';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -61,138 +62,158 @@ function App() {
                 <Footer />
               </>
             } />
+          <Route path='/pop' element={<Popup />}></Route>
           <Route path="/pbevents" element={
-              <>
-                <PBevents/>
-                <Footer />
-              </>
-            } />
-          <Route path="/tv" element={
-              <>
-                <PBTv />
-                <Footer />
-              </>
-            } />
-            <Route path="/pbtv/:vidTitle" element={
-              <>
-                <PBTvComponent/>
-                <Footer />
-              </>
-            } />
-          <Route path="/pbmall" element={
-              <>
-                <PBmall />
-                <Footer />
-              </>
-            } />
-          <Route path="/radio" element={
-              <>
-                <PBradio />
-                <Footer />
-              </>
-            } />
-          <Route path="/zine" element={
-              <>
-                <PBzine />
-                <Footer />
-              </>
-            } />
-          <Route path='/zine/:zineTitle' element={
             <>
-              <PBzineComponent/>
-              <Footer/>
+              <Popup />
+              <PBevents />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbevent/:title" element={
+            <>
+              <Popup />
+              <ComponentPage collection="pb-event" />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbtv" element={
+            <>
+              <Popup />
+              <PBTv />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbtv/:title" element={
+            <>
+              <Popup />
+              <ComponentPage collection="pb-tv" />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbmall" element={
+            <>
+              <PBmall />
+              <Footer />
+            </>
+          } />
+          <Route path="/radio" element={
+            <>
+              <Popup />
+              <PBradio />
+              <Footer />
+            </>
+          } />
+          <Route path="/zine" element={
+            <>
+              <Popup />
+              <PBzine />
+              <Footer />
+            </>
+          } />
+          <Route path='/zine/:title' element={
+            <>
+              <Popup />
+              <ComponentPage collection="pb-zine" />
+              <Footer />
             </>
           } />
           <Route path="/gaming" element={
-              <>
-                <PBgaming />
-                <Footer />
-              </>
-            } />
+            <>
+              <Popup />
+              <PBgaming />
+              <Footer />
+            </>
+          } />
           <Route path="/pbdigital" element={
-              <>
-                <PBdigital />
-                <Footer />
-              </>
-            } />
+            <>
+              <Popup />
+              <PBdigital />
+              <Footer />
+            </>
+          } />
           <Route path="/pbfashion" element={
-              <>
-                <PBfashion />
-                <Footer />
-              </>
-            } />
+            <>
+              <Popup />
+              <PBfashion />
+              <Footer />
+            </>
+          } />
           <Route path="/pbmusic" element={
-              <>
-                <PBmusic />
-                <Footer />
-              </>
-            } />
+            <>
+              <Popup />
+              <PBmusic />
+              <Footer />
+            </>
+          } />
           <Route path="/pbcommunities" element={
-              <>
-                <PBcommunuties />
-                <Footer />
-              </>
-            } />
+            <>
+              <PBcommunuties />
+              <Footer />
+            </>
+          } />
           <Route path="/pbsocial" element={
-              <>
-                <PBsocial />
-                <Footer />
-              </>
-            } />
+            <>
+              <Popup />
+              <PBsocial />
+              <Footer />
+            </>
+          } />
           <Route path="/defendersofhiphop" element={
-              <>
-                <DefendersOfHipHop />
-                <Footer />
-              </>
-            } />
+            <>
+              <Popup />
+              <DefendersOfHipHop />
+              <Footer />
+            </>
+          } />
           <Route path="/about" element={
-              <>
-                <About />
-                <Footer />
-              </>
-            } />
+            <>
+              <About />
+              <Footer />
+            </>
+          } />
           <Route path="/subscribe" element={
-              <>
-                <Subscribe/>
-                <Footer />
-              </>
-            } />
+            <>
+              <Subscribe />
+              <Footer />
+            </>
+          } />
           <Route path="/faq" element={
-              <>
-                <FAQ/>
-                <Footer />
-              </>
-            } />
+            <>
+              <FAQ />
+              <Footer />
+            </>
+          } />
           <Route path="/contactus" element={
-              <>
-                <ContactUs />
-                <Footer />
-              </>
-            } />
-           <Route path="/copyright" element={
-              <>
-                <CopyRight />
-                <Footer />
-              </>
-            } />
-             <Route path="/privacy-policy" element={
-              <>
-                <PrivacyPolicy />
-                <Footer />
-              </>
-            } />
-             <Route path="/terms-of-service" element={
-              <>
-                <TermsService />
-                <Footer />
-              </>
-            } />
-              <Route path="/restrictions" element={
-              <>
-                <Restrictions />
-                <Footer />
-              </>
-            } />
+            <>
+              <ContactUs />
+              <Footer />
+            </>
+          } />
+          <Route path="/copyright" element={
+            <>
+              <CopyRight />
+              <Footer />
+            </>
+          } />
+          <Route path="/privacy-policy" element={
+            <>
+              <PrivacyPolicy />
+              <Footer />
+            </>
+          } />
+          <Route path="/terms-of-service" element={
+            <>
+              <TermsService />
+              <Footer />
+            </>
+          } />
+          <Route path="/restrictions" element={
+            <>
+              <Restrictions />
+              <Footer />
+            </>
+          } />
 
           {/**Pages that don't need a footer */}
           <Route path="/login" element={<Login />} />
@@ -203,8 +224,9 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/upload" element={<UploadMedia />} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="/stripe/:param" element={<Stripe></Stripe>}/>
-          
+          <Route path="/stripe/:param" element={<Stripe></Stripe>} />
+          <Route path="/handlemedia" element={<HandleMedia />} />
+
         </Routes>
       </BrowserRouter>
     </>

@@ -6,6 +6,7 @@ import { db } from '../firebaseConfig';
 import '../Styles/Search.css';
 import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { FaFilter } from 'react-icons/fa';
 
 
 const Search = () => {
@@ -19,6 +20,9 @@ const Search = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     //focused state for conditionally rendering X icon for clearing search
     const [isFocused, setIsFocused] = useState(false);
+    const [showFilterButton, setShowFilterButton] = useState(false);
+    const [showFilterForm, setShowFilterForm] = useState(false);
+    const [filterSearch, setFilterSearch] = useState("");
     
     const navigate = useNavigate();
 
@@ -44,7 +48,62 @@ const Search = () => {
     useEffect(() => {
         const fetchSuggestions = async () => {
           try {
-            const suggestionRef = collection(db, "searchData");
+            let suggestionRef;
+            if (filterSearch === 'all') {
+              suggestionRef = collection (db, 'searchData')
+            } else {
+            switch(filterSearch) {
+
+              case "pb-tv":
+                suggestionRef = collection(db, "pb-tv");
+                break;
+
+              case "pb-radio":
+                suggestionRef = collection(db, "pb-radio");
+                break;
+              
+              case "pb-zine":
+                suggestionRef = collection(db, "pb-zine");
+                break;
+
+              case "pb-event":
+                suggestionRef = collection(db, "pb-event");
+                break;
+              
+              case "pb-mall":
+                suggestionRef = collection(db, "pb-mall");
+                break;
+              
+              case "pb-gaming":
+                suggestionRef = collection(db, "pb-gaming");
+                break;
+
+              case "pb-digital":
+                suggestionRef = collection(db, "pb-digital");
+                break;
+
+              case "pb-fashion":
+                suggestionRef = collection(db, "pb-fashion");
+                break;
+              
+              case "pb-music":
+                suggestionRef = collection(db, "pb-music");
+                break;
+
+              case "pb-communities":
+                suggestionRef = collection(db, "pb-communities");
+                break;
+              
+              case "pb-social":
+                suggestionRef = collection(db, "pb-social");
+                break;
+              {/*Add more options here */}
+
+              default:
+                suggestionRef = collection(db, "searchData");
+            }
+            }
+
             const suggestionQuery = query(suggestionRef, limit(10));
             const querySnapshot = await getDocs(suggestionQuery);
             const suggestionList = querySnapshot.docs.map((doc) => ({
@@ -58,7 +117,7 @@ const Search = () => {
         };
     
         fetchSuggestions();
-      }, []);
+      }, [filterSearch]);
     
       const handleSearch = (e) => {
         e.preventDefault();
@@ -70,6 +129,7 @@ const Search = () => {
     
         const queryTerm = trimmedSearchTerm.toLowerCase();
         navigate(`/search?q=${encodeURIComponent(queryTerm)}`);
+        setShowFilterButton(true);
       };
     
       const handleSuggestionClick = (suggestion) => {
@@ -94,6 +154,12 @@ const Search = () => {
         }
     };
 
+    const handleApplyFilter = (filtervalue) => {
+      setFilterSearch(filtervalue);
+      setTimeout(setShowFilterForm(false), 100);
+    }
+
+
   return (
       <form className={searchContainerStyling} onSubmit={handleSearch}>
         <div className={searchBarStyling}>
@@ -105,24 +171,22 @@ const Search = () => {
             placeholder="Search PhatBlack-Premium..."
             value={searchTerm}
             onChange={(e) => {
-          setSearchTerm(e.target.value)
-          setShowDropdown(true)
-          }}
+              setSearchTerm(e.target.value)
+              setShowDropdown(true)
+            }}
             onFocus={() => {
               setShowDropdown(true);
               setIsFocused(true);
               }}
             onBlur={() => {
-              setTimeout(() => { setShowDropdown(false) }, 200);
+              setTimeout(() => { setShowDropdown(false)}, 200);
               setTimeout(() => { setIsFocused(false)},200);
               }}
             className={searchInputStyling}
           />
-          {searchTerm === "" ? null : (
             <AiOutlineClose className={`clear ${isFocused ? "visible" : "invisible" }`} onClick={()=>{
-            setSearchTerm("");
+            setSearchTerm(""); setShowDropdown(false);
             }}/>
-          )}
           <button className={searchButtonStyling} onClick= {handleSearchExpansion}>
             <FaSearch className="faSearch" />
           </button>
@@ -142,13 +206,105 @@ const Search = () => {
                   </div>
                 ))}
               {/* Add this conditional rendering */}
-          {suggestions.filter((suggestion) =>
-            suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
-          ).length === 0 && searchTerm.length > 0 && (
-            <div className="suggestion-dropdown-item">{setShowDropdown(false)}</div>
+              {suggestions.filter((suggestion) =>
+                suggestion.title.toLowerCase().includes(searchTerm.toLowerCase())
+              ).length === 0 && searchTerm.length > 0 && (
+                <div className="suggestion-dropdown-item">No Results Found</div>
+              )}
+            </div>
           )}
-        </div>
-          )}
+          {showFilterButton && (
+                  <div className="filter-button-container">
+                    <button
+                    className="filter-button"
+                    onClick={() => setShowFilterForm(true)}>
+                      Filter <FaFilter/>
+                    </button>
+                  </div>
+              )}
+              {showFilterForm && (
+                  <div className="filterform-container">
+                    <div className="filterform-content">
+                      <div className="filterform-header">
+                        <h2>Search</h2>
+                        <button className="filterform-close" onClick={() => setShowFilterForm(false)}>
+                          &times;
+                        </button>
+                      </div>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-tv">
+                        PB-TV
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-radio">
+                        PB-Radio
+                      </button>
+                      <button 
+                      className="filterform-button"
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-zine">
+                        PB-Zine
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-event">
+                        PB-Event
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-mall">
+                        PB-Mall
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-gaming">
+                        PB-Gaming
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-digital">
+                        PB-Digital
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="PB-Fashion">
+                        PB-Fashion
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-music">
+                        PB-Music
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-communities">
+                        PB-Communities
+                      </button>
+                      <button
+                      className= "filterform-button" 
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="pb-social">
+                        PB-Social
+                      </button>
+                      <button
+                      className="filterform-reset-button"
+                      onClick = {(e) => handleApplyFilter(e.target.value)}
+                      value="default"
+                      >Reset Filter</button>
+                    </div>
+                  </div>
+              )}
         </div>
       </form>
       );

@@ -108,7 +108,7 @@ function Bottom_content() {
 
     const fetchEzine = async () => {
       try {
-        const etvVideosCollection = collection(db, "e-zine");
+        const etvVideosCollection = collection(db, "pb-zine");
         const q = query(etvVideosCollection);
         const querySnapshot = await getDocs(q);
         const zines = querySnapshot.docs.map(doc => doc.data());
