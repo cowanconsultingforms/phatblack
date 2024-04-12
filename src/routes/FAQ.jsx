@@ -1,7 +1,6 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Questions } from "./Questions";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import "../Styles/FAQ.css";
 
 const FAQ = () => {
@@ -9,7 +8,23 @@ const FAQ = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            console.log("hello");
+            const lis = document.querySelectorAll('.faq-grid li');
+            const topicHeads = document.querySelectorAll('.topic');
+            const viewportTop = window.scrollY;
+            const topThreshold = 180; // Adjust this value as needed
+            let activeIndex = -1; // Initialize as -1 to track active topic
+        
+            topicHeads.forEach((head, index) => {
+                const isTopicInTopPixels = head.offsetTop <= viewportTop + topThreshold; // Check if top of "topic" is within top threshold
+        
+                if (isTopicInTopPixels) {
+                    activeIndex = index; // Update activeIndex if topic is in top section
+                }
+            });
+        
+            lis.forEach((li, index) => {
+                li.style.color = index === activeIndex ? 'orange' : 'white'; // Apply orange color to active topic's li, otherwise white
+            });
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -24,7 +39,6 @@ const FAQ = () => {
         const targetElement = document.getElementById(topic.topic);
         if (targetElement) {
             const offsetTop = targetElement.offsetTop;
-            // const windowHeight = window.innerHeight;
             const targetPosition = offsetTop - 180;
             window.scrollTo({
                 top: targetPosition,
@@ -64,7 +78,7 @@ const FAQ = () => {
                                 {topic.questions.map((question, questionIndex) => (
                                     <div key={questionIndex} className="questionDiv">
                                         <h3 className="question" onClick={() => handleQuestionClicked(topicIndex, questionIndex)}>
-                                        {question.question} {selectedQuestions[topicIndex] === questionIndex ? '▼' : '◀︎'}
+                                        {question.question} <p>{selectedQuestions[topicIndex] === questionIndex ? '▼' : '◀︎'}</p>
                                         </h3>
                                         <p className={selectedQuestions[topicIndex] === questionIndex ? "answerShown" : "answerNotShown"}>
                                             Answer: {question.answer}

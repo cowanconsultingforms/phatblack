@@ -2,6 +2,7 @@
     margin-left: 60px;
     width: calc(100% - 60px);
     font-family: "Bebas Neue", sans-serif;
+    border-left: 1px solid grey;
 }
 
 .faq-container {
@@ -15,7 +16,6 @@
   width: 300px;
   position: sticky;
   top: 240px;
-  border-left: 1px solid grey;
 }
 
 .faq-grid li.active {
@@ -62,7 +62,7 @@
 .topic-head {
   color: #CA883B;
   border-bottom: 1px solid white;
-  width: 80%;
+  width: 70%;
 }
 
 .questionDiv {
@@ -71,6 +71,16 @@
 
 .question{
   cursor: pointer;
+  display: grid;
+  grid-template-columns: 0.9fr 0.1fr;
+  width: 70%;
+}
+
+.question p{
+  margin-top: -2px;
+  padding-bottom: 4px;
+  font-size: 1rem;
+  padding-left: 53%;
 }
 
 .answerNotShown{
