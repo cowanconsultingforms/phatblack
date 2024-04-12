@@ -33,7 +33,7 @@ function Payment({ userId, cost, plan}){
     const navigate = useNavigate();
 
     const subscriptionPaymentUrl = import.meta.env.VITE_APP_SUBSCRIPTION_PAYMENT_URL;
-
+    
     //handle form(credit card) submission for payment
     async function handlePaymentSubmission(event) {
         event.preventDefault();
