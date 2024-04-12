@@ -222,32 +222,6 @@
     background-color: #8a8a8a;
   }
 
-  /*Filter tabs*/
-  .filter-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #212529;
-    border-radius: 8px 8px 0 0;
-    padding: 8px;
-  }
-  
-  .filter-tab {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .filter-tab.active {
-    background-color: #6c757d;
-  }
 
 @media screen and (max-width: 300px) {
     .clear{
