@@ -13,6 +13,7 @@ function UploadMedia() {
 
     const [file, setFile] = useState(null);
     const [expectedFileType, setExpectedFileType] = useState('');
+    const [fileType, setFileType] = useState('');
     const [mediaType, setMediaType] = useState('');
     const [subscriptionType, setSubscriptionType] = useState('');
     const [vendor, setVendor] = useState('');
@@ -40,8 +41,19 @@ function UploadMedia() {
 
     const imageCompress = (file) => {
         return new Promise((resolve, reject) => {
+            let quality;
+            const fileSizeInMB = file.size / 1024 / 1024;
+
+            if (fileSizeInMB > 5) {
+                quality = 0.3;
+            } else if (fileSizeInMB > 1) {
+                quality = 0.5;
+            } else {
+                quality = 0.8;
+            }
+
             new Compressor(file, {
-                quality: 0.4,
+                quality: quality,
                 maxWidth: 1920,
                 maxHeight: 1080,
                 success: (compressedResult) => {
@@ -73,12 +85,9 @@ function UploadMedia() {
         const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
         try {
-            if (imageExtensions.includes(fileExtension) && file.size > 5 * 1024 * 1024) {
+            if (imageExtensions.includes(fileExtension)) {
                 const compressedFile = await imageCompress(file);
                 uploadFile = compressedFile;
-            } else if (file.size > 5 * 1024 * 1024) {
-                setError('The file size should not exceed 5MB.');
-                return;
             }
 
             setLoading(true);
@@ -107,6 +116,7 @@ function UploadMedia() {
                         vendor,
                         url,
                         fileName: uploadFile.name,
+                        fileType: fileType,
                         subscriptionType,
                         keywords: [],
                         views: 0,
@@ -130,6 +140,21 @@ function UploadMedia() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleFileChange = (e) => {
+
+        setExpectedFileType(e.target.value);
+        if (e.target.value === 'image/png' || e.target.value === 'image/jpeg' || e.target.value === 'image/jpg' || e.target.value === 'image/gif' || e.target.value === 'image/webp' || e.target.value === 'image/svg') {
+            setFileType('image');
+        } else if (e.target.value === 'video/mp4') {
+            setFileType('video');
+        } else if (e.target.value === 'audio/mpeg') {
+            setFileType('audio');
+        } else if (e.target.value === 'application/pdf') {
+            setFileType('pdf');
+        }
+
     };
 
     const cancelUpload = () => {
@@ -168,7 +193,7 @@ function UploadMedia() {
                         <div className="form-group">
                             <select
                                 value={expectedFileType}
-                                onChange={e => setExpectedFileType(e.target.value)}
+                                onChange={e => handleFileChange(e)}
                                 aria-label="Select expected file type"
                             >
                                 <option value="" disabled>Select File Type</option>
@@ -191,7 +216,6 @@ function UploadMedia() {
                                 <option value="pb-zine">PB-ZINE</option>
                                 <option value="pb-music">PB-MUSIC</option>
                                 <option value="pb-fashion">PB-FASHION</option>
-                                <option value="pb-event">PB-EVENT</option>
                             </select>
                         </div>
 
