@@ -69,7 +69,7 @@ function Popup() {
                         <div className={`subscription-wall ${isOpen ? 'open' : ''}`}>
                             <h1>Sign up, or log in.</h1>
                             <p>Gain access to limited free articles, news alerts, select newsletters, podcasts, and some daily games.</p>
-                            <button onClick={handleOnclick}>log in</button>
+                            <button onClick={handleOnclick}>Log In</button>
                         </div>
                 </div>
                 :
