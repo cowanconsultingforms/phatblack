@@ -117,7 +117,7 @@ header {
     display: flex;
     position: relative;
     top: -26px;
-    max-width: 100%;
+    max-width: 93%;
   }
   
   /* menu on desktop */
@@ -128,6 +128,7 @@ header {
     list-style: none;
     background-color: transparent;
     overflow-x: scroll;
+    scrollbar-color: black black;
     scroll-behavior: smooth;
   }
 
@@ -382,6 +383,7 @@ header {
 
     .desktop-nav .menus{
       padding-right: 24px;
+      scrollbar-color: black black;
     }
   }
 
@@ -398,7 +400,6 @@ header {
 
     .nav-area {
       top: 10px;
-      overflow:hidden;
     }
     
     .desktop-nav {
@@ -532,6 +533,7 @@ header {
 
     .desktop-nav .menus{
       padding-right: 24px;
+      scrollbar-color: black black;
     }
   }
 
@@ -562,6 +564,9 @@ header {
       height: 30px;
       border-radius: 100%;
     }
+    .nav-area{
+      overflow-x: hidden;
+    }
     
   }
 
@@ -572,6 +577,20 @@ header {
   }
 
   @media screen and (max-width: 350px) {
+    .logo{
+      left: -20px;
+    }
+
+    .ProfileIconContainer{
+      right: 100px;
+    }
+  }
+
+  @media screen and (max-width: 300px) {
+    .nav-area{
+      overflow-x: hidden;
+    }
+
     .logo{
       left: -20px;
     }

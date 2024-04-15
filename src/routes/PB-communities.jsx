@@ -130,6 +130,7 @@ const Service = [
 function PBcommunuties() {
     return (
         <div className="PBcommunities">
+        <h1>PB-Communities</h1>
              <div>
                 <h1 className="page-header">
                     Teaching

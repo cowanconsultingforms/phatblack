@@ -30,12 +30,12 @@ function Footer() {
 
             <div className="footer-contents">
                 <div className="footer-about">
-                    <h1>PHATBLACK</h1>
+                    <h1>PHATBLACK PREMIUM</h1>
                     <p>
                         <strong>Explore</strong>
                     </p>
                     <p>
-                        <strong>About Us</strong>: Learn about our mission, vision, and the values that drive our dedication to urban culture.
+                        <strong>About</strong>: Learn about our mission, vision, and the values that drive our dedication to urban culture.
                     </p>
                     <p>
                         <strong>Podcasts</strong>: Immerse yourself in the diverse sounds of the city with our range of exclusive audio and video podcasts.
