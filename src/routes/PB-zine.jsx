@@ -70,9 +70,13 @@ const handleClick = (url) => { // this function is used to open a new tab when t
 function News_pictures() {
 
   return (
-    <div className='news-pictures'>
+    <div>
+      <h1 className='head'>PB-Zine</h1>
+      <div className='news-pictures'>
       <Carousel items={pbZineCards}></Carousel>
+      </div>
     </div>
+    
   )
 
 }

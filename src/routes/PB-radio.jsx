@@ -44,9 +44,9 @@ function PBradio() {
 
     return (
         <div className="pbradio-page">
+        <h1>PB-Radio</h1>
             <div>
                 <div className="radio-head">
-                    <h1>PB-Radio</h1>
                 </div>
 
                 <Slider {...settings} className="radio-container events">

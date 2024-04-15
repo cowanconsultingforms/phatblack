@@ -1,7 +1,6 @@
 import { menuItemsData } from "./menuItemsData";
 import MenuItems from "./MenuItems";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 
 const Navbar = () => {
   // Initial depth level for menu items

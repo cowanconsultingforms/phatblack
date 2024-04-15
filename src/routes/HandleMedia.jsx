@@ -280,6 +280,7 @@ function HandleMedia() {
 
     return (
         <>
+            <h1>Media Management</h1>
             {showFilter && filterMediaForm}
             {showMedia && (
                 <>

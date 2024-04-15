@@ -63,7 +63,7 @@ function Popup() {
 
     return (
         <div>
-            {subscribed ?
+            {!subscribed ?
                 <div className="popup-container">
                         <div className={`transparent-overlay ${isOpen ? 'open' : ''}`}></div>
                         <div className={`subscription-wall ${isOpen ? 'open' : ''}`}>

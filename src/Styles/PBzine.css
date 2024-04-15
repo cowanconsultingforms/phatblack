@@ -8,6 +8,13 @@
   margin-left: 50px;
   margin-top: 150px;
 }
+
+.head{
+  position: relative;
+  padding-bottom: 90px;
+  margin-top: -100px;
+  color: white;
+}
   
 .background-page { 
   background-color: black;
@@ -20,14 +27,7 @@
   width: calc(100% - 60px);
 }
 
-.news-pictures::before { /* This is the border above the images */
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 99%; /* Adjust this to control the width of the border */
-  border-top: 2px solid white;
-}
+
 
 .news-pictures img {
   border-radius: 2px;
@@ -117,6 +117,13 @@
 }
 
 @media screen and (max-width: 940px){
+    .head{
+      position: relative;
+      padding-bottom: 20px;
+      margin-top: -100px;
+      color: white;
+    }
+
     .background-page{
       left: 40px;
       width: calc(100% - 40px);
