@@ -34,7 +34,7 @@ function Sidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const sidebarRef = useRef(null);
-  const [infoHover, setInfoHover] = useState(false);
+  const [subMenu, setSubMenuHover] = useState(false);
   const [socialHover, setSocialHover] = useState(false);
   const [socialPopOut, setSocialPopOut] = useState(false);
   const showSidebar = () => {
@@ -69,6 +69,31 @@ function Sidebar() {
     window.location.reload();
   };
 
+  const submenuRef = useRef(null);
+  const infoIconRef = useRef(null);
+
+  //handles opening and hiding of submenu
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      if (
+        submenuRef.current &&
+        !submenuRef.current.contains(event.target) &&
+        infoIconRef.current &&
+        !infoIconRef.current.contains(event.target)
+      ) {
+        setSubMenuHover(false);
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+
+
   return (
       <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -81,79 +106,91 @@ function Sidebar() {
                 <Link to="/">
                   <li><IoHomeSharp/></li>
                 </Link>
-                <li><FaRegCompass onClick={showSidebar}/></li>
-                <li><IoIosInformationCircle onMouseEnter={() => setInfoHover(true)}  onMouseLeave={() => setInfoHover(false)}/>
-                {infoHover && (
+                <li 
+                  onMouseEnter={() => setSubMenuHover(true)}
+                  onMouseLeave={() => setSubMenuHover(false)}
+                  ref={infoIconRef}>
+                  <IoIosInformationCircle/>
+                  {subMenu && (
                     <div
                       style={{
                         position: 'absolute',
-                        top: '215px',
-                        left: '100%',
-                        width: '400px',
-                        border: '1px solid #ccc',
-                        padding: '10px',
-                        borderRadius: '5px',
-                        background: 'black'
-                      }}
-                    >
-                      <p
-                       style={{
-                        fontSize: 'medium'
-                       }}>PhatBlack-Premium is a voice for the voiceless</p>
-                    </div>
-                  )}
-                </li> 
-                <Link to="/subscribe">
-                  <li><CiMail /></li>
-                </Link>
-                <Link to="/faq">
-                  <li><FaQuestionCircle onMouseEnter={() => setSocialHover(false)}/></li>
-                </Link>
-                <li><IoShareSocial 
-                  onMouseEnter={() => {
-                    setSocialHover(true);
-                    setSocialPopOut(true);
-                    }}
-                    onMouseLeave={() => {
-                      setTimeout(() => {
-                        if (!socialHover && !socialPopOut) {
-                          setSocialPopOut(false);
-                        }
-                      }, 500);
-                    }}
-                  />
-                  {(socialHover && socialPopOut) && (
-                    <div
-                      onMouseEnter={() => setSocialHover(true)}
-                      onMouseLeave={() => setSocialHover(false)}
-                      style={{
-                        position: 'absolute',
-                        top: '300px',
+                        top: '120px',
                         left: '100%',
                         width: '400px',
                         padding: '10px',
                         borderRadius: '5px',
                         background: 'black',
                       }}
-                        >
-                        <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill/>Facebook</a>
-                        <div>
-                          <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter/>Twitter</a>
-                        </div>
-                        <div>
-                          <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill />YouTube</a>
-                        </div>
-                        <div>
-                          <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill />Instagram</a>
-                        </div>
-                      </div>
+                      ref={submenuRef}
+                    >
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                      <li style={{ marginBottom: '5px', borderBottom: '1px solid #ccc', pointerEvents:'none' }}>
+                        <p style={{ font: 'large' }}>PhatBlack is a voice for the voiceless</p>
+                      </li>
+                      <li style={{ marginBottom: '5px' }}>
+                        <Link to="/subscribe">
+                          <CiMail />
+                        </Link>
+                      </li>
+                      <li style={{ marginBottom: '5px' }}>
+                        <Link to="/faq">
+                          <FaQuestionCircle />
+                        </Link>
+                      </li>
+                      <li><IoShareSocial 
+                        onMouseEnter={() => {
+                          setSocialHover(true);
+                          setSocialPopOut(true);
+                          }}
+                          onMouseLeave={() => {
+                            setTimeout(() => {
+                              if (!socialHover && !socialPopOut) {
+                                setSocialPopOut(false);
+                              }
+                            }, 500);
+                          }}
+                        />
+                        {(socialHover && socialPopOut) && (
+                          <div
+                            onMouseEnter={() => setSocialHover(true)}
+                            onMouseLeave={() => setSocialHover(false)}
+                            style={{
+                              position: 'absolute',
+                              top: '150px',
+                              left: '90%',
+                              width: '400px',
+                              padding: '10px',
+                              borderRadius: '5px',
+                              background: 'black',
+                            }}
+                              >
+                              <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill/>Facebook</a>
+                              <div>
+                                <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter/>Twitter</a>
+                              </div>
+                              <div>
+                                <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill />YouTube</a>
+                              </div>
+                              <div>
+                                <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill />Instagram</a>
+                              </div>
+                            </div>
+                        )}
+                      </li>
+                      <li style={{ marginBottom: '5px' }}>
+                        <Link to="/contactus">
+                          <BiSolidPhoneCall onMouseEnter={() => setSocialHover(false)}/>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
                   )}
                 </li>
-                <Link to="/contactus"> 
-                  <li><BiSolidPhoneCall onMouseEnter={() => setSocialHover(false)}/></li>
-                </Link> 
+                <li><FaRegCompass onMouseEnter={showSidebar}/></li>
+
               </ul>
-              
+
             </div>
         </div>
 
@@ -168,6 +205,11 @@ function Sidebar() {
             </Link>
 
             <ul className='nav-menu-items' onClick={showSidebar}>
+              <li className= {'nav-text'}>
+              <Link to="/">
+                  <span><IoHomeSharp/> Home</span>
+                </Link>
+              </li>
               <li className={'nav-text'}>
                 <Link to="/tv">
                   <span><PiTelevisionSimple /> PB-TV</span>

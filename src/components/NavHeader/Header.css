@@ -19,7 +19,7 @@ header {
     padding: 10px 20px 0px;
     padding-right: 0px;
     position: relative;
-    left: 60px;
+    left: 3%;
     background-color: #000000;
     height: 150px;
   }
@@ -117,7 +117,7 @@ header {
     display: flex;
     position: relative;
     top: -26px;
-    max-width: 100%;
+    max-width: 93%;
   }
   
   /* menu on desktop */
@@ -128,6 +128,7 @@ header {
     list-style: none;
     background-color: transparent;
     overflow-x: scroll;
+    scrollbar-color: black black;
     scroll-behavior: smooth;
   }
 
@@ -364,6 +365,10 @@ header {
 
   
   @media screen and (max-width: 560px) {
+    .HeaderContainer {
+      left: 5%;
+    }
+
     .logo{
       margin-top: 8px;
       font-size: 2rem;
@@ -382,6 +387,7 @@ header {
 
     .desktop-nav .menus{
       padding-right: 24px;
+      scrollbar-color: black black;
     }
   }
 
@@ -390,21 +396,23 @@ header {
   @media screen and (max-width: 940px) {
     
     .HeaderContainer {
-      padding: 10px 20px 0px;
+      padding: 10px 0px 0px;
       position: relative;
-      left: 40px;
+      left: 8%;
       width: calc(100% - 40px);
     }
 
+    .header-media-container {
+      margin-right: 0;
+    }
     .nav-area {
       top: 10px;
-      overflow:hidden;
     }
     
     .desktop-nav {
       padding-top: 13px;
       text-align: right;
-      width: 80vw;  
+      width: 87vw;  
     }
   
     .mobile-nav {
@@ -493,13 +501,13 @@ header {
       display: block;
     }
 
-    .ProfileIconContainer {
+    .ProfileIcon {
       position: relative;
       display: flex;
       align-content: center;
       align-items: center;
       text-align: center;
-      top: 5px;
+      top: 35px;
       height: 50px;
       width: 50px;
       right: 25px;
@@ -532,13 +540,23 @@ header {
 
     .desktop-nav .menus{
       padding-right: 24px;
+      scrollbar-color: black black;
     }
   }
 
   @media screen and (max-width: 400px) {
+    .HeaderContainer {
+      max-width: 100%;
+      left: 8%;
+      padding: 0;
+    }
 
-    .HeaderContainer{
-      padding-left: 0px;
+    .header-media-container {
+      margin-right: 0;
+    }
+
+    .desktop-nav {
+      max-width: 100%;
     }
 
     .Profilebutton {
@@ -553,8 +571,9 @@ header {
       border: none;
     }
 
-    .ProfileIconContainer{
-      right: 45px;
+    .ProfileIcon {
+      top: 50px;
+      right: 30px;
     }
 
     .Profilebutton img {
@@ -562,16 +581,70 @@ header {
       height: 30px;
       border-radius: 100%;
     }
+    .nav-area{
+      overflow-x: hidden;
+    }
     
   }
 
   @media screen  and (max-width: 1000) {
+    .HeaderContainer {
+      max-width: 100%;
+      left: 8%;
+      padding: 0;
+    }
     .header-media-container {
       margin-right: 5%;
     }
   }
 
   @media screen and (max-width: 350px) {
+    .HeaderContainer {
+      max-width: 100%;
+      left: 8%;
+      padding: 0;
+    }
+    .header-media-container {
+      margin-right: 0;
+    }
+    .logo{
+      left: -20px;
+    }
+
+    .ProfileIcon{
+      top: 40px;
+      right: 100px;
+    }
+
+
+  }
+
+  @media screen and (max-width: 300px) {
+    .HeaderContainer {
+      max-width: 100%;
+      left: 8%;
+      padding: 10px 10px 0px;
+      padding-right: 0;
+    }
+    .header-media-container {
+      margin-right: 0;
+    }
+    .logo{
+      left: -20px;
+    }
+
+    .ProfileIcon {
+      right: 88px;
+    }
+
+
+  }
+
+  @media screen and (max-width: 300px) {
+    .nav-area{
+      overflow-x: hidden;
+    }
+
     .logo{
       left: -20px;
     }
