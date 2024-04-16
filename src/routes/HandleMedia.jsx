@@ -251,6 +251,10 @@ function HandleMedia() {
                 const uploadTask = uploadBytesResumable(storageRef, uploadFile);
 
                 uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    },
                     (error) => {
                         console.error(error);
                     },
@@ -259,6 +263,7 @@ function HandleMedia() {
                         const mediaRef = doc(db, `${currentItem.mediaType}`, currentItem.id);
                         await updateDoc(mediaRef, {
                             url: url,
+                            fileName: uploadFile.name,
                             description: newDescription,
                             fileType: newFileType,
                         });
