@@ -90,12 +90,10 @@
 
 .arrowSelected{
   color: #CA883B;
-  rotate: -90deg;
   transition: 0.3s;
 }
 
 .arrowUnselected{
-  rotate: 90deg;
   transition: 0.3s;
 }
 
