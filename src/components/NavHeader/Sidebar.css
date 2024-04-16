@@ -5,9 +5,11 @@
     height: 100vh;
     width: 60px;
     text-align: center;
+    z-index: 1;
 }
 
 .SidebarIconsDiv{
+    z-index: 2;
     cursor: pointer;
     height: 100%;
 }

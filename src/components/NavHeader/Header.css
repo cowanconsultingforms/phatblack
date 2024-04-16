@@ -545,6 +545,7 @@ header {
   }
 
   @media screen and (max-width: 400px) {
+
     .HeaderContainer {
       max-width: 100%;
       left: 8%;
@@ -580,9 +581,6 @@ header {
       width: 30px;
       height: 30px;
       border-radius: 100%;
-    }
-    .nav-area{
-      overflow-x: hidden;
     }
     
   }
@@ -634,19 +632,8 @@ header {
     }
 
     .ProfileIcon {
-      right: 88px;
-    }
-
-
-  }
-
-  @media screen and (max-width: 300px) {
-    .nav-area{
-      overflow-x: hidden;
-    }
-
-    .logo{
-      left: -20px;
+      right: 5%;
+      margin-top: 3%;
     }
 
     .ProfileIconContainer{
