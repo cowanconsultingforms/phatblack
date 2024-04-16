@@ -88,6 +88,17 @@
   padding-left: 53%;
 }
 
+.arrowSelected{
+  color: #CA883B;
+  rotate: -90deg;
+  transition: 0.3s;
+}
+
+.arrowUnselected{
+  rotate: 90deg;
+  transition: 0.3s;
+}
+
 .answerNotShown{
   height: 0;
   overflow: hidden;
@@ -119,6 +130,35 @@
 @media screen and (max-width: 768px) {
   .faq-grid {
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+}
+
+@media screen and (max-width: 600px) {
+  .faq-title{
+    width: 90%;
+    margin: 0% 5%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+  }
+  .contactus-header{
+    display: none;
+  }
+  .faq-grid{
+    display: none;
+  }
+  .faq-container{
+    margin-left: 5%;
+    margin-top: 50px;
+  }
+  .question{
+    width: 90%;
+    font-size: 16px;
+  }
+  .topic{
+    width: 100%;
+  }
+  .faq-footer{
+    margin-top: 100px;
   }
 }
 

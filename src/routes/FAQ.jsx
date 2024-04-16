@@ -57,7 +57,7 @@ const FAQ = () => {
 
     return (
         <div className="faq-page">
-            <h1>FAQ</h1>
+            <h1 className="faq-title">FAQ</h1>
             <h2 className="contactus-header">If you cannot find the answers you are looking for here, contact us <Link className="contact-Link" to={"/contactus"}>here</Link></h2>
                 <nav className="faq-navbar">
                     <ul className="faq-grid">
@@ -78,7 +78,7 @@ const FAQ = () => {
                                 {topic.questions.map((question, questionIndex) => (
                                     <div key={questionIndex} className="questionDiv">
                                         <h3 className="question" onClick={() => handleQuestionClicked(topicIndex, questionIndex)}>
-                                        {question.question} <p>{selectedQuestions[topicIndex] === questionIndex ? '▼' : '◀︎'}</p>
+                                        {question.question} <p className={selectedQuestions[topicIndex] === questionIndex ? 'arrowSelected' : 'arrowUnselected'}>{selectedQuestions[topicIndex] === questionIndex ? '▼' : '◀︎'}</p>
                                         </h3>
                                         <p className={selectedQuestions[topicIndex] === questionIndex ? "answerShown" : "answerNotShown"}>
                                             Answer: {question.answer}
