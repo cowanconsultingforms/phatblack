@@ -21,7 +21,7 @@ function MediaPreview({ media }) {
                     </div>
                 );
             case 'pdf':
-                return <iframe src={url} style={{ width: '100%', height: '500px' }} title="PDF Preview"></iframe>;
+                return <iframe src={url} className="media-preview" title="PDF Preview"></iframe>;
             default:
                 return <p>No preview available</p>;
         }
