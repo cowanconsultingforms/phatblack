@@ -211,17 +211,17 @@ function Sidebar() {
                 </Link>
               </li>
               <li className={'nav-text'}>
-                <Link to="/tv">
+                <Link to="/pbtv">
                   <span><PiTelevisionSimple /> PB-TV</span>
                 </Link>
               </li>
               <li className={'nav-text'}>
-                <Link to="/radio">
+                <Link to="/pbradio">
                   <span><HiOutlineSignal /> PB-Radio</span>
                 </Link>
               </li>
               <li className={'nav-text'}>
-                <Link to="/zine">
+                <Link to="/pbzine">
                   <span><FaBookBookmark /> PB-Zine</span>
                 </Link>
               </li>

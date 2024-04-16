@@ -51,10 +51,10 @@ function PBradio() {
 
                 <Slider {...settings} className="radio-container events">
                     {/**TEST IMAGES */}
-                    <EventCard title="Test" imgSrc={cassette} />
-                    <EventCard title="Test" imgSrc={cassette} />
-                    <EventCard title="Test" imgSrc={cassette} />
-                    <EventCard title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
                 </Slider>
 
                 <div className="radio-head">
@@ -62,19 +62,19 @@ function PBradio() {
                 </div>
 
                 <div className="podcast-container events">
-                    <EventCard title="Test" imgSrc={cassette} />
-                    <EventCard title="Test" imgSrc={cassette} />
-                    <EventCard title="Test" imgSrc={cassette} />
-                    <EventCard title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                    <EventCard path="pbradio" title="Test" imgSrc={cassette} />
                 </div>
             </div>
 
             <Slider {...settings} className="radio-container events">
                 {/**TEST IMAGES */}
-                <EventCard title="Test" imgSrc={cassette} />
-                <EventCard title="Test" imgSrc={cassette} />
-                <EventCard title="Test" imgSrc={cassette} />
-                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
             </Slider>
 
             <div className="radio-head">
@@ -82,10 +82,10 @@ function PBradio() {
             </div>
 
             <div className="podcast-container events">
-                <EventCard title="Test" imgSrc={cassette} />
-                <EventCard title="Test" imgSrc={cassette} />
-                <EventCard title="Test" imgSrc={cassette} />
-                <EventCard title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
+                <EventCard path="pbradio" title="Test" imgSrc={cassette} />
             </div>
         </div>
     );

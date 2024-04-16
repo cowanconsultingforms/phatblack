@@ -3,16 +3,14 @@
 }
 
 .subscription-wall {
-    position: fixed;
+    position: absolute;
     bottom: -30%;
     left: 0;
     width: 100%;
-    height: 50vh;
-
+    height: 60vh;
     background-color: orange;
     box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
     transition: transform ease; /* Apply transition for smooth animation */
-
     transform: translateY(100%);
     text-align: center;
     z-index: 3;
@@ -26,7 +24,6 @@
 
 .subscription-wall h1, .subscription-wall p {
     margin: 0;
-    padding: 10px;
     color: black;
 }
 
@@ -40,9 +37,80 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.popup-login-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 10px;
+    text-align: center;
+}
 
-@media screen and (max-width: 650px) {
-    .subscription-wall h1, .subscription-wall p {
+.popup-login-container h1{
+    margin-bottom: 0;
+}
+
+.popup-login-container .ForgetPass,
+.popup-login-container .NoAccount {
+    color: #000000;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.popup-login-container input[type="text"],
+.popup-login-container input[type="password"] {
+    width: calc(100% - 50px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #3d3b3b;
+    border-radius: 5px;
+    outline: none;
+}
+
+.popup-login-container input[type="submit"] {
+    width: calc(100% - 50px);
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa646;
+    color: #000000;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup-login-container .ForgetPass a,
+.popup-login-container .NoAccount a {
+    color: white;
+    text-decoration: underline;
+}
+
+
+.popup-login-container input[type="submit"]:hover {
+    background-color: #d35400;
+}
+@media screen and (max-width: 450px) {
+    .subscription-wall h1, .subscription-wall p, .popup-login-container {
         margin-left: 10%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .subscription-wall {
+        height: 80vh; /* Adjust height for smaller screens */
+    }
+
+    .subscription-wall h1,
+    .subscription-wall p {
+        margin-left: 10%; /* Adjust margin for smaller screens */
+    }
+
+    .popup-container {
+        width: 300px; 
+    }
+
+    .popup-login-container input{
+        margin-right: 5%;
     }
 }
