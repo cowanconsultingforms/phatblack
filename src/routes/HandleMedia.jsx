@@ -242,6 +242,10 @@ function HandleMedia() {
                     const compressedFile = await imageCompress(uploadFile);
                     uploadFile = compressedFile;
                 }
+                else if (uploadFile.size > 1024 * 1024 * 5) {
+                    alert('File size must be less than 5MB');
+                    return;
+                }
 
                 const storageRef = ref(storage, `${currentItem.mediaType}/${uploadFile.name}`);
                 const uploadTask = uploadBytesResumable(storageRef, uploadFile);
