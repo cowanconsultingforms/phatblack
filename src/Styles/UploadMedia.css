@@ -3,12 +3,9 @@
     margin: 40px auto;
     padding: 20px;
     background-color: #222;
-    /* Dark background */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    /* More pronounced shadow */
     color: #fff;
-    /* White text */
 }
 
 .form-group {
@@ -20,12 +17,8 @@
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #333;
-    /* Darker border for visibility */
     background-color: #333;
-    /* Darker background for the input */
     color: #fff;
-    /* White text */
-    /* Custom style for file input to ensure the file name is visible */
 }
 
 .upload-form select,
@@ -35,9 +28,7 @@
     border-radius: 4px;
     border: 1px solid #ced4da;
     background-color: #333;
-    /* Dark input fields */
     color: #fff;
-    /* White text */
     font-size: 16px;
     line-height: 1.5;
 }
@@ -46,7 +37,6 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    /* Custom dropdown arrow */
     background: url('data:image/svg+xml;utf8,<svg fill="%23fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat right 0.75rem center/12px 12px;
     cursor: pointer;
 }
@@ -55,7 +45,6 @@
     display: block;
     width: 100%;
     background-color: #28a745;
-    /* Green background */
     color: white;
     padding: 10px 15px;
     border: none;
@@ -63,7 +52,6 @@
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
-    /* Space above the button */
 }
 
 .submit-btn:disabled {
@@ -72,7 +60,6 @@
 
 .submit-btn:not(:disabled):hover {
     background-color: #218838;
-    /* Darker green on hover */
 }
 
 .error-message {
@@ -80,68 +67,43 @@
     margin-bottom: 15px;
 }
 
-/* Existing styles */
-
-/* Additions for the loading screen and cancel button */
 .loading-indicator {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin-top: 20px;
-    /* Positioning */
 }
 
-.loading-spinner {
-    border: 4px solid #f3f3f3;
-    /* Light grey */
-    border-top: 4px solid #3498db;
-    /* Blue color */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+.cancel-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .cancel-btn {
     background-color: #e74c3c;
-    /* Red color for cancellation */
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
-    /* Spacing */
     outline: none;
 }
 
 .cancel-btn:hover {
     background-color: #c0392b;
-    /* Darker shade on hover */
 }
 
 .upload-form-container {
     background-color: rgba(0, 0, 0, 0.8);
-    /* Slight transparency */
     backdrop-filter: blur(10px);
-    /* Blur effect for background content */
     border: 1px solid #555;
-    /* Border to lift the panel slightly */
 }
 
-@media screen and (max-width: 940px){
-    .upload-form-container{
+@media screen and (max-width: 940px) {
+    .upload-form-container {
         margin: 40px 15%;
         margin-left: 20%;
     }
