@@ -6,9 +6,8 @@ function About() {
     return (
         <div className="page-container">
             <div className="page-content">
-            <h1 className="head">About</h1>
                 <h2 className="head1">No. 1 Entertainment Platform</h2>
-                <h1 className="head2">About Us</h1>
+                <h1 className="head2">About </h1>
                 <img className="about-image-separator" src={equalizer}></img>
                 <div className="paragraph-container">
                     <p>
