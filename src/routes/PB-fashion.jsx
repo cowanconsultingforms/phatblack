@@ -10,12 +10,13 @@ import { CiCircleCheck } from "react-icons/ci";
 function PBfashion() {
     return (
         <div className="pbfashion-page">
+            <h1>PB-Fashion</h1>
             <div className="Top-Featured">
                 <div className="Featured-Info">
                     <h4>Place holder</h4>
                     <h1>his is where the caption for the daily trends will go</h1>
                     <h3>Name of author(s)</h3>
-                    <h4>PhatBlack.com</h4>
+                    <h4>phat-black.web.app</h4>
                 </div>
                 <div className="Featured-Image">
                     <img className = "Image" src={Barimage} alt="barimage" />
@@ -62,7 +63,7 @@ function PBfashion() {
             </div>
             <hr />
             <div className="Middle-Subscribe">
-                <CiCircleCheck className="svg"/><h2>Get Unlimited Access to Exclusive content only on PhatBlack.com </h2><button className="Subscribe">SUBSCRIBE</button>
+                <CiCircleCheck className="svg"/><h2>Get Unlimited Access to Exclusive content only on phat-black.web.app </h2><button className="Subscribe">SUBSCRIBE</button>
             </div>
             <hr />
             <div className="Fashion-Articles">

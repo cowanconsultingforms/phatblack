@@ -79,3 +79,20 @@
     font-size: 36px;
     font-weight: bold;
 }
+
+/* Media queries for responsive design */
+
+@media only screen and (max-width: 768px) {
+    .PBcommunitiesCard {
+        width: calc(85% - 20px);
+        margin: 20px auto; /* Center cards horizontally */
+    }
+
+  
+
+    .scholarship-container,
+    .service-container,
+    .Teaching-container {
+        justify-content: center; /* Center items horizontally */
+    }
+}

@@ -40,9 +40,8 @@ function Subscribe() {
 
     return (
         <div className="subscribe-page">
-
+            <h1>Subscribe</h1>
             <div className="subscribe-header">
-                <h1>Subscribe</h1>
             </div>
 
             <div className="subscription-plans">

@@ -1,7 +1,7 @@
 .pbradio-page {
     position: relative;
-    left: 60px;
-    width: calc(100% - 60px);
+    margin-left: 10%;
+    max-width: 85%;
 }
 
 .radio-head {
@@ -26,20 +26,32 @@
 @media screen and (max-width: 940px){
 
     .pbradio-page {
-        left: 40px;
-        width: calc(100% - 40px);
+        margin-left: 15%;
+        max-width: 75%;
     }
   }
-  
-  @media screen and (max-width: 500px) {
+
+@media screen and (max-width: 500px) {
     .pbradio-page {
-        left: 30px;
-        width: calc(100% - 30px);
+        margin-left: 15%;
+        max-width: 75%;
     }
-  }
+}
   
   @media screen and (max-width: 400px) {
+    .pbradio-page {
+        margin-left: 15%;
+        max-width: 75%;
+    }
   }
+
+@media screen and (max-width: 300px) {
+    .pbradio-page {
+        margin-left: 20%;
+        max-width: 60%;
+    }
+}
+
 .radio-head {
     display: flex;
     justify-content: space-between;
