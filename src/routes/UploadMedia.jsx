@@ -13,12 +13,14 @@ function UploadMedia() {
 
     const [file, setFile] = useState(null);
     const [expectedFileType, setExpectedFileType] = useState('');
+    const [fileType, setFileType] = useState('');
     const [mediaType, setMediaType] = useState('');
     const [subscriptionType, setSubscriptionType] = useState('');
     const [vendor, setVendor] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
+    const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [uploadTask, setUploadTask] = useState(null);
@@ -40,8 +42,19 @@ function UploadMedia() {
 
     const imageCompress = (file) => {
         return new Promise((resolve, reject) => {
+            let quality;
+            const fileSizeInMB = file.size / 1024 / 1024;
+
+            if (fileSizeInMB > 5) {
+                quality = 0.3;
+            } else if (fileSizeInMB > 1) {
+                quality = 0.5;
+            } else {
+                quality = 0.8;
+            }
+
             new Compressor(file, {
-                quality: 0.4,
+                quality: quality,
                 maxWidth: 1920,
                 maxHeight: 1080,
                 success: (compressedResult) => {
@@ -73,15 +86,15 @@ function UploadMedia() {
         const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
         try {
-            if (imageExtensions.includes(fileExtension) && file.size > 5 * 1024 * 1024) {
+            if (imageExtensions.includes(fileExtension)) {
                 const compressedFile = await imageCompress(file);
                 uploadFile = compressedFile;
-            } else if (file.size > 5 * 1024 * 1024) {
-                setError('The file size should not exceed 5MB.');
+            }
+            else if (file.size > 1024 * 1024 * 5) {
+                setError('File size exceeds 5MB limit.');
                 return;
             }
 
-            setLoading(true);
             setError('');
 
             const mediaPath = `${mediaType}/${uploadFile.name}`;
@@ -91,8 +104,10 @@ function UploadMedia() {
             uploadTask.on(
                 'state_changed',
                 (snapshot) => {
+                    setLoading(true);
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
+                    setProgress(progress);
+                    setUploadTask(uploadTask);
                 },
                 (error) => {
                     setError(`Upload failed: ${error.message}`);
@@ -107,6 +122,7 @@ function UploadMedia() {
                         vendor,
                         url,
                         fileName: uploadFile.name,
+                        fileType: fileType,
                         subscriptionType,
                         keywords: [],
                         views: 0,
@@ -130,6 +146,21 @@ function UploadMedia() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleFileChange = (e) => {
+
+        setExpectedFileType(e.target.value);
+        if (e.target.value === 'image/png' || e.target.value === 'image/jpeg' || e.target.value === 'image/jpg' || e.target.value === 'image/gif' || e.target.value === 'image/webp' || e.target.value === 'image/svg') {
+            setFileType('image');
+        } else if (e.target.value === 'video/mp4') {
+            setFileType('video');
+        } else if (e.target.value === 'audio/mpeg') {
+            setFileType('audio');
+        } else if (e.target.value === 'application/pdf') {
+            setFileType('pdf');
+        }
+
     };
 
     const cancelUpload = () => {
@@ -158,17 +189,18 @@ function UploadMedia() {
                 {loading ? (
                     <>
                         <div className="loading-indicator">
-                            <div className="loading-spinner"></div>
-                            <p>Loading...</p>
+                            <p>{Math.round(progress)}% done uploading</p>
                         </div>
-                        <button type="button" onClick={cancelUpload} className="cancel-btn">Cancel Upload</button>
+                        <div className="cancel-btn-container">
+                            <button type="button" onClick={cancelUpload} className="cancel-btn">Cancel Upload</button>
+                        </div>
                     </>
                 ) : (
                     <>
                         <div className="form-group">
                             <select
                                 value={expectedFileType}
-                                onChange={e => setExpectedFileType(e.target.value)}
+                                onChange={e => handleFileChange(e)}
                                 aria-label="Select expected file type"
                             >
                                 <option value="" disabled>Select File Type</option>

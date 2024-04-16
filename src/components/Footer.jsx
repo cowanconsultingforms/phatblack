@@ -11,9 +11,9 @@ import {Link } from "react-router-dom";
 
 function Footer() {
 
-    function handleOnClick() {
-        window.location.href = "https://phatblack.com/WP/newsletter/"
-    }
+    // function handleOnClick() {
+    //     window.location.href = "https://phatblack.com/WP/newsletter/"
+    // }
 
     return (
         <footer className="footer-container">
@@ -23,18 +23,19 @@ function Footer() {
                     <h1>GET WEEKLY NEWSLETTER</h1>
                 </div>
                 <div className="footer-subscribe">
-                    <button onClick={handleOnClick}>Subscribe Now</button>
+                    {/* <button onClick={handleOnClick}>Subscribe Now</button> */}
+                    <a href="https://phatblack.com/WP/newsletter/" className="subscribe-button" target="_blank">Subscribe Now</a>
                 </div>
             </div>
 
             <div className="footer-contents">
                 <div className="footer-about">
-                    <h1>PHATBLACK</h1>
+                    <h1>PHATBLACK PREMIUM</h1>
                     <p>
                         <strong>Explore</strong>
                     </p>
                     <p>
-                        <strong>About Us</strong>: Learn about our mission, vision, and the values that drive our dedication to urban culture.
+                        <strong>About</strong>: Learn about our mission, vision, and the values that drive our dedication to urban culture.
                     </p>
                     <p>
                         <strong>Podcasts</strong>: Immerse yourself in the diverse sounds of the city with our range of exclusive audio and video podcasts.
@@ -65,16 +66,16 @@ function Footer() {
                 <div className="footer-contact">
                     <h1>CONTACT US</h1>
                     <p>
-                        <strong><u><Link to = "https://phatblack.com/WP/copyright/">Copyright</Link></u></strong>: Have an issue? Reach out to our support team for assistance.
+                        <strong><u><Link target="_blank" to = "https://phatblack.com/WP/copyright/">Copyright</Link></u></strong>: Have an issue? Reach out to our support team for assistance.
                     </p>
                     <p>
                         <strong> <u><Link to = "/faq">FAQs</Link></u></strong>: Find answers to commonly asked questions and helpful tips for navigating our content.
                     </p>
                     <p>
-                        <strong><u><Link to = "https://phatblack.com/WP/privacy-policy/">Privacy Policy</Link></u></strong>: Your privacy matters. Learn how we protect and use your information.
+                        <strong><u><Link target="_blank" to = "https://phatblack.com/WP/privacy-policy/">Privacy Policy</Link></u></strong>: Your privacy matters. Learn how we protect and use your information.
                     </p>
                     <p>
-                        <strong><u><Link to = "https://phatblack.com/WP/terms-of-service/"> Terms of Service</Link></u></strong>: Understand the terms that guide our services and your use of Phatblack.com.
+                        <strong><u><Link target="_blank" to = "https://phatblack.com/WP/terms-of-service/"> Terms of Service</Link></u></strong>: Understand the terms that guide our services and your use of Phatblack.com.
                     </p>
                     <h1>LOCATION</h1>
                     <div>

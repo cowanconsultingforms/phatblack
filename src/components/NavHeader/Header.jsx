@@ -46,6 +46,29 @@ const Header = () => {
     setShowDropdown(!showDropdown);
   };
 
+  const [profileImageUrl, setProfileImageUrl] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+        setIsAuthenticated(!!user);
+        if (user) {
+            const userRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists()) {
+                setRole(userDoc.data().role);
+                // Fetch the profile image URL and update the state
+                const profileImageUrl = userDoc.data().profileImageUrl;
+                setProfileImageUrl(profileImageUrl);
+            }
+        } else {
+            // User is logged out, set the profile image URL to the default image URL
+            setProfileImageUrl('https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png');
+        }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
 
   return (
     <header>
@@ -101,7 +124,9 @@ const Header = () => {
         {/* ) : ( */}
         <div className="ProfileIcon">
           <div className="ProfileIconContainer">
-            <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}></img></button>
+          <button className="Profilebutton" onClick={toggleDropdown}>
+              <img src={profileImageUrl || profileIcon} alt="Profile Icon" />
+          </button>
           </div>
           {showDropdown && (<DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} authenticated={isAuthenticated} />)}
         </div>

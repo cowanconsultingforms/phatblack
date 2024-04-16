@@ -3,8 +3,12 @@ import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updatePasswor
 import { doc, getFirestore, getDoc, updateDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from "../firebaseConfig";
 import "../Styles/UserProfile.css";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, Link } from 'react-router-dom';
+import { Dialog } from "primereact/dialog";
+import { InputText } from "primereact/inputtext";
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import AvatarEdit from 'react-avatar-edit';
+ 
 function UserProfile() {
     const [formData, setFormData] = useState(() => {
         const savedData = localStorage.getItem('formData');
@@ -37,7 +41,6 @@ function UserProfile() {
                         const userData = docSnapshot.data();
                         setFormData(userData);
                         localStorage.setItem('formData', JSON.stringify(userData));
-                        console.log(formData);
                     }
                 })
                 .catch((error) => {
@@ -53,6 +56,7 @@ function UserProfile() {
         event.preventDefault();
         //post request to backend for cancellation
         try {
+            console.log(formData.subscriptionId);
             const response = await fetch(
                 subscriptionCancellationUrl,
                 {
@@ -142,6 +146,120 @@ function UserProfile() {
         }
     };
 
+    const [image, setImage] = useState("")
+
+    const storage = getStorage();
+
+    const [previewImage, setPreviewImage] = useState("");
+    const [croppedImage, setCroppedImage] = useState("");
+    const [isCropDialogOpen, setIsCropDialogOpen] = useState(false);
+
+    const handleFileUpload = async (event) => {
+        // Define the file size limit in bytes (5MB)
+        const fileSizeLimit = 5 * 1024 * 1024; // 5 MB
+    
+        // Get the selected file
+        const file = event.target.files[0];
+    
+        // Check if the file exists and if it's an image
+        if (file && file.type.startsWith("image/")) {
+            // Check if the file size exceeds the limit
+            if (file.size > fileSizeLimit) {
+                alert("File size exceeds the 5MB limit. Please upload a smaller image.");
+                return; // Stop further processing
+            }
+    
+            // Display the cropping interface
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreviewImage(reader.result);
+                setIsCropDialogOpen(true); // Open cropping dialog
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please upload a valid image file.");
+        }
+    };
+
+    const handleImageSave = async () => {
+        if (croppedImage) {
+            try {
+                // Fetch the cropped image and get its blob
+                const response = await fetch(croppedImage);
+                const blob = await response.blob();
+                
+                // Determine the file extension based on the MIME type of the blob
+                const fileType = blob.type.split('/')[1]; // e.g. 'image/jpeg' -> 'jpeg'
+                
+                // Create a storage reference with the userId and the file extension
+                const storageRef = ref(storage, `profileImages/${userId}.${fileType}`);
+                
+                // Upload the cropped image to Firebase storage
+                await uploadBytes(storageRef, blob);
+                
+                // Get the URL of the uploaded image
+                const imageUrl = await getDownloadURL(storageRef);
+                
+                // Update the user's profile in Firestore with the new profile image URL
+                const docRef = doc(db, "users", userId);
+                await updateDoc(docRef, { profileImageUrl: imageUrl });
+                
+                // Update local storage
+                setFormData((prevState) => {
+                    const updatedFormData = { ...prevState, profileImageUrl: imageUrl };
+                    localStorage.setItem('formData', JSON.stringify(updatedFormData));
+                    return updatedFormData;
+                });
+                
+                // Notify the user that the profile image has been updated
+                alert("Profile image updated successfully!");
+                
+                // Close the cropping dialog
+                setIsCropDialogOpen(false);
+    
+                // Go to the home page
+                navigate("/");
+    
+                // Reload the website
+                window.location.reload();
+    
+                // Reset preview image and cropped image state
+                setPreviewImage("");
+                setCroppedImage("");
+            } catch (error) {
+                console.error("Error uploading the cropped image:", error);
+                alert("Failed to update profile image.");
+            }
+        } else {
+            alert("Please crop the image before saving.");
+        }
+    };
+    
+
+
+    useEffect(() => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user) {
+            const db = getFirestore();
+            const userDocRef = doc(db, 'users', user.uid);
+            setUserId(user.uid);
+            getDoc(userDocRef)
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists()) {
+                        const userData = docSnapshot.data();
+                        setFormData(userData);
+                        setImage(userData.profileImageUrl || ''); // Set the profile image URL in state
+                        localStorage.setItem('formData', JSON.stringify(userData));
+                        console.log(formData);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+        }
+    }, []);
+
 
     return (
         <div className='profile-page'>
@@ -149,12 +267,33 @@ function UserProfile() {
                 <div className='profile-title'>
                     <h1>User Profile</h1>
                 </div>
-                <div >
-                    Sample icon
+                <div className="profile-icon">
+                    <img src={image || 'https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png'} alt="Profile Icon" />
                 </div>
-                <div className='profile-icon'>
-                    <img src='https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png'></img>
+                <div className='UploadProfileImage'>
+                    <label htmlFor="ProfileImage">Profile Image</label>
+                    <InputText
+                        className='NewProfileImage'
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileUpload}
+                    />
+                    <small id="ProfileImage-help">
+                        Enter a image file, maximum file size 5MB
+                    </small>
                 </div>
+                <Dialog header="Crop Image" visible={isCropDialogOpen} onHide={() => setIsCropDialogOpen(false)}>
+                    <AvatarEdit
+                        width={500}
+                        height={500}
+                        onCrop={setCroppedImage}
+                        onClose={() => setIsCropDialogOpen(false)}
+                        src={previewImage}
+                        imageWidth={500}
+                        exportAsSquare
+                    />
+                    <button className='Save-Image' onClick={handleImageSave}>Save Image</button>
+                </Dialog>
                 <form onSubmit={handleSubmit}>
                     <label className="label" htmlFor="username">Username: </label>
                     <input
@@ -217,6 +356,11 @@ function UserProfile() {
                     <button type="submit">Update </button>
                 </form>
                 <button style={{backgroundColor: "#d35400"}} type="submit" onClick={cancelSubscription}> Cancel Subscription </button>
+                <div className="links">
+                    <h3 className="link"><Link to="https://phatblack.com/WP/restrictions/" target="_blank">SEE RESTRICTIONS</Link></h3>
+                    <h3 className="link"><Link to="https://phatblack.com/WP/terms-of-service/" target="_blank">SEE TERMS OF SERVICE</Link></h3>
+                    <h3 className="link"><Link to="https://phatblack.com/WP/privacy-policy/" target="_blank">SEE PRIVACY POLICY</Link></h3>
+                </div>
             </div>
         </div>
     );

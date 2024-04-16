@@ -7,10 +7,11 @@
     height: 300px;
     width: 200px;
     right: 40px;
-    top: 53%;
+    top: 70%;
     z-index: 2;
     border-radius: 5px;
     padding-top: 3px;
+    margin-right: 50px;
 }
 
 
@@ -77,11 +78,41 @@
         height: 200px;
         width: 200px;
         margin-top: 2%;
-        top: 45%;
+        top: 55%;
+        margin-right: -5%;
+    }
+
+    .dropdown-menu.guest{
+        top: 100%;
+        height: 200%;
     }
     
     
     .dropdown-menu button {
         font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .dropdown-menu {
+        right: 0; 
+        left: auto; 
+        height: 200px; 
+    }
+
+    
+}
+
+@media screen and (max-width: 300px) {
+    .dropdown-menu {
+        right: 0; 
+        left: auto; 
+        height: 200px; 
+    }
+
+    .dropdown-menu.guest{
+        top: 90%;
+        height: 200%;
+        right: 160%;
     }
 }

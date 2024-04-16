@@ -70,9 +70,13 @@ const handleClick = (url) => { // this function is used to open a new tab when t
 function News_pictures() {
 
   return (
-    <div className='news-pictures'>
+    <div>
+      <h1 className='head'>PB-Zine</h1>
+      <div className='news-pictures'>
       <Carousel items={pbZineCards}></Carousel>
+      </div>
     </div>
+    
   )
 
 }
@@ -108,7 +112,7 @@ function Bottom_content() {
 
     const fetchEzine = async () => {
       try {
-        const etvVideosCollection = collection(db, "e-zine");
+        const etvVideosCollection = collection(db, "pb-zine");
         const q = query(etvVideosCollection);
         const querySnapshot = await getDocs(q);
         const zines = querySnapshot.docs.map(doc => doc.data());
