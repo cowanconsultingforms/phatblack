@@ -17,21 +17,21 @@ const mallCarouselItems = [
         title: "Live Jazz",
         text: "Social event: Live Jazz at...",
         alt: "Live Jazz Event image",
-        link: `details`
+        link: `Clothes Example`
     },
     {
         url: carouselItem2,
         title: "Neon Night",
         text: "Neon Night: Neon DJ set on friday night at...",
         alt: "Neon DJ Image",
-        link: `details`
+        link: `Clothes Example`
     },
     {
         url: carouselItem3,
         title: "Hip Hop Night",
         text: "Hip Hop Night: Listen and dance to the hottest hip hop songs out at...",
         alt: "Night DJ Image",
-        link: `details`
+        link: `Clothes Example`
     },
 ];
 
@@ -68,25 +68,25 @@ function Header() {
             <div className="header-container"> {/* container for header and sub headers */}
 
                 <div className="subtopics-container">
-                    <a href="https://phat-black.web.app/mall">
+                    <a href="/pbmall">
                         <h2 className="Subtopics">Home</h2>
                     </a>
-                    <a href="https://phat-black.web.app/mall">
+                    <a href="/pbmall">
                         <h2 className="Subtopics">Featured</h2>
                     </a>
-                    <a href="https://phat-black.web.app/mall">
+                    <a href="/pbmall">
                         <h2 className="Subtopics">Clothes</h2>
                     </a>
-                    <a href="https://phat-black.web.app/mall">
+                    <a href="/pbmall">
                         <h2 className="Subtopics">Accessories</h2>
                     </a>
-                    <a href="https://phat-black.web.app/mall">
+                    <a href="/pbmall">
                         <h2 className="Subtopics">Electronics</h2>
                     </a>
-                    <a href="https://phat-black.web.app/mall">
+                    <a href="/pbmall">
                         <h2 className="Subtopics">Personal Care</h2>
                     </a>
-                    <a href="https://phat-black.web.app/mall">
+                    <a href="/pbmall">
                         <h2 className="Subtopics">Miscellaneous</h2>
                     </a>
 
@@ -107,16 +107,16 @@ function Bottompage() {
                 <h2 className="bottomHeader"> You May Also Like</h2>
             </div>
             <div className="bottom-suggestions">
-                <a href="https://phat-black.web.app/mall">
+                <a href="/pbmall/Clothes Example">
                     <img src={carouselItem1} alt="image" />
                 </a>
-                <a href="https://phat-black.web.app/mall">
+                <a href="/pbmall/Clothes Example">
                     <img src={carouselItem1} alt="image" />
                 </a>
-                <a href="https://phat-black.web.app/mall">
+                <a href="/pbmall/Clothes Example">
                     <img src={carouselItem1} alt="image" />
                 </a>
-                <a href="https://phat-black.web.app/mall">
+                <a href="/pbmall/Clothes Example">
                     <img src={carouselItem1} alt="image" />
                 </a>
             </div>

@@ -26,12 +26,12 @@ export const menuItemsData = [
     },
     {
       title: "PB-Radio",
-      url: "/radio",
+      url: "/pbradio",
       svg: "HiOutlineSignal" 
     },  
     {
       title: "PB-Zine",
-      url: "/zine",
+      url: "/pbzine",
       svg: "FaBookBookmark" 
     },
     {
@@ -51,7 +51,7 @@ export const menuItemsData = [
     },
     {
       title: "PB-Gaming",
-      url: "/gaming",
+      url: "/pbgaming",
       svg: "SiApplearcade" 
     },
     {
