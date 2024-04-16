@@ -5,9 +5,11 @@
     height: 100vh;
     width: 60px;
     text-align: center;
+    z-index: 1;
 }
 
 .SidebarIconsDiv{
+    z-index: 2;
     cursor: pointer;
     height: 100%;
 }
@@ -19,7 +21,6 @@
 .Sidebar ul {
     margin-top: 100%;
     height: 100%;
-    overflow-y: scroll;
     scroll-behavior: smooth;
     padding-bottom: 150px;
 }
@@ -132,6 +133,7 @@ span {
     background-color: white;
     border-radius: 4px;
 }
+
 
 
 @media screen and (max-width: 400px) {

@@ -74,13 +74,10 @@
 
 .update-form-container {
     background-color: #222;
-    /* Match with dark theme */
     padding: 20px;
     border-radius: 8px;
     width: 500px;
-    /* Fixed width for medium screens and up */
     margin: 2rem auto;
-    /* Center align */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -101,9 +98,7 @@
     border-radius: 4px;
     border: 1px solid #ced4da;
     background-color: #333;
-    /* Dark input fields */
     color: #fff;
-    /* White text */
     font-size: 1rem;
 }
 
@@ -117,15 +112,55 @@
 
 .update-form-group input[type="file"] {
     background-color: #444;
-    /* Slightly lighter to distinguish */
     cursor: pointer;
 }
 
 @media (max-width: 768px) {
     .update-form-container {
         width: calc(100% - 40px);
-        /* Full width minus padding */
         margin: 2rem 20px;
-        /* Keep margin consistent */
     }
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    text-align: center;
+    color: #fff;
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #e50914;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-content p {
+    margin-top: 10px;
+    font-size: 18px;
+    letter-spacing: 1px;
 }

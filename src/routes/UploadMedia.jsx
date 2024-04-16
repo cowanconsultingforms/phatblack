@@ -20,6 +20,7 @@ function UploadMedia() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
+    const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [uploadTask, setUploadTask] = useState(null);
@@ -89,8 +90,11 @@ function UploadMedia() {
                 const compressedFile = await imageCompress(file);
                 uploadFile = compressedFile;
             }
+            else if (file.size > 1024 * 1024 * 5) {
+                setError('File size exceeds 5MB limit.');
+                return;
+            }
 
-            setLoading(true);
             setError('');
 
             const mediaPath = `${mediaType}/${uploadFile.name}`;
@@ -100,8 +104,10 @@ function UploadMedia() {
             uploadTask.on(
                 'state_changed',
                 (snapshot) => {
+                    setLoading(true);
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
+                    setProgress(progress);
+                    setUploadTask(uploadTask);
                 },
                 (error) => {
                     setError(`Upload failed: ${error.message}`);
@@ -183,10 +189,11 @@ function UploadMedia() {
                 {loading ? (
                     <>
                         <div className="loading-indicator">
-                            <div className="loading-spinner"></div>
-                            <p>Loading...</p>
+                            <p>{Math.round(progress)}% done uploading</p>
                         </div>
-                        <button type="button" onClick={cancelUpload} className="cancel-btn">Cancel Upload</button>
+                        <div className="cancel-btn-container">
+                            <button type="button" onClick={cancelUpload} className="cancel-btn">Cancel Upload</button>
+                        </div>
                     </>
                 ) : (
                     <>

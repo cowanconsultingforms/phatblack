@@ -31,7 +31,7 @@
 }
 
 .GamingSidebar.open {
-    left: 10vh;
+    left: 8vh;
 }
 
 .GamingSidebar ul {
@@ -133,6 +133,14 @@
         height: auto;
     }
 
+    .GamingMainContainer {
+        left: 9%;
+        width: 88%;
+    }
+    .GamingSidebar.open {
+        left: 5vh;
+    }
+
     .GamingSidebar {
         align-content: center;
         text-align: center;
@@ -173,7 +181,7 @@
         width: calc(100% - 40px);
     }
     .GamingSidebar.open {
-        left: 7vh;
+        left: 5vh;
     }
 }
   
@@ -183,17 +191,17 @@
         width: calc(100% - 30px);
     }
     .GamingSidebar.open {
-        left: 7vh;
+        left: 5vh;
     }
 }
   
 @media screen and (max-width: 400px) {
   
     .GamingMainContainer {
-        left: 15%;
-        width: 86%;
+        left: 9%;
+        width: 88%;
     }
     .GamingSidebar.open {
-        left: 7vh;
+        left: 5vh;
     }
 }

@@ -35,6 +35,7 @@ import TermsService from './routes/TermsService';
 import Restrictions from './routes/Restrictions';
 import HandleMedia from './routes/HandleMedia';
 import ComponentPage from './routes/ComponentPage';
+import Popup from './components/Popup';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -61,8 +62,10 @@ function App() {
                 <Footer />
               </>
             } />
+          <Route path='/pop' element={<Popup />}></Route>
           <Route path="/pbevents" element={
             <>
+              <Popup />
               <PBevents />
               <Footer />
             </>
@@ -70,17 +73,22 @@ function App() {
           <Route path="/pbevent/:title" element={
             <>
               <ComponentPage collection="pb-event" />
+              <Popup />
+              <ComponentPage collection="pb-event" />
               <Footer />
             </>
           } />
           <Route path="/pbtv" element={
             <>
+              <Popup />
               <PBTv />
               <Footer />
             </>
           } />
           <Route path="/pbtv/:title" element={
             <>
+              <ComponentPage collection="pb-tv" />
+              <Popup />
               <ComponentPage collection="pb-tv" />
               <Footer />
             </>
@@ -93,12 +101,14 @@ function App() {
           } />
           <Route path="/radio" element={
             <>
+              <Popup />
               <PBradio />
               <Footer />
             </>
           } />
           <Route path="/zine" element={
             <>
+              <Popup />
               <PBzine />
               <Footer />
             </>
@@ -106,29 +116,35 @@ function App() {
           <Route path='/zine/:title' element={
             <>
               <ComponentPage collection="pb-zine" />
+              <Popup />
+              <ComponentPage collection="pb-zine" />
               <Footer />
             </>
           } />
           <Route path="/gaming" element={
             <>
+              <Popup />
               <PBgaming />
               <Footer />
             </>
           } />
           <Route path="/pbdigital" element={
             <>
+              <Popup />
               <PBdigital />
               <Footer />
             </>
           } />
           <Route path="/pbfashion" element={
             <>
+              <Popup />
               <PBfashion />
               <Footer />
             </>
           } />
           <Route path="/pbmusic" element={
             <>
+              <Popup />
               <PBmusic />
               <Footer />
             </>
@@ -141,12 +157,14 @@ function App() {
           } />
           <Route path="/pbsocial" element={
             <>
+              <Popup />
               <PBsocial />
               <Footer />
             </>
           } />
           <Route path="/defendersofhiphop" element={
             <>
+              <Popup />
               <DefendersOfHipHop />
               <Footer />
             </>

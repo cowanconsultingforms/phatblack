@@ -15,6 +15,8 @@ function HandleMedia() {
 
     const [media, setMedia] = useState([]);
     const [showForm, setShowForm] = useState(true);
+    const [loading, setLoading] = useState(false);
+
 
     //For editing media
     const [newDescription, setNewDescription] = useState('');
@@ -24,6 +26,12 @@ function HandleMedia() {
 
     const [currentItem, setCurrentItem] = useState(null);
 
+    //Filtering
+    const [collectionName, setCollectionName] = useState('');
+    const [showFilter, setShowFilter] = useState(true);
+    const [showMedia, setShowMedia] = useState(false);
+
+    // Check if user is logged in and is an admin
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (!user) return navigate('/');
@@ -34,64 +42,104 @@ function HandleMedia() {
                 navigate('/');
                 return;
             }
-            fetchMedia();
         });
 
 
     }, [navigate, auth]);
 
-    const fetchMedia = async () => {
-        const mediaCollection = collection(db, 'searchData');
-        const mediaSnapshot = await getDocs(mediaCollection);
-        const mediaFetchPromises = [];
+    // Filter media form
+    const filterMediaForm = (
+        <div className='update-form-container'>
+            <form className='update-form'>
+                <h1 className="users-list-title">Select Media Type</h1>
+                <div className='update-form-group'>
+                    <select
+                        value={collectionName}
+                        onChange={(e) => setCollectionName(e.target.value)}
+                        aria-label='Select media type'
+                    >
+                        <option value="" disabled>Select Media Type</option>
+                        <option value="all">All Media</option>
+                        <option value="pb-tv">PB-TV</option>
+                        <option value="pb-zine">PB-Zine</option>
+                        <option value="pb-music">PB-Music</option>
+                        <option value="pb-fashion">PB-Fashion</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    );
 
-        mediaSnapshot.docs.forEach((docSnapshot) => {
-            const mediaPath = docSnapshot.data().path;
-            if (mediaPath) {
-                const [collectionName, documentId] = mediaPath.split('/');
-                if (collectionName && documentId) {
-                    const mediaDocRef = doc(db, collectionName, documentId);
-                    mediaFetchPromises.push(getDoc(mediaDocRef));
-                } else {
-                    console.warn("Incomplete media path:", mediaPath);
+    // Fetch media every time collectionName changes
+    useEffect(() => {
+        if (collectionName) {  // Ensure collectionName is not null or undefined
+            fetchMedia(collectionName);
+        }
+    }, [collectionName]);
+
+    const fetchMedia = async (c) => {
+        setLoading(true);
+        setMedia([]);
+        setShowMedia(false);
+
+        try {
+            let mediaList = [];
+            if (c === 'all') {
+                const mediaCollection = collection(db, 'searchData');
+                const mediaSnapshot = await getDocs(mediaCollection);
+                for (const docSnapshot of mediaSnapshot.docs) {
+                    const mediaPath = docSnapshot.data().path;
+                    if (mediaPath) {
+                        const [colName, documentId] = mediaPath.split('/');
+                        if (colName && documentId) {
+                            const mediaDocRef = doc(db, colName, documentId);
+                            const docData = await getDoc(mediaDocRef);
+                            if (docData.exists()) {
+                                mediaList.push({ id: docData.id, ...docData.data() });
+                            }
+                        } else {
+                            console.warn("Incomplete media path:", mediaPath);
+                        }
+                    }
                 }
+            } else if (c !== '') {
+                const mediaCollection = collection(db, c);
+                const mediaSnapshot = await getDocs(mediaCollection);
+                mediaList = mediaSnapshot.docs.map(docSnapshot => ({
+                    id: docSnapshot.id,
+                    ...docSnapshot.data()
+                }));
             }
-        });
 
-        const mediaDocs = await Promise.all(mediaFetchPromises);
-        const mediaList = mediaDocs.filter(docSnapshot => docSnapshot.exists()).map((docSnapshot) => {
-            const mediaData = docSnapshot.data();
-            return {
-                id: docSnapshot.id, // used for editing and deleting
-                mediaType: mediaData.mediaType, // in future, use for filtering
-                url: mediaData.url,
-                title: mediaData.title,
-                description: mediaData.description,
-                fileName: mediaData.fileName, // used for deleting file from storage
-                fileType: mediaData.fileType
-            };
-        });
-
-        console.log('Media Fetched');
-        setMedia(mediaList);
+            setMedia(mediaList);
+            setShowMedia(true);
+        } catch (error) {
+            console.error("Error fetching media:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
 
     /* deleting media
     -----------------------------------------------------------------------------------------------
     */
+    // Delete media item
     const deleteMedia = async (mediaItem) => {
         try {
-
             let mediaIdstring = mediaItem.id;
             let mediaId = mediaIdstring.toLowerCase();
 
+            //mediaId is the id of the media item in the searchData collection
             await deleteDoc(doc(db, 'searchData', mediaId));
 
+            //mediaItem.id is the id of the media item in the respective media collection
             await deleteDoc(doc(db, `${mediaItem.mediaType}`, mediaItem.title));
 
             try {
+                // Delete media file from storage
                 const storage = getStorage();
+                // Create a reference to the file to delete. Always mediaType/filename
                 const fileRef = ref(storage, `${mediaItem.mediaType}/${mediaItem.fileName}`);
                 await deleteObject(fileRef);
                 console.log('File deleted successfully');
@@ -99,7 +147,8 @@ function HandleMedia() {
                 console.error('Error deleting file:', error);
             }
 
-            fetchMedia();
+            // Although useEffect typically does this, when deleting the collectionName doesn't change so we need to call fetchMedia again
+            fetchMedia(collectionName);
         } catch (error) {
             console.error("Error deleting media:", error);
         }
@@ -140,10 +189,12 @@ function HandleMedia() {
         });
     };
 
+    // Handle file change
     const handleFileChange = (e) => {
         setNewFile(e.target.files[0]);
     };
 
+    // Handle expected file type change
     const handleFileTypeChange = (e) => {
         setExpectedFileType(e.target.value);
         if (e.target.value === 'image/png' || e.target.value === 'image/jpeg' || e.target.value === 'image/jpg' || e.target.value === 'image/gif' || e.target.value === 'image/webp' || e.target.value === 'image/svg') {
@@ -171,10 +222,12 @@ function HandleMedia() {
 
         console.log("Updating media");
 
+        // Check if file is selected
         if (newFile !== null) {
             let uploadFile = newFile;
             // console.log(currentItem.fileName);
             try {
+                // Delete old file
                 if (currentItem.fileName) {
                     const storage = getStorage();
                     const oldFileRef = ref(storage, `${currentItem.mediaType}/${currentItem.fileName}`);
@@ -189,15 +242,15 @@ function HandleMedia() {
                     const compressedFile = await imageCompress(uploadFile);
                     uploadFile = compressedFile;
                 }
+                else if (uploadFile.size > 1024 * 1024 * 5) {
+                    alert('File size must be less than 5MB');
+                    return;
+                }
 
                 const storageRef = ref(storage, `${currentItem.mediaType}/${uploadFile.name}`);
                 const uploadTask = uploadBytesResumable(storageRef, uploadFile);
 
                 uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                    },
                     (error) => {
                         console.error(error);
                     },
@@ -212,7 +265,7 @@ function HandleMedia() {
 
                         alert('Media updated successfully!');
                         toggleForm();
-                        fetchMedia();
+                        fetchMedia(collectionName);
                     }
                 );
             } catch (error) {
@@ -224,7 +277,7 @@ function HandleMedia() {
             await updateDoc(mediaRef, { description: newDescription });
             alert('Media description updated successfully!');
             toggleForm();
-            fetchMedia();
+            fetchMedia(collectionName);
         }
 
 
@@ -233,6 +286,7 @@ function HandleMedia() {
     /*
     -----------------------------------------------------------------------------------------------
     */
+
     const toggleForm = (item) => {
         if (item) {
             setCurrentItem(item);
@@ -243,115 +297,98 @@ function HandleMedia() {
             setNewFile('');
         }
         setShowForm(prev => !prev);
+        setShowFilter(prev => !prev);
     }
-
-    useEffect(() => {
-        console.log('newFile:', newFile);
-        console.log('expectedFileType:', expectedFileType);
-        console.log('newFileType:', newFileType);
-    }, [newFile, expectedFileType, newFileType]);
 
     return (
         <>
-            {showForm ? (
-                <>
-                    <h1 className="users-list-title">Media Management</h1>
-                    <div className="media-list-container">
-                        {media.map((item, index) => (
-                            <div key={index} className="media-item">
-                                <MediaPreview media={item} />
-
-                                <h3>Title: {item.title}</h3>
-                                <p>Description: {item.description}</p>
-
-                                <button onClick={() => toggleForm(item)} className="media-btn">
-                                    <FaPen /> Edit
-                                </button>
-                                <br />
-                                <button onClick={() => deleteMedia(item)} className="media-btn">
-                                    <FaTrash /> Delete
-                                </button>
-                            </div>
-                        ))}
+            {loading && (
+                <div className="loading-overlay">
+                    <div className="loading-content">
+                        <div className="loading-spinner"></div>
                     </div>
-                </>) :
-                (
-                    <>
-                        <div className="update-form-container">
-                            <h1 className="users-list-title"> Currently updating: {currentItem.title} </h1>
-                            <form className="update-form" onSubmit={handleUpdate}>
+                </div>
+            )}
+            {showFilter && filterMediaForm}
+            {showMedia && (
+                <>
+                    {showForm ? (
+                        <>
+                            <h1 className="users-list-title">Media Management</h1>
+                            <div className="media-list-container">
+                                {media.map((item, index) => (
+                                    <div key={index} className="media-item">
+                                        <MediaPreview media={item} />
 
-                                <div className="update-form-group">
-                                    <select
-                                        value={expectedFileType}
-                                        onChange={e => handleFileTypeChange(e)}
-                                        aria-label="Select expected file type"
-                                    >
-                                        <option value="" disabled>Select File Type</option>
-                                        <option value="image/png">PNG Image (.png)</option>
-                                        <option value="image/jpeg">JPEG Image (.jpeg/.jpg)</option>
-                                        <option value="video/mp4">MP4 Video (.mp4)</option>
-                                        <option value="audio/mpeg">Audio File (.mp3)</option>
-                                        <option value="application/pdf">PDF Document (.pdf)</option>
-                                    </select>
+                                        <h3>Title: {item.title}</h3>
+                                        <p>Description: {item.description}</p>
+
+                                        <button onClick={() => toggleForm(item)} className="media-btn">
+                                            <FaPen /> Edit
+                                        </button>
+                                        <br />
+                                        <button onClick={() => deleteMedia(item)} className="media-btn">
+                                            <FaTrash /> Delete
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </>) :
+                        (
+                            <>
+                                <div className="update-form-container">
+                                    <h1 className="users-list-title"> Currently updating: {currentItem.title} </h1>
+                                    <form className="update-form" onSubmit={handleUpdate}>
+
+                                        <div className="update-form-group">
+                                            <select
+                                                value={expectedFileType}
+                                                onChange={e => handleFileTypeChange(e)}
+                                                aria-label="Select expected file type"
+                                            >
+                                                <option value="" disabled>Select File Type</option>
+                                                <option value="image/png">PNG Image (.png)</option>
+                                                <option value="image/jpeg">JPEG Image (.jpeg/.jpg)</option>
+                                                <option value="video/mp4">MP4 Video (.mp4)</option>
+                                                <option value="audio/mpeg">Audio File (.mp3)</option>
+                                                <option value="application/pdf">PDF Document (.pdf)</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="update-form-group">
+                                            <input
+                                                type="text"
+                                                placeholder="Description"
+                                                value={newDescription}
+                                                onChange={handleDescriptionChange}
+                                            />
+                                        </div>
+
+                                        <div className="update-form-group">
+                                            <input
+                                                type="file"
+                                                onChange={handleFileChange}
+                                            />
+                                        </div>
+
+                                        <button type="submit" className="media-btn">Update</button>
+
+                                        <br />
+
+                                        <button type="button" onClick={() => toggleForm()} className="media-btn">Cancel</button>
+
+                                    </form>
+
                                 </div>
+                            </>
+                        )
+                    }
+                </>
+            )}
 
-                                <div className="update-form-group">
-                                    <input
-                                        type="text"
-                                        placeholder="Description"
-                                        value={newDescription}
-                                        onChange={handleDescriptionChange}
-                                    />
-                                </div>
 
-                                <div className="update-form-group">
-                                    <input
-                                        type="file"
-                                        onChange={handleFileChange}
-                                    />
-                                </div>
-
-                                <button type="submit" className="media-btn">Update</button>
-
-                                <br />
-
-                                <button type="button" onClick={() => toggleForm()} className="media-btn">Cancel</button>
-
-                            </form>
-
-                        </div>
-                    </>
-                )
-            }
         </>
     );
 }
 
 export default HandleMedia;
-
-/*
-   const editMedia = async (mediaItem) => {
-       if (editDescription[mediaItem.id]) {
-           try {
-               const mediaRef = doc(db, mediaItem.mediaType, mediaItem.title);
-               await updateDoc(mediaRef, { description: editDescription[mediaItem.id] });
-               alert("Media updated successfully!");
-
-               setEditingId(null);
-               setEditDescription(prev => ({ ...prev, [mediaItem.id]: "" }));
-
-               fetchMedia();
-           } catch (error) {
-               console.error("Error editing media:", error);
-           }
-       }
-   };
-
-   const cancelEdit = (mediaId) => {
-       setEditingId(null);
-       setEditDescription(prev => ({ ...prev, [mediaId]: "" }));
-   };
-   */
-
-//onChange={e => handleFileChange(e)}
