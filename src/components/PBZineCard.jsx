@@ -8,12 +8,12 @@ const PBzineCard = ({ id, src, title, vendor, timeuploaded, views }) => {
 
     const handleOnClick = () => {
         updateViewCount(title);
-        navigate(`/zine/${title}`);
+        navigate(`/pbzine/${title}`);
     };
     
     const updateViewCount = async (videoId) => {
         try {
-            const videoRef = doc(db, "e-zine", videoId);
+            const videoRef = doc(db, "pb-zine", videoId);
             await updateDoc(videoRef, {
                 views: increment(1)
             });
