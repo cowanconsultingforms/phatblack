@@ -1,20 +1,28 @@
+.component-page {
+    display: flex;
+    flex-direction: row;
+}
+
 .data-container {
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
     margin-left: 7%;
 }
 
 .data-details-container {
+    margin-top: 10px;
     width: 80%;
     height: auto;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #2d3338 ;
 }
 
 .data-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%;
 }
 
 .data-like-dislike {
@@ -27,6 +35,23 @@
     word-wrap: break-word; /* Allow long words to be broken and wrap to the next line */
 }
 
+.component-media-container img  {
+    width: auto;
+    max-width: 80%;
+    height: auto;
+}
+
+.component-delete-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.component-delete-data button {
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: orange;
+    border-color: orange;
+}
 @media screen and (max-width: 500px) {
     .data-container {
         margin-left: 13%;
