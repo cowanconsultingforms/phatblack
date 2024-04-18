@@ -15,6 +15,8 @@ const Search = () => {
     const [searchBarStyling, setSearchBarStyling] = useState('searchBar');
     const [searchInputStyling, setSearchInputStyling] = useState('searchInput');
     const [searchButtonStyling, setSearchButtonStyling] = useState('searchButton');
+    const [filterButtonContainerStyling, setFilterButtonContainerStyling] = useState('filter-button-container');
+    const [filterButtonStyling, setFilterButtonStyling] = useState('filter-button');
 
     const [suggestions, setSuggestions] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -41,6 +43,8 @@ const Search = () => {
             setSearchInputStyling('searchInput');
             setSearchBarStyling('searchBar');
             setSearchButtonStyling('searchButton');
+            setFilterButtonContainerStyling('filter-button-container');
+            setFilterButtonStyling('filter-button');
         }
     }
     window.addEventListener('resize', updateWindowSize);
@@ -145,12 +149,14 @@ const Search = () => {
             setSearchInputStyling('searchInputExpanded');
             setSearchBarStyling('searchBarExpanded');
             setSearchButtonStyling('searchButtonExpanded');
+            setFilterButtonStyling('filter-button-expanded');
         }
         else if((window.innerWidth < 560) && (searchContainerStyling == 'searchContainerExpanded')){
             setSearchContainerStyling('searchContainer');
             setSearchInputStyling('searchInput');
             setSearchBarStyling('searchBar');
             setSearchButtonStyling('searchButton');
+            setFilterButtonStyling('filter-button');
         }
     };
 
@@ -216,7 +222,7 @@ const Search = () => {
           {showFilterButton && (
                   <div className="filter-button-container">
                     <button
-                    className="filter-button"
+                    className={filterButtonStyling}
                     onClick={() => setShowFilterForm(true)}>
                       Filter <FaFilter/>
                     </button>

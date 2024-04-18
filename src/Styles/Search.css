@@ -187,12 +187,11 @@
   .filterform-button:hover {
     background-color: #8a8a8a;
   }
-  
 
   .filter-button {
     position: absolute;
     display: flex;
-    top: 2.9vh;
+    top: 2.5vh;
     padding: 10px 20px;
     font-size: 16px;
     background-color:transparent;
@@ -321,6 +320,22 @@
         justify-content: center;
         border-radius: 0rem 10rem 10rem 0rem;
     }
+    .filter-button-expanded {
+        display: none;
+    }
+    .filter-button {
+        position: absolute;
+        display: flex;
+        top: 1.8vh;
+        padding: 10px 10px;
+        font-size: 16px;
+        background-color:transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-indent: -9999px;
+    }
 }
 
 @media screen and (max-width:560px) {
@@ -410,7 +425,6 @@
 }
 
 @media screen and (max-width:940px) {
-
     .clear {
         top: 40%;
     }
@@ -424,6 +438,37 @@
         position: relative;
         bottom: 7px;
         left: 40px;
+    }
+}
+
+@media screen and (min-width: 941px) and (max-width: 1365px) {
+    .filter-button {
+        position: absolute;
+        display: flex;
+        top: 3.2vh; /* Align with the search bar */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (min-width: 561px) and (max-width: 940px) {
+    .filter-button {
+        position: absolute;
+        display: flex;
+        top: 2.4vh; /* Adjust the vertical position as needed */
+        padding: 10px 15px;
+        font-size: 16px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-indent: -9999px;
     }
 }
 
