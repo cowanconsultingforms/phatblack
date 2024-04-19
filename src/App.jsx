@@ -253,7 +253,6 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/stripe/:param" element={<Stripe></Stripe>} />
           <Route path="/handlemedia" element={<HandleMedia />} />
-
         </Routes>
       </BrowserRouter>
     </>
