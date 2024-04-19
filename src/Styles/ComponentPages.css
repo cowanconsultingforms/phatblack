@@ -1,18 +1,15 @@
-.component-page {
-    display: flex;
-    flex-direction: row;
-}
 
 .data-container {
-    max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
     margin-left: 7%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .data-details-container {
     margin-top: 10px;
-    width: 80%;
+    width: 60vw;
     height: auto;
     border-radius: 10px;
     padding: 5px;
@@ -31,14 +28,13 @@
 }
 
 .data-description {
-    width: 80%;
+    width: 60vw;
     word-wrap: break-word; /* Allow long words to be broken and wrap to the next line */
 }
 
-.component-media-container img  {
-    width: auto;
-    max-width: 80%;
-    height: auto;
+.component-media-container video, .component-media-container img, .component-media-container embed {
+    width: 60vw;
+    height: 60vh;
 }
 
 .component-delete-data {
@@ -52,8 +48,23 @@
     background-color: orange;
     border-color: orange;
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 800px) {
     .data-container {
-        margin-left: 13%;
+        flex-direction: column;
+    }
+
+    .component-media-container video, .component-media-container img, .component-media-container embed {
+        width: 90vw;
+        height: 40vh;
+    }
+
+    .data-description {
+        width: 90vw;
+        word-wrap: break-word; /* Allow long words to be broken and wrap to the next line */
+    }
+
+    .data-details-container {
+        width: 90vw;
     }
 }

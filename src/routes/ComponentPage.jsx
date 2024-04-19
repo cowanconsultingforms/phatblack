@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore, doc, getDocs, getDoc, updateDoc, increment, arrayUnion, arrayRemove, deleteDoc, collection } from "firebase/firestore";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { getStorage, ref, deleteObject } from "firebase/storage";
+import PBzineCard from "../components/PBZineCard";
 import "../Styles/ComponentPages.css";
 
 function ComponentPage({ collectionName }) {
@@ -72,11 +73,11 @@ function ComponentPage({ collectionName }) {
                 console.error("Error fetching other data:", error);
             }
         };
-    
+
         fetchOtherData();
     }, [title]);
-    
-    
+
+
 
     const handleLikeClick = async () => {
         try {
@@ -134,17 +135,17 @@ function ComponentPage({ collectionName }) {
         try {
             // Ask for confirmation
             const confirmed = window.confirm("Are you sure you want to delete this data?");
-    
+
             // If user confirms, proceed with deletion
             if (confirmed) {
                 const db = getFirestore();
                 const dataDocRef = doc(db, collectionName, title);
                 await deleteDoc(dataDocRef);
-    
+
                 // Delete associated storage reference
                 const storage = getStorage();
                 await deleteObject(ref(storage, data.url));
-    
+
                 // Redirect or perform any other action after deletion
                 let cleanedCollection = collectionName.replace(/-/g, ''); // Replace all dashes with an empty string
                 window.location.href = `/${cleanedCollection}`;
@@ -153,7 +154,7 @@ function ComponentPage({ collectionName }) {
             console.error("Error deleting data:", error);
         }
     };
-    
+
 
     function timeSince(date) {
         const seconds = Math.floor((new Date() - date) / 1000);
@@ -193,21 +194,32 @@ function ComponentPage({ collectionName }) {
                         </div>
 
                         <div className="component-media-container">
-                            {/**If collection is tv, show a video instead of img*/}
-                            {
-                                (collectionName === "pb-tv") && (
-                                    <video className="video-player" controls loop>
-                                        <source src={data.url} type="video/mp4" />
-                                    </video>
-                                )
-                            }
-                            {/**If collection is not tv or data is not available, show an image*/}
-                            {
-                                (collectionName !== "pb-tv") && (
-                                    <img src={data.url} />
-                                )
-                            }
+                            {/* Extracting the file extension */}
+                            {data.url && (() => {
+                                const url = data.url.toLowerCase();
+                                // Check if the URL points to a PDF file
+                                if (url.includes('.pdf')) {
+                                    return <embed src={data.url} controls type="application/pdf" width="100%" height="600px" />;
+                                }
+                                // Check if the URL points to an image file
+                                else if (url.includes('.jpg') || url.includes('.jpeg') || url.includes('.png')) {
+                                    return <img src={data.url} alt="Image" />;
+                                }
+                                // Check if the URL points to a video file
+                                else if (url.includes('.mp4')) {
+                                    return (
+                                        <video className="video-player" controls loop>
+                                            <source src={data.url} type="video/mp4" />
+                                        </video>
+                                    );
+                                }
+                                else {
+                                    return <p>Unsupported file type</p>;
+                                }
+                            })()}
                         </div>
+
+
 
                         <div className="data-details-container">
                             <div className="data-info">
@@ -233,22 +245,28 @@ function ComponentPage({ collectionName }) {
                         </div>
                     </div>
                 )}
+                <br></br>
                 <div>
-                    {/**
-                     * 
-                        <h2>Other Data:</h2>
-                        {otherData.map(item => (
-                            <div key={item.id}>
-                                <h3>{item.title}</h3>
-
-                            </div>
-                        ))}
-                        
-                    */}
+                    {otherData && (
+                        <div>
+                            <h2>Other Data:</h2>
+                            {otherData.map(item => (
+                                <PBzineCard
+                                    key={item.url}
+                                    src={item.url}
+                                    title={item.title}
+                                    vendor={item.vendor}
+                                    timeuploaded={item.time_uploaded.toDate()}
+                                    views={item.views}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
+
             </div>
 
-            
+
         </div>
 
     );
