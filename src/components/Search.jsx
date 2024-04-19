@@ -30,8 +30,8 @@ const Search = () => {
 
   const API_URL = import.meta.env.VITE_APP_API_URL;
 
-  var windowWidth;
-  var windowWidthTooBig;
+  let windowWidth;
+  let windowWidthTooBig;
   function updateWindowSize() {
     windowWidth = window.innerWidth;
     if (windowWidth > 560) {
@@ -57,7 +57,7 @@ const Search = () => {
         const response = await fetch(`${API_URL}searchSuggestions?query=${filterSearch === 'all' ? 'all' : filterSearch}`);
         const data = await response.json();
         setSuggestions(data.map(doc => ({
-          id: doc._id, // Assuming MongoDB gives you an '_id'
+          id: doc._id,
           ...doc
         })));
       } catch (error) {
