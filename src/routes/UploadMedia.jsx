@@ -253,6 +253,10 @@ function UploadMedia() {
                                 <option value="pb-zine">PB-ZINE</option>
                                 <option value="pb-music">PB-MUSIC</option>
                                 <option value="pb-fashion">PB-FASHION</option>
+                                <option value="pb-mall">PB-MALL</option>
+                                <option value="pb-radio">PB-RADIO</option>
+                                <option value="pb-gaming">PB-GAMING</option>
+                                <option value="pb-communities">PB-COMMUNITIES</option>
                             </select>
                         </div>
 

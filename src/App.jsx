@@ -62,7 +62,6 @@ function App() {
                 <Footer />
               </>
             } />
-          <Route path='/pop' element={<Popup />}></Route>
           <Route path="/pbevents" element={
             <>
               <Popup />
@@ -74,7 +73,6 @@ function App() {
             <>
               <ComponentPage collection="pb-event" />
               <Popup />
-              <ComponentPage collection="pb-event" />
               <Footer />
             </>
           } />
@@ -89,7 +87,6 @@ function App() {
             <>
               <ComponentPage collection="pb-tv" />
               <Popup />
-              <ComponentPage collection="pb-tv" />
               <Footer />
             </>
           } />
@@ -99,32 +96,52 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/radio" element={
+          <Route path="/pbmall/:title" element={
+            <>
+              <ComponentPage collection="pb-mall" />
+              <Popup />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbradio" element={
             <>
               <Popup />
               <PBradio />
               <Footer />
             </>
           } />
-          <Route path="/zine" element={
+          <Route path="/pbradio/:title" element={
+            <>
+              <ComponentPage collection="pb-radio" />
+              <Popup />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbzine" element={
             <>
               <Popup />
               <PBzine />
               <Footer />
             </>
           } />
-          <Route path='/zine/:title' element={
+          <Route path='/pbzine/:title' element={
             <>
               <ComponentPage collection="pb-zine" />
               <Popup />
-              <ComponentPage collection="pb-zine" />
               <Footer />
             </>
           } />
-          <Route path="/gaming" element={
+          <Route path="/pbgaming" element={
             <>
               <Popup />
               <PBgaming />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbgaming/:title" element={
+            <>
+              <ComponentPage collection="pb-gaming" />
+              <Popup />
               <Footer />
             </>
           } />
@@ -152,6 +169,13 @@ function App() {
           <Route path="/pbcommunities" element={
             <>
               <PBcommunuties />
+              <Footer />
+            </>
+          } />
+          <Route path="/pbcommunities/:title" element={
+            <>
+              <ComponentPage collection="pb-communities" />
+              <Popup />
               <Footer />
             </>
           } />

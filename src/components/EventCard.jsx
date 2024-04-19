@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function EventCard({ title, imgSrc }) {
+function EventCard({ path, title, imgSrc }) {
   return (
     
     <div className="event-card">
         {/**Event details below**/}
         <h1>{title}</h1>
-        <Link to={`/pbevent/${title}`}>
+        <Link to={`/${path}/${title}`}>
             <img src={imgSrc}></img>
         </Link>
         

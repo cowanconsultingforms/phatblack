@@ -1,32 +1,62 @@
 .faq-page {
-    font-family: "Jost", sans-serif;
+    margin-left: 60px;
+    width: calc(100% - 60px);
+    font-family: "Bebas Neue", sans-serif;
+    border-left: 1px solid grey;
 }
 
 .faq-container {
-  display: flex; 
-  flex-direction: column;
-  margin-left: 8%;
+  margin-left: 300px;
+  margin-top: -650px;
 }
 
-.faq-navbar h3 {
-  text-align: center;
+
+.faq-navbar{
+  margin-top: 50px;
+  width: 300px;
+  position: sticky;
+  top: 240px;
+}
+
+.faq-grid li.active {
+  background-color: orange;
+  /* Add any other styles for the active state */
 }
 
 .faq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-  grid-gap: 10px;
+  height: 600px;
+  width: 300px;
   list-style-type: none;
   padding: 10px;
 }
 
-.faq-grid li {
+.contactus-header{
   text-align: center;
+  letter-spacing: 1.5px;
+  font-weight: 100;
+}
+
+
+.contact-Link{
+  color: #CA883B;
+}
+
+.faq-grid li {
+  font-size: 2rem;
   margin: 5px;
+  margin-top: 10px;
+}
+
+.faq-grid li a:hover{
+  text-decoration: none;
+  color: rgba(255, 166, 0, 0.594);
+}
+
+.topic{
+  margin-top: 50px;
 }
 
 .faq-navbar ul li a {
-  border: solid white; 
   padding: 5px;
   border-radius: 10px;
 }
@@ -35,10 +65,47 @@
   margin-top: 10px ;
 }
 .topic-head {
-  text-decoration: underline;
+  color: #CA883B;
+  border-bottom: 1px solid white;
+  width: 70%;
 }
-.question {
+
+.questionDiv {
   margin-top: 10px;
+}
+
+.question{
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 0.9fr 0.1fr;
+  width: 70%;
+}
+
+.question p{
+  margin-top: -2px;
+  padding-bottom: 4px;
+  font-size: 1rem;
+  padding-left: 53%;
+}
+
+.arrowSelected{
+  color: #CA883B;
+  transition: 0.3s;
+}
+
+.arrowUnselected{
+  transition: 0.3s;
+}
+
+.answerNotShown{
+  height: 0;
+  overflow: hidden;
+  transition: height 1s ease; /* Transition for smooth sliding */
+}
+
+.answerShown{
+  height: 200px;
+  transition: height 1s ease;
 }
 
 .faq-footer{
@@ -61,6 +128,35 @@
 @media screen and (max-width: 768px) {
   .faq-grid {
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+}
+
+@media screen and (max-width: 600px) {
+  .faq-title{
+    width: 90%;
+    margin: 0% 5%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+  }
+  .contactus-header{
+    display: none;
+  }
+  .faq-grid{
+    display: none;
+  }
+  .faq-container{
+    margin-left: 5%;
+    margin-top: 50px;
+  }
+  .question{
+    width: 90%;
+    font-size: 16px;
+  }
+  .topic{
+    width: 100%;
+  }
+  .faq-footer{
+    margin-top: 100px;
   }
 }
 
