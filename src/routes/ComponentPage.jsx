@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import { getFirestore, doc, getDoc, updateDoc, increment, arrayUnion, arrayRemove, deleteDoc } from "firebase/firestore";
+import { getFirestore, doc, getDocs, getDoc, updateDoc, increment, arrayUnion, arrayRemove, deleteDoc, collection } from "firebase/firestore";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { getStorage, ref, deleteObject } from "firebase/storage";
+import PBzineCard from "../components/PBZineCard";
 import "../Styles/ComponentPages.css";
 
-function ComponentPage({ collection }) {
+function ComponentPage({ collectionName }) {
     const { title } = useParams();
     const [data, setdata] = useState(null);
     const [userLiked, setUserLiked] = useState(false);
@@ -15,13 +16,14 @@ function ComponentPage({ collection }) {
     const user = auth.currentUser;
     const videoRef = useRef(null);
     const [userRole, setUserRole] = useState('');
+    const [otherData, setOtherData] = useState([]); // State to store other data in collection
 
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 if (title) {
                     const db = getFirestore();
-                    const docRef = doc(db, collection, title);
+                    const docRef = doc(db, collectionName, title);
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         setdata(docSnap.data());
@@ -57,6 +59,26 @@ function ComponentPage({ collection }) {
         fetchdata();
     }, [title, user]);
 
+    useEffect(() => {
+        const fetchOtherData = async () => {
+            try {
+                const db = getFirestore();
+                const collectionRef = collection(db, collectionName); // Corrected
+                const querySnapshot = await getDocs(collectionRef);
+                const otherDataArr = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                // Filter out the current item from otherDataArr
+                const filteredOtherData = otherDataArr.filter(item => item.id !== title);
+                setOtherData(filteredOtherData);
+            } catch (error) {
+                console.error("Error fetching other data:", error);
+            }
+        };
+
+        fetchOtherData();
+    }, [title]);
+
+
+
     const handleLikeClick = async () => {
         try {
             if (!user) {
@@ -64,7 +86,7 @@ function ComponentPage({ collection }) {
                 return;
             }
             const db = getFirestore();
-            const dataDocRef = doc(db, collection, title);
+            const dataDocRef = doc(db, collectionName, title);
             if (userLiked) {
                 await updateDoc(dataDocRef, {
                     likes: increment(-1),
@@ -90,7 +112,7 @@ function ComponentPage({ collection }) {
                 return;
             }
             const db = getFirestore();
-            const dataDocRef = doc(db, collection, title);
+            const dataDocRef = doc(db, collectionName, title);
             if (userDisliked) {
                 await updateDoc(dataDocRef, {
                     dislikes: increment(-1),
@@ -111,19 +133,28 @@ function ComponentPage({ collection }) {
 
     const handleDelete = async () => {
         try {
-            const db = getFirestore();
-            const dataDocRef = doc(db, collection, title);
-            await deleteDoc(dataDocRef);
+            // Ask for confirmation
+            const confirmed = window.confirm("Are you sure you want to delete this data?");
 
-            // Delete associated storage reference
-            const storage = getStorage();
-            await deleteObject(ref(storage, data.url));
+            // If user confirms, proceed with deletion
+            if (confirmed) {
+                const db = getFirestore();
+                const dataDocRef = doc(db, collectionName, title);
+                await deleteDoc(dataDocRef);
 
-            // Redirect or perform any other action after deletion
+                // Delete associated storage reference
+                const storage = getStorage();
+                await deleteObject(ref(storage, data.url));
+
+                // Redirect or perform any other action after deletion
+                let cleanedCollection = collectionName.replace(/-/g, ''); // Replace all dashes with an empty string
+                window.location.href = `/${cleanedCollection}`;
+            }
         } catch (error) {
             console.error("Error deleting data:", error);
         }
     };
+
 
     function timeSince(date) {
         const seconds = Math.floor((new Date() - date) / 1000);
@@ -153,53 +184,91 @@ function ComponentPage({ collection }) {
 
 
     return (
-        <div className="data-container">
-            {data && (
-                <div>
-                    <div className="data-component-head">
-                        <h1>{data.title}</h1>
-                        <h3>By: {data.vendor}</h3>
-                    </div>
-                    {/**If collection is tv, show a video instead of img*/}
-                    {
-                        (collection === "pb-tv") && (
-                            <video className="video-player" controls loop>
-                                <source src={data.url} type="video/mp4" />
-                            </video>
-                        )
-                    }
-                    {/**If collection is not tv or data is not available, show an image*/}
-                    {
-                        (collection !== "pb-tv") && (
-                            <img src={data.url} />
-                        )
-                    }
+        <div className="component-page">
+            <div className="data-container">
+                {data && (
+                    <div>
+                        <div className="data-component-head">
+                            <h1>{data.title}</h1>
+                            <h3>By: {data.vendor}</h3>
+                        </div>
 
-                    <div className="data-details-container">
-                        <div className="data-info">
-                            <p>{data.views} Views</p>
-                            <div className="data-like-dislike">
-                                <AiOutlineLike onClick={handleLikeClick} color={userLiked ? "blue" : "gray"} />
-                                <p>{data.likes}</p>
-                                <AiOutlineDislike onClick={handleDislikeClick} color={userDisliked ? "red" : "gray"} />
-                                <p>{data.dislikes}</p>
+                        <div className="component-media-container">
+                            {/* Extracting the file extension */}
+                            {data.url && (() => {
+                                const url = data.url.toLowerCase();
+                                // Check if the URL points to a PDF file
+                                if (url.includes('.pdf')) {
+                                    return <embed src={data.url} controls type="application/pdf" width="100%" height="600px" />;
+                                }
+                                // Check if the URL points to an image file
+                                else if (url.includes('.jpg') || url.includes('.jpeg') || url.includes('.png')) {
+                                    return <img src={data.url} alt="Image" />;
+                                }
+                                // Check if the URL points to a video file
+                                else if (url.includes('.mp4')) {
+                                    return (
+                                        <video className="video-player" controls loop>
+                                            <source src={data.url} type="video/mp4" />
+                                        </video>
+                                    );
+                                }
+                                else {
+                                    return <p>Unsupported file type</p>;
+                                }
+                            })()}
+                        </div>
+
+
+
+                        <div className="data-details-container">
+                            <div className="data-info">
+                                <p>{data.views} Views</p>
+                                <div className="data-like-dislike">
+                                    <AiOutlineLike onClick={handleLikeClick} color={userLiked ? "blue" : "gray"} />
+                                    <p>{data.likes}</p>
+                                    <AiOutlineDislike onClick={handleDislikeClick} color={userDisliked ? "red" : "gray"} />
+                                    <p>{data.dislikes}</p>
+                                </div>
+                            </div>
+
+                            <div className="data-description">
+                                <p>{timeSince(new Date(data.time_uploaded.toDate()))}</p>
+                                <p>{data.description}</p>
                             </div>
                         </div>
 
-                        <div className="data-description">
-                            <p>{timeSince(new Date(data.time_uploaded.toDate()))}</p>
-                            <p>{data.description}</p>
+                        <div className="component-delete-data">
+                            <p>Admin Control:</p>
+                            {/**Show delete button if the user is admin or super admin */}
+                            {user && (userRole === "admin" || userRole === "super admin") && <button onClick={handleDelete}>Delete</button>}
                         </div>
                     </div>
-
-                    <div className="delete-data">
-                        {/**Show delete button if the user is admin or super admin */}
-                        {user && (userRole === "admin" || userRole === "super admin") && <button onClick={handleDelete}>Delete</button>}
-                    </div>
-
+                )}
+                <br></br>
+                <div>
+                    {otherData && (
+                        <div>
+                            <h2>Other Data:</h2>
+                            {otherData.map(item => (
+                                <PBzineCard
+                                    key={item.url}
+                                    src={item.url}
+                                    title={item.title}
+                                    vendor={item.vendor}
+                                    timeuploaded={item.time_uploaded.toDate()}
+                                    views={item.views}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
-            )}
+
+            </div>
+
+
         </div>
+
     );
 }
 

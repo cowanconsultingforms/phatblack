@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaLock } from 'react-icons/fa';
 import '../Styles/PBzine.css';
 import speakerImage from "../assets/redpants-radio.jpg";
@@ -73,10 +73,10 @@ function News_pictures() {
     <div>
       <h1 className='head'>PB-Zine</h1>
       <div className='news-pictures'>
-      <Carousel items={pbZineCards}></Carousel>
+        <Carousel items={pbZineCards}></Carousel>
       </div>
     </div>
-    
+
   )
 
 }
@@ -134,30 +134,18 @@ function Bottom_content() {
       <div className='header2-container'>
         <h2 className="header2">PB-Zine</h2>
       </div>
-      {!subscribed ?
-        <div className="image-container">
-          <a onClick={() => handleClick('https://phatblack.com')}>
-            <img className='Bottom-image' src={speakerImage} alt="Subscribe now!" />
-          </a>
-          <div className="lockSymbol">
-            <FaLock />
-            <div className="subOnly">Subscribers only</div>
-          </div>
-        </div>
-        :
-        <div className="subscribed-content">
-          {ezineContent.map((zine, index) => (
-                    <PBzineCard
-                        key={index}
-                        src={zine.url}
-                        title={zine.title}
-                        vendor={zine.vendor}
-                        timeuploaded={zine.time_uploaded.toDate()}
-                        views={zine.views}
-                    />
-                ))}
-        </div>
-      }
+      <div className="subscribed-content">
+        {ezineContent.map((zine, index) => (
+          <PBzineCard
+            key={index}
+            src={zine.url}
+            title={zine.title}
+            vendor={zine.vendor}
+            timeuploaded={zine.time_uploaded.toDate()}
+            views={zine.views}
+          />
+        ))}
+      </div>
     </div>
   )
 }

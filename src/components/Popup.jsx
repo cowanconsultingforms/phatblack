@@ -176,7 +176,7 @@ function Popup() {
                 <div className="popup-container">
                     <div className={`transparent-overlay ${isOpen ? 'open' : ''}`}></div>
                     <div className={`subscription-wall ${isOpen ? 'open' : ''}`}>
-                        <h1>Sign up, or log in.</h1>
+                        <h1>Sign up or log in.</h1>
                         <p>Gain access to full articles, news, podcasts, games, etc.</p>
                         <div className="popup-login-container">
                                 <h1> Log In </h1>
