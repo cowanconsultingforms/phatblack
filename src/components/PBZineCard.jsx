@@ -8,12 +8,12 @@ const PBzineCard = ({ id, src, title, vendor, timeuploaded, views }) => {
 
     const handleOnClick = () => {
         updateViewCount(title);
-        navigate(`/zine/${title}`);
+        navigate(`/pbzine/${title}`);
     };
     
     const updateViewCount = async (videoId) => {
         try {
-            const videoRef = doc(db, "e-zine", videoId);
+            const videoRef = doc(db, "pb-zine", videoId);
             await updateDoc(videoRef, {
                 views: increment(1)
             });
@@ -52,11 +52,31 @@ const PBzineCard = ({ id, src, title, vendor, timeuploaded, views }) => {
             className="ezine-card"
             onClick={handleOnClick}
         >   
-            {fileExtension === 'pdf' ? (
-                <iframe src={src} title={title} width="100%" height="300px" />
-            ) : (
-                <img src={src} alt={title} />
-            )}
+            {/* Extracting the file extension */}
+            {src && (() => {
+                                const url = src.toLowerCase();
+
+                                // Check if the URL points to a PDF file
+                                if (url.includes('.pdf')) {
+                                    return <embed src={src} controls type="application/pdf" width="100%" height="600px" />;
+                                }
+                                // Check if the URL points to an image file
+                                else if (url.includes('.jpg') || url.includes('.jpeg') || url.includes('.png')) {
+                                    return <img src={src} alt="Image" />;
+                                }
+                                // Check if the URL points to a video file
+                                else if (url.includes('.mp4')) {
+                                    return (
+                                        <video className="video-player" controls loop>
+                                            <source src={src} type="video/mp4" />
+                                        </video>
+                                    );
+                                }
+                                // If the file type is not recognized, return a message or handle it as needed
+                                else {
+                                    return <p>Unsupported file type</p>;
+                                }
+                            })()}
                 <div >
                     <h2>{title}</h2>
                     <p>{vendor}</p>
