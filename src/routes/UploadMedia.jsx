@@ -25,6 +25,7 @@ function UploadMedia() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tags, setTags] = useState([]);
+    const [inputTag, setInputTag] = useState('');
     // const [responseData, setResponseData] = useState(null);
 
     // For upload progress
@@ -192,6 +193,25 @@ function UploadMedia() {
 
     };
 
+    const handleTagInputChange = (e) => {
+        setInputTag(e.target.value);
+    };
+
+    const handleTagInputKeyDown = (e) => {
+        if (e.key === 'Enter' && inputTag) {
+            e.preventDefault();
+            if (!tags.includes(inputTag) && inputTag.trim() !== '') {
+                setTags([...tags, inputTag.trim()]);
+                setInputTag('');
+            }
+        }
+    };
+
+    const removeTag = (tagToRemove) => {
+        setTags(tags.filter(tag => tag !== tagToRemove));
+    };
+
+
     const cancelUpload = () => {
         if (uploadTask) {
             uploadTask.cancel();
@@ -284,8 +304,22 @@ function UploadMedia() {
                             <input type="text" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
                         </div>
 
-                        <div className="form-group">
-                            <input type="text" placeholder="Tags (comma-separated)" value={tags.join(', ')} onChange={(e) => setTags(e.target.value.split(',').map(tag => tag.trim()))} />
+                        <div className="form-group tags-input-container">
+                            <label htmlFor="tags-input">Tags:</label>
+                            {tags.map((tag, index) => (
+                                <div key={index} className="tag-item">
+                                    {tag}
+                                    <button type="button" onClick={() => removeTag(tag)} className="tag-remove-btn">x</button>
+                                </div>
+                            ))}
+                            <input
+                                type="text"
+                                id="tags-input"
+                                placeholder="Add a tag"
+                                value={inputTag}
+                                onChange={handleTagInputChange}
+                                onKeyDown={handleTagInputKeyDown}
+                            />
                         </div>
 
                         <div className="form-group">
