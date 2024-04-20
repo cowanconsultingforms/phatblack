@@ -166,32 +166,31 @@ function HandleMedia() {
 
     const deleteMedia = async (mediaItem) => {
         try {
-            let mediaIdstring = mediaItem.id;
-            let mediaId = mediaIdstring.toLowerCase();
-
-            //mediaId is the id of the media item in the searchData collection
-            // await deleteDoc(doc(db, 'searchData', mediaId));
-
-            //mediaItem.id is the id of the media item in the respective media collection
-            await deleteDoc(doc(db, `${mediaItem.firestoreCollection}`, mediaItem.title));
-
-            //handleMongoDBDelete();
-
-            handleMongoDBDelete(mediaItem.title);
-
-            try {
+            // Prompt the user for confirmation
+            const confirmDelete = window.confirm("Are you sure you want to delete this item?");
+            
+            // If user confirms deletion, proceed with deletion
+            if (confirmDelete) {
+                // Perform deletion logic
+                let mediaIdstring = mediaItem.id;
+                let mediaId = mediaIdstring.toLowerCase();
+    
+                await deleteDoc(doc(db, `${mediaItem.firestoreCollection}`, mediaItem.title));
+                handleMongoDBDelete(mediaItem.title);
+    
                 // Delete media file from storage
-                const storage = getStorage();
-                // Create a reference to the file to delete. Always firestoreCollection/filename
-                const fileRef = ref(storage, `${mediaItem.firestoreCollection}/${mediaItem.fileName}`);
-                await deleteObject(fileRef);
-                console.log('File deleted successfully');
-            } catch (error) {
-                console.error('Error deleting file:', error);
+                const storageRef = ref(storage, `${mediaItem.firestoreCollection}/${mediaItem.fileName}`);
+                await deleteObject(storageRef);
+    
+                // Fetch media again after deletion
+                fetchMedia(collectionName);
+    
+                // Inform user about successful deletion
+                console.log('Media deleted successfully');
+            } else {
+                // If user cancels deletion, do nothing
+                console.log('Deletion cancelled by user');
             }
-
-            // Although useEffect typically does this, when deleting the collectionName doesn't change so we need to call fetchMedia again
-            fetchMedia(collectionName);
         } catch (error) {
             console.error("Error deleting media:", error);
         }
