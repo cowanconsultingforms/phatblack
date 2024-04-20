@@ -1,7 +1,7 @@
 /* Search.css */
 
 .searchContainer {
-    margin-left: 15%;
+    margin-left: 4%;
     margin-right: 20%;
     position: relative;
     width: 100%;
@@ -191,7 +191,7 @@
   .filter-button {
     position: absolute;
     display: flex;
-    top: 2.5vh;
+    top: 3.5vh;
     padding: 10px 20px;
     font-size: 16px;
     background-color:transparent;
@@ -326,8 +326,8 @@
     .filter-button {
         position: absolute;
         display: flex;
-        top: 1.8vh;
-        padding: 10px 10px;
+        top: 1.5vh;
+        padding: 10px 5px;
         font-size: 16px;
         background-color:transparent;
         color: white;
@@ -445,7 +445,7 @@
     .filter-button {
         position: absolute;
         display: flex;
-        top: 3.2vh; /* Align with the search bar */
+        top: 3.5vh; /* Align with the search bar */
         padding: 10px 20px;
         font-size: 16px;
         background-color: transparent;
@@ -460,7 +460,7 @@
     .filter-button {
         position: absolute;
         display: flex;
-        top: 2.4vh; /* Adjust the vertical position as needed */
+        top: 1.9vh; /* Adjust the vertical position as needed */
         padding: 10px 15px;
         font-size: 16px;
         background-color: transparent;
