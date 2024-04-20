@@ -205,20 +205,24 @@ header {
   }
 
   .desktop-nav .menu-items a:hover{
-    background-color: #212426;
+    background-color: #ffa646;
+    color: black;
     transition: 0.3s;
+    box-shadow: 0 0px 20px rgb(255, 255, 255);
   }
 
   .desktop-nav .menu-items a:not(:hover){
-    background-color: #2d3338;
+    background-color: #ca8738;
   }
 
   .desktop-nav .menu-items a:active{
-    background-color: #1c1d1e;
+    background-color: #ffa646;
+    color: black;
   }
 
   .desktop-nav .menu-items a:focus{
-    background-color: #1c1d1e;
+    background-color: #ffa646;
+    color: black;
   }
   
   .desktop-nav .menu-items button {
