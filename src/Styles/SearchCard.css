@@ -1,0 +1,41 @@
+.search-card {
+    background-color: #2C2C2C;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    width: 75%;
+    overflow: hidden;
+    margin-left: 150px;
+}
+
+.search-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFA500;
+    margin: 0 0 12px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-card-description {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #E0E0E0;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
