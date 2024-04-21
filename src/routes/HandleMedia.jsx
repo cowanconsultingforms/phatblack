@@ -55,6 +55,9 @@ function HandleMedia() {
                 <h1 className="users-list-title">Select Media Type</h1>
                 <div className='update-form-group'>
                     <select
+                        onfocus='this.size=4;' 
+                        onblur='this.size=0;' 
+                        onchange='this.size=1; this.blur();'
                         value={collectionName}
                         onChange={(e) => setCollectionName(e.target.value)}
                         aria-label='Select media type'
