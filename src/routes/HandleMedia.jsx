@@ -8,6 +8,7 @@ import { FaTrash, FaPen } from 'react-icons/fa';
 import '../Styles/HandleMedia.css';
 import MediaPreview from '../components/MediaPreview';
 import Compressor from 'compressorjs';
+import axios from 'axios';
 
 function HandleMedia() {
     const navigate = useNavigate();
@@ -149,15 +150,11 @@ function HandleMedia() {
 
     const handleMongoDBDelete = async (title) => {
         try {
-            const response = await fetch(`${API_URL}delete?title=${encodeURIComponent(title)}`, {
-                method: 'DELETE',
+            const response = await axios.delete(`${API_URL}delete?title=${encodeURIComponent(title)}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
-            if (!response.ok) {
-                throw new Error('Failed to delete from MongoDB');
-            }
             console.log('MongoDB delete successful');
         } catch (error) {
             console.error('Error deleting MongoDB:', error);
@@ -168,23 +165,23 @@ function HandleMedia() {
         try {
             // Prompt the user for confirmation
             const confirmDelete = window.confirm("Are you sure you want to delete this item?");
-            
+
             // If user confirms deletion, proceed with deletion
             if (confirmDelete) {
                 // Perform deletion logic
                 let mediaIdstring = mediaItem.id;
                 let mediaId = mediaIdstring.toLowerCase();
-    
+
                 await deleteDoc(doc(db, `${mediaItem.firestoreCollection}`, mediaItem.title));
                 handleMongoDBDelete(mediaItem.title);
-    
+
                 // Delete media file from storage
                 const storageRef = ref(storage, `${mediaItem.firestoreCollection}/${mediaItem.fileName}`);
                 await deleteObject(storageRef);
-    
+
                 // Fetch media again after deletion
                 fetchMedia(collectionName);
-    
+
                 // Inform user about successful deletion
                 console.log('Media deleted successfully');
             } else {
