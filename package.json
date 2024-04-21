@@ -17,6 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@stripe/react-stripe-js": "^2.6.2",
     "@stripe/stripe-js": "^3.1.0",
+    "axios": "^1.6.8",
     "blueimp-load-image": "^5.16.0",
     "compressorjs": "^1.2.1",
     "firebase": "^10.9.0",

@@ -25,6 +25,8 @@ const Search = () => {
   const [showFilterButton, setShowFilterButton] = useState(false);
   const [showFilterForm, setShowFilterForm] = useState(false);
   const [filterSearch, setFilterSearch] = useState("all");
+  
+
 
   const navigate = useNavigate();
 
@@ -68,6 +70,8 @@ const Search = () => {
     fetchSuggestions();
   }, [filterSearch]);
 
+
+
   const handleSearch = (e) => {
     e.preventDefault();
     const trimmedSearchTerm = searchTerm.trim();
@@ -105,7 +109,7 @@ const Search = () => {
 
   const handleApplyFilter = (filtervalue) => {
     setFilterSearch(filtervalue);
-    setTimeout(() => setShowFilterForm(false), 100);
+    setShowFilterForm(false);
   }
 
 
@@ -163,15 +167,13 @@ const Search = () => {
               )}
           </div>
         )}
-        {showFilterButton && (
-          <div className="filter-button-container">
+        <div className="filter-button-container">
             <button
               className={filterButtonStyling}
               onClick={() => setShowFilterForm(true)}>
               Filter <FaFilter />
             </button>
           </div>
-        )}
         {showFilterForm && (
           <div className="filterform-container">
             <div className="filterform-content">
