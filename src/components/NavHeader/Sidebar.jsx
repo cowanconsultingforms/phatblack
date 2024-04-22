@@ -246,7 +246,7 @@ function Sidebar() {
                         </li>
                         <li>
                           <Link to="/subscribe">
-                            <CiMail />
+                            <CiMail/>
                           </Link>
                         </li>
                         <li>

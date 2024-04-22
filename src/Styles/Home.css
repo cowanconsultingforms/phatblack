@@ -172,7 +172,7 @@ body{
 @media screen and (max-width: 940px){
 
     .HomeContainer{
-        left: 39px;
+        left: 19px;
         width: calc(100% - 39px);
     }
 
@@ -193,7 +193,7 @@ body{
 
 @media screen and (max-width: 500px) {
     .HomeContainer {
-        left: 30px;
+        left: 15px;
         width: calc(100% - 30px);
     }
     .backgroundImage {
