@@ -109,7 +109,7 @@ function PBTv() {
             </div>
 
             <h3>Featured <MdKeyboardArrowRight className="arrow-icon"/></h3>
-            <div className="pbtv-card-container">
+            <div className="pbtv-featured-card-container">
                 {pbtvVideos.map((video, index) => (
                     <PBTvCard
                         key={index}
@@ -119,6 +119,23 @@ function PBTv() {
                         timeuploaded={video.time_uploaded.toDate()}
                         views={video.views}
                     />
+                ))}
+            </div>
+
+            <h3>Top 10 Movies <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-featured-card-container" id="top-movies">
+                {pbtvVideos.map((video, index) => (
+                    <>
+                    <p className="ranking">{index+1}</p>
+                    <PBTvCard 
+                        key={index}
+                        src={video.url}
+                        title={video.title}
+                        vendor={video.vendor}
+                        timeuploaded={video.time_uploaded.toDate()}
+                        views={video.views}
+                    />
+                    </> 
                 ))}
             </div>
         </div>

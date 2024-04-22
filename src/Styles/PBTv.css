@@ -95,7 +95,7 @@ h3{
   padding-top: 5px;
 }
 
-.pbtv-card-container {
+.pbtv-featured-card-container {
     width: 99%;
     padding-left: 1px;
     padding-top: 1px;
@@ -103,12 +103,16 @@ h3{
     overflow-x: scroll;
 }
 
-.pbtv-card-container::-webkit-scrollbar{
+.pbtv-featured-card-container::-webkit-scrollbar{
   display: none;
 }
 
-.pbtv-card-container > *:not(:first-child){
+.pbtv-featured-card-container > *:not(:first-child){
   margin-left: 20px;
+}
+
+#top-movies .ranking{
+  font-size: 16rem;
 }
 
 .pbtv-card {
