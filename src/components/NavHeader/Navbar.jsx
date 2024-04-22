@@ -18,21 +18,23 @@ const Navbar = () => {
   /* Checks to see if list is scrolled all the way to the left,right, 
   or is somewhere in between and adjusts the visibility of buttons accordingly*/
   const handleCheckButtons = () => {
-    if(menuRef.current.scrollLeft === 0){
-      leftButtonRef.current.style = "display: none";
-      menuRef.current.style.webkitMask = "var(--mask1)"
-    }
-    else if((menuRef.current.scrollLeft + menuRef.current.clientWidth !== menuRef.current.scrollWidth) && (menuRef.current.scrollLeft !== 0)){
-      leftButtonRef.current.style = "display: inline";
-      rightButtonRef.current.style = "display: inline";
-      menuRef.current.style.webkitMask = "var(--mask2)"
-    }
-    else {
-      rightButtonRef.current.style = "display: none";
-      menuRef.current.style.webkitMask = "var(--mask3)"
-    }
-   
+  const scrollThreshold = 50; // Adjust this value as needed
+
+  const { scrollLeft, clientWidth, scrollWidth } = menuRef.current;
+  const scrollRemaining = scrollWidth - scrollLeft - clientWidth;
+
+  if (scrollLeft === 0) {
+    leftButtonRef.current.style.display = "none";
+    menuRef.current.style.webkitMask = "var(--mask1)";
+  } else if (scrollRemaining > scrollThreshold) {
+    leftButtonRef.current.style.display = "inline";
+    rightButtonRef.current.style.display = "inline";
+    menuRef.current.style.webkitMask = "var(--mask2)";
+  } else {
+    rightButtonRef.current.style.display = "none";
+    menuRef.current.style.webkitMask = "var(--mask3)";
   }
+};
 
   
 

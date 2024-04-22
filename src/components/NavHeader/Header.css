@@ -147,14 +147,12 @@ header {
    100% 50% / 100% 100% repeat-x;
 
    --mask3: linear-gradient(to right, 
-   rgba(0, 0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))
+   rgba(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0,))
   100% 50% / 100% 100% repeat-x;
 
     
     -webkit-mask: var(--mask1); 
     mask: var(--mask1);
-
-    padding-right: 70px;
     
   }
   
@@ -214,7 +212,7 @@ header {
   }
 
   .desktop-nav .menu-items a:active{
-    box-shadow: 2px 2px 2px 2px #ffa646;
+    box-shadow: 0px 0px 5px 2px #ffa646;
   }
 
   .desktop-nav .menu-items a:focus{
