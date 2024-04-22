@@ -6,8 +6,7 @@
 }
 
 .faq-container {
-  margin-left: 300px;
-  margin-top: -650px;
+    margin-left: 25%;
 }
 
 
@@ -65,9 +64,33 @@
   margin-top: 10px ;
 }
 .topic-head {
-  color: #CA883B;
-  border-bottom: 1px solid white;
-  width: 70%;
+  position: relative;
+  color: white;
+  width: max(70%, 320px);
+  padding-left: 10px;
+  border-left: 5px solid #CA883B;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.topic-head span{
+  position: absolute;
+  left: 90%;
+}
+
+.topic-head:hover{
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-radius: 0px 5px 5px 0px;
+  transition: 0.3s;
+}
+
+.topic-head.active{
+  
 }
 
 .questionDiv {
@@ -88,6 +111,17 @@
   padding-left: 53%;
 }
 
+.questions{
+  height: 0px;
+  overflow: hidden;
+  transition: 1s;
+}
+
+.questions.expanded{
+  transition: 1s;
+  height: 400px;
+}
+
 .arrowSelected{
   color: #CA883B;
   transition: 0.3s;
@@ -104,14 +138,18 @@
 }
 
 .answerShown{
-  height: 200px;
+  height: 150px;
   transition: height 1s ease;
 }
 
 .faq-footer{
-   /* leave in center or push to left?   margin-right: 75%; */
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+   /* leave in center or push to left?   margin-right: 75%; */
+    padding-top: 100px;
 }
 
 .faq-header {
@@ -125,18 +163,12 @@
   margin-bottom: 15px;
 }
 
-@media screen and (max-width: 768px) {
-  .faq-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-}
 
 @media screen and (max-width: 600px) {
   .faq-title{
     width: 90%;
     margin: 0% 5%;
     padding-bottom: 10px;
-    border-bottom: 2px solid white;
   }
   .contactus-header{
     display: none;
@@ -145,7 +177,7 @@
     display: none;
   }
   .faq-container{
-    margin-left: 5%;
+    margin-left: 15%;
     margin-top: 50px;
   }
   .question{
@@ -160,16 +192,15 @@
   }
 }
 
-@media screen and (max-width: 500) {
-    .faq-container {
-      margin-left: 40px;
-      width: calc(100% - 40px);
+@media screen and (max-width: 500px) {
+    .faq-container{
+      margin-left: 10px !important;
     }
 }
 
 @media screen and (max-width: 400px) {
   .faq-container {
-    margin-left: 30px;
+    margin-left: 5px !important;
     width: calc(100% - 30px);
   }
 }
