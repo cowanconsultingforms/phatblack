@@ -18,12 +18,12 @@ const Navbar = () => {
   /* Checks to see if list is scrolled all the way to the left,right, 
   or is somewhere in between and adjusts the visibility of buttons accordingly*/
   const handleCheckButtons = () => {
-  const scrollThreshold = 50; // Adjust this value as needed
+  const scrollThreshold = 10; // Adjust this value as needed
 
   const { scrollLeft, clientWidth, scrollWidth } = menuRef.current;
   const scrollRemaining = scrollWidth - scrollLeft - clientWidth;
 
-  if (scrollLeft === 0) {
+  if (scrollLeft < 10) {
     leftButtonRef.current.style.display = "none";
     menuRef.current.style.webkitMask = "var(--mask1)";
   } else if (scrollRemaining > scrollThreshold) {
