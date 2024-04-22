@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import PBTvCard from "../components/PBTvCard.jsx";
 import { db } from "../firebaseConfig.js";
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
+import { IoMdPlay } from "react-icons/io";
+import { RiInformationLine } from "react-icons/ri";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import "../Styles/PBTv.css";
 
 function PBTv() {
@@ -50,11 +53,16 @@ function PBTv() {
         }
     };
 
+    const handlePlayButtonClick = () => {
+        if (videoRef.current) {
+            videoRef.current.play(); // Play the video
+        }
+    };
+
     return (
         <div className="pbtv-page">
-            <h1>PB-TV</h1>
             <div className="pbtv-head">
-                <div className="subtopics-container">
+            <div className="subtopics-container">
                     <a href="/pbtv">
                         <h2 className="Subtopics">PB-Music</h2>
                     </a>
@@ -82,7 +90,6 @@ function PBTv() {
                 </div>
             </div>
 
-
             <div className="pbtv-featured">
                 {featuredVideo && (
                     <video
@@ -93,8 +100,15 @@ function PBTv() {
                         onClick={() => handleVideoClick(featuredVideo.title)}
                     />
                 )}
+                <button className="featured-play-button" onClick={handlePlayButtonClick}>
+                    <IoMdPlay />  Play
+                </button>
+                <button className="featured-more-info-button">
+                    <RiInformationLine />  More Info
+                </button>
             </div>
 
+            <h3>Featured <MdKeyboardArrowRight className="arrow-icon"/></h3>
             <div className="pbtv-card-container">
                 {pbtvVideos.map((video, index) => (
                     <PBTvCard
