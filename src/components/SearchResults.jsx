@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
+import SearchCard from './SearchCard';
 
 const SearchResults = () => {
     const [searchParams] = useSearchParams();
@@ -48,11 +49,9 @@ const SearchResults = () => {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
             {results.length > 0 ? (
                 results.map(item => (
-                    <div key={item.id}>
-                        <h3>{item.title}</h3>
-                        <p>{item.description}</p>
-                        <p>{item.url}</p>
-                    </div>
+                    <SearchCard
+                        item={item}
+                    />
                 ))
             ) : (
                 <div>No results found for "{searchTerm}"</div>

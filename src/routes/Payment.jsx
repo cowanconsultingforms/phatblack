@@ -39,11 +39,25 @@ function Payment({ userId, cost, plan}){
         event.preventDefault();
         const {error,paymentMethod} = await stripe.createPaymentMethod({
             type: "card",
-            card: elements.getElement(CardElement)
+            card: elements.getElement(CardElement),
+            billing_details: {
+                name: event.target.name.value,
+                address: {
+                  line1: event.target.address.value,
+                  city: event.target.city.value,
+                  state: event.target.state.value,
+                  postal_code: event.target.postalCode.value,
+                  country: event.target.country.value,
+                },
+              },
         });
         setProcessing(true);
         //post request to backend for payment
         try {
+            if (error) {
+                throw new Error(error.message);
+            }
+
             const {id} = paymentMethod;
             const response = await fetch(
                 subscriptionPaymentUrl,
@@ -67,13 +81,13 @@ function Payment({ userId, cost, plan}){
                 },3000);
             } else {
                 console.error("Failed to subscribe", data);
-                alert(data.error || 'Failed to subscribe');
+                alert(data.message);
                 setProcessing(false);
                 setSuccess(false);
             }
         } catch (error) {
             console.error("Error subscribing user:", error);
-            alert('Error processing payment');
+            alert('Error processing payment', error);
             setProcessing(false);
             setSuccess(false);
         } 
@@ -90,14 +104,29 @@ function Payment({ userId, cost, plan}){
                     <div className="FormRow">
                         <CardElement options={CARD_OPTIONS}></CardElement>
                     </div>
+                    
+                    <div className="FormRow">
+                        <input type="text" name="name" placeholder="Name" required />
+                    </div>
+                    <div className="FormRow">
+                        <input type="text" name="address" placeholder="Address" required />
+                    </div>
+                    <div className="FormRow">
+                        <input className="row-item" type="text" name="city" placeholder="City" required />
+                        <input className="row-item" type="text" name="state" placeholder="State" required />
+                    </div>
+                    <div className="FormRow">
+                        <input className="row-item" type="text" name="postalCode" placeholder="Postal Code" required />
+                        <input className="row-item" type="text" name="country" placeholder="Country Ex:(US)" required />
+                    </div>
                 </fieldset>
                 <button className="paymentButton">{!processing ? "Subscribe to PhatBlack Premium" : "Processing..."}</button>
             </form>
             <button onClick={()=>navigate("/subscribe")} className="paymentButton cancel">{"< Go Back"}</button>
             <div className="links">
-                <h3 className="link"><Link to="https://phatblack.com/WP/restrictions/" target="_blank">SEE RESTRICTIONS</Link></h3>
-                <h3 className="link"><Link to="https://phatblack.com/WP/terms-of-service/" target="_blank">SEE TERMS OF SERVICE</Link></h3>
-                <h3 className="link"><Link to="https://phatblack.com/WP/privacy-policy/" target="_blank">SEE PRIVACY POLICY</Link></h3>
+                <h3 className="link"><Link to="https://phatblack.com/WP/restrictions/" target="_blank">RESTRICTIONS</Link></h3>
+                <h3 className="link"><Link to="https://phatblack.com/WP/terms-of-service/" target="_blank">TERMS OF SERVICE</Link></h3>
+                <h3 className="link"><Link to="https://phatblack.com/WP/privacy-policy/" target="_blank">PRIVACY POLICY</Link></h3>
             </div>
             </div>
             :
