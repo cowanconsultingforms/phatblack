@@ -198,10 +198,10 @@
 @media screen and (max-width: 400px) {
   
     .GamingMainContainer {
-        left: 9%;
+        left: 10%;
         width: 88%;
     }
     .GamingSidebar.open {
-        left: 5vh;
+        left: 4.5vh;
     }
 }
