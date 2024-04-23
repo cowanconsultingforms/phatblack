@@ -36,7 +36,7 @@ import Restrictions from './routes/Restrictions';
 import HandleMedia from './routes/HandleMedia';
 import ComponentPage from './routes/ComponentPage';
 import Popup from './components/Popup';
-import Test from './routes/Test';
+import CheckMongo from './routes/CheckMongo';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -254,7 +254,7 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/stripe/:param" element={<Stripe></Stripe>} />
           <Route path="/handlemedia" element={<HandleMedia />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/checkmongo" element={<CheckMongo />} />
         </Routes>
       </BrowserRouter>
     </>
