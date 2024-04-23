@@ -8,7 +8,9 @@ import PBzineCard from "../components/PBZineCard";
 import "../Styles/ComponentPages.css";
 
 function ComponentPage({ collectionName }) {
-    const { title } = useParams();
+    let { title } = useParams();
+    title = decodeURIComponent(title);
+    console.log(title);
     const [data, setdata] = useState(null);
     const [userLiked, setUserLiked] = useState(false);
     const [userDisliked, setUserDisliked] = useState(false);
@@ -252,6 +254,7 @@ function ComponentPage({ collectionName }) {
                             <h2>Other Data:</h2>
                             {otherData.map(item => (
                                 <PBzineCard
+                                    col={collectionName}
                                     key={item.url}
                                     src={item.url}
                                     title={item.title}
