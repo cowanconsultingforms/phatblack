@@ -171,6 +171,22 @@ function PBTv() {
                     </div>
                 ))}
             </div>
+
+            <h3>Favorites <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-featured-card-container">
+                {pbtvVideos.map((video, index) => (
+                    <PBTvCard
+                        key={index}
+                        src={video.url}
+                        title={video.title}
+                        vendor={video.vendor}
+                        timeuploaded={video.time_uploaded.toDate()}
+                        views={video.views}
+                    />
+                ))}
+            </div>
+
+            
         </div>
     );
 }
