@@ -1,7 +1,7 @@
 import MobileNav from "./MobileNav";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, auth } from "../../firebaseConfig";
 import { collection, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore';
@@ -21,6 +21,20 @@ const Header = () => {
   const [role, setRole] = useState('');
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -109,26 +123,17 @@ const Header = () => {
         </Link>
 
         <Search />
-        {/* {!isAuthenticated ? (
-          <div className="ProfileIcon">
-          <div className="ProfileIconContainer">
-          <button className="Profilebutton" onClick={toggleDropdown}><img src={profileIcon}/></button>
-          </div>
-          {showDropdown && (
-              <div className="menu">
-                <Link to="/login"><button>Login</button></Link>
-                <Link to="/signup"><button>Sign up</button></Link>
-              </div>
-          )}
-          </div> */}
-        {/* ) : ( */}
         <div className="ProfileIcon">
           <div className="ProfileIconContainer">
           <button className="Profilebutton" onClick={toggleDropdown}>
-              <img src={profileImageUrl || profileIcon} alt="Profile Icon" />
+              <img src={profileImageUrl || profileIcon} alt="Profile Icon"/>
           </button>
           </div>
-          {showDropdown && (<DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} authenticated={isAuthenticated} />)}
+          {showDropdown && (
+            <div ref={dropdownRef} className="menu">
+              <DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} authenticated={isAuthenticated} />
+            </div>
+          )}
         </div>
         {/* )} */}
 

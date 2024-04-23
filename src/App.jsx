@@ -71,7 +71,7 @@ function App() {
           } />
           <Route path="/pbevent/:title" element={
             <>
-              <ComponentPage collection="pb-event" />
+              <ComponentPage collectionName="pb-event" />
               <Popup />
               <Footer />
             </>
@@ -85,7 +85,7 @@ function App() {
           } />
           <Route path="/pbtv/:title" element={
             <>
-              <ComponentPage collection="pb-tv" />
+              <ComponentPage collectionName="pb-tv" />
               <Popup />
               <Footer />
             </>
@@ -98,7 +98,7 @@ function App() {
           } />
           <Route path="/pbmall/:title" element={
             <>
-              <ComponentPage collection="pb-mall" />
+              <ComponentPage collectionName="pb-mall" />
               <Popup />
               <Footer />
             </>
@@ -112,7 +112,7 @@ function App() {
           } />
           <Route path="/pbradio/:title" element={
             <>
-              <ComponentPage collection="pb-radio" />
+              <ComponentPage collectionName="pb-radio" />
               <Popup />
               <Footer />
             </>
@@ -126,7 +126,7 @@ function App() {
           } />
           <Route path='/pbzine/:title' element={
             <>
-              <ComponentPage collection="pb-zine" />
+              <ComponentPage collectionName="pb-zine" />
               <Popup />
               <Footer />
             </>
@@ -140,7 +140,7 @@ function App() {
           } />
           <Route path="/pbgaming/:title" element={
             <>
-              <ComponentPage collection="pb-gaming" />
+              <ComponentPage collectionName="pb-gaming" />
               <Popup />
               <Footer />
             </>
@@ -174,7 +174,7 @@ function App() {
           } />
           <Route path="/pbcommunities/:title" element={
             <>
-              <ComponentPage collection="pb-communities" />
+              <ComponentPage collectionName="pb-communities" />
               <Popup />
               <Footer />
             </>
@@ -253,7 +253,6 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/stripe/:param" element={<Stripe></Stripe>} />
           <Route path="/handlemedia" element={<HandleMedia />} />
-
         </Routes>
       </BrowserRouter>
     </>

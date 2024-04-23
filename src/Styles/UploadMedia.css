@@ -67,7 +67,9 @@ option {
 }
 
 .submit-btn:not(:disabled):hover {
-    background-color: #218838;
+    background-color: rgb(255, 94, 0);
+    scale: calc(.98);
+    transition: ease-in-out .3s;
 }
 
 .error-message {
@@ -115,4 +117,40 @@ option {
         margin: 40px 15%;
         margin-left: 20%;
     }
+}
+
+.tags-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.tag-item {
+    background: black;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 3px 7px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.tag-remove-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 0 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#tags-input {
+    flex-grow: 1;
+    padding: 5px;
+    border: none;
+    outline: none;
+    margin-bottom: 5px;
 }

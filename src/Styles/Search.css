@@ -1,7 +1,7 @@
 /* Search.css */
 
 .searchContainer {
-    margin-left: 15%;
+    margin-left: 4%;
     margin-right: 20%;
     position: relative;
     width: 100%;
@@ -187,12 +187,11 @@
   .filterform-button:hover {
     background-color: #8a8a8a;
   }
-  
 
   .filter-button {
     position: absolute;
     display: flex;
-    top: 2.9vh;
+    top: 2.7vh;
     padding: 10px 20px;
     font-size: 16px;
     background-color:transparent;
@@ -321,6 +320,22 @@
         justify-content: center;
         border-radius: 0rem 10rem 10rem 0rem;
     }
+    .filter-button-expanded {
+        display: none;
+    }
+    .filter-button {
+        position: absolute;
+        display: flex;
+        top: 1.5vh;
+        padding: 10px 5px;
+        font-size: 16px;
+        background-color:transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-indent: -9999px;
+    }
 }
 
 @media screen and (max-width:560px) {
@@ -410,7 +425,6 @@
 }
 
 @media screen and (max-width:940px) {
-
     .clear {
         top: 40%;
     }
@@ -424,6 +438,37 @@
         position: relative;
         bottom: 7px;
         left: 40px;
+    }
+}
+
+@media screen and (min-width: 941px) and (max-width: 1365px) {
+    .filter-button {
+        position: absolute;
+        display: flex;
+        top: 2.7vh; /* Align with the search bar */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (min-width: 561px) and (max-width: 940px) {
+    .filter-button {
+        position: absolute;
+        display: flex;
+        top: 1.9vh; /* Adjust the vertical position as needed */
+        padding: 10px 15px;
+        font-size: 16px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-indent: -9999px;
     }
 }
 

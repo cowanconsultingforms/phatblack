@@ -132,6 +132,18 @@ h1{
     margin-left: 2%;
 }
 
+.row-item{
+    position: relative;
+    /* right: .5%; */
+}
+
+@media screen and (max-width: 940px){
+    .row-item{
+        position: relative;
+        /* right: 1.5%; */
+    }
+}
+
 @media screen and (max-width: 600px){
     .paymentButton.cancel{
         font-size: .75rem;

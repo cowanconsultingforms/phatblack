@@ -5,21 +5,30 @@ import { db, storage } from '../firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import Compressor from 'compressorjs';
+import axios from 'axios';
 import '../Styles/UploadMedia.css';
 
 function UploadMedia() {
     const navigate = useNavigate();
     const auth = getAuth();
+    const API_URL = import.meta.env.VITE_APP_API_URL;
 
+    // For file upload
     const [file, setFile] = useState(null);
     const [expectedFileType, setExpectedFileType] = useState('');
     const [fileType, setFileType] = useState('');
-    const [mediaType, setMediaType] = useState('');
+
+    // For search data
+    const [firestoreCollection, setfirestoreCollection] = useState('');
     const [subscriptionType, setSubscriptionType] = useState('');
     const [vendor, setVendor] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [tags, setTags] = useState([]);
+    const [inputTag, setInputTag] = useState('');
+    // const [responseData, setResponseData] = useState(null);
 
+    // For upload progress
     const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -40,6 +49,7 @@ function UploadMedia() {
         return () => unsubscribe();
     }, [navigate, auth]);
 
+    /* -------------------------------------------------------------------------- */
     const imageCompress = (file) => {
         return new Promise((resolve, reject) => {
             let quality;
@@ -65,6 +75,22 @@ function UploadMedia() {
                 },
             });
         });
+    };
+
+    const addSearchData = async () => {
+        const formData = {
+            title,
+            description,
+            tags,
+            firestoreCollection,
+        };
+        try {
+            const response = await axios.post(`${API_URL}addSearchData`, formData);
+            console.log('Create Response:', response.data);
+            // setResponseData(response.data);
+        } catch (error) {
+            console.error('Create Error:', error);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -97,7 +123,7 @@ function UploadMedia() {
 
             setError('');
 
-            const mediaPath = `${mediaType}/${uploadFile.name}`;
+            const mediaPath = `${firestoreCollection}/${uploadFile.name}`;
             const fileRef = ref(storage, `${mediaPath}`);
             const uploadTask = uploadBytesResumable(fileRef, uploadFile);
 
@@ -115,8 +141,8 @@ function UploadMedia() {
                 },
                 async () => {
                     const url = await getDownloadURL(uploadTask.snapshot.ref);
-                    await setDoc(doc(db, mediaType, title), {
-                        mediaType,
+                    await setDoc(doc(db, firestoreCollection, title), {
+                        firestoreCollection,
                         title,
                         description,
                         vendor,
@@ -131,11 +157,15 @@ function UploadMedia() {
                         time_uploaded: new Date(),
                     });
 
+                    addSearchData();
+
+                    /*
                     await setDoc(doc(db, 'searchData', title.toLowerCase()), {
-                        mediaType,
+                        firestoreCollection,
                         title: title.toLowerCase(),
-                        path: `${mediaType}/${title}`,
+                        path: `${firestoreCollection}/${title}`,
                     });
+                    */
 
                     alert('Media uploaded successfully!');
                     resetForm();
@@ -163,6 +193,25 @@ function UploadMedia() {
 
     };
 
+    const handleTagInputChange = (e) => {
+        setInputTag(e.target.value);
+    };
+
+    const handleTagInputKeyDown = (e) => {
+        if (e.key === 'Enter' && inputTag) {
+            e.preventDefault();
+            if (!tags.includes(inputTag) && inputTag.trim() !== '') {
+                setTags([...tags, inputTag.trim()]);
+                setInputTag('');
+            }
+        }
+    };
+
+    const removeTag = (tagToRemove) => {
+        setTags(tags.filter(tag => tag !== tagToRemove));
+    };
+
+
     const cancelUpload = () => {
         if (uploadTask) {
             uploadTask.cancel();
@@ -174,7 +223,7 @@ function UploadMedia() {
 
     const resetForm = () => {
         setFile(null);
-        setMediaType('');
+        setfirestoreCollection('');
         setSubscriptionType('');
         setVendor('');
         setTitle('');
@@ -183,6 +232,7 @@ function UploadMedia() {
         setError('');
     };
 
+    /* -------------------------------------------------------------------------- */
     return (
         <div className="upload-form-container">
             <form onSubmit={handleSubmit} className="upload-form">
@@ -214,8 +264,8 @@ function UploadMedia() {
 
                         <div className="form-group">
                             <select
-                                value={mediaType}
-                                onChange={e => setMediaType(e.target.value)}
+                                value={firestoreCollection}
+                                onChange={e => setfirestoreCollection(e.target.value)}
                                 aria-label="Select media type"
                             >
                                 <option value="" disabled hidden>Select Media Type</option>
@@ -252,6 +302,24 @@ function UploadMedia() {
 
                         <div className="form-group">
                             <input type="text" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+                        </div>
+
+                        <div className="form-group tags-input-container">
+                            <label htmlFor="tags-input">Tags:</label>
+                            {tags.map((tag, index) => (
+                                <div key={index} className="tag-item">
+                                    {tag}
+                                    <button type="button" onClick={() => removeTag(tag)} className="tag-remove-btn">x</button>
+                                </div>
+                            ))}
+                            <input
+                                type="text"
+                                id="tags-input"
+                                placeholder="Add a tag"
+                                value={inputTag}
+                                onChange={handleTagInputChange}
+                                onKeyDown={handleTagInputKeyDown}
+                            />
                         </div>
 
                         <div className="form-group">

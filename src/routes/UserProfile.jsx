@@ -26,6 +26,9 @@ function UserProfile() {
     const [currentUser, setCurrentUser] = useState(formData.username);
     const [userId, setUserId] = useState("");
     const navigate = useNavigate();
+    const [processing, setProcessing] = useState(false);
+    const [cancelPopup, setCancelPopup] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         const auth = getAuth();
@@ -49,11 +52,25 @@ function UserProfile() {
         }
     }, []);
 
-    const subscriptionCancellationUrl = import.meta.env.VITE_APP_SUBSCRIPTION_CANCELLATION_URL;
+    useEffect(() => {
+        //disabling/enabling scrolling when confirm cancel pop up is open/closed
+        if (cancelPopup) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'auto'; 
+        }
+        
+        return () => {
+          document.body.style.overflow = 'auto';
+        };
+      }, [cancelPopup]);
 
+    const subscriptionCancellationUrl = import.meta.env.VITE_APP_SUBSCRIPTION_CANCELLATION_URL;
+    
     //handle cancelling subscription
-    async function cancelSubscription(event) {
-        event.preventDefault();
+    async function cancelSubscription() {
+        // event.preventDefault();
+        setProcessing(true);
         //post request to backend for cancellation
         try {
             console.log(formData.subscriptionId);
@@ -72,16 +89,19 @@ function UserProfile() {
             if (response.ok) {
                 console.log("Cancelled Successfuly", data);
                 alert('Cancelled Successfuly');
+                setProcessing(false);
                 setTimeout(()=>{
                     navigate("/");
                 },3000);
             } else {
                 console.error("Failed to cancel", data);
-                alert(data.error || 'Failed to cancel');
+                alert(data.message);
+                setProcessing(false);
             }
         } catch (error) {
             console.error("Error cancelling subscription:", error);
-            alert('Error cancelling subscription');
+            alert(error.message);
+            setProcessing(false);
         } 
     }
 
@@ -263,6 +283,22 @@ function UserProfile() {
 
     return (
         <div className='profile-page'>
+        {cancelPopup ? (
+            <div className="cancel-pop-up">
+                <div className="cancel-pop-up-content">
+                    <h1 className="cancel-pop-up-header">Are You Sure You Want To Cancel?</h1>
+                    <div className="cancel-pop-up-button-container">
+                        <button className="cancel-pop-up-button" onClick={()=>{
+                            setCancelPopup(false);
+                            cancelSubscription();
+                        }}>Yes</button>
+                        <button className="cancel-pop-up-button" onClick={()=>{
+                            setCancelPopup(false);
+                        }}>No</button>
+                    </div>
+                </div>
+            </div>
+        ) : null}
             <div className='profile-info'>
                 <div className='profile-title'>
                     <h1>User Profile</h1>
@@ -279,7 +315,7 @@ function UserProfile() {
                         onChange={handleFileUpload}
                     />
                     <small id="ProfileImage-help">
-                        Enter a image file, maximum file size 5MB
+                        Enter an image file, maximum file size 5MB
                     </small>
                 </div>
                 <Dialog header="Crop Image" visible={isCropDialogOpen} onHide={() => setIsCropDialogOpen(false)}>
@@ -355,11 +391,15 @@ function UserProfile() {
                     />
                     <button type="submit">Update </button>
                 </form>
-                <button style={{backgroundColor: "#d35400"}} type="submit" onClick={cancelSubscription}> Cancel Subscription </button>
+                {formData.role === "user" ? (
+                    <button style={{backgroundColor: "#d35400"}} type="submit" onClick={()=>{navigate("/subscribe")}}> Subscribe </button>
+                ) : (
+                    <button style={{backgroundColor: "#d35400"}} type="submit" onClick={()=> {setCancelPopup(true)}}> {processing ? "Processing..." : "Cancel Subscription"} </button>
+                ) }
                 <div className="links">
-                    <h3 className="link"><Link to="https://phatblack.com/WP/restrictions/" target="_blank">SEE RESTRICTIONS</Link></h3>
-                    <h3 className="link"><Link to="https://phatblack.com/WP/terms-of-service/" target="_blank">SEE TERMS OF SERVICE</Link></h3>
-                    <h3 className="link"><Link to="https://phatblack.com/WP/privacy-policy/" target="_blank">SEE PRIVACY POLICY</Link></h3>
+                    <h3 className="link"><Link to="https://phatblack.com/WP/restrictions/" target="_blank">RESTRICTIONS</Link></h3>
+                    <h3 className="link"><Link to="https://phatblack.com/WP/terms-of-service/" target="_blank">TERMS OF SERVICE</Link></h3>
+                    <h3 className="link"><Link to="https://phatblack.com/WP/privacy-policy/" target="_blank">PRIVACY POLICY</Link></h3>
                 </div>
             </div>
         </div>

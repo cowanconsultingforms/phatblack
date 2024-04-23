@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
+import SearchCard from './SearchCard';
 
 const SearchResults = () => {
     const [searchParams] = useSearchParams();
     const searchTerm = searchParams.get('q');
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const API_URL = import.meta.env.VITE_APP_API_URL;
 
     useEffect(() => {
         const fetchData = async () => {
             if (!searchTerm) return;
-
             setLoading(true);
-            const searchDataRef = collection(db, "searchData");
-            const q = query(
-                searchDataRef,
-                where("title", ">=", searchTerm),
-                where("title", "<=", searchTerm + '\uf8ff')
-            );
 
             try {
-                const querySnapshot = await getDocs(q);
-                setResults(querySnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data(),
-                })));
+                const response = await fetch(`${API_URL}search?query=${encodeURIComponent(searchTerm)}`);
+                const searchResults = await response.json();
+
+                const docsFetchPromises = searchResults.map(result =>
+                    getDoc(doc(db, result.firestoreCollection, result.title))
+                );
+
+                const docsSnapshots = await Promise.all(docsFetchPromises);
+                const fetchedResults = docsSnapshots.map(snapshot => ({
+                    id: snapshot.id,
+                    ...snapshot.data(),
+                }));
+
+                setResults(fetchedResults);
             } catch (error) {
                 console.error("Error fetching search results: ", error);
             } finally {
@@ -42,13 +46,12 @@ const SearchResults = () => {
     }
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
             {results.length > 0 ? (
                 results.map(item => (
-                    <div key={item.id}>
-                        <h3>{item.title}</h3>
-                        <p>{item.keywords}</p>
-                    </div>
+                    <SearchCard
+                        item={item}
+                    />
                 ))
             ) : (
                 <div>No results found for "{searchTerm}"</div>
