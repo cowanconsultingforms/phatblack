@@ -230,7 +230,7 @@ function Sidebar() {
                   <Link to="/">
                     <li><IoHomeSharp/></li>
                   </Link>
-                  <li><FaRegCompass onMouseEnter={showSidebar}/></li>
+                  <li><FaRegCompass onClick={showSidebar} onMouseEnter={showSidebar}/></li>
                   <li 
                     onMouseEnter={() => setSubMenuHover(true)}
                     onMouseLeave={() => setSubMenuHover(false)}
