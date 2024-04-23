@@ -3,17 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig.js"; 
 import { doc, updateDoc, increment } from "firebase/firestore";
 
-const PBzineCard = ({ id, src, title, vendor, timeuploaded, views }) => {
+const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views }) => {
     const navigate = useNavigate();
-
+    const colNav = col.replace('-', '');
     const handleOnClick = () => {
         updateViewCount(title);
-        navigate(`/pbzine/${title}`);
+        navigate(`/${colNav}/${title}`);
     };
     
     const updateViewCount = async (videoId) => {
         try {
-            const videoRef = doc(db, "pb-zine", videoId);
+            const videoRef = doc(db, col, videoId);
             await updateDoc(videoRef, {
                 views: increment(1)
             });
@@ -67,7 +67,7 @@ const PBzineCard = ({ id, src, title, vendor, timeuploaded, views }) => {
                                 // Check if the URL points to a video file
                                 else if (url.includes('.mp4')) {
                                     return (
-                                        <video className="video-player" controls loop>
+                                        <video className="video-player" controls={false} loop>
                                             <source src={src} type="video/mp4" />
                                         </video>
                                     );
@@ -81,7 +81,7 @@ const PBzineCard = ({ id, src, title, vendor, timeuploaded, views }) => {
                     <h2>{title}</h2>
                     <p>{vendor}</p>
                     <div className="vid-view-time">
-                        <p>{views} Views</p>
+                        <p>{views} Views...</p>
                         <p>{timeSince(new Date(timeuploaded))}</p>
                     </div>
                 </div>

@@ -90,28 +90,10 @@
 .popup-login-container input[type="submit"]:hover {
     background-color: #d35400;
 }
-@media screen and (max-width: 450px) {
-    .subscription-wall h1, .subscription-wall p, .popup-login-container {
-        margin-left: 10%;
-    }
-
-    .popup-login-container h1{
-        margin-left: 1%;
-    }
-
-    .subscription-wall button{
-        margin-left: -2.5%;
-    }
-}
 
 @media screen and (max-width: 300px) {
     .subscription-wall {
         height: 80vh; /* Adjust height for smaller screens */
-    }
-
-    .subscription-wall h1,
-    .subscription-wall p {
-        margin-left: 10%; /* Adjust margin for smaller screens */
     }
 
     .popup-container {
