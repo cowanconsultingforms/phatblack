@@ -137,6 +137,7 @@ function Bottom_content() {
       <div className="subscribed-content">
         {ezineContent.map((zine, index) => (
           <PBzineCard
+            col={'pbzine'}
             key={index}
             src={zine.url}
             title={zine.title}
