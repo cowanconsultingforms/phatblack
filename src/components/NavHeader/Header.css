@@ -206,6 +206,7 @@ header {
   .desktop-nav .menu-items a:hover{
     transition: 0.3s;
     box-shadow: 0px 0px 5px 2px #ffa646;
+    transform: scale(1.1);
   }
 
   .desktop-nav .menu-items a:not(:hover){
