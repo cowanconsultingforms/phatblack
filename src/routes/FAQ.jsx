@@ -80,13 +80,13 @@ const FAQ = () => {
     <div className="faq-footer">
         <h3>
           Can't find an answer?{" "}
-          <Link className="faq-header contact" to="/contactus">
+          <Link target="_blank" className="faq-header contact" to="/contactus">
             Contact Us
           </Link>
         </h3>
         <h3>
           What are your restrictions? <br />
-          <Link
+          <Link target="_blank"
             className="faq-header"
             to="https://phatblack.com/WP/restrictions/"
           >
@@ -95,7 +95,7 @@ const FAQ = () => {
         </h3>
         <h3>
           What are your terms of service? <br />
-          <Link
+          <Link target="_blank"
             className="faq-header"
             to="https://phatblack.com/WP/terms-of-service/"
           >
@@ -104,7 +104,7 @@ const FAQ = () => {
         </h3>
         <h3>
           What are your copyright rules? <br />
-          <Link
+          <Link target="_blank"
             className="faq-header"
             to="https://phatblack.com/WP/copyright/"
           >
@@ -113,7 +113,7 @@ const FAQ = () => {
         </h3>
         <h3>
           What is your privacy policy? <br />
-          <Link
+          <Link target="_blank"
             className="faq-header"
             to="https://phatblack.com/WP/privacy-policy/"
           >
