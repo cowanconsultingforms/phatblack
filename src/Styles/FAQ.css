@@ -192,7 +192,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 499px) {
     .faq-container{
       margin-left: 10px !important;
     }

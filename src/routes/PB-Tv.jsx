@@ -108,6 +108,8 @@ function PBTv() {
                 </button>
             </div>
 
+           
+
             <h3>Featured <MdKeyboardArrowRight className="arrow-icon"/></h3>
             <div className="pbtv-featured-card-container">
                 {pbtvVideos.map((video, index) => (
@@ -123,11 +125,26 @@ function PBTv() {
             </div>
 
             <h3>Top 10 Movies <MdKeyboardArrowRight className="arrow-icon"/></h3>
-            <div className="pbtv-featured-card-container" id="top-movies">
+            <div className="pbtv-top-movies-card-container" id="top-movies">
                 {pbtvVideos.map((video, index) => (
-                    <>
-                    <p className="ranking">{index+1}</p>
-                    <PBTvCard 
+                    <div className="number-and-card-div">
+                        <p className="ranking">{index+1}</p>
+                        <PBTvCard 
+                            key={index}
+                            src={video.url}
+                            title={video.title}
+                            vendor={video.vendor}
+                            timeuploaded={video.time_uploaded.toDate()}
+                            views={video.views}
+                        />
+                    </div>
+                ))}
+            </div>
+
+            <h3>Suggested <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-featured-card-container">
+                {pbtvVideos.map((video, index) => (
+                    <PBTvCard
                         key={index}
                         src={video.url}
                         title={video.title}
@@ -135,7 +152,23 @@ function PBTv() {
                         timeuploaded={video.time_uploaded.toDate()}
                         views={video.views}
                     />
-                    </> 
+                ))}
+            </div>
+
+            <h3>Top 10 TV-Shows <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-top-movies-card-container" id="top-movies">
+                {pbtvVideos.map((video, index) => (
+                    <div className="number-and-card-div">
+                        <p className="ranking">{index+1}</p>
+                        <PBTvCard 
+                            key={index}
+                            src={video.url}
+                            title={video.title}
+                            vendor={video.vendor}
+                            timeuploaded={video.time_uploaded.toDate()}
+                            views={video.views}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

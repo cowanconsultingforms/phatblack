@@ -111,6 +111,23 @@ h3{
   margin-left: 20px;
 }
 
+.pbtv-top-movies-card-container {
+  width: 99%;
+  padding-left: 1px;
+  padding-top: 1px;
+  display: flex;
+  overflow-x: scroll;
+  border: 10px solid transparent;
+}
+
+.pbtv-top-movies-card-container::-webkit-scrollbar{
+  display: none;
+}
+
+.pbtv-top-movies-card-container > :first-child{
+  margin-left: -20px;
+}
+
 #top-movies .ranking{
   font-size: 16rem;
 }
@@ -158,6 +175,27 @@ h3{
     color: #888;
     margin: 5px;
   }
+
+  .number-and-card-div{
+    display: flex;
+    gap: 20px;
+    min-width: fit-content;
+    border: 10px solid transparent;
+    margin-right: 20px;
+  }
+
+  .number-and-card-div > *:not(:first-child){
+    margin-left: 0px;
+    margin-right: 20px;
+  }
+
+  .number-and-card-div .pbtv-card{
+    flex-grow: 1;
+  }
+
+  .pbtv-featured-card-container > *:not(:first-child){
+    margin-left: 20px;
+  }
   
   .pbtv-card video {
     width: 100%; /* Ensure all images have the same width */
@@ -165,7 +203,7 @@ h3{
     object-fit: cover;
   }
 
-  .vid-view-time p:not(:last-child)::after {
+  .vid-view-time .ranking:not(:last-child)::after {
     content: '\2022'; 
     position: relative;
     margin-left: 5px;
@@ -174,4 +212,44 @@ h3{
   .vid-view-time {
     display: flex;
     flex-direction: row;
+  }
+
+  @media screen and (max-width: 940px){
+    .pbtv-page{
+      margin-left: 40px;
+      width: calc(100% - 40px);
+    }
+  }
+
+  @media screen and (max-width: 600px){
+    .pbtv-page{
+      margin-left: 30px;
+      width: calc(100% - 30px);
+    }
+    .pbtv-featured-card-container .pbtv-card{
+      min-width: calc(100% - 30px);
+    }
+    .number-and-card-div .ranking{
+      font-size: 10rem !important;
+      padding-top: 10%;
+    }
+    .number-and-card-div .pbtv-card{
+      min-width: 350px !important;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .number-and-card-div .pbtv-card{
+      min-width: 270px !important;
+    }
+    .number-and-card-div{
+      gap: 5px;
+    }
+    
+  }
+
+  @media screen and (max-width: 400px) {
+    .number-and-card-div .pbtv-card{
+      min-width: 250px !important;
+    }
   }
