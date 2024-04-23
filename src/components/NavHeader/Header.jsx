@@ -126,7 +126,7 @@ const Header = () => {
         <div className="ProfileIcon">
           <div className="ProfileIconContainer">
           <button className="Profilebutton" onClick={toggleDropdown}>
-              <img src={profileImageUrl || profileIcon} alt="Profile Icon" />
+              <img src={profileImageUrl || profileIcon} alt="Profile Icon"/>
           </button>
           </div>
           {showDropdown && (

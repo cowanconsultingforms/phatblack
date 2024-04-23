@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import '../Styles/PbMall.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FaBars } from "react-icons/fa";
 import Carousel from "../components/Carousel";
 import carouselItem1 from "../assets/ClothesExample1.jpeg";
 import carouselItem2 from "../assets/ClothesExample2.jpeg";
@@ -62,12 +63,46 @@ function Imagemap() {
 
 {/* Header and sub headers for the page */ }
 function Header() {
+    const [sidebarOpen, setSidebarOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            // Close the sidebar if it's open when scrolling starts
+            if (sidebarOpen) {
+                setSidebarOpen(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [sidebarOpen]);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
+    };
+
     return (
         <>
-            <h1 >PB-Mall</h1>
-            <div className="header-container"> {/* container for header and sub headers */}
+        <div className="header-container">
+            <div className={`mall-side-bar ${sidebarOpen ? 'open' : ''}`}>
+                <h1>PB-MALL</h1>
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">Featured</a></li>
+                    <li><a href="#">Clothes</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Personal Care</a></li>
+                    <li><a href="#">Miscellaneous</a></li>
+                </ul>
+            </div>
+            <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>
 
-                <div className="subtopics-container">
+
+                {/* <div className="subtopics-container">
                     <a href="/pbmall">
                         <h2 className="Subtopics">Home</h2>
                     </a>
@@ -92,7 +127,7 @@ function Header() {
 
                     {/* Maybe add search bar? Or would it be too much with the general search bar of the website?
       <FontAwesomeIcon icon={faSearch} className="search-icon"> */}
-                </div>
+                {/* </div>  */}
             </div>
         </>
 

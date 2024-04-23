@@ -67,7 +67,9 @@ option {
 }
 
 .submit-btn:not(:disabled):hover {
-    background-color: #218838;
+    background-color: rgb(255, 94, 0);
+    scale: calc(.98);
+    transition: ease-in-out .3s;
 }
 
 .error-message {
