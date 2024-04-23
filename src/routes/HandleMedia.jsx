@@ -29,7 +29,7 @@ function HandleMedia() {
     const [currentItem, setCurrentItem] = useState(null);
 
     //Filtering
-    const [collectionName, setCollectionName] = useState('all');
+    const [collectionName, setCollectionName] = useState('');
     const [showFilter, setShowFilter] = useState(true);
     const [showMedia, setShowMedia] = useState(false);
 
