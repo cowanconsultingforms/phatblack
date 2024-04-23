@@ -37,6 +37,7 @@ function Sidebar() {
   const [subMenu, setSubMenuHover] = useState(false);
   const [socialHover, setSocialHover] = useState(false);
   const [socialPopOut, setSocialPopOut] = useState(false);
+
   const showSidebar = () => {
     setSidebar(!sidebar);
   }
@@ -234,7 +235,7 @@ function Sidebar() {
                     onMouseEnter={() => setSubMenuHover(true)}
                     onMouseLeave={() => setSubMenuHover(false)}
                     ref={infoIconRef}>
-                    <IoIosInformationCircle/>
+                    <IoIosInformationCircle onClick={()=>{setSubMenuHover(!subMenu)}}/>
                     {subMenu && (
                       <div
                         className={"submenu-container"}
@@ -257,6 +258,7 @@ function Sidebar() {
                         <li><IoShareSocial 
                           onMouseEnter={() => setSocialHover(true)}
                           onMouseLeave={() => setSocialHover(false)}
+                          onClick={()=>{setSocialHover(!socialHover)}}
                           ref={socialMediaRef}
                           />
                           {socialHover && (
