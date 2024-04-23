@@ -2,7 +2,6 @@
     margin-top: 35px;
     position: absolute;
     background-color: rgb(0, 0, 0);
-    height: 100vh;
     width: 60px;
     text-align: center;
     z-index: 1;
@@ -105,7 +104,7 @@
 .navbar-toggle {
     background-color: #060b26;
     width: 100%;
-    height: 80px;
+    height: 80vh;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -134,6 +133,10 @@ span {
     border-radius: 4px;
 }
 
+.horizontalBar {
+    display: none;
+}
+
 
 
 @media screen and (max-width: 400px) {
@@ -143,6 +146,7 @@ span {
     .Sidebar{
         padding-top: 15px;
     }
+
 }
 
 @media  screen and (max-width: 500px) {
@@ -159,6 +163,7 @@ span {
     .Sidebar li:not(:hover){
         font-size: 20px !important;
     }
+    
 }
 
 @media screen and (max-width: 940px){
@@ -174,5 +179,88 @@ span {
     }
 }
 
+@media screen and (max-width: 560px) {
+        .horizontalBar {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: black;
+          z-index: 3;
+        }
+      
+        .SidebarIconsDiv ul {
+          display: flex;
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          font-size: 40px;
+        }
+      
+        .SidebarIconsDiv ul li {
+          margin: 0px 50px;
+        }
+
+        .submenu-container {
+            position: absolute;
+            bottom: calc(100% + 0px);
+            right: 0;
+            width: 40%;
+            padding: 10px;
+            border-radius: 5px;
+            border: solid 1px white;
+            background: black;
+            z-index: 1;
+            height: auto;
+          }
+
+        .submenu-container ul {
+            list-style: none;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-popout {
+            position: absolute;
+            bottom: 0;
+            right: calc(100% + 1px); /* Adjust the distance from the icon */
+            padding: 10px;
+            border-radius: 5px;
+            background: black;
+            z-index: 2;
+            width: 100%;
+            border: 1px solid white
+        }
+        
+        .social-popout a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 5px;
+            font-size: medium;
+        }
+
+        .nav-menu {
+            z-index: 6;
+            background-color: black;
+            width: 300px;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: -120%;
+            transition: 850ms;
+            overflow: auto;
+        }
+}
 
 

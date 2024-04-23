@@ -3,7 +3,7 @@
     background: #1F1F1F;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 1200px;
+    max-width: 80%;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -81,6 +81,7 @@ option:hover {
 @media (max-width: 768px) {
     .media-list-container {
         grid-template-columns: 1fr;
+        margin-left: 12%;
     }
 }
 
@@ -129,8 +130,8 @@ option:hover {
 
 @media (max-width: 768px) {
     .update-form-container {
-        width: calc(100% - 40px);
-        margin: 2rem 20px;
+        max-width: 80%;
+        margin-left: 17%;
     }
 }
 
@@ -175,4 +176,11 @@ option:hover {
     margin-top: 10px;
     font-size: 18px;
     letter-spacing: 1px;
+}
+
+@media (max-width: 400px) {
+    .media-list-container {
+        max-width: 97%;
+        margin-left: 3%;
+    }
 }

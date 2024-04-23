@@ -4,10 +4,11 @@ import { db, storage } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { deleteObject, ref, getStorage, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { FaTrash, FaPen } from 'react-icons/fa';
 import '../Styles/HandleMedia.css';
+import MediaItem from '../components/MediaItem';
 import MediaPreview from '../components/MediaPreview';
 import Compressor from 'compressorjs';
+import axios from 'axios';
 
 function HandleMedia() {
     const navigate = useNavigate();
@@ -102,7 +103,8 @@ function HandleMedia() {
                         mediaList.push({ id: doc.id, ...doc.data() });
                     });
                 });
-            } else {
+            }
+            else {
                 const mediaCollection = collection(db, c);
                 const mediaSnapshot = await getDocs(mediaCollection);
                 mediaList = mediaSnapshot.docs.map(docSnapshot => ({
@@ -152,15 +154,11 @@ function HandleMedia() {
 
     const handleMongoDBDelete = async (title) => {
         try {
-            const response = await fetch(`${API_URL}delete?title=${encodeURIComponent(title)}`, {
-                method: 'DELETE',
+            const response = await axios.delete(`${API_URL}delete?title=${encodeURIComponent(title)}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
-            if (!response.ok) {
-                throw new Error('Failed to delete from MongoDB');
-            }
             console.log('MongoDB delete successful');
         } catch (error) {
             console.error('Error deleting MongoDB:', error);
@@ -171,23 +169,23 @@ function HandleMedia() {
         try {
             // Prompt the user for confirmation
             const confirmDelete = window.confirm("Are you sure you want to delete this item?");
-            
+
             // If user confirms deletion, proceed with deletion
             if (confirmDelete) {
                 // Perform deletion logic
                 let mediaIdstring = mediaItem.id;
                 let mediaId = mediaIdstring.toLowerCase();
-    
+
                 await deleteDoc(doc(db, `${mediaItem.firestoreCollection}`, mediaItem.title));
                 handleMongoDBDelete(mediaItem.title);
-    
+
                 // Delete media file from storage
                 const storageRef = ref(storage, `${mediaItem.firestoreCollection}/${mediaItem.fileName}`);
                 await deleteObject(storageRef);
-    
+
                 // Fetch media again after deletion
                 fetchMedia(collectionName);
-    
+
                 // Inform user about successful deletion
                 console.log('Media deleted successfully');
             } else {
@@ -281,72 +279,58 @@ function HandleMedia() {
             return;
         }
 
-        console.log("Updating media");
-
-        // Check if file is selected
-        if (newFile !== null) {
-            let uploadFile = newFile;
-            // console.log(currentItem.fileName);
-            try {
-                // Delete old file
-                const storage = getStorage();
-                const oldFileRef = ref(storage, `${currentItem.firestoreCollection}/${currentItem.fileName}`);
-
-                deleteObject(oldFileRef).then(() => {
-                    console.log('Old file deleted successfully');
-                }).catch((error) => {
-                    console.error('Error deleting old file:', error);
-                });
-
-                const fileExtension = uploadFile.name.split('.').pop().toLowerCase();
-                const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-
-                if (imageExtensions.includes(fileExtension)) {
-                    const compressedFile = await imageCompress(uploadFile);
-                    uploadFile = compressedFile;
-                }
-                else if (uploadFile.size > 1024 * 1024 * 5) {
-                    alert('File size must be less than 5MB');
-                    return;
-                }
-
-                const storageRef = ref(storage, `${currentItem.firestoreCollection}/${uploadFile.name}`);
-                const uploadTask = uploadBytesResumable(storageRef, uploadFile);
-
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                    },
-                    (error) => {
-                        console.error(error);
-                    },
-                    async () => {
-                        const url = await getDownloadURL(uploadTask.snapshot.ref);
-                        const mediaRef = doc(db, `${currentItem.firestoreCollection}`, currentItem.id);
-                        await updateDoc(mediaRef, {
-                            url: url,
-                            fileName: uploadFile.name,
-                            fileType: newFileType,
-                        });
-
-                        alert('Media updated successfully!');
-                        toggleForm();
-                        // fetchMedia(collectionName);
-                    }
-                );
-            } catch (error) {
-                console.error('Error updating file:', error);
+        try {
+            if (newFile) {
+                await handleFileUpload(newFile);
             }
-        }
-        if (newDescription !== currentItem.description || newDescription !== '') {
-            const mediaRef = doc(db, `${currentItem.firestoreCollection}`, currentItem.id);
-            await updateDoc(mediaRef, { description: newDescription });
-            alert('Media description updated successfully!');
+            if (newDescription !== currentItem.description || newDescription !== '') {
+                await handleDescriptionUpdate();
+            }
+            alert('Media updated successfully!');
             toggleForm();
-            handleMongoDBUpdate();
-            // fetchMedia(collectionName);
+            fetchMedia(collectionName);
+        } catch (error) {
+            console.error('Error updating media:', error);
         }
+    };
+
+    const handleFileUpload = async (file) => {
+        // Delete the old file
+        const storage = getStorage();
+        const oldFileRef = ref(storage, `${currentItem.firestoreCollection}/${currentItem.fileName}`);
+        await deleteObject(oldFileRef);
+
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileExtension)) {
+            file = await imageCompress(file);
+        } else if (file.size > 5 * 1024 * 1024) { // No larger than 5MB
+            throw new Error('File size must be less than 5MB');
+        }
+
+        // Upload the new file
+        const storageRef = ref(storage, `${currentItem.firestoreCollection}/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        const snapshot = await new Promise((resolve, reject) => {
+            uploadTask.on('state_changed',
+                null,
+                error => reject(error),
+                () => resolve(uploadTask.snapshot)
+            );
+        });
+
+        const url = await getDownloadURL(snapshot.ref);
+        const mediaRef = doc(db, `${currentItem.firestoreCollection}`, currentItem.id);
+        await updateDoc(mediaRef, {
+            url: url,
+            fileName: file.name,
+            fileType: newFileType,
+        });
+    };
+
+    const handleDescriptionUpdate = async () => {
+        const mediaRef = doc(db, `${currentItem.firestoreCollection}`, currentItem.id);
+        await updateDoc(mediaRef, { description: newDescription });
+        handleMongoDBUpdate();  // Assuming this does not need to wait for user interaction
     };
 
     /*
@@ -383,27 +367,21 @@ function HandleMedia() {
                             <h1 className="users-list-title">Media Management</h1>
                             <div className="media-list-container">
                                 {media.map((item, index) => (
-                                    <div key={index} className="media-item">
-                                        <MediaPreview media={item} />
-
-                                        <h3>Title: {item.title}</h3>
-                                        <p>Description: {item.description}</p>
-
-                                        <button onClick={() => toggleForm(item)} className="media-btn">
-                                            <FaPen /> Edit
-                                        </button>
-                                        <br />
-                                        <button onClick={() => deleteMedia(item)} className="media-btn">
-                                            <FaTrash /> Delete
-                                        </button>
-                                    </div>
+                                    <MediaItem
+                                        key={index}
+                                        item={item}
+                                        onDelete={() => deleteMedia(item)}
+                                        onEdit={() => toggleForm(item)}
+                                    />
                                 ))}
                             </div>
-                        </>) :
+                        </>
+                    ) :
                         (
                             <>
                                 <div className="update-form-container">
                                     <h1 className="users-list-title"> Currently updating: {currentItem.title} </h1>
+                                    <MediaPreview media={currentItem} />
                                     <form className="update-form" onSubmit={handleUpdate}>
 
                                         <div className="update-form-group">

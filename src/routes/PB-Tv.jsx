@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import PBTvCard from "../components/PBTvCard.jsx";
 import { db } from "../firebaseConfig.js";
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
+import { IoMdPlay } from "react-icons/io";
+import { RiInformationLine } from "react-icons/ri";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import "../Styles/PBTv.css";
 
 function PBTv() {
@@ -50,11 +53,16 @@ function PBTv() {
         }
     };
 
+    const handlePlayButtonClick = () => {
+        if (videoRef.current) {
+            videoRef.current.play(); // Play the video
+        }
+    };
+
     return (
         <div className="pbtv-page">
-            <h1>PB-TV</h1>
             <div className="pbtv-head">
-                <div className="subtopics-container">
+            <div className="subtopics-container">
                     <a href="/pbtv">
                         <h2 className="Subtopics">PB-Music</h2>
                     </a>
@@ -82,7 +90,6 @@ function PBTv() {
                 </div>
             </div>
 
-
             <div className="pbtv-featured">
                 {featuredVideo && (
                     <video
@@ -93,9 +100,18 @@ function PBTv() {
                         onClick={() => handleVideoClick(featuredVideo.title)}
                     />
                 )}
+                <button className="featured-play-button" onClick={handlePlayButtonClick}>
+                    <IoMdPlay />  Play
+                </button>
+                <button className="featured-more-info-button">
+                    <RiInformationLine />  More Info
+                </button>
             </div>
 
-            <div className="pbtv-card-container">
+           
+
+            <h3>Featured <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-featured-card-container">
                 {pbtvVideos.map((video, index) => (
                     <PBTvCard
                         key={index}
@@ -107,6 +123,70 @@ function PBTv() {
                     />
                 ))}
             </div>
+
+            <h3>Top 10 Movies <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-top-movies-card-container" id="top-movies">
+                {pbtvVideos.map((video, index) => (
+                    <div className="number-and-card-div">
+                        <p className="ranking">{index+1}</p>
+                        <PBTvCard 
+                            key={index}
+                            src={video.url}
+                            title={video.title}
+                            vendor={video.vendor}
+                            timeuploaded={video.time_uploaded.toDate()}
+                            views={video.views}
+                        />
+                    </div>
+                ))}
+            </div>
+
+            <h3>Suggested <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-featured-card-container">
+                {pbtvVideos.map((video, index) => (
+                    <PBTvCard
+                        key={index}
+                        src={video.url}
+                        title={video.title}
+                        vendor={video.vendor}
+                        timeuploaded={video.time_uploaded.toDate()}
+                        views={video.views}
+                    />
+                ))}
+            </div>
+
+            <h3>Top 10 TV-Shows <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-top-movies-card-container" id="top-movies">
+                {pbtvVideos.map((video, index) => (
+                    <div className="number-and-card-div">
+                        <p className="ranking">{index+1}</p>
+                        <PBTvCard 
+                            key={index}
+                            src={video.url}
+                            title={video.title}
+                            vendor={video.vendor}
+                            timeuploaded={video.time_uploaded.toDate()}
+                            views={video.views}
+                        />
+                    </div>
+                ))}
+            </div>
+
+            <h3>Favorites <MdKeyboardArrowRight className="arrow-icon"/></h3>
+            <div className="pbtv-featured-card-container">
+                {pbtvVideos.map((video, index) => (
+                    <PBTvCard
+                        key={index}
+                        src={video.url}
+                        title={video.title}
+                        vendor={video.vendor}
+                        timeuploaded={video.time_uploaded.toDate()}
+                        views={video.views}
+                    />
+                ))}
+            </div>
+
+            
         </div>
     );
 }

@@ -191,7 +191,7 @@
   .filter-button {
     position: absolute;
     display: flex;
-    top: 3.6vh;
+    top: 2.7vh;
     padding: 10px 20px;
     font-size: 16px;
     background-color:transparent;
@@ -210,11 +210,11 @@
     margin: 20px auto 0 auto; /* Add spacing from the top and center horizontally */
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #555555;
+    background-color: #000000;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   
   .filterform-reset-button:hover {
@@ -445,7 +445,7 @@
     .filter-button {
         position: absolute;
         display: flex;
-        top: 3.5vh; /* Align with the search bar */
+        top: 2.7vh; /* Align with the search bar */
         padding: 10px 20px;
         font-size: 16px;
         background-color: transparent;
