@@ -1,24 +1,26 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import { getFirestore, doc, getDocs, getDoc, updateDoc, increment, arrayUnion, arrayRemove, deleteDoc, collection } from "firebase/firestore";
+import { getFirestore, doc, getDocs, getDoc, updateDoc, increment, arrayUnion, arrayRemove, collection } from "firebase/firestore";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { getStorage, ref, deleteObject } from "firebase/storage";
 import PBzineCard from "../components/PBZineCard";
 import "../Styles/ComponentPages.css";
 
 function ComponentPage({ collectionName }) {
-    let { title } = useParams();
-    title = decodeURIComponent(title);
-    console.log(title);
+    const [title, setTitle] = useState(useParams()); 
     const [data, setdata] = useState(null);
     const [userLiked, setUserLiked] = useState(false);
     const [userDisliked, setUserDisliked] = useState(false);
     const auth = getAuth();
     const user = auth.currentUser;
     const videoRef = useRef(null);
-    const [userRole, setUserRole] = useState('');
     const [otherData, setOtherData] = useState([]); // State to store other data in collection
+
+    useEffect(() => {
+        const url = decodeURIComponent(window.location.href);
+        const parts = url.split('/');
+        setTitle(parts[parts.length - 1]);
+    }, []);
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -39,9 +41,6 @@ function ComponentPage({ collectionName }) {
                                 }
                                 if (userData && userData.dislikes && userData.dislikes.includes(title)) {
                                     setUserDisliked(true);
-                                }
-                                if (userData && userData.role) {
-                                    setUserRole(userData.role); // Set userRole to user's role
                                 }
                             } else {
                                 console.log("User document does not exist.");
@@ -133,31 +132,6 @@ function ComponentPage({ collectionName }) {
         }
     };
 
-    const handleDelete = async () => {
-        try {
-            // Ask for confirmation
-            const confirmed = window.confirm("Are you sure you want to delete this data?");
-
-            // If user confirms, proceed with deletion
-            if (confirmed) {
-                const db = getFirestore();
-                const dataDocRef = doc(db, collectionName, title);
-                await deleteDoc(dataDocRef);
-
-                // Delete associated storage reference
-                const storage = getStorage();
-                await deleteObject(ref(storage, data.url));
-
-                // Redirect or perform any other action after deletion
-                let cleanedCollection = collectionName.replace(/-/g, ''); // Replace all dashes with an empty string
-                window.location.href = `/${cleanedCollection}`;
-            }
-        } catch (error) {
-            console.error("Error deleting data:", error);
-        }
-    };
-
-
     function timeSince(date) {
         const seconds = Math.floor((new Date() - date) / 1000);
         if (seconds < 60) return "Just now";
@@ -183,7 +157,6 @@ function ComponentPage({ collectionName }) {
             videoRef.current.currentTime = 0.2;
         }
     }, [data]);
-
 
     return (
         <div className="component-page">
@@ -238,12 +211,6 @@ function ComponentPage({ collectionName }) {
                                 <p>{timeSince(new Date(data.time_uploaded.toDate()))}</p>
                                 <p>{data.description}</p>
                             </div>
-                        </div>
-
-                        <div className="component-delete-data">
-                            <p>Admin Control:</p>
-                            {/**Show delete button if the user is admin or super admin */}
-                            {user && (userRole === "admin" || userRole === "super admin") && <button onClick={handleDelete}>Delete</button>}
                         </div>
                     </div>
                 )}
