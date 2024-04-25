@@ -1,7 +1,5 @@
 .pbradio-page {
     position: relative;
-    margin-left: 10%;
-    max-width: 85%;
 }
 
 .radio-head {
@@ -23,33 +21,20 @@
     background-color: white; /* Dark color for the currently active dot */
 }
 
-@media screen and (max-width: 940px){
+@media screen and (max-width: 940px) {
 
-    .pbradio-page {
-        margin-left: 15%;
-        max-width: 75%;
-    }
-  }
+}
 
 @media screen and (max-width: 500px) {
-    .pbradio-page {
-        margin-left: 15%;
-        max-width: 75%;
-    }
+
 }
   
-  @media screen and (max-width: 400px) {
-    .pbradio-page {
-        margin-left: 15%;
-        max-width: 75%;
-    }
-  }
+@media screen and (max-width: 400px) {
+
+}
 
 @media screen and (max-width: 300px) {
-    .pbradio-page {
-        margin-left: 20%;
-        max-width: 60%;
-    }
+   
 }
 
 .radio-head {
