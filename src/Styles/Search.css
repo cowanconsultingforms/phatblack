@@ -191,7 +191,7 @@
   .filter-button {
     position: absolute;
     display: flex;
-    top: 2.7vh;
+    top: 3.5vh;
     padding: 10px 20px;
     font-size: 16px;
     background-color:transparent;
@@ -445,7 +445,7 @@
     .filter-button {
         position: absolute;
         display: flex;
-        top: 2.7vh; /* Align with the search bar */
+        top: 3.5vh; /* Align with the search bar */
         padding: 10px 20px;
         font-size: 16px;
         background-color: transparent;
