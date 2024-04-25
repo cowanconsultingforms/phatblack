@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../Styles/Payment.css"
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { countries } from "../components/countryArray";
 
 //payment card styling
 const CARD_OPTIONS = {
@@ -10,12 +11,12 @@ const CARD_OPTIONS = {
 	style: {
 		base: {
 			iconColor: "#ffa646",
-			color: "#fff",
+			color: "white",
 			fontWeight: 500,
 			fontFamily: "Bebas Neue",
 			fontSize: "18px",
 			":-webkit-autofill": { color: "white" },
-			"::placeholder": { color: "white" }
+			"::placeholder": { color: "white" },
 		},
 		invalid: {
 			iconColor: "red",
@@ -24,6 +25,20 @@ const CARD_OPTIONS = {
 	}
 }
 
+//CVC location pop up 
+function CVCPopup({closePopup}) {
+    return (
+      <div className="popup">
+        <div className="popup-inner">
+        <button className="close-btn" onClick={closePopup}>×</button>
+          <p>Here's where to locate your CVC code:</p>
+          <p>- Visa, Mastercard, and Discover: The last three digits on the back of your card.</p>
+          <p>- American Express: The four digits on the front of your card, above the card number.</p>
+        </div>
+      </div>
+    );
+  }
+
 //payment component
 function Payment({ userId, cost, plan}){
     const [success,setSuccess] = useState(false);
@@ -31,6 +46,7 @@ function Payment({ userId, cost, plan}){
     const elements = useElements();
     const [processing, setProcessing] = useState(false);
     const navigate = useNavigate();
+    const [active, setActive] = useState(false);
 
     const subscriptionPaymentUrl = import.meta.env.VITE_APP_SUBSCRIPTION_PAYMENT_URL;
     
@@ -45,7 +61,6 @@ function Payment({ userId, cost, plan}){
                 address: {
                   line1: event.target.address.value,
                   city: event.target.city.value,
-                  state: event.target.state.value,
                   postal_code: event.target.postalCode.value,
                   country: event.target.country.value,
                 },
@@ -93,6 +108,16 @@ function Payment({ userId, cost, plan}){
         } 
     }
 
+    //open pop up
+    function openPopup(){
+        setActive(true);
+    }
+
+    //close pop up
+    function closePopup(){
+        setActive(false);
+    }
+
     return(
         <div className="payment-container">
             {!success ? 
@@ -103,21 +128,29 @@ function Payment({ userId, cost, plan}){
                 <fieldset className="FormGroup">
                     <div className="FormRow">
                         <CardElement options={CARD_OPTIONS}></CardElement>
+                        <div className="cvc-info">
+                            <button className="info-btn" onClick={openPopup}> ? </button>
+                            {active && <CVCPopup closePopup={closePopup} />}
+                        </div>
                     </div>
                     
                     <div className="FormRow">
-                        <input type="text" name="name" placeholder="Name" required />
+                        <input type="text" name="name" placeholder="Cardholder Name" required={!active} />
                     </div>
                     <div className="FormRow">
-                        <input type="text" name="address" placeholder="Address" required />
+                        <input type="text" name="address" placeholder="Address" required={!active} />
                     </div>
                     <div className="FormRow">
-                        <input className="row-item" type="text" name="city" placeholder="City" required />
-                        <input className="row-item" type="text" name="state" placeholder="State" required />
+                        <select className="countries" name="country" defaultValue="" required={!active}>
+                            <option value="" disabled>Select your country</option>
+                            {countries.map(country => (
+                                <option key={country.code} value={country.code}>{country.name}</option>
+                            ))}
+                        </select>
                     </div>
                     <div className="FormRow">
-                        <input className="row-item" type="text" name="postalCode" placeholder="Postal Code" required />
-                        <input className="row-item" type="text" name="country" placeholder="Country Ex:(US)" required />
+                        <input className="row-item first" type="text" name="city" placeholder="City" required={!active} />
+                        <input className="row-item last" type="text" name="postalCode" placeholder="Postal/ZIP Code" required={!active} />
                     </div>
                 </fieldset>
                 <button className="paymentButton">{!processing ? "Subscribe to PhatBlack Premium" : "Processing..."}</button>
