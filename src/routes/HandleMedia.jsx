@@ -56,16 +56,25 @@ function HandleMedia() {
                 <h1 className="users-list-title">Select Media Type</h1>
                 <div className='update-form-group'>
                     <select
+                        onfocus='this.size=4;' 
+                        onblur='this.size=0;' 
+                        onchange='this.size=1; this.blur();'
                         value={collectionName}
                         onChange={(e) => setCollectionName(e.target.value)}
                         aria-label='Select media type'
                     >
                         <option value="" disabled>Select Media Type</option>
                         <option value="all">All Media</option>
-                        <option value="pb-tv">PB-TV</option>
-                        <option value="pb-zine">PB-Zine</option>
-                        <option value="pb-music">PB-Music</option>
-                        <option value="pb-fashion">PB-Fashion</option>
+                        <option value="pb-tv">TV</option>
+                        <option value="pb-radio">Radio</option>
+                        <option value="pb-zine">Zine</option>
+                        <option value="pb-events">Events</option>
+                        <option value="pb-mall">Mall</option>
+                        <option value="pb-gaming">Gaming</option>
+                        <option value="pb-digital">Digital</option>
+                        <option value="pb-fashion">Fashion</option>
+                        <option value="pb-music">Music</option>
+                        <option value="pb-social">Social</option>
                     </select>
                 </div>
             </form>
@@ -88,7 +97,7 @@ function HandleMedia() {
             let mediaList = [];
             if (c === 'all') {
                 // in future, add more collections here
-                const collections = ['pb-tv', 'pb-zine', 'pb-music', 'pb-fashion'];
+                const collections = ['pb-tv', 'pb-radio', 'pb-zine', 'pb-events', 'pb-mall', 'pb-gaming', 'pb-digital', 'pb-fashion', 'pb-music', 'pb-social'];
                 const fetchPromises = collections.map(colName => {
                     const mediaCollection = collection(db, colName);
                     return getDocs(mediaCollection);

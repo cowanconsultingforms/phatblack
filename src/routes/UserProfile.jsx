@@ -175,20 +175,11 @@ function UserProfile() {
     const [isCropDialogOpen, setIsCropDialogOpen] = useState(false);
 
     const handleFileUpload = async (event) => {
-        // Define the file size limit in bytes (5MB)
-        const fileSizeLimit = 5 * 1024 * 1024; // 5 MB
-    
         // Get the selected file
         const file = event.target.files[0];
     
         // Check if the file exists and if it's an image
         if (file && file.type.startsWith("image/")) {
-            // Check if the file size exceeds the limit
-            if (file.size > fileSizeLimit) {
-                alert("File size exceeds the 5MB limit. Please upload a smaller image.");
-                return; // Stop further processing
-            }
-    
             // Display the cropping interface
             const reader = new FileReader();
             reader.onload = () => {
@@ -208,14 +199,15 @@ function UserProfile() {
                 const response = await fetch(croppedImage);
                 const blob = await response.blob();
                 
-                // Determine the file extension based on the MIME type of the blob
-                const fileType = blob.type.split('/')[1]; // e.g. 'image/jpeg' -> 'jpeg'
+                // Compress the image to reduce file size
+                const compressedBlob = await compressImage(blob, 50); // 50KB target size
                 
-                // Create a storage reference with the userId and the file extension
+                // Create a storage reference with the userId and a unique filename
+                const fileType = compressedBlob.type.split('/')[1];
                 const storageRef = ref(storage, `profileImages/${userId}.${fileType}`);
                 
-                // Upload the cropped image to Firebase storage
-                await uploadBytes(storageRef, blob);
+                // Upload the compressed image to Firebase Storage
+                await uploadBytes(storageRef, compressedBlob);
                 
                 // Get the URL of the uploaded image
                 const imageUrl = await getDownloadURL(storageRef);
@@ -253,6 +245,43 @@ function UserProfile() {
         } else {
             alert("Please crop the image before saving.");
         }
+    };
+    
+    // Function to compress the image to target size in KB
+    const compressImage = async (blob, targetSizeKB) => {
+        const MAX_SIZE = targetSizeKB * 1024; // Convert KB to bytes
+        const image = new Image();
+        image.src = URL.createObjectURL(blob);
+    
+        await new Promise(resolve => {
+            image.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+    
+                const width = image.width;
+                const height = image.height;
+    
+                let scaleFactor = 1;
+                let quality = 1;
+    
+                // Adjust scale factor and quality based on image size
+                if (blob.size > MAX_SIZE) {
+                    scaleFactor = Math.min(MAX_SIZE / width, MAX_SIZE / height);
+                    quality = 0.7; // Adjust quality based on desired compression ratio
+                }
+    
+                canvas.width = width * scaleFactor;
+                canvas.height = height * scaleFactor;
+    
+                ctx.drawImage(image, 0, 0, width, height, 0, 0, canvas.width, canvas.height);
+    
+                canvas.toBlob((resultBlob) => {
+                    resolve(resultBlob);
+                }, 'image/jpeg', quality);
+            };
+        });
+    
+        return blob;
     };
     
 
@@ -315,7 +344,7 @@ function UserProfile() {
                         onChange={handleFileUpload}
                     />
                     <small id="ProfileImage-help">
-                        Enter an image file, maximum file size 5MB
+                        Please enter an image file
                     </small>
                 </div>
                 <Dialog header="Crop Image" visible={isCropDialogOpen} onHide={() => setIsCropDialogOpen(false)}>

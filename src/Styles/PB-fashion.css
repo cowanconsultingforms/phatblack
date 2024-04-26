@@ -1,7 +1,5 @@
 .pbfashion-page {
     position: relative;
-    left: 5%;
-    width: 95%;
     display: flex;
     flex-direction: column;
 }
@@ -40,7 +38,12 @@
 }
 
 .Featured-Info {
+    display: flex;
+    justify-content: center;
     width: 100%;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
 }
 
 .Featured-Image {
@@ -246,8 +249,6 @@
 @media screen and (max-width: 320px) {
     .pbfashion-page {
         position: relative;
-        left: 17%;
-        width: 82%;
         display: flex;
         flex-direction: column;
     }
@@ -367,8 +368,6 @@
 @media screen and (max-width: 376px) {
     .pbfashion-page {
         position: relative;
-        left: 15%;
-        width: 75%;
         display: flex;
         flex-direction: column;
     }
@@ -488,8 +487,6 @@
 @media screen and (max-width: 450px) {
     .pbfashion-page {
         position: relative;
-        left: 15%;
-        width: 75%;
         display: flex;
         flex-direction: column;
     }
@@ -614,8 +611,6 @@
 @media screen and (max-width: 770px) {
     .pbfashion-page {
         position: relative;
-        left: 8%;
-        width: 92%;
         display: flex;
         flex-direction: column;
     }
@@ -739,8 +734,6 @@
 @media screen and (max-width: 900px) {
     .pbfashion-page {
         position: relative;
-        left: 8%;
-        width: 92%;
         display: flex;
         flex-direction: column;
     }
