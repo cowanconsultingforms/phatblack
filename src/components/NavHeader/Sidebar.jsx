@@ -229,12 +229,12 @@ function Sidebar() {
                   <Link to="/">
                     <li><IoHomeSharp/></li>
                   </Link>
-                  <li><FaRegCompass onMouseEnter={showSidebar}/></li>
+                  <li><FaRegCompass onClick={showSidebar} onMouseEnter={showSidebar}/></li>
                   <li 
                     onMouseEnter={() => setSubMenuHover(true)}
                     onMouseLeave={() => setSubMenuHover(false)}
                     ref={infoIconRef}>
-                    <IoIosInformationCircle/>
+                    <IoIosInformationCircle onClick={()=>{setSubMenuHover(!subMenu)}}/>
                     {subMenu && (
                       <div
                         className={"submenu-container"}
