@@ -79,7 +79,7 @@ function Home() {
                     <h1 className="about-us-title"> ABOUT</h1>
                     <img src={equalizer}></img>
                     <p className="about-us-text">
-                        Welcome to PhatBlack-Premium – Your Cultural Soundstage. At PhatBlack-Premium we’re not just an entertainment platform, we’re a movement. Born from the vibrant streets of urban America, Phatblack-Premium has grown into a global symphony of culture celebrating the richness of the urban African diaspora. Accordingly, Phatblack-Premium is dedicated to bringing to the fore the unique sounds, sights, and illustrative narratives reflective of the urban landscape
+                        Welcome to PhatBlack-Premium – Your Cultural Soundstage. At PhatBlack-Premium we’re not just an entertainment platform, we’re a movement. Born from the vibrant streets of urban America, Phatblack-Premium has grown into a global symphony of culture celebrating the richness of the urban African diaspora. Accordingly, Phatblack-Premium is dedicated to bringing to the fore the unique sounds, sights, and illustrative narratives reflective of the urban landscape.
                     </p>
                 </div>
                 <div className="video-cards">
