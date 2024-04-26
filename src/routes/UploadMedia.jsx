@@ -150,7 +150,7 @@ function UploadMedia() {
                         fileName: uploadFile.name,
                         fileType: fileType,
                         subscriptionType,
-                        keywords: [],
+                        tags: tags,
                         views: 0,
                         likes: 0,
                         dislikes: 0,
@@ -158,14 +158,6 @@ function UploadMedia() {
                     });
 
                     addSearchData();
-
-                    /*
-                    await setDoc(doc(db, 'searchData', title.toLowerCase()), {
-                        firestoreCollection,
-                        title: title.toLowerCase(),
-                        path: `${firestoreCollection}/${title}`,
-                    });
-                    */
 
                     alert('Media uploaded successfully!');
                     resetForm();

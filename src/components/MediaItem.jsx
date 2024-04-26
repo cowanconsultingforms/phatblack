@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaTrash, FaPen, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { FaTrash, FaPen, FaCheckCircle, FaTimesCircle, FaPlusCircle } from 'react-icons/fa';
 import MediaPreview from './MediaPreview';
 import axios from 'axios';
 
@@ -23,6 +23,22 @@ function MediaItem({ item, onDelete, onEdit }) {
         checkExistsInMongoDB();
     }, [item.title]);
 
+    const addToMongoDB = async () => {
+        try {
+            const dataToSend = {
+                firestoreCollection: item.firestoreCollection,
+                title: item.title,
+                description: item.description,
+                tags: item.tags
+            };
+            await axios.post(`${API_URL}addSearchData`, dataToSend);
+            setExistsInMongoDB(true);
+        } catch (error) {
+            console.error('Error adding to MongoDB:', item.title, error);
+            setExistsInMongoDB(false);
+        }
+    }
+
     return (
         <div className="media-item" style={{ position: 'relative' }}>
             {existsInMongoDB !== null && (
@@ -39,9 +55,15 @@ function MediaItem({ item, onDelete, onEdit }) {
             <h3>Title: {item.title}</h3>
             <p>Description: {item.description}</p>
 
-            <button onClick={() => onEdit(item)} className="media-btn">
-                <FaPen /> Edit
-            </button>
+            {existsInMongoDB ? (
+                <button onClick={() => onEdit(item)} className="media-btn">
+                    <FaPen /> Edit
+                </button>
+            ) : (
+                <button onClick={addToMongoDB} className="media-btn">
+                    <FaPlusCircle /> Add to MongoDB
+                </button>
+            )}
             <br />
             <button onClick={() => onDelete(item)} className="media-btn">
                 <FaTrash /> Delete
