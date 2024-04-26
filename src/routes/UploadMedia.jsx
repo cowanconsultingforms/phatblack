@@ -20,7 +20,6 @@ function UploadMedia() {
 
     // For search data
     const [firestoreCollection, setfirestoreCollection] = useState('');
-    const [subscriptionType, setSubscriptionType] = useState('');
     const [vendor, setVendor] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -149,7 +148,6 @@ function UploadMedia() {
                         url,
                         fileName: uploadFile.name,
                         fileType: fileType,
-                        subscriptionType,
                         tags: tags,
                         views: 0,
                         likes: 0,
@@ -216,7 +214,6 @@ function UploadMedia() {
     const resetForm = () => {
         setFile(null);
         setfirestoreCollection('');
-        setSubscriptionType('');
         setVendor('');
         setTitle('');
         setDescription('');
@@ -269,18 +266,6 @@ function UploadMedia() {
                                 <option value="pb-radio">PB-RADIO</option>
                                 <option value="pb-gaming">PB-GAMING</option>
                                 <option value="pb-communities">PB-COMMUNITIES</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <select
-                                value={subscriptionType}
-                                onChange={e => setSubscriptionType(e.target.value)}
-                                aria-label="Select subscription type"
-                            >
-                                <option value="" disabled hidden>Select Subscription Type</option>
-                                <option value="free">Free</option>
-                                <option value="premium">Premium</option>
                             </select>
                         </div>
 
