@@ -1,8 +1,6 @@
 .pb-mall {
     overflow-x: hidden;
     position: relative;
-    left: 60px;
-    width: calc(100% - 60px);
     height: auto;
 }
 
@@ -33,7 +31,9 @@
 }
 
 .mall-side-bar.open {
-    left: 8vh;
+    left: 0;
+    margin: auto;
+    margin-top: -15px;
 }
 
 .mall-side-bar ul {
@@ -150,10 +150,7 @@
 }
 
 @media (max-width: 940px){
-    .pb-mall{
-        left: 40px;
-        width: calc(100% - 40px);
-    }
+
     .Header{
         display: none;
     }
@@ -179,10 +176,6 @@
 }
       
 @media screen and (max-width: 500px) {
-    .pb-mall {
-        left: 30px;
-        width: calc(100% - 30px);
-    }
     .mall-side-bar{
         top: 10vh;
         margin-left: -7%;

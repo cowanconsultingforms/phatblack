@@ -149,6 +149,7 @@ function UploadMedia() {
                         fileName: uploadFile.name,
                         fileType: fileType,
                         tags: tags,
+                        keywords: [],
                         views: 0,
                         likes: 0,
                         dislikes: 0,
@@ -214,6 +215,7 @@ function UploadMedia() {
     const resetForm = () => {
         setFile(null);
         setfirestoreCollection('');
+        // setSubscriptionType('');
         setVendor('');
         setTitle('');
         setDescription('');
@@ -259,12 +261,12 @@ function UploadMedia() {
                             >
                                 <option value="" disabled hidden>Select Media Type</option>
                                 <option value="pb-tv">PB-TV</option>
-                                <option value="pb-zine">PB-ZINE</option>
-                                <option value="pb-music">PB-MUSIC</option>
-                                <option value="pb-fashion">PB-FASHION</option>
-                                <option value="pb-mall">PB-MALL</option>
                                 <option value="pb-radio">PB-RADIO</option>
+                                <option value="pb-zine">PB-ZINE</option>
+                                <option value="pb-mall">PB-MALL</option>
                                 <option value="pb-gaming">PB-GAMING</option>
+                                <option value="pb-fashion">PB-FASHION</option>
+                                <option value="pb-music">PB-MUSIC</option>
                                 <option value="pb-communities">PB-COMMUNITIES</option>
                             </select>
                         </div>

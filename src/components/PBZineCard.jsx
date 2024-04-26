@@ -9,6 +9,7 @@ const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views }) => {
     const handleOnClick = () => {
         updateViewCount(title);
         navigate(`/${colNav}/${title}`);
+        window.location.reload();
     };
     
     const updateViewCount = async (videoId) => {
