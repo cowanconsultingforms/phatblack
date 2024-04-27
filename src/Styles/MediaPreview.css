@@ -14,3 +14,11 @@
     max-height: 100%;
     object-fit: contain;
 }
+
+.media-not-exist-indicator {
+    display: inline-block;
+    color: red;
+    margin-left: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+}

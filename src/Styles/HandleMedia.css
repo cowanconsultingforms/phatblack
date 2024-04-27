@@ -59,6 +59,18 @@
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+option:disabled {
+    color: #ffffff;
+}
+
+option {
+    color: black;
+}
+
+option:hover {
+    box-shadow: 0 0 10px 100px #377489 inset;
+}
+
 @media (max-width: 768px) {
     .media-btn {
         padding: 6px 12px;

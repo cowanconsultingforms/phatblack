@@ -20,11 +20,14 @@ const DropdownMenu = ({ handleLogout, navigate, role, isActive, authenticated })
                 <button className="dropdown-item" onClick={() => navigate('/users')}>
                   Admin Panel
                 </button>
+                <button className="dropdown-item" onClick={() => navigate('/upload')}>
+                  Upload Media
+                </button>
                 <button className="dropdown-item" onClick={() => navigate('/handlemedia')}>
                   Manage Media
                 </button>
-                <button className="dropdown-item" onClick={() => navigate('/upload')}>
-                  Upload Media
+                <button className="dropdown-tiem" onClick={() => navigate('/checkmongo')}>
+                  Manage Mongo
                 </button>
               </>
             )}

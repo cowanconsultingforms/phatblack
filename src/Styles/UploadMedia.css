@@ -41,14 +41,6 @@
     cursor: pointer;
 }
 
-option:disabled {
-    color: #ffffff;
-}
-
-option {
-    color: black;
-}
-
 .submit-btn {
     display: block;
     width: 100%;

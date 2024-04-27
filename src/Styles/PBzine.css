@@ -1,11 +1,11 @@
+
+
 .header {
   padding-top: 20px;
   position: absolute;
   top: 10px;
-  left: 10px;
   color: white; 
   margin-top: 60px;
-  margin-left: 50px;
   margin-top: 150px;
 }
 
@@ -23,8 +23,7 @@
   padding-top: 100px;
   overflow-x: hidden;
   position: relative;
-  left: 60px;
-  width: calc(100% - 60px);
+
 }
 
 
@@ -41,7 +40,6 @@
   padding-top: 20px;
   font-size: 30px;
   margin-top: 100px;
-  margin-left:60px;
 }
 
 .image-container { /* This is the container for the images */
@@ -125,17 +123,11 @@
       color: white;
     }
 
-    .background-page{
-      left: 40px;
-      width: calc(100% - 40px);
-    }
+
 }
 
 @media screen and (max-width: 500px) {
-  .background-page {
-      left: 30px;
-      width: calc(100% - 30px);
-  }
+
 }
 
 @media screen and (max-width: 400px) {
@@ -144,4 +136,8 @@
       left: 15%;
       width: 86%;
   } */
+}
+
+.pb-zine {
+  left: 0;
 }

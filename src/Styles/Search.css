@@ -191,7 +191,7 @@
   .filter-button {
     position: absolute;
     display: flex;
-    top: 2.7vh;
+    top: 25%;
     padding: 10px 20px;
     font-size: 16px;
     background-color:transparent;
@@ -221,11 +221,45 @@
     background-color: #8a8a8a;
   }
 
+  @media screen and (max-width:940px) {
+    .clear {
+        top: 34%;
+    }
+
+    .searchContainer{
+        margin-left: 0%;
+        margin-right: 20%;
+    }
+
+    .searchBar {
+        position: relative;
+        bottom: 7px;
+        left: 40px;
+    }
+}
+
+  @media screen and (max-width:940px) {
+    .clear {
+        top: 34%;
+    }
+
+    .searchContainer{
+        margin-left: 0%;
+        margin-right: 20%;
+    }
+
+    .searchBar {
+        position: relative;
+        bottom: 7px;
+        left: 40px;
+    }
+}
+
 
 @media screen and (max-width: 300px) {
     .clear{
         right: 20%;
-        top: 38%;
+        top: 18%;
     }
 
     .logo img{
@@ -398,7 +432,7 @@
         border-radius: 0rem 10rem 10rem 0rem;
     }
     .clear{
-        top: 50%;
+        top: 45%;
         right: 40px;
     }
 }
@@ -438,37 +472,6 @@
         position: relative;
         bottom: 7px;
         left: 40px;
-    }
-}
-
-@media screen and (min-width: 941px) and (max-width: 1365px) {
-    .filter-button {
-        position: absolute;
-        display: flex;
-        top: 2.7vh; /* Align with the search bar */
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: transparent;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-}
-
-@media screen and (min-width: 561px) and (max-width: 940px) {
-    .filter-button {
-        position: absolute;
-        display: flex;
-        top: 1.9vh; /* Adjust the vertical position as needed */
-        padding: 10px 15px;
-        font-size: 16px;
-        background-color: transparent;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        text-indent: -9999px;
     }
 }
 

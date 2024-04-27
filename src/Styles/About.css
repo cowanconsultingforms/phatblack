@@ -4,12 +4,14 @@
   margin-top: 100px; /* Adjust the height of your navbar */
   height: 80vh; /* Subtract the height of your navbar from the viewport height */
   position: relative;
-  left: 5%;
-  width: 95%;
 }
 
 .page-content {
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -54,17 +56,11 @@
 
 @media screen and (max-width: 940px){
 
-  .page-container {
-      left: 40px;
-      width: calc(100% - 40px);
-  }
+  
 }
 
 @media screen and (max-width: 500px) {
-  .page-container {
-      left: 30px;
-      width: calc(100% - 30px);
-  }
+  
 }
 
 @media screen and (max-width: 400px) {

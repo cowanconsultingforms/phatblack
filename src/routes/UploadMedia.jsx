@@ -20,7 +20,6 @@ function UploadMedia() {
 
     // For search data
     const [firestoreCollection, setfirestoreCollection] = useState('');
-    const [subscriptionType, setSubscriptionType] = useState('');
     const [vendor, setVendor] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -149,7 +148,7 @@ function UploadMedia() {
                         url,
                         fileName: uploadFile.name,
                         fileType: fileType,
-                        subscriptionType,
+                        tags: tags,
                         keywords: [],
                         views: 0,
                         likes: 0,
@@ -158,14 +157,6 @@ function UploadMedia() {
                     });
 
                     addSearchData();
-
-                    /*
-                    await setDoc(doc(db, 'searchData', title.toLowerCase()), {
-                        firestoreCollection,
-                        title: title.toLowerCase(),
-                        path: `${firestoreCollection}/${title}`,
-                    });
-                    */
 
                     alert('Media uploaded successfully!');
                     resetForm();
@@ -224,7 +215,7 @@ function UploadMedia() {
     const resetForm = () => {
         setFile(null);
         setfirestoreCollection('');
-        setSubscriptionType('');
+        // setSubscriptionType('');
         setVendor('');
         setTitle('');
         setDescription('');
@@ -270,25 +261,13 @@ function UploadMedia() {
                             >
                                 <option value="" disabled hidden>Select Media Type</option>
                                 <option value="pb-tv">PB-TV</option>
-                                <option value="pb-zine">PB-ZINE</option>
-                                <option value="pb-music">PB-MUSIC</option>
-                                <option value="pb-fashion">PB-FASHION</option>
-                                <option value="pb-mall">PB-MALL</option>
                                 <option value="pb-radio">PB-RADIO</option>
+                                <option value="pb-zine">PB-ZINE</option>
+                                <option value="pb-mall">PB-MALL</option>
                                 <option value="pb-gaming">PB-GAMING</option>
+                                <option value="pb-fashion">PB-FASHION</option>
+                                <option value="pb-music">PB-MUSIC</option>
                                 <option value="pb-communities">PB-COMMUNITIES</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <select
-                                value={subscriptionType}
-                                onChange={e => setSubscriptionType(e.target.value)}
-                                aria-label="Select subscription type"
-                            >
-                                <option value="" disabled hidden>Select Subscription Type</option>
-                                <option value="free">Free</option>
-                                <option value="premium">Premium</option>
                             </select>
                         </div>
 

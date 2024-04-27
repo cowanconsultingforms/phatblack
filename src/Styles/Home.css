@@ -7,8 +7,6 @@ body{
     align-content: center;
     text-align: center;
     position: relative;
-    left: 60px;
-    width: calc(100% - 60px);
 }
 
 .imageDiv{
@@ -171,10 +169,7 @@ body{
 
 @media screen and (max-width: 940px){
 
-    .HomeContainer{
-        left: 19px;
-        width: calc(100% - 39px);
-    }
+    
 
     .backgroundImage {
         width: 100vw;
@@ -192,10 +187,7 @@ body{
 }
 
 @media screen and (max-width: 500px) {
-    .HomeContainer {
-        left: 15px;
-        width: calc(100% - 30px);
-    }
+    
     .backgroundImage {
         width: 100vw;
     }
