@@ -324,10 +324,11 @@ function CheckMongo() {
                                                             <FaTrash /> Delete
                                                         </button>
                                                     </div>
-                                                </td>) : (<td> Delete <Link to="/handlemedia"> here</Link> </td>)
+                                                </td>) : (<td> <Link to="/handlemedia"> Delete here </Link> </td>)
                                             }
-                                            <td>
-                                                {!item.existsInFirestore ? (
+
+                                            {!item.existsInFirestore ? (
+                                                <td>
                                                     <div className="action-buttons">
                                                         <button
                                                             onClick={() => startUpdating(item)}
@@ -335,10 +336,9 @@ function CheckMongo() {
                                                         >
                                                             <FaEdit /> Update
                                                         </button>
-                                                    </div>)
-                                                    : (<td> Update <Link to="/handlemedia"> here </Link> </td>)}
-
-                                            </td>
+                                                    </div>
+                                                </td>)
+                                                : (<td> <Link to="/handlemedia"> Update here </Link> </td>)}
                                             <td>{item.title}</td>
                                             <td>{item.firestoreCollection}</td>
                                             <td>

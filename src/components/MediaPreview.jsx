@@ -23,7 +23,11 @@ function MediaPreview({ media }) {
             case 'pdf':
                 return <iframe src={url} className="media-preview" title="PDF Preview"></iframe>;
             default:
-                return <p>No preview available</p>;
+                return (
+                    <div className="media-preview">
+                        <p>No preview available</p>
+                    </div>
+                );
         }
     };
 
