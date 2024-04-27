@@ -35,12 +35,12 @@
     font-size: 30px;
 }
 
-.horizontalBar li:hover {
+.nav-icon:hover {
     font-size: 40px;
     transition: 0.5s;
 }
 
-.horizontalBar li:not(:hover){
+.nav-icon:not(:hover){
     font-size: 20px;
     transition: 0.5s;
 }
@@ -191,7 +191,7 @@ span {
           left: 0;
           right: 0;
           background-color: black;
-          z-index: 3;
+          z-index: 7;
         }
       
         .SidebarIconsDiv ul {
