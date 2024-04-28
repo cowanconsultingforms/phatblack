@@ -37,6 +37,7 @@ function Sidebar() {
   const [subMenu, setSubMenuHover] = useState(false);
   const [socialHover, setSocialHover] = useState(false);
   const [socialPopOut, setSocialPopOut] = useState(false);
+
   const showSidebar = () => {
     setSidebar(!sidebar);
   }
@@ -227,14 +228,14 @@ function Sidebar() {
           <div className='SidebarIconsDiv'>
                 <ul>
                   <Link to="/">
-                    <li><IoHomeSharp/></li>
+                    <li><IoHomeSharp className="nav-icon"/></li>
                   </Link>
-                  <li><FaRegCompass onClick={showSidebar} onMouseEnter={showSidebar}/></li>
+                  <li><FaRegCompass className="nav-icon" onClick={showSidebar} onMouseEnter={showSidebar}/></li>
                   <li 
                     onMouseEnter={() => setSubMenuHover(true)}
                     onMouseLeave={() => setSubMenuHover(false)}
                     ref={infoIconRef}>
-                    <IoIosInformationCircle onClick={()=>{setSubMenuHover(!subMenu)}}/>
+                    <IoIosInformationCircle className="nav-icon" onClick={()=>{setSubMenuHover(!subMenu)}}/>
                     {subMenu && (
                       <div
                         className={"submenu-container"}
@@ -257,6 +258,7 @@ function Sidebar() {
                         <li><IoShareSocial 
                           onMouseEnter={() => setSocialHover(true)}
                           onMouseLeave={() => setSocialHover(false)}
+                          onClick={()=>{setSocialHover(!socialHover)}}
                           ref={socialMediaRef}
                           />
                           {socialHover && (
