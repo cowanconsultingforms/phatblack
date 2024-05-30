@@ -42,6 +42,9 @@ function Sidebar() {
     setSidebar(!sidebar);
   }
 
+  //See if user is on mobile or not
+  const isMobile = window.innerWidth <= 768;
+
   //Function to close sidebar when user clicks off
   const handleOutsideClick = (event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)){

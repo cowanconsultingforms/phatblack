@@ -149,7 +149,7 @@ span {
 
 }
 
-@media  screen and (max-width: 500px) {
+/* @media  screen and (max-width: 500px) {
     .Sidebar{
         width: 30px !important;
     }
@@ -164,7 +164,14 @@ span {
         font-size: 20px !important;
     }
     
+} */
+
+@media(max-width: 768px){
+    .Sidebar{
+        display: none !important;
+    }
 }
+
 
 @media screen and (max-width: 940px){
     .Sidebar{
