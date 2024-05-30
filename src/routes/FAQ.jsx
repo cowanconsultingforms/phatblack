@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Questions } from "./Questions";
 import { Link } from "react-router-dom";
 import "../Styles/FAQ.css";
+import {newBackground} from "../assets/DeviceBackground.jpg";
+
 
 const FAQ = () => {
   const [selectedQuestions, setSelectedQuestions] = useState({});
@@ -26,6 +28,8 @@ const FAQ = () => {
 
   return (
     <div className="faq-page">
+      <img className="backgroundImage" src={newBackground} alt="Device Background" />
+
       <h1 className="faq-title">FAQ</h1>
       <div className="faq-container">
         {Questions.map((topic, topicIndex) => (
