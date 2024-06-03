@@ -90,30 +90,30 @@ const Header = () => {
       <div className="HeaderContainer">
       <div className="header-media-container">
           <div>
-            <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill className="header-media" /></a>
+            <a href="https://www.facebook.com/phatblackonline" target="_blank"><RiFacebookCircleFill className="header-media" /></a>
           </div>
           <div>
-            <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter className="header-media" /></a>
+            <a href="https://twitter.com/phatblackonline" target="_blank"><FaSquareXTwitter className="header-media" /></a>
           </div>
           <div>
-            <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill className="header-media" /></a>
+            <a href="https://www.youtube.com/@PhatBlack-ex7ow" target="_blank"><RiYoutubeFill className="header-media" /></a>
           </div>
           <div>
-            <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill className="header-media" /></a>
+            <a href="https://www.instagram.com/phatblackonline/" target="_blank"><RiInstagramFill className="header-media" /></a>
           </div>
         </div>
       <div className="header-media-container">
           <div>
-            <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill className="header-media" /></a>
+            <a href="https://www.facebook.com/phatblackonline" target="_blank"><RiFacebookCircleFill className="header-media" /></a>
           </div>
           <div>
-            <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter className="header-media" /></a>
+            <a href="https://twitter.com/phatblackonline" target="_blank"><FaSquareXTwitter className="header-media" /></a>
           </div>
           <div>
-            <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill className="header-media" /></a>
+            <a href="https://www.youtube.com/@PhatBlack-ex7ow" target="_blank"><RiYoutubeFill className="header-media" /></a>
           </div>
           <div>
-            <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill className="header-media" /></a>
+            <a href="https://www.instagram.com/phatblackonline/" target="_blank"><RiInstagramFill className="header-media" /></a>
           </div>
         </div>
       <div className="nav-area">
