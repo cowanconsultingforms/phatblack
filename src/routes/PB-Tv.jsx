@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Suspense, lazy } from "react";
 import PBTvCard from "../components/PBTvCard.jsx";
 import { db } from "../firebaseConfig.js";
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
@@ -6,6 +6,8 @@ import { IoMdPlay } from "react-icons/io";
 import { RiInformationLine } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import "../Styles/PBTv.css";
+
+//const PBTvCard = lazy(() => import("../components/PBTvCard.jsx"))
 
 function PBTv() {
     const [pbtvVideos, setPbTvVideos] = useState([]);
