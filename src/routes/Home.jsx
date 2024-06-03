@@ -64,7 +64,6 @@ function Home() {
                         <h1 className="title">Home</h1>
                         <h2 className="orangeHeader">Join The Network With</h2>
                         <h3 className="whiteHeader">LIVE AND ON DEMAND URBAN MUSIC & ENTERTAINMENT 24/7/365</h3>
-                        <h1 className ="testing">testing deployment</h1>
                         <button className="homeButton">
                         {buttonText ? <a style={{textDecoration: "none"}} href="/">
                             Premium Content

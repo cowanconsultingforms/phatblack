@@ -20,7 +20,7 @@
     "axios": "^1.6.8",
     "blueimp-load-image": "^5.16.0",
     "compressorjs": "^1.2.1",
-    "firebase": "^10.9.0",
+    "firebase": "^10.12.2",
     "framer-motion": "^11.0.21",
     "primeicons": "^7.0.0",
     "primereact": "^10.6.3",
