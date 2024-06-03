@@ -269,15 +269,15 @@ function Sidebar() {
                               className="social-popout"
                               ref={socialIconRef}
                             >
-                                <a href="https://www.facebook.com/phatblackonline"><RiFacebookCircleFill/>Facebook</a>
+                            <a href="https://www.facebook.com/phatblackonline" target="_blank"><RiFacebookCircleFill />Facebook</a>
                                 <div>
-                                  <a href="https://twitter.com/phatblackonline"><FaSquareXTwitter/>Twitter</a>
+                                  <a href="https://twitter.com/phatblackonline" target="_blank"><FaSquareXTwitter/>Twitter</a>
                                 </div>
                                 <div>
-                                  <a href="https://www.youtube.com/@PhatBlack-ex7ow"><RiYoutubeFill />YouTube</a>
+                                  <a href="https://www.youtube.com/@PhatBlack-ex7ow" target="_blank"><RiYoutubeFill />YouTube</a>
                                 </div>
                                 <div>
-                                  <a href="https://www.instagram.com/phatblackonline/"><RiInstagramFill />Instagram</a>
+                                  <a href="https://www.instagram.com/phatblackonline/" target="_blank"><RiInstagramFill />Instagram</a>
                                 </div>
                               </div>
                           )}
