@@ -2,26 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Styles/PB-gaming.css";
 import { FaBars } from "react-icons/fa";
 import speakerImage from "../assets/redpants-radio.jpg"
-import Aviation from "../assets/GammingImages/Aviation Course.jpg"
-import Building from "../assets/GammingImages/Building the Pyramid.jpg"
-import Caribbean from "../assets/GammingImages/Caribbean Pirates.jpg"
-import Clash from "../assets/GammingImages/Clans of Clash.jpg"
-import CyberAttack from "../assets/GammingImages/Cyber Attack.jpg"
-import DownTown1 from "../assets/GammingImages/DownTown Drive.jpg"
-import DownTown2 from "../assets/GammingImages/DownTown Drive 2.jpg"
-import GalaxyWars from "../assets/GammingImages/Galaxy wars.jpg"
-import GalaxyWars2 from "../assets/GammingImages/Galaxy Wars 2.jpg"
-import GalaxyWars3 from "../assets/GammingImages/Galaxy Wars 3.jpg"
-import Q50RS from "../assets/GammingImages/Mid Night Club 3.jpg"
-import MissionEarth from "../assets/GammingImages/Mission Earth.jpg"
-import Myth from "../assets/GammingImages/Myth.jpg"
-import Speed from "../assets/GammingImages/Speed is The Need.jpg"
-import Sword from "../assets/GammingImages/Sword Simulator.jpg"
-import Beast from "../assets/GammingImages/The Beast of Gévaudan.jpg"
-import TheLast from "../assets/GammingImages/The Last of You.jpg"
-import Modern from "../assets/GammingImages/The Modern Tech.jpg"
-import Modern2 from "../assets/GammingImages/The Modern Tech 2.jpg"
-import Ring from "../assets/GammingImages/The Ring Lord.jpg"
+
 
 function PBgaming() {
 
@@ -62,86 +43,68 @@ function PBgaming() {
                 <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>
                 <hr/>
                 <div className="ReviewGrid">
-                    <div className="ReviewBox">
-                        <img src={Aviation} alt="Aviation Game" />
-                        <button>Aviation Course</button>
+                <div className="ReviewBox">
+                        <img src={speakerImage} alt="Game 1" />
+                        <button>Game 1</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={Building} alt="Building the Pyramid" />
-                        <button>Building the Pyramid</button>
+                        <img src={speakerImage} alt="Game 2" />
+                        <button>Game 2</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={Caribbean} alt="Caribbean Pirates" />
-                        <button>Caribbean Pirates</button>
+                        <img src={speakerImage} alt="Game 3" />
+                        <button>Game 3</button>
+                    </div
+                    ><div className="ReviewBox">
+                        <img src={speakerImage} alt="Game 4" />
+                        <button>Game 4</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={Clash} alt="Clans of Clash" />
-                        <button>Clans of Clash</button>
+                        <img src={speakerImage} alt="Game 5" />
+                        <button>Game 5</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={CyberAttack} alt="Cyber Attack" />
-                        <button>Cyber Attack</button>
+                        <img src={speakerImage} alt="Game 6" />
+                        <button>Game 6</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={DownTown1} alt="DownTown Drive" />
-                        <button>DownTown Drive</button>
+                        <img src={speakerImage} alt="Game 7" />
+                        <button>Game 7</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={DownTown2} alt="DownTown Drive 2" />
-                        <button>DownTown Drive 2</button>
+                        <img src={speakerImage} alt="Game 8" />
+                        <button>Game 8</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={GalaxyWars} alt="Galaxy Wars" />
-                        <button>Galaxy Wars</button>
+                        <img src={speakerImage} alt="Game 9" />
+                        <button>Game 9</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={GalaxyWars2} alt="Galaxy Wars 2" />
-                        <button>Galaxy Wars 2</button>
+                        <img src={speakerImage} alt="Game 10" />
+                        <button>Game 10</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={GalaxyWars3} alt="Galaxy Wars 3" />
-                        <button>Galaxy Wars 3</button>
+                        <img src={speakerImage} alt="Game 11" />
+                        <button>Game 11</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={Q50RS} alt="Mid Night Club 3" />
-                        <button>Mid Night Club 3</button>
+                        <img src={speakerImage} alt="Game 12" />
+                        <button>Game 12</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={MissionEarth} alt="Mission Earth" />
-                        <button>Mission Earth</button>
+                        <img src={speakerImage} alt="Game 13" />
+                        <button>Game 13</button>
                     </div>
                     <div className="ReviewBox">
-                        <img src={Myth} alt="Myth" />
-                        <button>Myth</button>
+                        <img src={speakerImage} alt="Game 14" />
+                        <button>Game 14</button>
                     </div>
+                    
                     <div className="ReviewBox">
-                        <img src={Speed} alt="Speed is The Need" />
-                        <button>Speed is The Need</button>
+                        <img src={speakerImage} alt="Game 15" />
+                        <button>Game 15</button>
                     </div>
-                    <div className="ReviewBox">
-                        <img src={Sword} alt="Sword Simulator" />
-                        <button>Sword Simulator</button>
-                    </div>
-                    <div className="ReviewBox">
-                        <img src={Beast} alt="The Beast of Gévaudan" />
-                        <button>The Beast of Gévaudan</button>
-                    </div>
-                    <div className="ReviewBox">
-                        <img src={TheLast} alt="The Last of You" />
-                        <button>The Last of You</button>
-                    </div>
-                    <div className="ReviewBox">
-                        <img src={Modern} alt="The Modern Tech" />
-                        <button>The Modern Tech</button>
-                    </div>
-                    <div className="ReviewBox">
-                        <img src={Modern2} alt="The Modern Tech 2" />
-                        <button>The Modern Tech 2</button>
-                    </div>
-                    <div className="ReviewBox">
-                        <img src={Ring} alt="The Ring Lord" />
-                        <button>The Ring Lord</button>
-                    </div>
+                    
                     
                 </div>
             </div>
