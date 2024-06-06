@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styles/About.css";
 import equalizer from "../assets/equalizer.png"; 
-import {newBackground} from "../assets/DeviceBackground.jpg";
+import newBackground from "../assets/DeviceBackground.jpg";
 
 
 function About() {

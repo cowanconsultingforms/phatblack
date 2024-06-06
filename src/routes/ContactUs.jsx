@@ -5,7 +5,7 @@ import "../Styles/ContactUs.css"
 import { db } from "../firebaseConfig";
 import { addDoc,collection } from "firebase/firestore";
 //import emailjs, { sendForm } from '@emailjs/browser';
-import {newBackground} from "../assets/DeviceBackground.jpg";
+import newBackground from "../assets/DeviceBackground.jpg";
 
 
 function ContactUs() {

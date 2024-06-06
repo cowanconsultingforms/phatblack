@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Questions } from "./Questions";
 import { Link } from "react-router-dom";
 import "../Styles/FAQ.css";
-import {newBackground} from "../assets/DeviceBackground.jpg";
+import newBackground from "../assets/DeviceBackground.jpg";
 
 
 const FAQ = () => {
