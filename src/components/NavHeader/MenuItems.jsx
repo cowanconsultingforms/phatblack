@@ -14,21 +14,11 @@ const MenuItems = ({ items, depthLevel }) => {
   let ref = useRef();
 
   useEffect(() => {
-    // Function to handle clicks outside the dropdown menu
-    const handler = (event) => {
-      if (dropdown && ref.current && !ref.current.contains(event.target)) {
-        setDropdown(false);
-      }
-    };
-    // Add event listeners for clicks and touch events
-    document.addEventListener("mousedown", handler);
-    document.addEventListener("touchstart", handler);
-    // Cleanup the event listeners when component unmounts
-    return () => {
-      document.removeEventListener("mousedown", handler);
-      document.removeEventListener("touchstart", handler);
-    };
-  }, [dropdown]);
+    // Close the dropdown when another menu item is clicked
+    if (active) {
+      setActive(false);
+    }
+  }, [active]);
 
   // Function to handle mouse entering the menu item
   const onMouseEnter = () => {
@@ -38,6 +28,10 @@ const MenuItems = ({ items, depthLevel }) => {
   // Function to handle mouse leaving the menu item
   const onMouseLeave = () => {
     setDropdown(false);
+  };
+
+  const handleClick = () => {
+    onClick();
   };
 
   // Function to toggle dropdown visibility
@@ -57,10 +51,7 @@ const MenuItems = ({ items, depthLevel }) => {
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={() => {
-        onClick(index); // Call the onClick handler with the index
-        closeDropdown();
-      }}
+      onClick={handleClick}
     >
       {items.url && items.submenu ? (
         <>
@@ -68,11 +59,11 @@ const MenuItems = ({ items, depthLevel }) => {
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdown ? "true" : "false"}
-            onClick={() => toggleDropdown()}
+            onClick={() => setDropdown(!dropdown)}
+            className={isActive ? "active" : ""}
           >
             <Link 
               to={items.url} 
-              className={active ? "active" : ""}
             >
               {items.title}
             </Link>
