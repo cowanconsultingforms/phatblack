@@ -2,6 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../Styles/PB-gaming.css";
 import { FaBars } from "react-icons/fa";
 import speakerImage from "../assets/redpants-radio.jpg"
+import { SiApplearcade } from "react-icons/si";
+import { IoHomeSharp } from 'react-icons/io5';
+import { IoIosTrendingUp } from "react-icons/io";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { BiSolidTrophy } from "react-icons/bi";
+import { AiOutlineClose } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+
+
 
 function PBgaming() {
 
@@ -29,17 +38,21 @@ function PBgaming() {
     return (
         <div className="GamingMainContainer">
             <div className={`GamingSidebar ${sidebarOpen ? 'open' : ''}`}>
-                <h1>PB-GAMING</h1>
+                <Link to='#' className='close'>
+                    <AiOutlineClose onClick={toggleSidebar} />
+                </Link>
+                <h1>PB-Gaming</h1>
+                <h1><SiApplearcade/></h1>
                 <ul>
-                    <li><button>HOME</button></li>
-                    <li><button>TRENDING</button></li>
-                    <li><button>ALL</button></li>
-                    <li><button>TOP HITS</button></li>
+                    <li><button><IoHomeSharp/> HOME</button></li>
+                    <li><button><IoIosTrendingUp/> TRENDING</button></li>
+                    <li><button><FaExternalLinkAlt/> ALL</button></li>
+                    <li><button><BiSolidTrophy/> TOP HITS</button></li>
                 </ul>
             </div>
             <div className="GamingContainer">
-                <h1>GAMES</h1>
                 <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>
+                <h1>GAMES</h1>
                 <hr/>
                 <div className="ReviewGrid">
                     <div className="ReviewBox">

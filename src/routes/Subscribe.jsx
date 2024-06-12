@@ -40,7 +40,6 @@ function Subscribe() {
 
     return (
         <div className="subscribe-page">
-            <h1>Subscribe</h1>
             <div className="subscribe-header">
             </div>
 

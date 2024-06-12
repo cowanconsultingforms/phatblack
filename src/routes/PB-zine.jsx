@@ -71,7 +71,6 @@ function News_pictures() {
 
   return (
     <div className='pb-zine'>
-      <h1 className='head'>PB-Zine</h1>
       <div className='news-pictures'>
         <Carousel items={pbZineCards}></Carousel>
       </div>

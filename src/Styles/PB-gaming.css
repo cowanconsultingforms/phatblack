@@ -13,15 +13,17 @@
 }
 
 .GamingSidebar {
-    width: 30dvh; 
+    width: 40dvh; 
     height: 86dvh;
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(0, 0, 0);
     flex-shrink: 0;
-    align-content: center;
-    text-align: center;
+    align-content: left;
+    text-align: left;
     position: fixed;
-    left: -30vh;
+    left: -40vh;
     transition: left 0.3s ease;
+    padding-top: 10px;
+    z-index: 2;
 }
 
 .GamingSidebar h1 {
@@ -37,7 +39,8 @@
 }
 
 .GamingSidebar li {
-    margin: 30px;
+    margin: 1px;
+    font-size: 30px;
 }
 
 .GamingContainer {
@@ -52,13 +55,14 @@
 
 .sidebar-toggle {
     position: absolute;
-    right: 10px;
-    background-color: transparent;
+    top: 5px;
+    left: 10px;
+    background: none;
     color: white;
     border: none;
     cursor: pointer; /* Change cursor to pointer on hover */
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 40px;
+    font-size: 2rem;
+    z-index: 1;
 }
 
 .ReviewGrid {
@@ -114,7 +118,6 @@
     transition: color 0.3s, background-color 0.3s; /* Add transition effect */
     font-family: "Bebas Neue", sans-serif;
     font-size: 25px;
-    font-weight: 200;
 }
 
 .GamingSidebar button:hover {

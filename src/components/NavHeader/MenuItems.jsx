@@ -7,6 +7,9 @@ const MenuItems = ({ items, depthLevel }) => {
   // State to manage the dropdown visibility
   const [dropdown, setDropdown] = useState(false);
 
+  // State to manage if button clicked
+  const [active, setActive] = useState(false);
+
   // Reference to the dropdown menu
   let ref = useRef();
 
@@ -40,6 +43,7 @@ const MenuItems = ({ items, depthLevel }) => {
   // Function to toggle dropdown visibility
   const toggleDropdown = () => {
     setDropdown((prev) => !prev);
+    setActive((prev) => !prev);
   };
 
   // Function to close the dropdown when an item is clicked
@@ -53,21 +57,27 @@ const MenuItems = ({ items, depthLevel }) => {
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={closeDropdown}
-
-      >
+      onClick={() => {
+        onClick(index); // Call the onClick handler with the index
+        closeDropdown();
+      }}
+    >
       {items.url && items.submenu ? (
-        // Render button with link if there's a submenu
         <>
           <button
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdown ? "true" : "false"}
-            onClick={() => toggleDropdown()}>
-            <Link to={items.url}>{items.title}</Link>
+            onClick={() => toggleDropdown()}
+          >
+            <Link 
+              to={items.url} 
+              className={active ? "active" : ""}
+            >
+              {items.title}
+            </Link>
             {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
           </button>
-          {/* Render the Dropdown component if submenu exists */}
           <Dropdown
             depthLevel={depthLevel}
             submenus={items.submenu}
@@ -75,16 +85,16 @@ const MenuItems = ({ items, depthLevel }) => {
           />
         </>
       ) : !items.url && items.submenu ? (
-        // Render button if there's a submenu without a link
         <>
           <button
             type="button"
             aria-haspopup="menu"
-            aria-expanded={dropdown ? "true" : "false"}>
+            aria-expanded={dropdown ? "true" : "false"}
+            onClick={() => toggleDropdown()}
+          >
             {items.title}
             {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
           </button>
-          {/* Render the Dropdown component if submenu exists */}
           <Dropdown
             depthLevel={depthLevel}
             submenus={items.submenu}
@@ -92,8 +102,13 @@ const MenuItems = ({ items, depthLevel }) => {
           />
         </>
       ) : (
-        // Render a regular link if no submenu
-        <Link to={items.url}>{items.title}</Link>
+        <Link 
+          to={items.url} 
+          className={active ? "active" : ""}
+          onClick={() => setActive(true)}
+        >
+          {items.title}
+        </Link>
       )}
     </li>
   );

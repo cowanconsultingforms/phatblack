@@ -119,7 +119,6 @@ function ContactUs() {
 
     return (
         <div className="ContactUs-page">
-            <h1 className="Contact-Us-Header">Contact Us</h1>
                 <div className="Forms-Container">
                     <form ref={form} onSubmit={sendFormData}>
                         <select

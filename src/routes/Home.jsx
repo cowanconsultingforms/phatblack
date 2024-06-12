@@ -9,16 +9,27 @@ import { videoCardsData } from "./Videocards";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-    //UseState used to manage the text within the "get more details" button
-    const [buttonText, setButtonText] = useState(false);
 
     //Variable used to toggle whether button was pressed or not
     //button active state
-    const [isActive, setIsActive] = useState(false);
-
     const auth = getAuth();
+    const [buttonText, setButtonText] = useState('Premium Content');
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/subscribe');
+      };
+    
+      const handleMouseEnter = () => {
+        setButtonText('Subscribe Now');
+      };
+    
+      const handleMouseLeave = () => {
+        setButtonText('Premium Content');
+      };
 
     //get user's role for rendering button:
     //premium content for premium users and above
@@ -64,12 +75,9 @@ function Home() {
                         <h1 className="title">Home</h1>
                         <h2 className="orangeHeader">Join The Network With</h2>
                         <h3 className="whiteHeader">LIVE AND ON DEMAND URBAN MUSIC & ENTERTAINMENT 24/7/365</h3>
-                        <button className="homeButton">
-                        {buttonText ? <a style={{textDecoration: "none"}} href="/">
-                            Premium Content
-                            </a> : <a style={{textDecoration: "none"}} href="/subscribe">
-                            Subscribe Now
-                            </a>}
+                        <button className="homeButton" onClick={handleClick} onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}>
+                            {buttonText}
                         </button>
                     </div>
                 </div>

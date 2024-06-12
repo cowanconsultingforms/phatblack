@@ -78,44 +78,45 @@ function Sidebar() {
   const socialMediaRef = useRef(null);
   const socialIconRef = useRef(null);
 
-  //handles opening and hiding of submenu
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      if (
-        submenuRef.current &&
-        !submenuRef.current.contains(event.target) &&
-        infoIconRef.current &&
-        !infoIconRef.current.contains(event.target)
-      ) {
-        setSubMenuHover(false);
-      }
-    };
+  // handles opening and hiding of submenu
+useEffect(() => {
+  const handleTouchStart = (event) => {
+    if (
+      submenuRef.current &&
+      !submenuRef.current.contains(event.target) &&
+      infoIconRef.current &&
+      !infoIconRef.current.contains(event.target)
+    ) {
+      setSubMenuHover(false);
+    }
+  };
 
-    document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('touchstart', handleTouchStart);
 
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+  return () => {
+    document.removeEventListener('touchstart', handleTouchStart);
+  };
+}, []);
 
-  //handles opening and hiding of social submenu
-  useEffect(() => {
-    const handleSocialMouseMove = (event) => {
-      if (
-        socialMediaRef.current &&
-        !socialMediaRef.current.contains(event.target) &&
-        socialIconRef.current &&
-        !socialIconRef.current.contains(event.target)
-      ) {
-        setSocialHover(false);
-      }
-    };
-    document.addEventListener('mousemove', handleSocialMouseMove);
+// handles opening and hiding of social submenu
+useEffect(() => {
+  const handleSocialTouchStart = (event) => {
+    if (
+      socialMediaRef.current &&
+      !socialMediaRef.current.contains(event.target) &&
+      socialIconRef.current &&
+      !socialIconRef.current.contains(event.target)
+    ) {
+      setSocialHover(false);
+    }
+  };
 
-    return () => {
-      document.removeEventListener('mousemove', handleSocialMouseMove);
-    };
-  }, []);
+  document.addEventListener('touchstart', handleSocialTouchStart);
+
+  return () => {
+    document.removeEventListener('touchstart', handleSocialTouchStart);
+  };
+}, []);
 
 
   return (
@@ -259,9 +260,8 @@ function Sidebar() {
                           </Link>
                         </li>
                         <li><IoShareSocial 
-                          onMouseEnter={() => setSocialHover(true)}
-                          onMouseLeave={() => setSocialHover(false)}
-                          onClick={()=>{setSocialHover(!socialHover)}}
+                          
+                          onTouchStart={() => setSocialHover(!socialHover)}
                           ref={socialMediaRef}
                           />
                           {socialHover && (
@@ -269,15 +269,15 @@ function Sidebar() {
                               className="social-popout"
                               ref={socialIconRef}
                             >
-                            <a href="https://www.facebook.com/phatblackonline" target="_blank"><RiFacebookCircleFill />Facebook</a>
+                            <a href="https://www.facebook.com/phatblackonline" target="_blank"><RiFacebookCircleFill classname="social-popout-media" />Facebook</a>
                                 <div>
-                                  <a href="https://twitter.com/phatblackonline" target="_blank"><FaSquareXTwitter/>Twitter</a>
+                                  <a href="https://twitter.com/phatblackonline" target="_blank"><FaSquareXTwitter classname="social-popout-media" />Twitter</a>
                                 </div>
                                 <div>
-                                  <a href="https://www.youtube.com/@PhatBlack-ex7ow" target="_blank"><RiYoutubeFill />YouTube</a>
+                                  <a href="https://www.youtube.com/@PhatBlack-ex7ow" target="_blank"><RiYoutubeFill classname="social-popout-media" />YouTube</a>
                                 </div>
                                 <div>
-                                  <a href="https://www.instagram.com/phatblackonline/" target="_blank"><RiInstagramFill />Instagram</a>
+                                  <a href="https://www.instagram.com/phatblackonline/" target="_blank"><RiInstagramFill classname="social-popout-media" />Instagram</a>
                                 </div>
                               </div>
                           )}

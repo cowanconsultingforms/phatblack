@@ -5,6 +5,7 @@
     width: 60px;
     text-align: center;
     z-index: 1;
+    
 }
 
 .SidebarIconsDiv{
@@ -22,6 +23,7 @@
     height: 100%;
     scroll-behavior: smooth;
     padding-bottom: 150px;
+    
 }
 
 .Sidebar ul::-webkit-scrollbar{
@@ -32,7 +34,6 @@
 .Sidebar li {
     margin: 1px;
     margin-top: 10px;
-    font-size: 30px;
 }
 
 .horizontalBar li:hover {
@@ -236,17 +237,19 @@ span {
             padding: 10px;
             border-radius: 5px;
             background: black;
-            z-index: 2;
+            z-index: 999; /* Keep the z-index high */
             width: 100%;
-            border: 1px solid white
+            border: 1px solid white;
         }
-        
-        .social-popout a {
+    
+        .social-popout-media {
             display: block;
             color: white;
             text-decoration: none;
             margin-bottom: 5px;
             font-size: medium;
+            cursor: pointer;
+            z-index: 1000; /* Set a higher z-index value than the parent .social-popout */ 
         }
 
         .nav-menu {

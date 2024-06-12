@@ -44,7 +44,6 @@ function PBradio() {
 
     return (
         <div className="pbradio-page">
-        <h1>PB-Radio</h1>
             <div>
                 <div className="radio-head">
                 </div>
