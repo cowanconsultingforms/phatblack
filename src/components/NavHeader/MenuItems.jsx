@@ -1,18 +1,42 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const MenuItems = ({ items, depthLevel }) => {
-  // State to manage if button clicked
-  const [active, setActive] = useState(false);
+const MenuItems = ({ items, depthLevel, index }) => {
+  // Initialize active state for the current menu item
+  const [active, setActive] = useState(() => {
+    const storedActive = localStorage.getItem(`menuActiveState-${index}`);
+    return storedActive ? JSON.parse(storedActive) : false;
+  });
 
   // Reference to the menu item
-  let ref = useRef();
+  const ref = useRef();
 
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)
+        && event.target.closest('.exclude-container')) {
+        setActive(false);
+      }
+    };
+
     if (active) {
-      setActive(false);
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     }
-  }, [active]);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [active, index]);
+
+  useEffect(() => {
+    // Save active state to localStorage whenever it changes
+    localStorage.setItem(`menuActiveState-${index}`, JSON.stringify(active));
+  }, [active, index]); 
 
   const handleClick = () => {
     setActive(true);
@@ -24,47 +48,48 @@ const MenuItems = ({ items, depthLevel }) => {
   };
 
   return (
-    <li
-      className="menu-items"
-      ref={ref}
-      onClick={handleClick}
-    >
-      {items.url && items.submenu ? (
-        <>
-          <button
-            type="button"
-            aria-haspopup="menu"
-            className={active ? "active" : ""}
-            onClick={toggleActive}
-          >
-            <Link to={items.url}>
+    <div className="exclude-container">
+      <li
+        className="menu-items"
+        ref={ref}
+      >
+        {items.url && items.submenu ? (
+          <>
+            <button
+              type="button"
+              aria-haspopup="menu"
+              className={active ? "active" : ""}
+              onClick={toggleActive}
+            >
+              <Link to={items.url}>
+                {items.title}
+              </Link>
+              {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
+            </button>
+          </>
+        ) : !items.url && items.submenu ? (
+          <>
+            <button
+              type="button"
+              aria-haspopup="menu"
+              className={active ? "active" : ""}
+              onClick={toggleActive}
+            >
               {items.title}
-            </Link>
-            {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
-          </button>
-        </>
-      ) : !items.url && items.submenu ? (
-        <>
-          <button
-            type="button"
-            aria-haspopup="menu"
+              {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
+            </button>
+          </>
+        ) : (
+          <Link 
+            to={items.url} 
             className={active ? "active" : ""}
-            onClick={toggleActive}
+            onClick={handleClick}
           >
             {items.title}
-            {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
-          </button>
-        </>
-      ) : (
-        <Link 
-          to={items.url} 
-          className={active ? "active" : ""}
-          onClick={handleClick}
-        >
-          {items.title}
-        </Link>
-      )}
-    </li>
+          </Link>
+        )}
+      </li>
+    </div>
   );
 };
 
