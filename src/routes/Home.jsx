@@ -18,14 +18,7 @@ function Home() {
     const handleClick = () => {
         navigate('/subscribe');
     };
-    
-    const handleMouseEnter = () => {
-        setButtonText('Subscribe Now');
-    };
-    
-    const handleMouseLeave = () => {
-        setButtonText('Premium Content');
-    };
+
 
     useEffect(() => {
         const getUserRole = async () => {
@@ -57,9 +50,7 @@ function Home() {
                     <h3 className="whiteHeader">LIVE AND ON DEMAND URBAN MUSIC & ENTERTAINMENT 24/7/365</h3>
                     <button 
                         className="homeButton" 
-                        onClick={handleClick} 
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
+                        onClick={handleClick}
                     >
                         {buttonText}
                     </button>

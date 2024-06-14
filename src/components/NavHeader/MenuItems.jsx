@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
+//index identifies each individual button, active states are stored for each using menuActiveState-${index}
+
 const MenuItems = ({ items, depthLevel, index }) => {
   // Initialize active state for the current menu item
   const [active, setActive] = useState(() => {
