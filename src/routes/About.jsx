@@ -11,7 +11,7 @@ function About() {
 
             <div className="page-content">
                 <h2 className="head1">No. 1 Entertainment Platform</h2>
-                <h1 className="head2">About </h1>
+
                 <img className="about-image-separator" src={equalizer}></img> 
                 <div className="paragraph-container">
                     <p>
