@@ -121,9 +121,7 @@ function ContactUs() {
 
     return (
         <div className="ContactUs-page">
-            <img className="backgroundImage" src={newBackground} alt="Device Background" />
 
-            <h1 className="Contact-Us-Header">Contact Us</h1>
                 <div className="Forms-Container">
                     <form ref={form} onSubmit={sendFormData}>
                         <select

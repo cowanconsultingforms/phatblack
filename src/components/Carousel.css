@@ -39,6 +39,7 @@
   color: white;
 }
 
+
 .link-header{
   position: relative;
   margin-top: -20%;
@@ -91,5 +92,22 @@
   .slide img {
     height: 600px;
   }
+}
+
+.edit-icon {
+  cursor: pointer !important;
+  color: #FFFFFF !important;
+  font-size: 30px;
+  position: absolute;
+  margin-top: -35%;
+  margin-left: 2%;
+  color: white;
+  z-index: 2;
+}
+
+.title-container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px; /* Space between the link-header and the edit-icon */
 }
 

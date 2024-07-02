@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Questions } from "./Questions";
 import { Link } from "react-router-dom";
 import "../Styles/FAQ.css";
-import newBackground from "../assets/DeviceBackground.jpg";
-
 
 const FAQ = () => {
   const [selectedQuestions, setSelectedQuestions] = useState({});
@@ -26,11 +24,11 @@ const FAQ = () => {
     }));
   };
 
+  const mobile = isMobile();
+
   return (
     <div className="faq-page">
-      <img className="backgroundImage" src={newBackground} alt="Device Background" />
 
-      <h1 className="faq-title">FAQ</h1>
       <div className="faq-container">
         {Questions.map((topic, topicIndex) => (
           <div key={topicIndex} className="topic" id={topic.topic}>
@@ -42,7 +40,7 @@ const FAQ = () => {
             >
               {topic.topic}{" "}
               <span className="arrow">
-                {expandedTopics[topicIndex] ? "▼" : "▶"}
+                {expandedTopics[topicIndex] ? "▼" : <IoMdPlay />}
               </span>
             </h2>
             <div
@@ -63,7 +61,7 @@ const FAQ = () => {
                   <h3>
                     {question.question}{" "}
                     <span className="arrow">
-                      {selectedQuestions[topicIndex] === questionIndex ? "▼" : "▶"}
+                      {selectedQuestions[topicIndex] === questionIndex ? "▼" : <IoMdPlay />}
                     </span>
                   </h3>
                   <p

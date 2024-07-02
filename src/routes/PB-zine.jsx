@@ -14,69 +14,84 @@ import { db } from '../firebaseConfig';
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
 import PBzineCard from '../components/PBZineCard';
 
-//array of images/slides for carousel
-const pbZineCards = [
-  {
-    url: recordsImage,
-    title: "Records",
-    text: "Records Image",
-    alt: "Records image",
-    link: `details`
-  },
-  {
-    url: barImage,
-    title: "Bar",
-    text: "Bar Image",
-    alt: "Bar Image",
-    link: `details`
-  },
-  {
-    url: cassetteImage,
-    title: "Cassettes",
-    text: "Cassettes Image",
-    alt: "Cassettes Image",
-    link: `details`
-  },
-  {
-    url: studioImage,
-    title: "Studio",
-    text: "Studio Image",
-    alt: "Studio Image",
-    link: `details`
-  },
-  {
-    url: studioMicImage,
-    title: "Studio Mic",
-    text: "Studio Mic Image",
-    alt: "Studio Mic Image",
-    link: `details`
-  },
-];
+function Top_content() {
 
-export default function PBzine() {
-  return (
-    <div className="background-page">
-      <div> <News_pictures /> </div>
-      <div> <Bottom_content /> </div>
-    </div>
-  );
-}
+  const [carouselData, setCarouselData] = useState([]);
+  const [pbZineCards, setPbZineCards] = useState([
+    {
+      url: recordsImage,
+      title: "",
+      text: "",
+      alt: "Records image",
+      link: `details`
+    },
+    {
+      url: barImage,
+      title: "",
+      text: "",
+      alt: "Bar Image",
+      link: `details`
+    },
+    {
+      url: cassetteImage,
+      title: "",
+      text: "",
+      alt: "Cassettes Image",
+      link: `details`
+    },
+    {
+      url: studioImage,
+      title: "",
+      text: "",
+      alt: "Studio Image",
+      link: `details`
+    },
+    {
+      url: studioMicImage,
+      title: "",
+      text: "",
+      alt: "Studio Mic Image",
+      link: `details`
+    },
+  ])
+  const fetchCarousel = async () => {
+    try {
+      const carouselCollection = collection(db, "zine-carousel");
+      const z = query(carouselCollection);
+      const querySnapshot = await getDocs(z);
+      const carousels = querySnapshot.docs.map(doc => doc.data());
+      setCarouselData(carousels);
 
-const handleClick = (url) => { // this function is used to open a new tab when the user clicks on the image
-  window.location.href = url;
-}
+      const updatedPbZineCards = pbZineCards.map((card, index) => ({
+        ...card,
+        title: carousels[index]?.title || card.title,
+        text: carousels[index]?.subtitle || card.subtitle,
+      }));
 
-//displays the news images on middle of the page
-function News_pictures() {
+      setPbZineCards(updatedPbZineCards);
+      setCarouselData(carousels);
+    } catch (error) {
+      console.error("Error fetching e-zine content", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchCarousel();
+  }, []);
+  
+
+
+
+  const handleClick = (url) => { // this function is used to open a new tab when the user clicks on the image
+    window.location.href = url;
+  }
 
   return (
     <div className='pb-zine'>
-      <h1 className='head'>PB-Zine</h1>
       <div className='news-pictures'>
-        <Carousel items={pbZineCards}></Carousel>
+        <Carousel items={pbZineCards} carouselData={carouselData}/>
       </div>
     </div>
-
   )
 
 }
@@ -144,9 +159,20 @@ function Bottom_content() {
             vendor={zine.vendor}
             timeuploaded={zine.time_uploaded.toDate()}
             views={zine.views}
+            id={zine.id}
+            zine={zine}
           />
         ))}
       </div>
     </div>
   )
+}
+
+export default function PBzine() {
+  return (
+    <div className="background-page">
+      <div> <Top_content /> </div>
+      <div> <Bottom_content /> </div>
+    </div>
+  );
 }

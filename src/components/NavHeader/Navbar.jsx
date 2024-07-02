@@ -9,6 +9,7 @@ const Navbar = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [isNextDisable, setNextDisable] = useState(false);
   const [isPrevDisable, setPrevDisable] = useState(false);  // Initially disable
+  const [activeIndex, setActiveIndex] = useState(null);
 
   // Attributes used to refer to the list and respective buttons
   const menuRef = useRef(null);
@@ -49,6 +50,10 @@ const Navbar = () => {
     }
   };
 
+  const handleMenuItemClick = (index) => {
+    setActiveIndex(index);
+  };
+
   return (
     <nav className="desktop-nav">
       {/* Render the desktop navigation */}
@@ -56,7 +61,13 @@ const Navbar = () => {
       <ul ref={menuRef} className="menus" onScroll={handleCheckButtons} >
         {/* Map through menu items and render MenuItems component */}
         {currentMenuItems.map((menu, index) => (
-          <MenuItems items={menu} key={index} depthLevel={depthLevel} />
+          <MenuItems
+            items={menu}
+            key={index}
+            index={index}
+            active={index === activeIndex}
+            onClick={() => handleMenuItemClick(index)} // Pass the onClick handler
+          />
         ))}
       </ul>
       <button ref={rightButtonRef} className="arr right" onClick={handleNextClick} disabled={isNextDisable}></button>

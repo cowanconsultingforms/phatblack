@@ -1,0 +1,65 @@
+/* Modal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: black;
+  color: white;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 320px; /* Width of the modal */
+  width: 100%; 
+  height: 50vh;
+  z-index: 10000;
+}
+
+.modal-body{
+  background: black;
+  color: white;
+  display: flex; 
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 320px; /* Width of the modal */
+  width: 100%; 
+  height: 50vh;
+  align-items: center;
+}
+
+.modal-footer{
+  font-size: 30px;
+  display: flex;
+  justify-content: space-between; /* Adjust as needed for button positioning */
+  width: 100%;
+  padding-top: 40px;
+}
+
+.modal-body h2{
+  padding: 10px;
+}
+
+.submit-button{
+  cursor: pointer;
+}
+
+.close-button{
+  cursor: pointer;
+}
+
+
+
+ 
+

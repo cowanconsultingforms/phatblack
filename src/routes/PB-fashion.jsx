@@ -10,7 +10,6 @@ import { CiCircleCheck } from "react-icons/ci";
 function PBfashion() {
     return (
         <div className="pbfashion-page">
-            <h1>PB-Fashion</h1>
             <div className="Top-Featured">
                 <div className="Featured-Info">
                     <h4>Place holder</h4>

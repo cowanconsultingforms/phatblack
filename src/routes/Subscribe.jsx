@@ -42,9 +42,7 @@ function Subscribe() {
 
     return (
         <div className="subscribe-page">
-            <img className="backgroundImage" src={newBackground} alt="Device Background" />
 
-            <h1>Subscribe</h1>
             <div className="subscribe-header">
             </div>
 

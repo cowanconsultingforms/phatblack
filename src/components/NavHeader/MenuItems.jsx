@@ -1,101 +1,97 @@
-import Dropdown from "./Dropdown";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {motion} from 'framer-motion';
 
-const MenuItems = ({ items, depthLevel }) => {
-  // State to manage the dropdown visibility
-  const [dropdown, setDropdown] = useState(false);
+//index identifies each individual button, active states are stored for each using menuActiveState-${index}
 
-  // Reference to the dropdown menu
-  let ref = useRef();
+const MenuItems = ({ items, depthLevel, index }) => {
+  // Initialize active state for the current menu item
+  const [active, setActive] = useState(() => {
+    const storedActive = sessionStorage.getItem(`menuActiveState-${index}`);
+    return storedActive ? JSON.parse(storedActive) : false;
+  });
+
+  // Reference to the menu item
+  const ref = useRef();
 
   useEffect(() => {
-    // Function to handle clicks outside the dropdown menu
-    const handler = (event) => {
-      if (dropdown && ref.current && !ref.current.contains(event.target)) {
-        setDropdown(false);
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)
+        && event.target.closest('.exclude-container')) {
+        setActive(false);
       }
     };
-    // Add event listeners for clicks and touch events
-    document.addEventListener("mousedown", handler);
-    document.addEventListener("touchstart", handler);
-    // Cleanup the event listeners when component unmounts
+
+    if (active) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    }
+
     return () => {
-      document.removeEventListener("mousedown", handler);
-      document.removeEventListener("touchstart", handler);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [dropdown]);
+  }, [active, index]);
 
-  // Function to handle mouse entering the menu item
-  const onMouseEnter = () => {
-    setDropdown(true);
+  useEffect(() => {
+    // Save active state to localStorage whenever it changes
+    sessionStorage.setItem(`menuActiveState-${index}`, JSON.stringify(active));
+  }, [active, index]); 
+
+  const handleClick = () => {
+    setActive(true);
   };
 
-  // Function to handle mouse leaving the menu item
-  const onMouseLeave = () => {
-    setDropdown(false);
-  };
-
-  // Function to toggle dropdown visibility
-  const toggleDropdown = () => {
-    setDropdown((prev) => !prev);
-  };
-
-  // Function to close the dropdown when an item is clicked
-  const closeDropdown = () => {
-    dropdown && setDropdown(false);
+  // Function to toggle active state
+  const toggleActive = () => {
+    setActive((prev) => !prev);
   };
 
   return (
-    <li
-      className="menu-items"
-      ref={ref}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={closeDropdown}
-
+    <div className="exclude-container">
+      <li
+        className="menu-items"
+        ref={ref}
       >
-      {items.url && items.submenu ? (
-        // Render button with link if there's a submenu
-        <>
-          <button
-            type="button"
-            aria-haspopup="menu"
-            aria-expanded={dropdown ? "true" : "false"}
-            onClick={() => toggleDropdown()}>
-            <Link to={items.url}>{items.title}</Link>
-            {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
-          </button>
-          {/* Render the Dropdown component if submenu exists */}
-          <Dropdown
-            depthLevel={depthLevel}
-            submenus={items.submenu}
-            dropdown={dropdown}
-          />
-        </>
-      ) : !items.url && items.submenu ? (
-        // Render button if there's a submenu without a link
-        <>
-          <button
-            type="button"
-            aria-haspopup="menu"
-            aria-expanded={dropdown ? "true" : "false"}>
+        {items.url && items.submenu ? (
+          <>
+            <button
+              type="button"
+              aria-haspopup="menu"
+              className={active ? "active" : ""}
+              onClick={toggleActive}
+            >
+              <Link to={items.url}>
+                {items.title}
+              </Link>
+              {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
+            </button>
+          </>
+        ) : !items.url && items.submenu ? (
+          <>
+            <button
+              type="button"
+              aria-haspopup="menu"
+              className={active ? "active" : ""}
+              onClick={toggleActive}
+            >
+              {items.title}
+              {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
+            </button>
+          </>
+        ) : (
+          <Link 
+            to={items.url} 
+            className={active ? "active" : ""}
+            onClick={handleClick}
+          >
             {items.title}
-            {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
-          </button>
-          {/* Render the Dropdown component if submenu exists */}
-          <Dropdown
-            depthLevel={depthLevel}
-            submenus={items.submenu}
-            dropdown={dropdown}
-          />
-        </>
-      ) : (
-        // Render a regular link if no submenu
-        <Link to={items.url}>{items.title}</Link>
-      )}
-    </li>
+          </Link>
+        )}
+      </li>
+    </div>
   );
 };
 

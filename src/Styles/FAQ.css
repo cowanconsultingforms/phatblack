@@ -216,3 +216,7 @@
     width: calc(100% - 30px);
   }
 }
+
+.arrow {
+  font-family: 'Arial', sans-serif;
+}
