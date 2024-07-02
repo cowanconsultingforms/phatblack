@@ -14,6 +14,7 @@ import { TbTournament } from "react-icons/tb";
 import { MdPreview } from "react-icons/md";
 
 
+
 function PBgaming() {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -54,7 +55,7 @@ function PBgaming() {
                 <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>
                 <hr/>
                 <div className="ReviewGrid">
-                    <div className="ReviewBox">
+                <div className="ReviewBox">
                         <img src={speakerImage} alt="Game 1" />
                         <button>Game 1</button>
                     </div>
@@ -65,8 +66,8 @@ function PBgaming() {
                     <div className="ReviewBox">
                         <img src={speakerImage} alt="Game 3" />
                         <button>Game 3</button>
-                    </div>
-                    <div className="ReviewBox">
+                    </div
+                    ><div className="ReviewBox">
                         <img src={speakerImage} alt="Game 4" />
                         <button>Game 4</button>
                     </div>
@@ -110,10 +111,13 @@ function PBgaming() {
                         <img src={speakerImage} alt="Game 14" />
                         <button>Game 14</button>
                     </div>
+                    
                     <div className="ReviewBox">
                         <img src={speakerImage} alt="Game 15" />
                         <button>Game 15</button>
                     </div>
+                    
+                    
                 </div>
             </div>
         </div>

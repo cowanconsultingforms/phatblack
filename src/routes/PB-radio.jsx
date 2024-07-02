@@ -43,11 +43,9 @@ function PBradio() {
 
 
     return (
-        <div className="pbradio-page">
-            <div>
-                <div className="radio-head">
-                </div>
 
+            <div>
+                
                 <Slider {...settings} className="radio-container events">
                     {/**TEST IMAGES */}
                     <EventCard path="pbradio" title="test" imgSrc={cassette} />
@@ -56,9 +54,7 @@ function PBradio() {
                     <EventCard path="pbradio" title="test" imgSrc={cassette} />
                 </Slider>
 
-                <div className="radio-head">
-                    <h1>Podcasts</h1>
-                </div>
+                    <h1 className="radio-head">Podcasts</h1>
 
                 <div className="podcast-container events">
                     <EventCard path="pbradio" title="test" imgSrc={cassette} />
@@ -75,10 +71,7 @@ function PBradio() {
                 <EventCard path="pbradio" title="test" imgSrc={cassette} />
                 <EventCard path="pbradio" title="test" imgSrc={cassette} />
             </Slider>
-
-            <div className="radio-head">
-                <h1>Podcasts</h1>
-            </div>
+                <h1 className="radio-head">Podcasts</h1>
 
             <div className="podcast-container events">
                 <EventCard path="pbradio" title="test" imgSrc={cassette} />

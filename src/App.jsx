@@ -38,6 +38,9 @@ import ComponentPage from './routes/ComponentPage';
 import Popup from './components/Popup';
 import CheckMongo from './routes/CheckMongo';
 
+import AdminMenu from './AdminMenu';
+import AddGamePanel from './AddGamePanel';
+
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
   const { pathname } = useLocation();
