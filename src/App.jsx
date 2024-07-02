@@ -37,9 +37,9 @@ import HandleMedia from './routes/HandleMedia';
 import ComponentPage from './routes/ComponentPage';
 import Popup from './components/Popup';
 import CheckMongo from './routes/CheckMongo';
-
-import AdminMenu from './AdminMenu';
-import AddGamePanel from './AddGamePanel';
+import ChangingTextButton from './routes/ChangingTextButton.jsx'; 
+//import AdminMenu from './AdminMenu';
+//import AddGamePanel from './AddGamePanel';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {
@@ -201,6 +201,7 @@ function App() {
             <>
               <About />
               <Footer />
+              <ChangingTextButton />
             </>
           } />
           <Route path="/subscribe" element={
