@@ -167,40 +167,47 @@ body{
     margin-top: -40px;
 }
 
-@media screen and (max-width: 940px){
-
-    
-
+/* Responsive styles */
+@media screen and (max-width: 940px) {
     .backgroundImage {
         width: 100vw;
     }
 
-    .video-cards{
+    .video-cards {
         display: grid;
         grid-template-columns: 1fr;
         margin-right: 20px;
     }
 
-    .video{
+    .video {
         width: 40%;
+    }
+
+    .homeButton {
+        left: 45px !important;
+        transform: translateX(-50%) !important;
     }
 }
 
 @media screen and (max-width: 500px) {
-    
     .backgroundImage {
         width: 100vw;
     }
+
     .homeButton {
-        margin: 130px;
+        top: 130px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
 @media screen and (max-width: 400px) {
-
     .homeButton {
-        margin: 110px;
+        top: 110px;
+        left: 50%;
+        transform: translateX(-50%);
     }
+
     .backgroundImage {
         width: 100vw;
         top: 23%;

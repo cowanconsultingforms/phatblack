@@ -161,6 +161,10 @@
         justify-content: center;
     }
 
+    .copyright {
+        padding-bottom: 50px;
+    }
+
     .copyright > p {
         margin-left: 10px;
     }

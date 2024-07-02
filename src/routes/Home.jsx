@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import '../Styles/Home.css';
 import speakerImage from "../assets/redpants-radio.jpg"; 
 import separator from "../assets/separator.png"; 
@@ -13,32 +13,69 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
     const auth = getAuth();
     const [buttonText, setButtonText] = useState('Premium Content'); // Initialize as 'Premium Content'
+    const [intervalId, setIntervalId] = useState(null);
+    const [isIntervalActive, setIsIntervalActive] = useState(false);
+    const intervalIdRef = useRef(null);
     const navigate = useNavigate();
 
     const handleClick = () => {
         navigate('/subscribe');
     };
-
+    
+    const handleMouseEnter = () => {
+        setButtonText('Subscribe Now');
+    };
+    
+    const handleMouseLeave = () => {
+        setButtonText('Premium Content');
+    };
 
     useEffect(() => {
         const getUserRole = async () => {
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    const userRef = doc(db, "users", user.uid);
-                    const userDoc = await getDoc(userRef);
-                    if (userDoc.exists() && ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(userDoc.data().role)) {
-                        setButtonText('Premium Content'); // Set to 'Premium Content' if user role is premium
-                    } else {
-                        setButtonText('Subscribe Now'); // Set to 'Subscribe Now' for non-premium users
-                    }
-                } else {
-                    setButtonText('Subscribe Now'); // Default to 'Subscribe Now' if no user is logged in
-                }
-            });
+          onAuthStateChanged(auth, async (user) => {
+            if (user) {
+              const userRef = doc(db, "users", user.uid);
+              const userDoc = await getDoc(userRef);
+              if (userDoc.exists() && ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(userDoc.data().role)) {
+                setButtonText('Premium Content');
+                setIsIntervalActive(false);
+              } else {
+                setIsIntervalActive(true);
+              }
+            } else {
+              setIsIntervalActive(true);
+            }
+          });
         };
-
+    
         getUserRole();
-    }, [auth]);
+    
+        return () => {
+          if (intervalIdRef.current) {
+            clearInterval(intervalIdRef.current);
+          }
+        };
+      }, [auth, db]);
+    
+      useEffect(() => {
+        if (isIntervalActive) {
+          const id = setInterval(() => {
+            setButtonText((prevText) => (prevText === 'Premium Content' ? 'Subscribe Now' : 'Premium Content'));
+          }, 2000);
+          intervalIdRef.current = id;
+        } else {
+          if (intervalIdRef.current) {
+            clearInterval(intervalIdRef.current);
+            intervalIdRef.current = null;
+          }
+        }
+    
+        return () => {
+          if (intervalIdRef.current) {
+            clearInterval(intervalIdRef.current);
+          }
+        };
+      }, [isIntervalActive]);
 
     return (
         <div className="HomeContainer">

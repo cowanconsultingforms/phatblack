@@ -141,3 +141,13 @@
 .pb-zine {
   left: 0;
 }
+
+.titleSection {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px;
+}
+
+.titleSection h2 {
+  margin: 0;
+}

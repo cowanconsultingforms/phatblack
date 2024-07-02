@@ -9,7 +9,9 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { BiSolidTrophy } from "react-icons/bi";
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-
+import { IoLogoGameControllerB } from "react-icons/io";
+import { TbTournament } from "react-icons/tb";
+import { MdPreview } from "react-icons/md";
 
 
 function PBgaming() {
@@ -38,21 +40,18 @@ function PBgaming() {
     return (
         <div className="GamingMainContainer">
             <div className={`GamingSidebar ${sidebarOpen ? 'open' : ''}`}>
-                <Link to='#' className='close'>
-                    <AiOutlineClose onClick={toggleSidebar} />
-                </Link>
-                <h1>PB-Gaming</h1>
-                <h1><SiApplearcade/></h1>
+                <h1><SiApplearcade/> PB-Gaming</h1>
+                <br></br>
                 <ul>
                     <li><button><IoHomeSharp/> HOME</button></li>
                     <li><button><IoIosTrendingUp/> TRENDING</button></li>
-                    <li><button><FaExternalLinkAlt/> ALL</button></li>
-                    <li><button><BiSolidTrophy/> TOP HITS</button></li>
+                    <li><button><MdPreview /> GAME REVIEW</button></li>
+                    <li><button><IoLogoGameControllerB /> GAME PLAY</button></li>
+                    <li><button><TbTournament /> GAME PLAY-TOURNAMENT</button></li>
                 </ul>
             </div>
             <div className="GamingContainer">
                 <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>
-                <h1>GAMES</h1>
                 <hr/>
                 <div className="ReviewGrid">
                     <div className="ReviewBox">

@@ -2,8 +2,13 @@ import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig.js"; 
 import { doc, updateDoc, increment } from "firebase/firestore";
+import { FaPencilAlt } from "react-icons/fa";
+import Modal from "./Modaledit.jsx";
 
-const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views }) => {
+const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views, zine }) => {
+    const [showModal, setShowModal] = useState(false);
+    const inputRef = useRef(null);
+    const subtitleRef = useRef(null);
     const navigate = useNavigate();
     const colNav = col.replace('-', '');
     const handleOnClick = () => {
@@ -11,6 +16,37 @@ const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views }) => {
         navigate(`/${colNav}/${title}`);
         window.location.reload();
     };
+
+    const handleEdit = async (event) => {
+    
+        const newTitle = inputRef.current.value;
+        const newSubtitle = subtitleRef.current.value;
+        const updatedTitle = newTitle !== '' ? newTitle : zine.title;
+        const updatedSubtitle = newSubtitle !== '' ? newSubtitle: zine.vendor;
+
+        if (newTitle || newSubtitle) { 
+            if (!zine.id) {
+                console.error('zine or zine.id is undefined');
+                return;
+            }
+          const zineDocRef = doc(db, 'pb-zine', zine.id);
+          console.log('reached');
+          
+          try {
+            await updateDoc(zineDocRef, {
+              title: updatedTitle,
+              vendor: updatedSubtitle  
+            });
+            console.log('Document successfully updated!');
+            window.location.reload();
+            toggleModal();
+          } catch (error) {
+            console.error('Error updating document: ', error);
+          }
+        } else {
+            toggleModal();
+        }
+      };
     
     const updateViewCount = async (videoId) => {
         try {
@@ -48,6 +84,17 @@ const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views }) => {
 
     const fileExtension = getFileExtension(src);
 
+    const toggleModal = (event) => {
+        console.log('reached');
+        setShowModal(!showModal);
+        event.stopPropagation();
+    }
+
+    const handleClose = () => {
+        console.log('handle close reached');
+        setShowModal(false);
+    }
+
     return (
         <div
             className="ezine-card"
@@ -79,7 +126,16 @@ const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views }) => {
                                 }
                             })()}
                 <div >
-                    <h2>{title}</h2>
+                    <div className="titleSection">
+                        <h2>{title}</h2>
+                        <FaPencilAlt onClick={toggleModal} className='edit-icon2'/>
+                        <Modal show={showModal} onClose={handleClose} onSubmit={handleEdit}>
+                            <label for="newtitle">Title:</label> <br></br>
+                            <input type="text" id="newtitle" name="newtitle" ref={inputRef}/>
+                            <label for="newsubtitle">Subtitle:</label>
+                            <input type="text" id="newsubtitle" name="newsubtitle" ref={subtitleRef}/>
+                        </Modal>
+                    </div>
                     <p>{vendor}</p>
                     <div className="vid-view-time">
                         <p>{views} Views...</p>

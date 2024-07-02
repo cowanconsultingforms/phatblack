@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const MenuItems = ({ items, depthLevel, index }) => {
   // Initialize active state for the current menu item
   const [active, setActive] = useState(() => {
-    const storedActive = localStorage.getItem(`menuActiveState-${index}`);
+    const storedActive = sessionStorage.getItem(`menuActiveState-${index}`);
     return storedActive ? JSON.parse(storedActive) : false;
   });
 
@@ -37,7 +37,7 @@ const MenuItems = ({ items, depthLevel, index }) => {
 
   useEffect(() => {
     // Save active state to localStorage whenever it changes
-    localStorage.setItem(`menuActiveState-${index}`, JSON.stringify(active));
+    sessionStorage.setItem(`menuActiveState-${index}`, JSON.stringify(active));
   }, [active, index]); 
 
   const handleClick = () => {
