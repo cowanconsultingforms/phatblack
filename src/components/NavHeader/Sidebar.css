@@ -169,16 +169,18 @@ span {
 
 
 @media screen and (max-width: 940px){
-    .Sidebar{
-        width: 40px;
-    }
-    .Sidebar li:hover {
-        font-size: 40px ;
-    }
+    .Sidebar {
+        width: calc(20vw - 20px); 
+      }
     
-    .Sidebar li:not(:hover){
-        font-size: 30px ;
-    }
+    
+    .Sidebar li {
+        font-size: 1.2rem; 
+      }
+      
+      .Sidebar li:hover {
+        font-size: 1.4rem; 
+      }
 }
 
 @media screen and (max-width: 560px) {

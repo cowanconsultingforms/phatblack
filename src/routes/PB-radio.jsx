@@ -43,7 +43,7 @@ function PBradio() {
 
 
     return (
-
+        <div>
             <div>
                 
                 <Slider {...settings} className="radio-container events">

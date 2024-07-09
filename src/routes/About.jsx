@@ -10,7 +10,7 @@ function About() {
             <img className="backgroundImage" src={newBackground} alt="Device Background"/>
 
             <div className="page-content">
-                <h2 className="head1">No. 1 Entertainment Platform</h2>
+                <h2 className="head1" style={{ marginTop: 0 ,paddingTop: 0 }}>No. 1 Entertainment Platform</h2>
 
                 <img className="about-image-separator" src={equalizer}></img> 
                 <div className="paragraph-container">
