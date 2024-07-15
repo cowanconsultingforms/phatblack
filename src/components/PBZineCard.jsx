@@ -4,6 +4,7 @@ import { db } from "../firebaseConfig.js";
 import { doc, updateDoc, increment } from "firebase/firestore";
 import { FaPencilAlt } from "react-icons/fa";
 import Modal from "./Modaledit.jsx";
+import HandleMedia from "../routes/HandleMedia.jsx";
 
 const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views, zine }) => {
     const [showModal, setShowModal] = useState(false);
@@ -95,6 +96,11 @@ const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views, zine }) 
         setShowModal(false);
     }
 
+    const chooseFile = (event) => {
+        console.log("files");
+        const files = event.target.files;
+    }
+
     return (
         <div
             className="ezine-card"
@@ -134,6 +140,10 @@ const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views, zine }) 
                             <input type="text" id="newtitle" name="newtitle" ref={inputRef}/>
                             <label for="newsubtitle">Subtitle:</label>
                             <input type="text" id="newsubtitle" name="newsubtitle" ref={subtitleRef}/>
+                            <div className="fileChooser">
+                                <p>Choose Image:</p>
+                                <input type="file" accept=".pdf" onChange={chooseFile}/>
+                            </div>
                         </Modal>
                     </div>
                     <p>{vendor}</p>

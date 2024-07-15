@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./Carousel.css";
-import { db } from "../firebaseConfig.js";
+import { db, storage } from "../firebaseConfig.js";
 import { doc, updateDoc } from "firebase/firestore";
 import { FaPencilAlt } from "react-icons/fa";
 import Modal from "./Modaledit.jsx";
+import { deleteObject, ref, getStorage, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import Compressor from 'compressorjs';
 
 function Carousel({ items, carouselData }) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,6 +14,7 @@ function Carousel({ items, carouselData }) {
     const [showModal, setShowModal] = useState(false);
     const inputRef = useRef(null);
     const subtitleRef = useRef(null);
+    const [newFile, setNewFile] = useState();
     let initialX = null;
 
     useEffect(() => {
@@ -23,6 +26,33 @@ function Carousel({ items, carouselData }) {
 
         return () => clearInterval(id); // Cleanup function to clear the interval when component unmounts
     }, [currentIndex]);
+
+    const imageCompress = (file) => {
+        return new Promise((resolve, reject) => {
+            let quality;
+            const fileSizeInMB = file.size / 1024 / 1024;
+
+            if (fileSizeInMB > 5) {
+                quality = 0.3;
+            } else if (fileSizeInMB > 1) {
+                quality = 0.5;
+            } else {
+                quality = 0.8;
+            }
+
+            new Compressor(file, {
+                quality: quality,
+                maxWidth: 1920,
+                maxHeight: 1080,
+                success: (compressedResult) => {
+                    resolve(compressedResult);
+                },
+                error: (err) => {
+                    reject(err);
+                },
+            });
+        });
+    };
 
     function handleTouchStart(event) {
         initialX = event.touches[0].clientX;
@@ -68,8 +98,37 @@ function Carousel({ items, carouselData }) {
     }
 
     const handleEdit = async (event) => {
-        
+        console.log("files", newFile);
         const card = carouselData[currentIndex];
+        
+        //let file = await imageCompress(newFile);
+
+        const storage = getStorage();
+        console.log(newFile.name);
+        let location = `/pb-zine/${newFile.name}`;
+        const storageRef = ref(storage, location);
+        const uploadTask = uploadBytesResumable(storageRef, newFile);
+        const snapshot = await new Promise((resolve, reject) => {
+            uploadTask.on('state_changed',
+                null,
+                error => reject(error),
+                () => resolve(uploadTask.snapshot)
+            );
+        });
+
+        console.log('reached 2')
+        const newUrl = await getDownloadURL(snapshot.ref);
+        console.log(newUrl);
+        const zineDocRef = doc(db, 'zine-carousel', card.id);
+        try {
+            await updateDoc(zineDocRef, {
+                url: newUrl
+            }); 
+            window.location.reload();
+        } catch {
+                console.log('failure');
+        }
+
 
         if (!card) {
             console.error('Card not found');
@@ -89,7 +148,6 @@ function Carousel({ items, carouselData }) {
                 return;
             }
             const zineDocRef = doc(db, 'zine-carousel', card.id);
-            console.log('reached');
 
             try {
                 await updateDoc(zineDocRef, {
@@ -120,6 +178,10 @@ function Carousel({ items, carouselData }) {
         setShowModal(false);
     }
 
+    const chooseFile = (event) => {
+        setNewFile(event.target.files[0]);
+    }
+
     return (
         <div className="carousel" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
             <button className="previous" onClick={previous}> {`<`} </button>
@@ -137,7 +199,10 @@ function Carousel({ items, carouselData }) {
                         <input type="text" id="newtitle" name="newtitle" ref={inputRef}/>
                         <label for="newsubtitle">Subtitle:</label>
                         <input type="text" id="newsubtitle" name="newsubtitle" ref={subtitleRef}/>
-                        
+                        <div className="fileChooser">
+                            <p>Choose Image:</p>
+                            <input type="file" accept=".jpg,.jpeg,.png" onChange={chooseFile}/>
+                        </div>
                   </Modal>
             </div>
             <button className="next" onClick={next}> {`>`} </button>

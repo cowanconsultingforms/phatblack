@@ -19,7 +19,7 @@ function Top_content() {
   const [carouselData, setCarouselData] = useState([]);
   const [pbZineCards, setPbZineCards] = useState([
     {
-      url: recordsImage,
+      url: "",
       title: "",
       text: "",
       alt: "Records image",
@@ -66,6 +66,7 @@ function Top_content() {
         ...card,
         title: carousels[index]?.title || card.title,
         text: carousels[index]?.subtitle || card.subtitle,
+        url: carousels[index]?.url || card.url
       }));
 
       setPbZineCards(updatedPbZineCards);

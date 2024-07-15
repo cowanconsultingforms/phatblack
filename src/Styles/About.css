@@ -1,8 +1,7 @@
 .page-container {
   display: flex;
   justify-content: center;
-  margin-top: 100px; /* Adjust the height of your navbar */
-  height: 80vh; /* Subtract the height of your navbar from the viewport height */
+  height: 60vh; /* Subtract the height of your navbar from the viewport height */
   position: relative;
 }
 

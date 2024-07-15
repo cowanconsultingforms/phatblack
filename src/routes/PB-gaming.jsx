@@ -40,15 +40,17 @@ function PBgaming() {
     return (
         <div className="GamingMainContainer">
             <div className={`GamingSidebar ${sidebarOpen ? 'open' : ''}`}>
-                <h1><SiApplearcade/> PB-Gaming</h1>
-                <br></br>
-                <ul>
-                    <li><button><IoHomeSharp/> HOME</button></li>
-                    <li><button><IoIosTrendingUp/> TRENDING</button></li>
-                    <li><button><MdPreview /> GAME REVIEW</button></li>
-                    <li><button><IoLogoGameControllerB /> GAME PLAY</button></li>
-                    <li><button><TbTournament /> GAME PLAY-TOURNAMENT</button></li>
-                </ul>
+                <div className="sidebarContainer">
+                    <h1><SiApplearcade/> PB-Gaming</h1>
+                    <br></br>
+                    <ul>
+                        <li><button><IoHomeSharp/> HOME</button></li>
+                        <li><button><IoIosTrendingUp/> TRENDING</button></li>
+                        <li><button><MdPreview /> GAME REVIEW</button></li>
+                        <li><button><IoLogoGameControllerB /> GAME PLAY</button></li>
+                        <li><button><TbTournament /> GAME PLAY-TOURNAMENT</button></li>
+                    </ul>
+                </div>
             </div>
             <div className="GamingContainer">
                 <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>

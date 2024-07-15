@@ -2,6 +2,7 @@ import React from "react";
 import "../Styles/About.css";
 import equalizer from "../assets/equalizer.png"; 
 
+
 function About() {
     return (
         <div className="page-container">

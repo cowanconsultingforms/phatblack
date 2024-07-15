@@ -111,3 +111,6 @@
   gap: 10px; /* Space between the link-header and the edit-icon */
 }
 
+.fileChooser{
+  padding-top: 20px;
+}
