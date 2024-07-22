@@ -4,6 +4,7 @@ import equalizer from "../assets/equalizer.png";
 import newBackground from "../assets/DeviceBackground.jpg";
 
 
+
 function About() {
     return (
         <div className="page-container">

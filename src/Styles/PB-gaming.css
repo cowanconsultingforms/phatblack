@@ -20,11 +20,12 @@
     align-content: left;
     text-align: left;
     position: fixed;
-    left: -40vh;
+    left: -80vh;
     transition: left 0.3s ease;
     padding-top: 10px;
     z-index: 2;
 }
+
 
 .GamingSidebar h1 {
     color: #ffa646;
@@ -169,7 +170,9 @@
 }
 
 @media screen and (max-width: 940px){
-
+    .sidebarContainer{
+        padding-top: 40px !important;
+    }
 }
   
 @media screen and (max-width: 500px) {

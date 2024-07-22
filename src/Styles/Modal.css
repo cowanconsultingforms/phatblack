@@ -12,20 +12,6 @@
   z-index: 9999;
 }
 
-.modal-content {
-  background: black;
-  color: white;
-  display: flex; 
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 320px; /* Width of the modal */
-  width: 100%; 
-  height: 50vh;
-  z-index: 10000;
-}
-
 .modal-body{
   background: black;
   color: white;
@@ -35,7 +21,7 @@
   border-radius: 8px;
   max-width: 320px; /* Width of the modal */
   width: 100%; 
-  height: 50vh;
+  height: 55vh;
   align-items: center;
 }
 
@@ -44,7 +30,7 @@
   display: flex;
   justify-content: space-between; /* Adjust as needed for button positioning */
   width: 100%;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 .modal-body h2{
@@ -58,7 +44,6 @@
 .close-button{
   cursor: pointer;
 }
-
 
 
  
