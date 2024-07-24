@@ -45,6 +45,10 @@
     text-align: center;
 }
 
+.popup-login-container input{
+    font-size: 17px;
+}
+
 .popup-login-container h1{
     margin-bottom: 0;
 }
@@ -93,7 +97,7 @@
 
 @media screen and (max-width: 300px) {
     .subscription-wall {
-        height: 80vh; /* Adjust height for smaller screens */
+        height: 100vh; /* Adjust height for smaller screens */
     }
 
     .popup-container {
@@ -104,4 +108,11 @@
         margin-right: 5%;
     }
 
+}
+
+@media (max-width: 600px){  
+    .subscription-wall {
+        height: 80vh;
+        z-index: 1000;
+    }
 }

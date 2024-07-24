@@ -199,7 +199,7 @@ function Popup() {
                                 </form>
                                 <div className="popup-forgot/noaccount">
                                     <p className="ForgetPass">Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
-                                    <p className="NoAccount"> Don't have an account? <Link to='/signup'>Sign Up!</Link></p>
+                                    <p className="NoAccount"> Don't have an account? <Link to='/subscribe'>Sign Up!</Link></p>
                                 </div>
                                 
                         </div>

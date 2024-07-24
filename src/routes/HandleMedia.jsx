@@ -260,6 +260,7 @@ function HandleMedia() {
     const handleDescriptionChange = (e) => {
         setNewDescription(e.target.value);
     };
+    
 
     const handleMongoDBUpdate = async () => {
         try {
@@ -302,7 +303,7 @@ function HandleMedia() {
 
     const handleFileUpload = async (file) => {
         // Delete the old file
-        const storage = getStorage();
+        const storage = getStorage(); 
         const oldFileRef = ref(storage, `${currentItem.firestoreCollection}/${currentItem.fileName}`);
         await deleteObject(oldFileRef);
 

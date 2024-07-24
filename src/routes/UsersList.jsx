@@ -113,7 +113,7 @@ function UsersList() {
         alert('User successfully deleted');
         fetchUsers();
       } else {
-        console.error("Failed to delete user", data);
+        console.error("Failed to delete user", data, userId);
         alert(data.error || 'Failed to delete user');
       }
     } catch (error) {

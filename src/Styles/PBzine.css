@@ -151,3 +151,7 @@
 .titleSection h2 {
   margin: 0;
 }
+
+.addButton {
+  cursor: pointer;
+}

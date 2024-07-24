@@ -137,6 +137,9 @@
 
 /* viewing for mobile */
 @media (max-width: 600px){  
+    .header-container{
+        padding: 10px;
+    }
     .Subtopics{
         margin: 10px;
     }
