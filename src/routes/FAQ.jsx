@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Questions } from "./Questions";
 import { Link } from "react-router-dom";
 import "../Styles/FAQ.css";
-import { isMobile } from '../utils.js';
 import { IoMdPlay } from "react-icons/io";
 
 const FAQ = () => {
@@ -26,7 +25,6 @@ const FAQ = () => {
     }));
   };
 
-  const mobile = isMobile();
 
   return (
     <div className="faq-page">

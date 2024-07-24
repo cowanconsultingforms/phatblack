@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { FaLock } from 'react-icons/fa';
+import React, { useRef, useState, useEffect } from 'react';
 import '../Styles/PBzine.css';
-import speakerImage from "../assets/redpants-radio.jpg";
 import Carousel from '../components/Carousel';
 import barImage from "../assets/bar.jpg";
 import cassetteImage from "../assets/cassette.jpg";
 import studioImage from "../assets/studio.jpg";
-import recordsImage from "../assets/records.jpg";
 import studioMicImage from "../assets/studiomic.jpg";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
 import PBzineCard from '../components/PBZineCard';
+import { IoAdd } from "react-icons/io5";
+import Modal from "../components/Modaledit.jsx";
+import { doc, setDoc, getDoc, Timestamp } from "firebase/firestore"; 
+import { ref, getStorage, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 function Top_content() {
 
@@ -105,6 +105,63 @@ function Bottom_content() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState("");
   const [ezineContent, setEzineContent] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [newFile, setNewFile] = useState();
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const authorRef = useRef(null);
+
+  const toggleModal = (event) => {
+    console.log('reched');
+    setShowModal(!showModal);
+  }
+
+  const handleClose = () => {
+    console.log('handle close reached');
+    setShowModal(false);
+  }
+
+  const chooseFile = (event) => {
+      setNewFile(event.target.files[0]);
+  }
+
+  const handleEdit = async (event) =>{
+    const storage = getStorage();
+    const storageRef = ref(storage, `pb-zine/${newFile.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, newFile);
+        const snapshot = await new Promise((resolve, reject) => {
+            uploadTask.on('state_changed',
+                null,
+                error => reject(error),
+                () => resolve(uploadTask.snapshot)
+            );
+        });
+
+        const url = await getDownloadURL(snapshot.ref);
+
+
+    const docData = {
+      "title": titleRef.current.value,
+      "description": descriptionRef.current.value,
+      "vendor": authorRef.current.value,
+      "likes": 0,
+      "dislikes": 0,
+      "time_uploaded": Timestamp.now(),
+      "views": 0,
+      "url": url
+    }
+    
+    try {
+      await setDoc(doc(db, "pb-zine", titleRef.current.value), docData);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      window.location.reload();
+    }
+
+  
+  }
+
 
   useEffect(() => {
     const getUserRole = async () => {
@@ -148,8 +205,22 @@ function Bottom_content() {
   return (
     <div className='pbzine-page'>
       <div className='header2-container'>
-        <h2 className="header2">PB-Zine</h2>
+        <h2 className="header2">PB-Zine 
+        <IoAdd onClick={toggleModal} className='addButton'/>
+        </h2>
       </div>
+      <Modal show={showModal} onClose={handleClose} onSubmit={handleEdit}>
+        <label for="title">Title:</label> <br></br>
+        <input type="text" id="title" name="title" ref={titleRef}/>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" ref={descriptionRef}/>
+        <label for="vendor">Author:</label>
+        <input type="text" id="vendor" name="vendor" ref={authorRef}/>
+        <div className="fileChooser">
+            <p>Choose File:</p>
+            <input type="file" accept=".pdf" onChange={chooseFile}/>
+        </div>
+      </Modal>
       <div className="subscribed-content">
         {ezineContent.map((zine, index) => (
           <PBzineCard

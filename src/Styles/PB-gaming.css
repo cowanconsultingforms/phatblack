@@ -70,7 +70,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 columns */
     gap: 20px; /* Gap between boxes */
-    padding: 20px; /* Padding for better visualization */
+    padding: 30px; /* Padding for better visualization */
 }
 
 .ReviewBox {
