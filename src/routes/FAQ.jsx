@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../Styles/FAQ.css";
 import { IoMdPlay } from "react-icons/io";
 
+
 const FAQ = () => {
   const [selectedQuestions, setSelectedQuestions] = useState({});
   const [expandedTopics, setExpandedTopics] = useState({});
@@ -28,6 +29,7 @@ const FAQ = () => {
 
   return (
     <div className="faq-page">
+
       <div className="faq-container">
         {Questions.map((topic, topicIndex) => (
           <div key={topicIndex} className="topic" id={topic.topic}>

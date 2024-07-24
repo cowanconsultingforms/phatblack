@@ -1,6 +1,8 @@
 import React from "react";
 import SubscriptionCard from "../components/SubscriptionCard";
 import "../Styles/Subscribe.css"
+import newBackground from "../assets/DeviceBackground.jpg";
+
 
 function Subscribe() {
     const subscriptionData = [
@@ -40,6 +42,7 @@ function Subscribe() {
 
     return (
         <div className="subscribe-page">
+
             <div className="subscribe-header">
             </div>
 

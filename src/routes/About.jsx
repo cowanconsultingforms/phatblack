@@ -1,13 +1,18 @@
 import React from "react";
 import "../Styles/About.css";
 import equalizer from "../assets/equalizer.png"; 
+import newBackground from "../assets/DeviceBackground.jpg";
+
 
 
 function About() {
     return (
         <div className="page-container">
+            <img className="backgroundImage" src={newBackground} alt="Device Background"/>
+
             <div className="page-content">
                 <h2 className="head1">No. 1 Entertainment Platform</h2>
+
                 <img className="about-image-separator" src={equalizer}></img> 
                 <div className="paragraph-container">
                     <p>
