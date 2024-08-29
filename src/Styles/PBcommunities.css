@@ -1,11 +1,92 @@
+* {
+    margin: 0;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+
+.PBcommunities {
+    margin-top: 10px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap; /* Allows items to wrap to the next line if necessary */
+}
+
+.PBcommunities img {
+    width: 100%; /* Makes each image take the full width of the container */
+    height: auto; /* Maintains the aspect ratio */
+    flex: 1 0 100%; /* Ensures that each image takes up the full width in the flex container */
+}
+
 .Teaching-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center; /* Center the cards horizontally */
-    border-bottom: 2px solid white; /* Add a border to the bottom */
-    border-top: 2px solid white; /* Add a border to the bottom */
+}
 
+.CommunitySidebar {
+    width: 45dvh; 
+    height: 86dvh;
+    background-color: rgb(0, 0, 0);
+    flex-shrink: 0;
+    align-content: left;
+    text-align: left;
+    position: fixed;
+    left: -80vh;
+    transition: left 0.3s ease;
+    padding-top: 10px;
+    z-index: 2;
+}
+
+
+.CommunitySidebar h1 {
+    color: #ffa646;
+}
+
+.CommunitySidebar.open {
+    left: 0;
+}
+
+.CommunitySidebar ul {
+    list-style: none;
+}
+
+.CommunitySidebar li {
+    margin: 1px;
+    font-size: 30px;
+}
+
+
+.CommunitySidebar button {
+    background-color: transparent; /* Make buttons transparent */
+    border: none; /* Remove button border */
+    color: white; /* Set button text color */
+    padding: 5px 10px; /* Adjust button padding */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s, background-color 0.3s; /* Add transition effect */
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 25px;
+}
+
+.CommunitySidebar button:hover {
+    background-color: rgba(255, 166, 0, 0.611);
+}
+
+.CommunitySidebar button:active {
+    color: red;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 2rem;
+    z-index: 5;
 }
 
 .header-container {
@@ -70,8 +151,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center; /* Center the cards horizontally */
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
 }
 
 .page-header3{
@@ -96,3 +175,34 @@
         justify-content: center; /* Center items horizontally */
     }
 }
+
+.about-image-separator {
+    position: relative;
+    inherits: none;
+}
+
+  .paragraph-container {
+    max-width: 1000px; 
+    margin: 10px;
+    font-family: 'Bebas Neue';
+    font-size: 20px; 
+  }
+    
+  .paragraph-container {
+    text-align: center; 
+  }
+  
+  .paragraph-container p{
+      margin-top: 10px;
+      padding-left: 20%;
+      padding-right: 20%;
+      font-family: sans-serif;
+      word-spacing: 2px;
+      font-size: 1rem;
+  }
+
+  .about-image-separator{
+    width: auto !important;
+    height: auto !important;
+    flex: none !important;
+  }

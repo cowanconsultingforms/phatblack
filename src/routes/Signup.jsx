@@ -89,7 +89,7 @@ function SignUp() {
             await setDoc(doc(db, "users", userId), { email, username: finalUsername, /*uid: userId,*/ role: "user", createdAt: new Date() });
             await setDoc(usernameRef, { email: email });
 
-            navigate('/');
+            navigate('/payment');
             alert("Signed up successfully!");
         } catch (error) {
             console.error("ERROR SIGNUP: ", error);

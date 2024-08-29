@@ -1,6 +1,7 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from "./routes/Home"
+import PBTeaching from './routes/PB-teaching';
 import PBevents from './routes/PB-events';
 import PBgaming from './routes/PB-gaming';
 import PBmall from './routes/PB-mall';
@@ -37,6 +38,8 @@ import HandleMedia from './routes/HandleMedia';
 import ComponentPage from './routes/ComponentPage';
 import Popup from './components/Popup';
 import CheckMongo from './routes/CheckMongo';
+import PBScholarships from './routes/PB-Scholarships';
+import PBService from './routes/PB-Service';
 
 import AdminMenu from './AdminMenu';
 import AddGamePanel from './AddGamePanel';
@@ -259,6 +262,9 @@ function App() {
           <Route path="/stripe/:param" element={<Stripe></Stripe>} />
           <Route path="/handlemedia" element={<HandleMedia />} />
           <Route path="/checkmongo" element={<CheckMongo />} />
+          <Route path="/PBTeaching" element={<PBTeaching />} />
+          <Route path="/PBScholarships" element={<PBScholarships />} />
+          <Route path="/PBService" element={<PBService />} />
         </Routes>
       </BrowserRouter>
     </>

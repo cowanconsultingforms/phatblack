@@ -54,6 +54,7 @@ function Top_content() {
       link: `details`
     },
   ])
+  
   const fetchCarousel = async () => {
     try {
       const carouselCollection = collection(db, "zine-carousel");
@@ -90,7 +91,7 @@ function Top_content() {
   return (
     <div className='pb-zine'>
       <div className='news-pictures'>
-        <Carousel items={pbZineCards} carouselData={carouselData}/>
+        <Carousel items={pbZineCards} carouselData={carouselData} bucket = "zine-carousel"/>
       </div>
     </div>
   )

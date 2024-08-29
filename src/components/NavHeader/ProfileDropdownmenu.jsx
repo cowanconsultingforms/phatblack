@@ -41,7 +41,7 @@ const DropdownMenu = ({ handleLogout, navigate, role, isActive, authenticated })
             <button className="dropdown-item guest" onClick={() => navigate('/login')}>
               Login
             </button>
-            <button className="dropdown-item guest" onClick={() => navigate('/signup')}>
+            <button className="dropdown-item guest" onClick={() => navigate('/subscribe')}>
               Sign up
             </button>
           </div>

@@ -37,6 +37,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
 .popup-login-container {
     max-width: 400px;
     margin: auto;
@@ -90,7 +91,6 @@
     text-decoration: underline;
 }
 
-
 .popup-login-container input[type="submit"]:hover {
     background-color: #d35400;
 }
@@ -110,9 +110,10 @@
 
 }
 
-@media (max-width: 600px){  
+@media (max-width: 600px){
     .subscription-wall {
-        height: 80vh;
-        z-index: 1000;
+        height: 75vh;
+        z-index: 10000;
+        bottom: -60%;
     }
 }

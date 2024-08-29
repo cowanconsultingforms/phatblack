@@ -51,6 +51,10 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const dumpSesh = () => {
+    
+  }
+
   const handleLogout = async () => {
     await auth.signOut();
     navigate('/');
@@ -64,22 +68,21 @@ const Header = () => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
-        setIsAuthenticated(!!user);
-        if (user) {
-            const userRef = doc(db, "users", user.uid);
-            const userDoc = await getDoc(userRef);
-            if (userDoc.exists()) {
-                setRole(userDoc.data().role);
-                // Fetch the profile image URL and update the state
-                const profileImageUrl = userDoc.data().profileImageUrl;
-                setProfileImageUrl(profileImageUrl);
-            }
-        } else {
-            // User is logged out, set the profile image URL to the default image URL
-            setProfileImageUrl('https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png');
+      console.log("User authentication state changed:", user);
+      setIsAuthenticated(!!user);
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+          console.log("User role and profile image URL:", userDoc.data().role, userDoc.data().profileImageUrl);
+          setRole(userDoc.data().role);
+          setProfileImageUrl(userDoc.data().profileImageUrl);
         }
+      } else {
+        setProfileImageUrl('https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png');
+      }
     });
-
+  
     return () => unsubscribe();
   }, []);
 
@@ -119,7 +122,7 @@ const Header = () => {
       <div className="nav-area">
 
         <Link to="/" >
-          <img className="logo" src={PBPremiumLogo} alt="PhatBlackLogo" />
+          <img className="logo" src={PBPremiumLogo} alt="PhatBlackLogo" onClick={ dumpSesh } />
         </Link>
 
         <Search />
