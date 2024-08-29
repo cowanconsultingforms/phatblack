@@ -5,10 +5,6 @@ import speakerImage from "../assets/redpants-radio.jpg"
 import { SiApplearcade } from "react-icons/si";
 import { IoHomeSharp } from 'react-icons/io5';
 import { IoIosTrendingUp } from "react-icons/io";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { BiSolidTrophy } from "react-icons/bi";
-import { AiOutlineClose } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import { IoLogoGameControllerB } from "react-icons/io";
 import { TbTournament } from "react-icons/tb";
 import { MdPreview } from "react-icons/md";

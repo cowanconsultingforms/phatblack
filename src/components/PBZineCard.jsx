@@ -7,8 +7,10 @@ import Modal from "./Modaledit.jsx";
 import { chooseFile, uploadToFirebase } from '../utils/UploadUtils.js';
 
 const PBzineCard = ({ col, id, src, title, vendor, timeuploaded, views, zine }) => {
-    const [newFile, setNewFile] = useState();
+    //declare in all components with edit modals:
     const [showModal, setShowModal] = useState(false);
+    const [newFile, setNewFile] = useState();
+    //end 
     const inputRef = useRef(null);
     const subtitleRef = useRef(null);
     const navigate = useNavigate();

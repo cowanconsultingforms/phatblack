@@ -6,9 +6,12 @@ import { doc, updateDoc } from "firebase/firestore";
 import { FaPencilAlt } from "react-icons/fa";
 import Modal from "./Modaledit.jsx";
 import { chooseFile, uploadToFirebase } from '../utils/UploadUtils.js';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useUserRole} from '../utils/useUserRole.js';
 
 function Carousel({ items, carouselData }) {
     //declare in all components with edit modals:
+    const userRole = useUserRole();
     const [showModal, setShowModal] = useState(false);
     const [newFile, setNewFile] = useState();
     //end 
@@ -17,7 +20,10 @@ function Carousel({ items, carouselData }) {
     const inputRef = useRef(null);
     const subtitleRef = useRef(null);
     let initialX = null;
-
+    const auth = getAuth();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    //const [userRole, setUserRole] = useState('');
+    
     useEffect(() => {
         const id = setInterval(() => {
             next();
@@ -122,12 +128,18 @@ function Carousel({ items, carouselData }) {
                                 <p className='link-text'>{items[currentIndex].text}</p>
                             </div>
                     </Link>
+                    {['admin', 'staff', 'super admin'].includes(userRole) ? (
+
                     <FaPencilAlt onClick={toggleModal} className='edit-icon'/>
+                    ) : null}
+                    
+                
                     <Modal show={showModal} onClose={handleClose} onSubmit={handleEdit}>
                         <label for="newtitle">Title:</label> <br></br>
                         <input type="text" id="newtitle" name="newtitle" ref={inputRef}/>
                         <label for="newsubtitle">Subtitle:</label>
                         <input type="text" id="newsubtitle" name="newsubtitle" ref={subtitleRef}/>
+                    
                         <div className="fileChooser">
                             <p>Choose Image (file must not exceed x bytes):</p>
                             <input type="file" accept=".jpg,.jpeg,.png" onChange={(event) => chooseFile(event, setNewFile)}/>

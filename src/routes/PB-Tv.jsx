@@ -7,8 +7,6 @@ import { RiInformationLine } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import "../Styles/PBTv.css";
 
-//const PBTvCard = lazy(() => import("../components/PBTvCard.jsx"))
-
 function PBTv() {
     const [pbtvVideos, setPbTvVideos] = useState([]);
     const [featuredVideo, setFeaturedVideo] = useState(null);
@@ -122,6 +120,7 @@ function PBTv() {
                         vendor={video.vendor}
                         timeuploaded={video.time_uploaded.toDate()}
                         views={video.views}
+                        video={video}
                     />
                 ))}
             </div>
@@ -138,6 +137,7 @@ function PBTv() {
                             vendor={video.vendor}
                             timeuploaded={video.time_uploaded.toDate()}
                             views={video.views}
+                            video={video}
                         />
                     </div>
                 ))}
@@ -153,6 +153,7 @@ function PBTv() {
                         vendor={video.vendor}
                         timeuploaded={video.time_uploaded.toDate()}
                         views={video.views}
+                        video={video}
                     />
                 ))}
             </div>
@@ -169,6 +170,7 @@ function PBTv() {
                             vendor={video.vendor}
                             timeuploaded={video.time_uploaded.toDate()}
                             views={video.views}
+                            video={video}
                         />
                     </div>
                 ))}
@@ -184,6 +186,7 @@ function PBTv() {
                         vendor={video.vendor}
                         timeuploaded={video.time_uploaded.toDate()}
                         views={video.views}
+                        video={video}
                     />
                 ))}
             </div>
