@@ -41,6 +41,7 @@ function PBmall() {
         <div className="pb-mall">
             <Header />
             <Imagemap />
+            <SubHeadings />
             <Carousel items={mallCarouselItems} className="carousel"></Carousel>
             <Bottompage />
         </div>
@@ -51,9 +52,9 @@ function PBmall() {
 function Imagemap() {
     return (
         <div className="image-map">
-            <Link to="/pbmall" className="image-map-cards">
+            {/* <Link to="/pbmall" className="image-map-cards">
                 <img src={mensImage} alt="image" className="image" />
-            </Link>
+            </Link> */}
             <Link to="/pbmall" className="image-map-cards">
                 <img src={womensImage} alt="image" className="image" />
             </Link>
@@ -63,6 +64,52 @@ function Imagemap() {
 
 {/* Header and sub headers for the page */ }
 function Header() {
+    // const [sidebarOpen, setSidebarOpen] = React.useState(false);
+
+    // React.useEffect(() => {
+    //     const handleScroll = () => {
+    //         // Close the sidebar if it's open when scrolling starts
+    //         if (sidebarOpen) {
+    //             setSidebarOpen(false);
+    //         }
+    //     };
+
+    //     window.addEventListener('scroll', handleScroll);
+
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, [sidebarOpen]);
+
+    // const toggleSidebar = () => {
+    //     setSidebarOpen(!sidebarOpen);
+    // };
+
+    return (
+        <div></div>
+
+    );
+};
+
+function SubHeadings() {
+    return (
+        <div className="mall-tabs">
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">Featured</a></li>
+                <li><a href="#">Clothes</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Personal Care</a></li>
+                <li><a href="#">Miscellaneous</a></li>
+            </ul>
+        </div>
+    );
+}
+
+{/* Bottom page suggestions and header */ }
+function Bottompage() {
+
     const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
     React.useEffect(() => {
@@ -83,61 +130,12 @@ function Header() {
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
-
     return (
-        <>
-        <div className="header-container">
-            <div className={`mall-side-bar ${sidebarOpen ? 'open' : ''}`}>
-                <h1>PB-MALL</h1>
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">Featured</a></li>
-                    <li><a href="#">Clothes</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Personal Care</a></li>
-                    <li><a href="#">Miscellaneous</a></li>
-                </ul>
-            </div>
-            <FaBars className="sidebar-toggle" onClick={toggleSidebar}/>
 
 
-                {/* <div className="subtopics-container">
-                    <a href="/pbmall">
-                        <h2 className="Subtopics">Home</h2>
-                    </a>
-                    <a href="/pbmall">
-                        <h2 className="Subtopics">Featured</h2>
-                    </a>
-                    <a href="/pbmall">
-                        <h2 className="Subtopics">Clothes</h2>
-                    </a>
-                    <a href="/pbmall">
-                        <h2 className="Subtopics">Accessories</h2>
-                    </a>
-                    <a href="/pbmall">
-                        <h2 className="Subtopics">Electronics</h2>
-                    </a>
-                    <a href="/pbmall">
-                        <h2 className="Subtopics">Personal Care</h2>
-                    </a>
-                    <a href="/pbmall">
-                        <h2 className="Subtopics">Miscellaneous</h2>
-                    </a>
 
-                    {/* Maybe add search bar? Or would it be too much with the general search bar of the website?
-      <FontAwesomeIcon icon={faSearch} className="search-icon"> */}
-                {/* </div>  */}
-            </div>
-        </>
-
-    );
-};
-
-{/* Bottom page suggestions and header */ }
-function Bottompage() {
-    return (
         <div className="bottom-page">
+
             <div>
                 <h2 className="bottomHeader"> You May Also Like</h2>
             </div>

@@ -52,7 +52,7 @@ const Header = () => {
   }, []);
 
   const dumpSesh = () => {
-    
+
   }
 
   const handleLogout = async () => {
@@ -82,7 +82,7 @@ const Header = () => {
         setProfileImageUrl('https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png');
       }
     });
-  
+
     return () => unsubscribe();
   }, []);
 
@@ -91,7 +91,9 @@ const Header = () => {
     <header>
       <Sidebar />
       <div className="HeaderContainer">
-      <div className="header-media-container">
+
+        {/* Duplicate element? */}
+        <div className="header-media-container">
           <div>
             <a href="https://www.facebook.com/phatblackonline" target="_blank"><RiFacebookCircleFill className="header-media" /></a>
           </div>
@@ -105,7 +107,7 @@ const Header = () => {
             <a href="https://www.instagram.com/phatblackonline/" target="_blank"><RiInstagramFill className="header-media" /></a>
           </div>
         </div>
-      <div className="header-media-container">
+        <div className="header-media-container">
           <div>
             <a href="https://www.facebook.com/phatblackonline" target="_blank"><RiFacebookCircleFill className="header-media" /></a>
           </div>
@@ -119,35 +121,35 @@ const Header = () => {
             <a href="https://www.instagram.com/phatblackonline/" target="_blank"><RiInstagramFill className="header-media" /></a>
           </div>
         </div>
-      <div className="nav-area">
+        <div className="nav-area">
 
-        <Link to="/" >
-          <img className="logo" src={PBPremiumLogo} alt="PhatBlackLogo" onClick={ dumpSesh } />
-        </Link>
+          <Link to="/" >
+            <img className="logo" src={PBPremiumLogo} alt="PhatBlackLogo" onClick={dumpSesh} />
+          </Link>
 
-        <Search />
-        <div className="ProfileIcon">
-          <div className="ProfileIconContainer">
-          <button className="Profilebutton" onClick={toggleDropdown}>
-              <img src={profileImageUrl || profileIcon} alt="Profile Icon"/>
-          </button>
-          </div>
-          {showDropdown && (
-            <div ref={dropdownRef} className="menu">
-              <DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} authenticated={isAuthenticated} />
+          <Search />
+          <div className="ProfileIcon">
+            <div className="ProfileIconContainer">
+              <button className="Profilebutton" onClick={toggleDropdown}>
+                <img src={profileImageUrl || profileIcon} alt="Profile Icon" />
+              </button>
             </div>
-          )}
+            {showDropdown && (
+              <div ref={dropdownRef} className="menu">
+                <DropdownMenu handleLogout={handleLogout} navigate={navigate} role={role} authenticated={isAuthenticated} />
+              </div>
+            )}
+          </div>
+          {/* )} */}
+
         </div>
-        {/* )} */}
+        {/* for large screens */}
+        <Navbar />
 
-      </div>
-      {/* for large screens */}
-      <Navbar />
-
-      {/* for small screens 
+        {/* for small screens 
         <MobileNav />
         */}
-      </div>  
+      </div>
     </header>
   );
 };

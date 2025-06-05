@@ -43,7 +43,7 @@ function PBradio() {
 
 
     return (
-
+        <div>
             <div>
                 
                 <Slider {...settings} className="radio-container events">
@@ -80,6 +80,7 @@ function PBradio() {
                 <EventCard path="pbradio" title="test" imgSrc={cassette} />
             </div>
         </div>
+        
     );
 }
 

@@ -12,50 +12,72 @@
     width: 200px;
 }
 
-.mall-side-bar {
-    width: 30dvh; 
-    height: 90vh;
-    background-color: black;
-    flex-shrink: 0;
-    align-content: center;
-    text-align: center;
-    position: fixed;
-    left: -30vh;
-    top: 22%;
-    transition: left 0.3s ease;
-    z-index: 1;
-}
 
-.mall-side-bar h1 {
+
+/* .mall-side-bar h1 {
     color: #ffa646;
+} */
+
+.mall-tabs {
+    padding: 0 40px;
+    /* background: #fff; */
+    margin-bottom: 32px;
+    z-index: 2;
+    position: relative;
 }
 
-.mall-side-bar.open {
-    left: 0;
-    margin: auto;
-    margin-top: -15px;
-}
-
-.mall-side-bar ul {
+.mall-tabs ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+    margin-left: 40px;
 }
 
-.mall-side-bar li {
-    margin: 30px;
+.mall-tabs li {
+    margin: 0;
 }
 
-.mall-side-bar a {
+.mall-tabs a {
+    display: block;
+    font-size: 15px;
+    color: inherit;
+    text-decoration: none;
+    background-color: #212529;
+    border-radius: 10px;
+    margin-left: 15px;
+    height: 35px;
+    width: max-content;
+    margin-top: 10px;
+    padding: 0 18px;
+    line-height: 35px;
+    transition: 0.3s;
+}
+
+.mall-tabs a:hover,
+.mall-tabs .active {
+    box-shadow: 0px 0px 5px 2px #ffa646;
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+/* .mall-side-bar a {
     background-color: black;
     border: none;
     font-size: 1.5rem;
     color: white;
     font-family: "Bebas Neue", sans-serif;
-}
+} */
 
-.mall-side-bar a:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
+
 
 .Subtopics
 {
@@ -81,26 +103,33 @@
     margin: 20px;
 }
 
+.header-container .header-name {
+    margin-bottom: 5px;
+    margin-left: 50px;
+}
+
 .image-map{ /* These are the two images in the center for men and women */
     display: flex;
     position: relative;
     flex-wrap: wrap;
     max-width: 100%;
+    margin-bottom: 32px;
 }
 
 .image-map-cards{
-    width: 50%;
+    width: 100%;
     height: min-content;
 }
 
-.image-map-cards{
+/* .image-map-cards{
     width: 50%;
     height: min-content;
-}
+} */
 
 .image-map img{
     width: 100%;
     height: min-content;
+    aspect-ratio: 1/0.5;
 }
 
 .bottom-page{
@@ -167,26 +196,26 @@
         width: 100%;
     }
     .carousel{
-        margin-top: 1px;
+        margin-top: 32px;
     }
     .bottom-suggestions{
         margin-left: 0px;
         width: 100%;
     }
-    .mall-side-bar{
+    /* .mall-side-bar{
         margin-left: -4%;
-    }
+    } */
 }
       
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
     .mall-side-bar{
         top: 10vh;
         margin-left: -7%;
     }
-}
+} */
 
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
     .mall-side-bar{
         margin-left: -12%;
     }
-}
+} */
