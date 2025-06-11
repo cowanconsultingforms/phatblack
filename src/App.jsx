@@ -41,8 +41,8 @@ import CheckMongo from './routes/CheckMongo';
 import PBScholarships from './routes/PB-Scholarships';
 import PBService from './routes/PB-Service';
 
-import AdminMenu from './AdminMenu';
-import AddGamePanel from './AddGamePanel';
+import AdminMenu from './routes/AdminMenu';
+import AddGamePanel from './routes/AddGamePanel';
 
 //scrolling to the top of the page whenever entering a new route
 function ScrollToTop() {

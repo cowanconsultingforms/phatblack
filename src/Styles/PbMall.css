@@ -20,10 +20,14 @@
     align-content: center;
     text-align: center;
     position: fixed;
-    left: -30vh;
+    left: -35vh;
     top: 22%;
     transition: left 0.3s ease;
     z-index: 1;
+}
+
+.sidebar-toggle {
+    left: 15px;
 }
 
 .mall-side-bar h1 {
@@ -150,6 +154,9 @@
     .bottom-suggestions{
         width: 100%;
     }
+    .sidebar-toggle {
+        left: 5px;
+    }
 }
 
 @media (max-width: 940px){
@@ -181,8 +188,10 @@
 @media screen and (max-width: 500px) {
     .mall-side-bar{
         top: 10vh;
-        margin-left: -7%;
+        margin-left: 20%;
     }
+
+    
 }
 
 @media screen and (max-width: 400px) {
