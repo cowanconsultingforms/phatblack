@@ -1,4 +1,4 @@
-.subscribe-page{
+.subscribe-page {
   margin-left: 60px;
   width: calc(100% - 60px);
 }
@@ -23,7 +23,8 @@
   width: 100%;
   text-align: center;
   font-size: larger;
-  flex: 0 100 calc(20%); /* Adjust the width of each event card */
+  flex: 0 100 calc(20%);
+  /* Adjust the width of each event card */
   margin: 20px;
   border: 1px solid inherit;
   border-radius: 30px;
@@ -69,8 +70,10 @@
   font-size: .7rem;
 }
 
-@media  screen and (max-width: 940px) {
-  .subscribe-page{
+@media screen and (max-width: 940px) {
+
+  /* iPads and tablets */
+  .subscribe-page {
     margin-left: 40px;
     width: calc(100% - 40px);
   }
@@ -81,17 +84,34 @@
 }
 
 @media screen and (max-width: 500px) {
+
+  /* Mobile */
   .subscribe-page {
-      position: relative;
-      margin-left: 30px;
-      width: calc(100% - 30px);
+    position: relative;
+    margin-left: 30px;
+    width: calc(100% - 30px);
   }
 
-  .subscription-plans {
-    font-size: .5rem;
+  .card-title {
+    font-size: 1rem;
+    margin-bottom: 4px;
   }
+
+  .benefit,
+  .access {
+    font-size: 0.75rem;
+    margin: 4px 0;
+  }
+
+  .restriction {
+    font-size: 0.65rem;
+    margin-top: 6px;
+  }
+
+  .line-container {
+    margin: 6px 0;
+  }
+
 }
 
-@media screen and (max-width: 400px) {
-
-}
+@media screen and (max-width: 400px) {}
