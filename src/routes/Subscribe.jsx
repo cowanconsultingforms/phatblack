@@ -1,4 +1,5 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import SubscriptionCarousel from "../components/SubscriptionCarousel";
 import SubscriptionCard from "../components/SubscriptionCard";
 import "../Styles/Subscribe.css"
 import newBackground from "../assets/DeviceBackground.jpg";
@@ -7,10 +8,10 @@ import newBackground from "../assets/DeviceBackground.jpg";
 function Subscribe() {
     const subscriptionData = [
         {
-            path: "/stripe/trial", 
+            path: "/stripe/trial",
             title: "1 Month Free Trial",
             planBenefits: ["Unlimited Access to All Content", "Instant Delivery of Global News", "Stream On-Demand Shows 24/7"],
-            planAccess: ["1 Month Free Trial" , "Then $1/Month", "Cancel Anytime"],
+            planAccess: ["1 Month Free Trial", "Then $1/Month", "Cancel Anytime"],
             backgroundColor: "#212529",
             restrictions: "Restrictions Apply"
         },
@@ -40,24 +41,37 @@ function Subscribe() {
         },
     ];
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 500);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <div className="subscribe-page">
 
             <div className="subscribe-header">
             </div>
 
+            
+
             <div className="subscription-plans">
-                {subscriptionData.map((card, index) => (
-                    <SubscriptionCard
-                        key={index}
-                        path={card.path}
-                        title={card.title}
-                        planBenefits={card.planBenefits}
-                        planAccess={card.planAccess}
-                        backgroundColor={card.backgroundColor}
-                        restrictions={card.restrictions}
-                    />
-                ))}
+                {isMobile ? (
+                    <SubscriptionCarousel items={subscriptionData} />
+                ) : (
+                    subscriptionData.map((card, index) => (
+                        <SubscriptionCard
+                            key={index}
+                            path={card.path}
+                            title={card.title}
+                            planBenefits={card.planBenefits}
+                            planAccess={card.planAccess}
+                            backgroundColor={card.backgroundColor}
+                            restrictions={card.restrictions}
+                        />
+                    ))
+                )}
             </div>
         </div>
     )

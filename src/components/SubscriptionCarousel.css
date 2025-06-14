@@ -1,0 +1,54 @@
+.subscription-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-slide {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  color: white;
+  cursor: pointer;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-dots {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: white;
+  opacity: 1;
+}
