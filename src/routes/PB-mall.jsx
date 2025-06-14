@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import '../Styles/PbMall.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { CgMenuHotdog } from "react-icons/cg";
+import { TbMenu } from "react-icons/tb";
 import Carousel from "../components/Carousel";
 import carouselItem1 from "../assets/ClothesExample1.jpeg";
 import carouselItem2 from "../assets/ClothesExample2.jpeg";
@@ -99,7 +99,7 @@ function Header() {
                     <li><a href="#">Miscellaneous</a></li>
                 </ul>
             </div>
-            <CgMenuHotdog className="sidebar-toggle" onClick={toggleSidebar}/>
+            <TbMenu className="sidebar-toggle" onClick={toggleSidebar}/>
 
 
                 {/* <div className="subtopics-container">
