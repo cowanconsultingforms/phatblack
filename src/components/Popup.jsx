@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { db } from '../firebaseConfig';
@@ -90,23 +90,78 @@ function Popup() {
     const [subscribed, setSubscribed] = useState(false);
 
     useEffect(() => {
-        const getUserRole = async () => {
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    const userRef = doc(db, "users", user.uid);
-                    const userDoc = await getDoc(userRef);
-                    if (userDoc.exists() && ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(userDoc.data().role)) {
+        console.log("Popup - useEffect triggered, setting up auth listener");
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            console.log("Popup - Auth state changed - User:", user);
+            if (user) {
+                console.log("Popup - User UID:", user.uid);
+                console.log("Popup - User email:", user.email);
+                const userRef = doc(db, "users", user.uid);
+                console.log("Popup - Checking document at path: users/" + user.uid);
+                const userDoc = await getDoc(userRef);
+                console.log("Popup - User document exists:", userDoc.exists());
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    console.log("Popup - User data:", userData);
+                    console.log("Popup - User role:", userData.role);
+                    console.log("Popup - Role type:", typeof userData.role);
+                    console.log("Popup - All user data keys:", Object.keys(userData));
+                    
+                    // Check for different possible role field names
+                    const possibleRoleFields = ['role', 'Role', 'userRole', 'user_role', 'adminRole', 'admin_role'];
+                    let foundRole = null;
+                    for (const field of possibleRoleFields) {
+                        if (userData[field]) {
+                            console.log(`Popup - Found role in field '${field}':`, userData[field]);
+                            foundRole = userData[field];
+                        }
+                    }
+                    
+                    const roleToCheck = foundRole || userData.role;
+                    console.log("Popup - Role to check:", roleToCheck);
+                    console.log("Popup - Checking if role is in admin list:", ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor']);
+                    const hasAdminRole = ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(roleToCheck);
+                    console.log("Popup - Has admin role:", hasAdminRole);
+                    if (hasAdminRole) {
+                        console.log("Popup - User has admin/premium role - setting subscribed to true");
                         setSubscribed(true);
                     } else {
+                        console.log("Popup - User does not have admin/premium role - setting subscribed to false");
                         setSubscribed(false);
                     }
                 } else {
-                    setSubscribed(false);
+                    console.log("Popup - User document does not exist in users collection");
+                    console.log("Popup - Creating user document for manually added admin user");
+                    
+                    // Create the user document with admin role
+                    try {
+                        const userData = {
+                            email: user.email,
+                            uid: user.uid,
+                            role: 'admin', // Set as admin since they were manually added
+                            createdAt: new Date(),
+                            username: user.email?.split('@')[0] || 'admin'
+                        };
+                        
+                        await setDoc(doc(db, "users", user.uid), userData);
+                        console.log("Popup - Created user document with admin role");
+                        setSubscribed(true);
+                    } catch (error) {
+                        console.error("Popup - Error creating user document:", error);
+                        setSubscribed(false);
+                    }
                 }
-            });
-        };
+            } else {
+                console.log("Popup - No user logged in - setting subscribed to false");
+                setSubscribed(false);
+            }
+        });
 
-        getUserRole();
+        // Clean up the auth listener when component unmounts
+        return () => {
+            console.log("Popup - Cleaning up auth listener");
+            unsubscribe();
+        };
 
     }, [auth]);
 

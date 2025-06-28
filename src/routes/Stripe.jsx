@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import Payment from './Payment';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 
 const publishableKey = import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY;
@@ -36,26 +36,46 @@ const Stripe = () => {
   }, [param]);
 
   useEffect(() => {
-    const getUserRole = async () => {
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                setUserId(user.uid);
-                setIsLoggedIn(true);
-                const userRef = doc(db, "users", user.uid);
-                const userDoc = await getDoc(userRef);
-                if (userDoc.exists() && ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(userDoc.data().role)) {  
-                  setSubscribed(true);
-                } else {
-                  setSubscribed(false);
-                }
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            setUserId(user.uid);
+            setIsLoggedIn(true);
+            const userRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists() && ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(userDoc.data().role)) {  
+              setSubscribed(true);
+            } else if (!userDoc.exists()) {
+              console.log("Stripe - User document does not exist, creating for manually added admin user");
+              // Create the user document with admin role
+              try {
+                const userData = {
+                  email: user.email,
+                  uid: user.uid,
+                  role: 'admin', // Set as admin since they were manually added
+                  createdAt: new Date(),
+                  username: user.email?.split('@')[0] || 'admin'
+                };
+                
+                await setDoc(doc(db, "users", user.uid), userData);
+                console.log("Stripe - Created user document with admin role");
+                setSubscribed(true);
+              } catch (error) {
+                console.error("Stripe - Error creating user document:", error);
+                setSubscribed(false);
+              }
             } else {
-              setIsLoggedIn(false);
               setSubscribed(false);
             }
-        });
-    };
+        } else {
+          setIsLoggedIn(false);
+          setSubscribed(false);
+        }
+    });
 
-    getUserRole();
+    // Clean up the auth listener when component unmounts
+    return () => {
+        unsubscribe();
+    };
 
 }, [auth]);
 
