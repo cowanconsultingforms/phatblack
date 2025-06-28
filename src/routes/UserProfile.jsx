@@ -33,22 +33,31 @@ function UserProfile() {
     useEffect(() => {
         const auth = getAuth();
         const user = auth.currentUser;
+        console.log("UserProfile - Current user:", user);
         if (user) {
             const db = getFirestore();
             const userDocRef = doc(db, 'users', user.uid);
             setUserId(user.uid);
+            console.log("UserProfile - User UID:", user.uid);
             //setCurrentUser(formData.username);
             getDoc(userDocRef)
                 .then((docSnapshot) => {
+                    console.log("UserProfile - Document exists:", docSnapshot.exists());
                     if (docSnapshot.exists()) {
                         const userData = docSnapshot.data();
+                        console.log("UserProfile - User data:", userData);
+                        console.log("UserProfile - User role:", userData.role);
                         setFormData(userData);
                         localStorage.setItem('formData', JSON.stringify(userData));
+                    } else {
+                        console.log("UserProfile - User document does not exist");
                     }
                 })
                 .catch((error) => {
                     console.error("Error fetching user data:", error);
                 });
+        } else {
+            console.log("UserProfile - No user logged in");
         }
     }, []);
 

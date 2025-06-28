@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "../Styles/Signup.css";
 import { auth, db } from "../firebaseConfig";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, getAuth, onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import redpants from "../assets/redpants-radio.jpg";
+import googleIcon from "../assets/google.png";
+import { app } from "../firebaseConfig";
 
 function SignUp() {
     let navigate = useNavigate();
@@ -54,6 +56,8 @@ function SignUp() {
         return tempUsername;
     }
 
+    const provider = new GoogleAuthProvider();
+
     /*
         *handleSubmit button
         *e represents user input, in this case, the email and password
@@ -96,6 +100,22 @@ function SignUp() {
             alert(error.message);
         }
     };
+
+    const handleGoogleLogin = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+            alert("Signed in with Google");
+        } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            console.error(`Error code: ${errorCode}. Error message: ${errorMessage}`)
+        }
+    }
 
 
     return (
@@ -141,6 +161,12 @@ function SignUp() {
 
                     <button type="submit"> Sign Up </button>
                 </form>
+
+                <h2 className="Alternative"> OR </h2>
+                <button type="button" id="signInWithGoogle" onClick={handleGoogleLogin}>
+                    <img src={googleIcon} className="googleLogo"></img>
+                    Continue with Google
+                </button>
 
                 <p className="AlreadyAccount"> Already have an account? <Link to='/login'>Login</Link></p>
             </div>

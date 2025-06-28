@@ -165,24 +165,42 @@ function Bottom_content() {
 
 
   useEffect(() => {
-    const getUserRole = async () => {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          setUserId(user.uid);
-          setIsLoggedIn(true);
-          const userRef = doc(db, "users", user.uid);
-          const userDoc = await getDoc(userRef);
-          if (userDoc.exists() && ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(userDoc.data().role)) {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserId(user.uid);
+        setIsLoggedIn(true);
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists() && ['admin', 'staff', 'super admin', 'premium_user', 'partner', 'client', 'vendor'].includes(userDoc.data().role)) {
+          setSubscribed(true);
+        } else if (!userDoc.exists()) {
+          console.log("PB-zine - User document does not exist, creating for manually added admin user");
+          // Create the user document with admin role
+          try {
+            const userData = {
+              email: user.email,
+              uid: user.uid,
+              role: 'admin', // Set as admin since they were manually added
+              createdAt: new Date(),
+              username: user.email?.split('@')[0] || 'admin'
+            };
+            
+            await setDoc(doc(db, "users", user.uid), userData);
+            console.log("PB-zine - Created user document with admin role");
             setSubscribed(true);
-          } else {
+          } catch (error) {
+            console.error("PB-zine - Error creating user document:", error);
             setSubscribed(false);
           }
         } else {
           setIsLoggedIn(false);
           setSubscribed(false);
         }
-      });
-    };
+      } else {
+        setIsLoggedIn(false);
+        setSubscribed(false);
+      }
+    });
 
     const fetchEzine = async () => {
       try {
@@ -199,7 +217,10 @@ function Bottom_content() {
 
     fetchEzine();
 
-    getUserRole();
+    // Clean up the auth listener when component unmounts
+    return () => {
+      unsubscribe();
+    };
 
   }, [auth]);
 
