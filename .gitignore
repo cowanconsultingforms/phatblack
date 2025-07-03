@@ -25,3 +25,6 @@ dist-ssr
 
 .env.local
 .env
+
+# Vite compiled config files
+vite.config.js.timestamp-*.mjs
