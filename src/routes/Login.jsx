@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../Styles/Login.css";
 import { auth, db } from '../firebaseConfig';
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import redpants from "../assets/redpants-radio.jpg";
+import googleIcon from '../assets/google.png';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -86,6 +87,32 @@ function Login() {
         }
     };
 
+    const handleGoogleLogin = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            // Check if user document exists, if not, create it
+            const userRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userRef);
+            if (!userDoc.exists()) {
+                await setDoc(userRef, {
+                    email: user.email,
+                    uid: user.uid,
+                    role: 'user', // Default role
+                    createdAt: new Date(),
+                    username: user.email?.split('@')[0] || 'user'
+                });
+            }
+
+            sessionStorage.setItem("accessToken", user.accessToken);
+            navigate('/');
+        } catch (error) {
+            console.error("Google Sign-In Error:", error);
+            alert("Failed to sign in with Google.");
+        }
+    };
 
     return (
         <div className="ImageContainer" style={{ backgroundImage: `url('${redpants}')` }}>
@@ -114,6 +141,11 @@ function Login() {
 
                     <button type="submit" onClick={handleSubmit}> Sign In </button>
                 </form>
+
+                <button type="button" id="signInWithGoogle" onClick={handleGoogleLogin}>
+                    <img src={googleIcon} className="googleLogo" alt="Google" />
+                    Log In with Google
+                </button>
 
                 <p className="ForgetPass">Forgot your password? <a href="#" onClick={handlePasswordReset}>Reset it here</a></p>
                 <p className="NoAccount"> Don't have an account? <Link to='/subscribe'>Sign Up!</Link></p>
