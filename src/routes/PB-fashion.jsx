@@ -13,7 +13,7 @@ function PBfashion() {
             <div className="Top-Featured">
                 <div className="Featured-Info">
                     <h4>Place holder</h4>
-                    <h1>his is where the caption for the daily trends will go</h1>
+                    <h1>This is where the caption for the daily trends will go</h1>
                     <h3>Name of author(s)</h3>
                     <h4>phat-black.web.app</h4>
                 </div>
