@@ -3,7 +3,11 @@
 }
 
 .faq-container {
-    margin-left: 25%;
+    margin: 0 auto;
+    max-width: 600px;
+    min-width: 320px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
@@ -16,7 +20,6 @@
 
 .faq-grid li.active {
   background-color: orange;
-  /* Add any other styles for the active state */
 }
 
 .faq-grid {
@@ -71,6 +74,7 @@
   border-right: 1px solid black;
   transition: 0.3s;
   cursor: pointer;
+  background: #111;           
 }
 
 .topic-head span{
@@ -87,7 +91,18 @@
 }
 
 .questionDiv {
-  margin-top: 10px;
+  background: #222;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 16px;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.10);
+  color: #222;
+  box-sizing: border-box;
+}
+
+.questionDiv.expanded {
+  background: #282828;        
 }
 
 .question{
@@ -104,15 +119,25 @@
   padding-left: 53%;
 }
 
-.questions{
-  height: 0px;
+.questions {
+  max-height: 0;
   overflow: hidden;
-  transition: 1s;
+  transition: max-height 0.5s ease;
 }
 
-.questions.expanded{
-  transition: 1s;
-  height: 400px;
+.questions.expanded {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  background: #181818;
+  border-radius: 0 0 12px 12px;
+  border: 2px solid #333;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  transition: max-height 0.5s ease;
+  max-height: 1000px;
 }
 
 .arrowSelected{
@@ -124,15 +149,18 @@
   transition: 0.3s;
 }
 
-.answerNotShown{
-  height: 0;
+.answerNotShown {
+  max-height: 0;
   overflow: hidden;
-  transition: height 1s ease; /* Transition for smooth sliding */
+  transition: max-height 0.5s ease;
+  color: #CA883B;
 }
 
-.answerShown{
-  height: 150px;
-  transition: height 1s ease;
+.answerShown {
+  max-height: 500px;
+  transition: max-height 0.5s ease;
+  color: #CA883B; 
+  font-weight: bold;
 }
 
 .faq-footer{
@@ -141,7 +169,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-   /* leave in center or push to left?   margin-right: 75%; */
     padding-top: 100px;
 }
 
@@ -218,4 +245,14 @@
 
 .arrow {
   font-family: 'Arial', sans-serif;
+}
+
+.topic {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.topic-head {
+  width: 100%;
+  box-sizing: border-box;
 }

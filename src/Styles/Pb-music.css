@@ -1,0 +1,144 @@
+.pb-music-page {
+  background: #111;
+  min-height: 100vh;
+  padding: 40px 0 60px 0;
+  color: #fff;
+  font-family: 'Inter', 'Bebas Neue', Arial, sans-serif;
+}
+
+.pb-music-section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 40px;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+.pb-music-hits-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 28px;
+  padding: 0 40px 10px 40px;
+  margin-bottom: 32px;
+}
+
+.pb-music-hit-card {
+  background: #181818;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  min-width: 180px;
+  max-width: 180px;
+  padding: 18px 18px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.pb-music-hit-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(255, 193, 7, 0.18);
+}
+.pb-music-hit-img {
+  width: 144px;
+  height: 144px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+.pb-music-hit-info {
+  text-align: center;
+}
+.pb-music-hit-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.pb-music-hit-subtitle {
+  font-size: 0.95rem;
+  color: #bbb;
+  margin-bottom: 2px;
+}
+.pb-music-hit-tracks {
+  font-size: 0.9rem;
+  color: #ffb347;
+  font-weight: 500;
+}
+
+.pb-music-tracks-table {
+  margin: 0 40px;
+  border-radius: 12px;
+  background: #181818;
+  padding: 18px 0 8px 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.pb-music-track-row {
+  display: grid;
+  grid-template-columns: 48px 1.5fr 2fr 0.7fr 32px;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 24px;
+  border-bottom: 1px solid #222;
+  font-size: 1.05rem;
+  transition: background 0.2s;
+}
+.pb-music-track-row:last-child {
+  border-bottom: none;
+}
+.pb-music-track-row:hover {
+  background: #222;
+}
+.pb-music-track-cover {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.pb-music-track-title {
+  font-weight: 600;
+  color: #fff;
+}
+.pb-music-track-artist {
+  color: #bbb;
+  font-size: 0.98rem;
+}
+.pb-music-track-duration {
+  color: #ffb347;
+  font-size: 0.98rem;
+  text-align: right;
+}
+.pb-music-track-fav {
+  font-size: 1.3rem;
+  color: #bbb;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.2s;
+}
+.pb-music-track-fav:hover {
+  color: #CA883B;
+}
+
+@media (max-width: 900px) {
+  .pb-music-hits-row, .pb-music-tracks-table {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pb-music-section-title {
+    margin-left: 10px;
+  }
+  .pb-music-hits-row {
+    gap: 14px;
+    padding: 0 10px 10px 10px;
+  }
+  .pb-music-tracks-table {
+    margin: 0 2px;
+    padding: 8px 0 4px 0;
+  }
+  .pb-music-track-row {
+    padding: 8px 6px;
+    font-size: 0.98rem;
+    gap: 8px;
+  }
+}
