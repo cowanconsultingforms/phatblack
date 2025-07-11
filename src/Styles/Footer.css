@@ -139,9 +139,11 @@
 
 @media screen and (max-width: 500px) {
     .footer-container{
-        min-width: 92%;
-        max-width: 100%;
-        margin-left: -5%;
+        width: 100vw;
+        min-width: 100vw;
+        max-width: 100vw;
+        left: 0;
+        position: relative;
     }
 
     .footer-contents {
@@ -182,12 +184,6 @@
     .subscribe-button{
         margin-bottom: 20px;
         margin-top: -10px;
-    }
-
-    .footer-container {
-        position: relative;
-        left: 13%;
-        width: 87%;
     }
 }
 
