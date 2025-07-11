@@ -64,8 +64,8 @@ function PBgaming() {
                     <div className="ReviewBox">
                         <img src={speakerImage} alt="Game 3" />
                         <button>Game 3</button>
-                    </div
-                    ><div className="ReviewBox">
+                    </div>
+                    <div className="ReviewBox">
                         <img src={speakerImage} alt="Game 4" />
                         <button>Game 4</button>
                     </div>

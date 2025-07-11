@@ -61,12 +61,14 @@
     cursor: pointer;
 }
 
-.Subtopics
-{
-    font-size: clamp(1rem, 4vw, 1.2rem);
-    margin-left: 40px;
-    font-size: clamp(1rem, 4vw, 1.2rem);
-    margin-left: 40px;
+.Subtopics {
+  transition: background 0.2s, transform 0.2s;
+}
+.Subtopics:hover {
+  background: #222;
+  color: orange;
+  transform: scale(1.07);
+  border-radius: 8px;
 }
 
 .subtopics-container {

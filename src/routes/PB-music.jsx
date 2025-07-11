@@ -1,80 +1,81 @@
 import React from "react";
+import AlbumCover from "../assets/pbmusic_album_cover.jpg"
 import "../Styles/Pb-music.css";
 
 const hits = [
   {
-    title: "TIDAL's Top Hits",
-    subtitle: "TIDAL",
+    title: "Artist's Top Hits",
+    subtitle: "Subtitle",
     tracks: 100,
-    img: "https://via.placeholder.com/180x180?text=Top+Hits"
+    img: AlbumCover
   },
   {
     title: "Pop Hits",
-    subtitle: "TIDAL",
+    subtitle: "Subtitle",
     tracks: 48,
-    img: "https://via.placeholder.com/180x180?text=Pop+Hits"
+    img: AlbumCover
   },
   {
     title: "Rock Hits",
-    subtitle: "TIDAL",
+    subtitle: "Subtitle",
     tracks: 50,
-    img: "https://via.placeholder.com/180x180?text=Rock+Hits"
+    img: AlbumCover
   },
   {
     title: "Country Hits",
-    subtitle: "TIDAL",
+    subtitle: "Subtitle",
     tracks: 50,
-    img: "https://via.placeholder.com/180x180?text=Country+Hits"
+    img: AlbumCover
   },
   {
     title: "Rap Hits",
-    subtitle: "TIDAL",
+    subtitle: "Subtitle",
     tracks: 50,
-    img: "https://via.placeholder.com/180x180?text=Rap+Hits"
+    img: AlbumCover
   },
   {
     title: "R&B Hits",
-    subtitle: "TIDAL",
+    subtitle: "Subtitle",
     tracks: 50,
-    img: "https://via.placeholder.com/180x180?text=R%26B+Hits"
+    img: AlbumCover
   },
   {
     title: "Indie Hits",
-    subtitle: "TIDAL",
+    subtitle: "Subtitle",
     tracks: 50,
-    img: "https://via.placeholder.com/180x180?text=Indie+Hits"
+    img: AlbumCover
   }
 ];
 
 const newTracks = [
   {
-    cover: "https://via.placeholder.com/48x48?text=Track",
-    title: "Together",
-    artist: "David Guetta, Hypaton, Bonnie Tyler",
+    cover: AlbumCover,
+    title: "Song title",
+    artist: "Various artist names",
     duration: "2:34"
   },
   {
-    cover: "https://via.placeholder.com/48x48?text=Track",
-    title: "America (12'' Version)",
-    artist: "Prince, The Revolution",
+    cover: AlbumCover,
+    title: "Song title",
+    artist: "Various artist names",
     duration: "21:41"
   },
   {
-    cover: "https://via.placeholder.com/48x48?text=Track",
-    title: "Tree",
-    artist: "Chance the Rapper, Lil Wayne, Smino",
+    cover: AlbumCover,
+    title: "Song title",
+    artist: "Various artist names",
     duration: "4:28"
   },
   {
-    cover: "https://via.placeholder.com/48x48?text=Track",
-    title: "Summer '25",
-    artist: "Benny The Butcher",
+    cover: AlbumCover,
+    title: "Song title",
+    artist: "Various artist names",
     duration: "2:19"
   },
   {
-    cover: "https://via.placeholder.com/48x48?text=Track",
-    title: "pray4dagang (feat. KayCyy)",
-    artist: "A$AP Rocky, KayCyy",
+    cover: AlbumCover,
+    title: "Song title",
+    artist: "Various artist names",
     duration: "3:23"
   }
 ];
