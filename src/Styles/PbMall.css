@@ -13,6 +13,7 @@
 }
 
 .mall-side-bar {
+    left: 0;
     width: 30dvh; 
     height: 90vh;
     background-color: black;
@@ -26,8 +27,20 @@
     z-index: 1;
 }
 
+.mall-sidebar-toggle-container {
+    width: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
 .sidebar-toggle {
-    left: 15px;
+    font-size: 2rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 5;
 }
 
 .mall-side-bar h1 {
@@ -84,7 +97,9 @@
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    margin: 20px;
+    margin: 20px 0 20px 0;
+    padding-left: 0;
+    margin-left: 60px;
 }
 
 .image-map{ /* These are the two images in the center for men and women */
@@ -144,7 +159,8 @@
 /* viewing for mobile */
 @media (max-width: 600px){  
     .header-container{
-        padding: 10px;
+        padding: 10px 0 10px 0;
+        margin-left: 60px;
     }
     .Subtopics{
         margin: 10px;
@@ -156,8 +172,14 @@
     .bottom-suggestions{
         width: 100%;
     }
+    .mall-sidebar-toggle-container {
+        width: 60px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
     .sidebar-toggle {
-        left: 5px;
+        font-size: 2rem;
     }
 }
 

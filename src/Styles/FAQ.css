@@ -284,3 +284,15 @@
   box-shadow: 0 4px 16px rgba(0,0,0,0.18);
   transform: scale(1.04);
 }
+
+.faq-answer-text {
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  padding: 1px 0 0 0;
+  margin: 12px 0 0 0;
+  font-size: 1.1rem;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+}
