@@ -8,13 +8,10 @@ import nycVideo from "../assets/nyc.mp4";
 
 const FAQ = () => {
   const [selectedQuestions, setSelectedQuestions] = useState({});
-  const [expandedTopics, setExpandedTopics] = useState({});
+  const [expandedTopicIndex, setExpandedTopicIndex] = useState(null);
 
   const handleTopicClick = (topicIndex) => {
-    setExpandedTopics((prevExpandedTopics) => ({
-      ...prevExpandedTopics,
-      [topicIndex]: !prevExpandedTopics[topicIndex],
-    }));
+    setExpandedTopicIndex(prevIndex => prevIndex === topicIndex ? null : topicIndex);
   };
 
   const handleQuestionClicked = (topicIndex, questionIndex) => {
@@ -54,49 +51,19 @@ const FAQ = () => {
           {Questions.map((topic, topicIndex) => (
             <div key={topicIndex} className="topic" id={topic.topic}>
               <h2
-                className={`topic-head ${
-                  expandedTopics[topicIndex] ? "active" : ""
-                }`}
+                className={`topic-head ${expandedTopicIndex === topicIndex ? "active" : ""}`}
                 onClick={() => handleTopicClick(topicIndex)}
               >
-                {topic.topic}{" "}
+                {topic.topic} {" "}
                 <span className="arrow">
-                  {expandedTopics[topicIndex] ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+                  {expandedTopicIndex === topicIndex ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
                 </span>
               </h2>
-              <div
-                className={`questions ${
-                  expandedTopics[topicIndex] ? "expanded" : ""
-                }`}
-              >
-                {topic.questions.map((question, questionIndex) => (
-                  <div
-                    key={questionIndex}
-                    className={`questionDiv ${
-                      selectedQuestions[topicIndex] === questionIndex
-                        ? "expanded"
-                        : ""
-                    }`}
-                    onClick={() => handleQuestionClicked(topicIndex, questionIndex)}
-                  >
-                    <h3>
-                      {question.question}{" "}
-                      <span className="arrow">
-                        {selectedQuestions[topicIndex] === questionIndex ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
-                      </span>
-                    </h3>
-                    <p
-                      className={
-                        selectedQuestions[topicIndex] === questionIndex
-                          ? "answerShown"
-                          : "answerNotShown"
-                      }
-                    >
-                      Answer: {question.answer}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              {expandedTopicIndex === topicIndex && (
+                <p className="faq-answer-text">
+                  {topic.questions[0]?.answer}
+                </p>
+              )}
             </div>
           ))}
           <div className="faq-footer">
